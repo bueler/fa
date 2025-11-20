@@ -5,6 +5,12 @@ title: Bueler's Math F617 in Spring 2026 at UAF
 
 Welcome to the public homepage of **Math F617 Functional Analysis**, Spring 2026, in the [Dept. of Mathematics and Statistics](http://www.uaf.edu/dms/) at the [University of Alaska Fairbanks](http://www.uaf.edu/).
 
+This Spring I plan to teach _functional analysis in support of the finite element method_.  Each week I will start with a numerical computation of some kind, and then spend the rest of the week gathering the functional analytic definitions and theory to support it.  Note that infinite-dimensional topological vector spaces are the bread-and-butter of functional analysis.  These spaces become useful because they can contain high-quality approximating finite-dimensional subspaces.
+
+You will only rarely do finite element calculations themselves, and programming will not be an essential skill.
+
+We will see how this structure works!  It is experimental.
+
 If you plan to be present on campus in Fairbanks during the semester, please sign up for the in-person "901" section (crn 35010), and plan to attend lecture in Chapman 107.  If you are remote, signing up for the web-based "701" section (crn 35018) is just fine!
 
 #### Instructor:  [Ed Bueler](http://bueler.github.io/)
