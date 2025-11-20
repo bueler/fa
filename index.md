@@ -29,7 +29,7 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
 
 * There are three Exams, two Midterm Quizzes and a Final.  All are in class, and the Final will happen at the scheduled time.  See the [Exams](exams) tab for review guides.
 
-[<img src="assets/images/saxe.jpg" height="250">](https://link.springer.com/book/10.1007/978-1-4757-3687-8 "the textbook")
+[<img src="assets/images/Heat.gif" height="200">](https://en.wikipedia.org/wiki/Partial_differential_equation "heat equation") &nbsp; &nbsp; [<img src="assets/images/saxe.jpg" height="250">](https://link.springer.com/book/10.1007/978-1-4757-3687-8 "the textbook")
 
 <!--
 [<img src="assets/images/boundstates.png" height="200">](https://en.wikipedia.org/wiki/Unbounded_operator "bound states") &nbsp; &nbsp; [<img src="assets/images/harmonic.jpg" height="200">](https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics) "Hamiltonian operator eigenfunctions") &nbsp; &nbsp; [<img src="assets/images/borthwick.jpg" height="250">](https://link.springer.com/book/10.1007/978-3-030-38002-1 "the textbook")
@@ -44,13 +44,14 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
     * [Fourier series](https://en.wikipedia.org/wiki/Fourier_series)
     * [approximation theory](https://en.wikipedia.org/wiki/Approximation_theory)
     * [bounded operators](https://en.wikipedia.org/wiki/Bounded_operator)
-    * [self-adjoint operators](https://en.wikipedia.org/wiki/Self-adjoint_operator)
-    * [Laplacian operators](https://en.wikipedia.org/wiki/Laplace_operator)
+    * [partial differential equation](https://en.wikipedia.org/wiki/Partial_differential_equation)
     * [boundary value problems](https://en.wikipedia.org/wiki/Boundary_value_problem)
     * [finite element method](https://en.wikipedia.org/wiki/Finite_element_method)
 
 * Videos which might help with "getting started":
     * [abstract vector spaces (3Blue1Brown)](https://www.youtube.com/watch?v=TgKwz5Ikpc8)
+    * [Fourier series (3Blue1Brown)](https://www.youtube.com/watch?v=r6sGWTCMz2k)
+    * [partial differential equation (3Blue1Brown)](https://www.youtube.com/watch?v=ly4S0oi3Yz8)
     * [compactness](https://www.youtube.com/watch?v=td7Nz9ATyWY)
     * [Lebesgue integral](https://www.youtube.com/watch?v=LDNDTOVnKJk)
 
