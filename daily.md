@@ -11,4 +11,4 @@ Daily topics and PDFs (handouts and worksheets) will appear here as they occur. 
 {% include daily_table.md  data=site.data.daily %}
 /-->
 
-<div style="padding-bottom: 100px"></div>
+### UNDER CONSTRUCTION

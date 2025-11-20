@@ -15,13 +15,13 @@ Email me at [elbueler@alaska.edu](mailto:elbueler@alaska.edu).  I hold [office h
 
 Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30068) for the lecture Zoom link, Homework and Exam solutions, and to see your grades.
 
-### Getting Started (WARNING: UNDER CONSTRUCTION! BROKEN LINKS)
+### Getting Started (WARNING: UNDER CONSTRUCTION!)
 
 * Attend lectures: MWF 10:30-11:30am in Chapman 107, or online.
 
-* Read the [Syllabus (PDF)](assets/general/S26/syllabus.pdf).
+* Read the [Syllabus (PDF)](index.html).
 
-* The [Schedule (PDF)](assets/general/S26/schedule.pdf) is my longer-term plan.  Check it for exam dates and due dates, and for which topics come next!
+* The [Schedule (PDF)](index.html) is my longer-term plan.  Check it for exam dates and due dates, and for which topics come next!
 
 * The [daily log](daily) has the recent happenings, including handouts and worksheets as PDFs.
 

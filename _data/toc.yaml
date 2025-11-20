@@ -7,9 +7,11 @@ docs:
 
 - title: Syllabus
   #url: assets/general/S26/syllabus.pdf  # rebuild by "make syllabus.pdf" in assets/general/S26/
+  url: index.html
 
 - title: Schedule
   #url: assets/general/S26/schedule.pdf  # rebuild by "make schedule.pdf" in assets/general/S26/
+  url: index.html
 
 - title: Homework
   url: homework.html
