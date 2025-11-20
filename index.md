@@ -5,17 +5,19 @@ title: Bueler's Math F617 in Spring 2026 at UAF
 
 Welcome to the public homepage of **Math F617 Functional Analysis**, Spring 2026, in the [Dept. of Mathematics and Statistics](http://www.uaf.edu/dms/) at the [University of Alaska Fairbanks](http://www.uaf.edu/).
 
-This Spring I plan to teach _functional analysis in support of the finite element method_.  Each week I will start with a numerical computation of some kind, and then spend the rest of the week gathering the functional analytic definitions and theory to support it.  Note that infinite-dimensional topological vector spaces are the bread-and-butter of functional analysis.  These spaces become useful because they can contain high-quality approximating finite-dimensional subspaces.
+This Spring I plan to teach _functional analysis in support of the finite element method_.  Each week I will start with a numerical computation of some kind, and then spend the rest of the week gathering the functional analytic definitions and theory to support it.
 
-You will only rarely do finite element calculations themselves, and programming will not be an essential skill.
+Infinite-dimensional topological vector spaces are the bread-and-butter of functional analysis.  These spaces become useful because they can contain high-quality approximating finite-dimensional subspaces.  This is best reflected in the finite element method.  You will only rarely do finite element calculations themselves, and programming will not be an essential skill.
 
 We will see how this structure works!  It is experimental.
-
-If you plan to be present on campus in Fairbanks during the semester, please sign up for the in-person "901" section (crn 35010), and plan to attend lecture in Chapman 107.  If you are remote, signing up for the web-based "701" section (crn 35018) is just fine!
 
 #### Instructor:  [Ed Bueler](http://bueler.github.io/)
 
 Email me at [elbueler@alaska.edu](mailto:elbueler@alaska.edu).  I hold [office hours](http://bueler.github.io/OffHrs.htm) in Chapman 306C.
+
+## Signing-up
+
+If you plan to be present on campus in Fairbanks during the semester, please sign up for the in-person "901" section (crn 35010), and plan to attend lecture in Chapman 107.  If you are remote, signing up for the web-based "701" section (crn 35018) is just fine!
 
 ### Canvas course page
 
@@ -35,11 +37,7 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
 
 * There are three Exams, two Midterm Quizzes and a Final.  All are in class, and the Final will happen at the scheduled time.  See the [Exams](exams) tab for review guides.
 
-[<img src="assets/images/Heat.gif" height="200">](https://en.wikipedia.org/wiki/Partial_differential_equation "heat equation") &nbsp; &nbsp; [<img src="assets/images/saxe.jpg" height="250">](https://link.springer.com/book/10.1007/978-1-4757-3687-8 "the textbook")
-
-<!--
-[<img src="assets/images/boundstates.png" height="200">](https://en.wikipedia.org/wiki/Unbounded_operator "bound states") &nbsp; &nbsp; [<img src="assets/images/harmonic.jpg" height="200">](https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics) "Hamiltonian operator eigenfunctions") &nbsp; &nbsp; [<img src="assets/images/borthwick.jpg" height="250">](https://link.springer.com/book/10.1007/978-3-030-38002-1 "the textbook")
-/-->
+[<img src="assets/images/Heat.gif" height="200">](https://en.wikipedia.org/wiki/Partial_differential_equation "heat equation") &nbsp; &nbsp; [<img src="assets/images/bvp.png" height="200">](https://en.wikipedia.org/wiki/Boundary_value_problem "boundary value problem") &nbsp; &nbsp; [<img src="assets/images/fem.png" height="200">](https://en.wikipedia.org/wiki/Finite_element_method "finite element method") &nbsp; &nbsp; [<img src="assets/images/saxe.jpg" height="250">](https://link.springer.com/book/10.1007/978-1-4757-3687-8 "the textbook")
 
 * What are we studying?  Check out these Wikipedia pages for the topics we plan to touch:
 
