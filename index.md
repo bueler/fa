@@ -15,7 +15,7 @@ We will see how this structure works!  It is experimental.
 
 Email me at [elbueler@alaska.edu](mailto:elbueler@alaska.edu).  I hold [office hours](http://bueler.github.io/OffHrs.htm) in Chapman 306C.
 
-## Signing-up
+### Signing-up
 
 If you plan to be present on campus in Fairbanks during the semester, please sign up for the in-person "901" section (crn 35010), and plan to attend lecture in Chapman 107.  If you are remote, signing up for the web-based "701" section (crn 35018) is just fine!
 
