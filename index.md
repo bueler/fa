@@ -50,7 +50,7 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
     * [finite element method](https://en.wikipedia.org/wiki/Finite_element_method)
 
 * Videos which might help with "getting started":
-    * [abstract vector spaces](https://www.youtube.com/watch?v=TgKwz5Ikpc8)
+    * [abstract vector spaces (3Blue1Brown)](https://www.youtube.com/watch?v=TgKwz5Ikpc8)
     * [compactness](https://www.youtube.com/watch?v=td7Nz9ATyWY)
     * [Lebesgue integral](https://www.youtube.com/watch?v=LDNDTOVnKJk)
 
