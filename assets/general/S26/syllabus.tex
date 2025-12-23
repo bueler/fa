@@ -1,0 +1,253 @@
+\documentclass[12pt]{article}
+
+% Layout.
+\usepackage[top=1.2in, bottom=0.9in, left=1.2in, right=1.2in, headheight=1in, headsep=6pt]{geometry}
+
+% Fonts.
+\usepackage{mathptmx}
+\usepackage[scaled=1.0]{helvet}
+\renewcommand{\emph}[1]{\textsf{\textbf{#1}}}
+
+% Misc packages.
+\usepackage{amsmath,amssymb,latexsym,xspace}
+\usepackage{graphicx,hyperref}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{tabularx,colortbl}
+\usepackage{enumitem}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdfauthor={Ed Bueler}
+    pdftitle={Syllabus for MATH F617 Spring 2026},
+    }
+
+% Paragraph spacing
+\parindent 0pt
+\parskip 6pt plus 1pt
+\def\tableindent{\hskip 0.5 in}
+\def\ts{\hskip 1.5 em}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+%\chead{\large\sf\textbf{}}
+\lhead{\large\sf\textbf{Syllabus MATH F617}}
+\rhead{\large\sf\textbf{Spring 2026}}
+  
+\newcommand{\localhead}[1]{\par\smallskip\textbf{#1} \smallskip\nobreak\\}%
+\def\heading#1{\localhead{\large\emph{#1}}}
+\def\subheading#1{\localhead{\emph{#1}}}
+
+\newenvironment{clist}%
+{\bgroup\parskip 0pt\begin{list}{$\bullet$}{\partopsep 4pt\topsep 0pt\itemsep -2pt}}%
+{\end{list}\egroup}%
+
+
+\begin{document}
+
+\strut\par%\vskip-12pt
+\heading{Essential Information}
+
+%\vskip -12pt
+\strut\hbox to \hsize{\tableindent\vtop{\halign{#\hfill\ts&#\hfil\cr
+{\emph{Course Title}} & {\Large Functional Analysis} \cr
+\strut & \cr
+{\emph{Instructor}} & Ed Bueler \quad \href{mailto:elbueler@alaska.edu}{\texttt{elbueler\@@alaska.edu}} \cr
+\strut & \cr
+{\emph{Class meeting}} & MWF 10:30--11:30 am, Chapman 107 \cr
+\strut & \cr
+{\emph{Section CRNs}} & in-person 901:\, 35010 \quad online 701: 35018 \href{https://canvas.alaska.edu/courses/30068}{(zoom link here)}\cr
+\strut & \cr
+{\emph{Public website}} & \href{https://bueler.github.io/fa/}{\texttt{bueler.github.io/fa}}\cr
+\strut & \cr
+{\emph{Canvas website}} & \href{https://canvas.alaska.edu/courses/30068}{\texttt{canvas.alaska.edu/courses/30068}} \cr
+\strut & \cr
+\emph{Required text} & \href{https://link.springer.com/book/10.1007/978-1-4757-3687-8}{K.~Saxe, \textsl{Beginning Functional Analysis}, Undergraduate} \cr
+\strut & \href{https://link.springer.com/book/10.1007/978-1-4757-3687-8}{Texts in Mathematics, Springer 2010} \cr
+}
+\hfil}}
+
+
+\heading{Description}
+Functional analysis is the theory of infinite-dimensional vector spaces and linear maps upon them. It is the mathematical home of partial differential equations, boundary value problems, quantum mechanics, the finite element method, field theories (electromagnetic and gravitational), fluid mechanics, and signal processing.
+
+The UAF catalog description of the course is this:  \textsl{Study of Banach and Hilbert spaces, and continuous linear maps between them.  Linear functionals and the Hahn-Banach theorem. Applications of the Baire Category theorem.  Compact operators, self adjoint operators, and their spectral properties. Weak topology and its applications.}
+
+The above description is accurate, and all of these topics will arise.  However, I will strongly emphasize some aspects and gloss others.  This course will focus on:  \textsl{Hilbert spaces including Sobolev spaces.  Continuous and unbounded operators (linear maps) on Hilbert spaces.  The spectral theory of compact and self-adjoint operators, including the Laplacian.  Connections with finite-dimensional linear algebra and partial differential equations.  Motivation from the axioms and basic concepts of quantum mechanics.}
+
+Mathematically-inclined students from the sciences and engineering are encouraged to register, as are graduate students in mathematics looking for an elective with practical relevance.  This course is particularly aimed at students interested in the mathematics of partial differential equations and of quantum mechanics.  On the other hand, this will definitely be a graduate mathematics course, wherein almost every problem will be a proof!
+
+
+\clearpage\newpage
+\phantom{foo}
+\heading{Prerequisites}
+Officially: \textsl{MATH F314 Linear Algebra and MATH 401 Introduction to Real Analysis, or permission of instructor. Recommended: MATH F422 Introduction to Complex Analysis and MATH F641 Real Analysis.}
+
+For graduate students with a background from another university, these prerequisites describe rigorous, though introductory, exposure to the analysis of real functions, plus a course in linear algebra.  The basics of complex numbers are assumed.  Quite a bit of mathematical maturity and motivation is assumed.  The experienced difficulty of assigned work will depend on the student's comfort doing proofs, especially with vector spaces, sequences, real functions, convergence, continuity, and integrals.
+
+
+\heading{The Hybrid Classroom}
+There are two sections of the class, in-person (901) and online (701).  They are treated as one course and occur simultaneously.  In this ``hybrid'' set-up, each lecture will be a recorded Zoom session generated from Chapman 107.  (The link for the Zoom session is \href{https://canvas.alaska.edu/courses/27130}{in Canvas}.  The recordings will be linked from inside Canvas only; they are not public.)  I will try to treat all students the same regarding proctored assessments---see below---and participation during class time.  Students have certain obligations to help make this work:
+\begin{itemize}
+\item \textbf{in-person students}: To allow in-class play with Matlab etc., and to help classroom communication for e.g.~group work, please bring a laptop if you can, and perhaps join the Zoom session so you can see the online students.  I prefer that in-person students turn in their homework assignments on paper.
+\item \textbf{online students}: Please sign into the Zoom session, from Canvas, just before class starts.  Please participate as energetically as you can, and, if possible, keep your camera on.  Regarding in-class group work, check for worksheet PDFs \href{https://bueler.github.io/nla/}{on the Daily Log tab of the public site} before class starts.  When you turn in homework assignments electronically, please generate a clear, well-ordered, and combined PDF.  You will need to schedule proctoring for the in-class assessments (see below), or attend in-person on those days.
+\end{itemize}
+
+
+\heading{Schedule and Online Materials}
+The \href{https://bueler.github.io/nla/}{public course website} includes a \href{https://bueler.github.io/nla/assets/general/F25/schedule.pdf}{day-by-day schedule} listing the textbook sections to be covered, the due date of each homework Assignment, and timing of the Midterm Quizzes and Final Exam.  Please consult this schedule frequently.  It is subject to change, but it will be kept up to date.
+
+Most course materials (syllabus, schedule, homework Assignments, code examples, etc.) will be posted on the \href{https://bueler.github.io/nla/}{public website}.  Some private-access course materials (student grades, homework and exam solutions) will go on the \href{https://canvas.alaska.edu/courses/27130}{Canvas site}.
+
+
+\heading{Office Hours and Communication}
+My Office Hours are shown online at \href{http://bueler.github.io/OffHrs.htm}{\texttt{bueler.github.io/OffHrs.htm}}; I hold office hours in Chapman 306C.  Students can also schedule meetings with me outside of regular office hours; please send an email.  I will use Canvas to send announcements.  If I need to contact you outside of class times, I'll try to email via Canvas.  (Please set your email address in Canvas to one that you check regularly!)
+
+
+%\clearpage\newpage
+\phantom{foo}
+\heading{Evaluation and Grades}
+\vskip -10pt
+
+\begin{tabular}{|c|c|c|}
+\hline
+Homework & nearly weekly & 50\% \\
+\hline
+Midterm Quiz 1 & in-class Wednesday 8 October  & 15\%  \\
+\hline
+Midterm Quiz 2 & in-class Wednesday 12 November & 15\%  \\
+\hline
+Final Exam     & in-class Thursday 11 December 1-3 pm & 20\% \\
+\hline
+total & & 100\% \, \\
+\hline
+\end{tabular}
+
+The scores of the various parts will be summed and the final course grade will be assigned as follows:
+
+\begin{tabular}{llllll}
+A  & 93--100\% & B- & 79--81\%  & D+ & 65--67\%  \\
+A- & 90--92\%  & C+ & 76--78\%  & D  & 60--64\%  \\
+B+ & 87--89\%  & C  & 68--75\%  & D- & 57--59\%  \\
+B  & 82--86\%  & C- & not given & F  & $\le$ 56\%
+\end{tabular}
+
+These ranges are a guarantee and a lower bound.  I reserve the right to increase your grade above these ranges based on the actual difficulty of the work and/or on average class performance.  Any such increases will preserve grade ordering by weighted total score.
+
+
+\heading{Homework}
+Homework is due at the start of class.  \emph{Late homework is not accepted.}  If you have unavoidable circumstances which do not allow you to turn in an Assignment on time then please contact me (\href{mailto:elbueler@alaska.edu}{\texttt{elbueler\@@alaska.edu}}) in advance.
+
+Assignments and their due dates will regularly be posted at the \href{https://bueler.github.io/nla/}{\texttt{public website}}.  The homework consists of by-hand computations, design and analysis of numerical algorithms, computer implementation of those algorithms, by-hand and computer visualization, rigorously-justified examples and counter-examples, and proofs.  Problems very similar to, or shortened versions of, Homework problems will appear on the in-class Midterm Quizzes.
+
+Exercises on the homework will require Matlab, or another suitable scientific computing language, both as a super-calculator and for writing programs.  Codes on homework solutions will only be in Matlab/Octave.  The public website will also link a growing list of short Matlab/Octave codes; this is a good resource for examples.
+
+You may talk to other students about the Homework, and you may use internet and generative AI resources in your solutions.  However, note that actual comprehension of the ideas on the Homework is required to get even a passing grade in the course, and this is because the in-class, on paper assessments (Quizzes and the Final Exam) will allow no technology whatsoever.  These assessments will have a large overlap with Homework content; questions from Homework will be duplicated on to the assessments.
+
+\heading{Exams}
+There will be two in-class, hour-long Midterm Quizzes covering mostly basic concepts and definitions.
+
+The in-class Final Exam will require you to be familiar with \textbf{three} of the major methods we have studied.  I will describe the format of this Exam in more detail later.
+
+Make-up Quizzes or Final Exam will be given only for documented extenuating circumstances, at my discretion.  Department policy (below) does not allow me to move the time of the Final Exam.
+
+
+\phantom{foo}
+
+\heading{Department of Mathematics \& Statistics Rules and Policies}
+\vskip -20pt
+
+\subheading{Incomplete Grade} 
+Incomplete (I) will only be given in
+  DMS courses in cases where
+  the student has completed the majority (normally all but the last
+  three weeks) of a course with a grade of C or better, but for
+  personal reasons beyond his/her control has been unable to complete
+  the course during the regular term. Negligence or indifference are
+  not acceptable reasons for granting an incomplete grade.
+
+\subheading{Late Withdrawals} 
+A withdrawal after the deadline from a DMS course will
+  normally be granted only in cases where the student is performing
+  satisfactorily (i.e., C or better) in a course, but has exceptional
+  reasons, beyond his/her control, for being unable to complete the
+  course.  These exceptional reasons should be detailed in writing to
+  the instructor, Department Chair and the Dean.
+
+\subheading{No Early Final Examinations}
+Final examinations for DMS courses shall not be held earlier than the date and time published in the official term schedule.  Normally, a student will not be allowed to take a final exam early.  Exceptions can be made by individual instructors, but should only be allowed in exceptional circumstances and in a manner which doesn't endanger the security of the exam.
+
+\subheading{Academic Dishonesty}
+Academic dishonesty, including cheating and plagiarism, will not be tolerated.  It is a violation of the Student Code of Conduct and will be punished according to UAF procedures.
+
+\subheading{Student protections and service statement}
+Every qualified student is welcome in my classroom.  As needed, I am happy to work with you, Disability Services, Veterans' Services, Rural Student Services, and so on, to find reasonable accommodations.  Students at this University are protected against sexual harassment and discrimination (Title IX), and minors have additional protections.  For more information on your rights as a student and the resources available to you to resolve problems, please go the following site: \href{https://www.uaf.edu/handbook/}{\texttt{www.uaf.edu/handbook}}.
+
+
+\phantom{foo}
+\heading{Official UAF Syllabus Addendum}
+
+\subheading{Student protections statement} The university respects and upholds the principles of due process and a fair and equitable process as specified in the Board of Regents' Policy 09.02 Student Rights and Responsibilities. For more information regarding the rights and responsibilities of students, refer to the Office of Rights, Compliance and Accountability website. You are encouraged to read the Board of Regents' policy carefully to fully understand your responsibilities to our community.
+
+We strive to create a safe and respectful environment for all members of our community. If you have questions about expectations of you as a student or believe your rights are being violated, we encourage you to reach out to the  Office of Rights, Compliance and Accountability for help. UAF reserves the right to suspend, expel or take other necessary and appropriate action in cases where a student is unable or unwilling to uphold community standards and campus safety.
+
+For more information on your rights as a student and the resources available to you to resolve problems, please go to the following site: \href{https://catalog.uaf.edu/academics-regulations/students-rights-responsibilities/}{catalog.uaf.edu/academics-regulations/students-rights-responsibilities}
+
+\subheading{Disability services statement} I will work with the Office of Disability Services to provide reasonable accommodation to students with disabilities.
+
+\subheading{ASUAF advocacy statement} The Associated Students of the University of Alaska Fairbanks, the student government of UAF, offers advocacy services to students who feel they are facing issues with staff, faculty, and/or other students specifically if these issues are hindering the ability of the student to succeed in their academics or go about their lives at the university. Students who wish to utilize these services can contact the Student Advocacy Director by visiting the ASUAF office or emailing \href{mailto:asuaf.office@alaska.edu}{\texttt{asuaf.office\@@alaska.edu}}. 
+
+
+\subheading{Student Academic Support}
+
+\vspace{-10mm}
+\begin{itemize}
+\setlength\itemsep{0em}
+        \item Communication Center (907-474-7007, \href{mailto:uaf-commcenter@alaska.edu}{\texttt{uaf-commcenter\@@alaska.edu}}, Student Success Center, 6th Floor Room 677 Rasmuson Library)
+        \item Writing Center (907-474-5314, \href{mailto:uaf-writing-center@alaska.edu}{\texttt{uaf-writing-center\@@alaska.edu}}, Student Success Center, 6th Floor Room 677 Rasmuson Library)
+\item UAF Math Services (907-474-7332, \href{mailto:uaf-traccloud@alaska.edu}{\texttt{uaf-traccloud\@@alaska.edu}})
+
+
+\begin{itemize}
+\item Drop-in tutoring, Student Success Center, 6th Floor Room 672 Rasmuson Library
+
+\item 1:1 tutoring (by appointment only), 6th Floor Room 677 Rasmuson Library
+
+\item Online tutoring (by appointment only), available at the Student Success Center \\ \href{https://www.uaf.edu/dms/mathlab/}{www.uaf.edu/dms/mathlab}
+\end{itemize}
+
+\item Developmental Math Lab, Gruening 406
+\item The Debbie Moses Learning Center at CTC (907-455-2860, 604 Barnette St, Room 120,\\ \href{https://www.ctc.uaf.edu/student-services/student-success-center/}{www.ctc.uaf.edu/student-services/student-success-center})
+\item For more information and resources, please see the Academic Advising Resource List \\ (\href{https://www.uaf.edu/advising/students/index.php}{www.uaf.edu/advising/students/index.php})
+\end{itemize}
+
+%\clearpage \newpage
+\subheading{Student Resources}
+
+\vspace{-10mm}
+\begin{itemize}
+\setlength\itemsep{0em}
+\item Disability Services (907-474-5655, \href{mailto:uaf-disability-services@alaska.edu}{\texttt{uaf-disability-services\@@alaska.edu}}, 110 Eielson Building)
+\item Student Health \& Counseling, free counseling sessions available (907-474-7043, \\ \href{https://www.uaf.edu/chc/appointments.php}{www.uaf.edu/chc/appointments.php}, Whitaker Building, Room 206, Health, Safety \& Security Bldg --- same building as Fire and Police)
+\item Office of Rights, Compliance and Accountability (907-474-7300, \href{mailto:uaf-orca@alaska.edu}{\texttt{uaf-orca\@@alaska.edu}}, 3rd Floor, Constitution Hall)
+\item Associated Students of the University of Alaska Fairbanks (ASUAF) or ASUAF Student Government (907-474-7355, \href{mailto:asuaf.office@alaska.edu}{\texttt{asuaf.office\@@alaska.edu}}, Wood Center 119)
+\end{itemize}
+
+\subheading{Nondiscrimination statement}
+Nondiscrimination statement: The University of Alaska is an equal opportunity/equal access employer, educational institution and provider. The University of Alaska does not discriminate on the basis of race, religion, color, national origin, citizenship, age, sex, physical or mental disability, status as a protected veteran, marital status, changes in marital status, pregnancy, childbirth or related medical conditions, parenthood, sexual orientation, gender identity, political affiliation or belief, genetic information, or other legally protected status. The University's commitment to nondiscrimination, including against sex discrimination, applies to students, employees, and applicants for admission and employment. Contact information, applicable laws, and complaint procedures are included on UA's statement of nondiscrimination available at \url{www.alaska.edu/nondiscrimination}.
+
+\begin{tabular}{l}
+UAF Office of Rights, Compliance and Accountability\\
+1692 Tok Lane\\
+3rd floor, Constitution Hall, Fairbanks, AK 99775\\
+907-474-7300\\
+\href{mailto:uaf-orca@alaska.edu}{\texttt{uaf-orca\@@alaska.edu}}
+\end{tabular}
+
+\hfill  \scriptsize [syllabus version: \today] \normalsize
+
+\end{document}
