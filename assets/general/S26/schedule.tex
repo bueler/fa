@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage[top=1.0in, bottom=0.5in, left=0.9in, right=1.0in]{geometry}
+
+\usepackage{tabularx,enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{palatino}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,urlcolor=black]{hyperref}
+
+% commands to put defined left and right headers on the top
+% and a page number on the bottom of all pages after 1
+\pagestyle{fancy}
+\makeatletter
+\fancyfoot[C]{\ifnum \value{page} > 1\relax\thepage\fi}
+\fancyhead[L]{\ifx\@doclabel\@empty\else\@doclabel\fi}
+\fancyhead[R]{\ifx\@docdate\@empty\else\@docdate\fi}
+\headheight 15pt
+\headsep 5pt
+\def\doclabel#1{\gdef\@doclabel{#1}}
+\def\docdate#1{\gdef\@docdate{#1}}
+\makeatother
+
+%% General formatting parameters
+\parindent 0pt
+\parskip 6pt plus 1pt
+
+% header content
+\doclabel{Math 617 Functional Analysis}
+\docdate{Spring 2026 (Bueler)}
+
+% macros
+\renewcommand{\d}{\displaystyle}
+\newcommand{\wkday}[3]{\textbf{\large #1\strut}\quad #2\,--\,#3}
+\newcommand{\vacinline}[1]{{\color{OliveGreen} \textsl{#1}}}
+\newcommand{\vac}[1]{\strut {\small \vacinline{#1}}}
+\newcommand{\due}[1]{\strut {\color{BrickRed} \textsl{#1}}}
+\newcommand{\hdue}[1]{\due{#1 due}}
+\newcommand{\proj}[1]{\strut {\color{RedOrange} #1}}
+\newcommand{\ee}[1]{\strut {\color{Blue} \textbf{#1}}}
+\newcommand{\dlinline}[1]{{\color{Purple} \textbf{#1}}}
+\newcommand{\dl}[1]{{\footnotesize \dlinline{#1}}}
+
+
+\begin{document}
+\hfill \small \emph{version 1: \today} \normalsize
+
+\bigskip\bigskip
+\centerline{\Large \textbf{Weekly Schedule}}
+
+\bigskip
+This schedule is subject to changes!  See the public webpage \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa/}} for \due{Homework} and \ee{Exam} details.  Homework is due at the start of class.  Textbook\footnote{Saxe, \emph{Beginning Functional Analysis}, Springer 2010} sections are in black.  Note \vac{vacation days} and \dl{deadlines}.
+
+Classes are MWF 10:30--11:30 am in Chapman 107.
+
+\bigskip
+
+\begin{tabularx}{1.03\textwidth}{l|>{\raggedright\arraybackslash}X|X|X|}
+\textbf{Week} \quad Dates & M & W & F \\ \hline
+
+\wkday{1}{1/12}{1/16}   &  &  &  \\ \hline
+
+\wkday{2}{1/19}{1/23}   & \vac{AK Civil Rights Day} & \due{Assignment 1 due} & cont. \par \dl{add/drop} \\ \hline
+
+\wkday{3}{}{}  &  &  & \\ \hline
+
+\wkday{4}{}{}  &  &  & \\ \hline
+
+\wkday{5}{}{}  &  &  & \\ \hline
+
+\wkday{6}{}{}  &  &  & \\ \hline
+
+\wkday{7}{}{}   & \ee{Midterm Exam 1} &  &  \\ \hline
+
+\wkday{8}{3/9}{3/13}   & \vac{Spring Break} & \vac{Spring Break} & \vac{Spring Break} \\ \hline
+
+\wkday{9}{}{}  &  &  & \\ \hline
+
+\wkday{10}{}{}  &  &  & cont. \par \dl{withdraw} \\ \hline
+
+\wkday{11}{}{}  &  &  & \\ \hline
+
+\wkday{12}{}{}  &  &  & \\ \hline
+
+\wkday{13}{}{}  & \ee{Midterm Exam 2} &  &  \\ \hline
+
+\wkday{14}{}{}  &  &  &  \\ \hline
+
+\wkday{15}{}{}  &  &  & \\ \hline
+
+\wkday{16}{4/27}{5/1}   &  &  & \ee{Final Exam} \par 10:15am--12:15pm  \\ \hline
+
+\end{tabularx}
+
+
+\end{document}
