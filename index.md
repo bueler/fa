@@ -5,13 +5,11 @@ title: Bueler's Math F617 in Spring 2026 at UAF
 
 Welcome to the public homepage of **Math F617 Functional Analysis**, Spring 2026, in the [Dept. of Mathematics and Statistics](http://www.uaf.edu/dms/) at the [University of Alaska Fairbanks](http://www.uaf.edu/).
 
-## UNDER CONSTRUCTION!  MANY LINKS BROKEN
+## UNDER CONSTRUCTION!  MANY LINKS BROKEN OR EMPTY
 
-This Spring I plan to teach _functional analysis_ in support of the _finite element method_.  Each week I will start with a numerical computation of some kind, and then spend the rest of the week gathering the functional analytic definitions and theory to support it.
+#### Plan
 
-_Infinite-dimensional topological vector spaces_ are the bread-and-butter of functional analysis.  These spaces become useful because they can contain the exact solutions of problems like partial differential equations.  They also often contain high-quality approximating finite-dimensional subspaces, most powerfully in the finite element method.  This course is not about finite element calculations themselves, and programming will not be an essential skill, but _Sobolev spaces_ and _interpolation_ will be important ideas.
-
-We will see how this structure works!  It is experimental.
+I plan to teach this _functional analysis_ course as though it is in support of the _finite element method_.  Each week I will start with a numerical computation of some kind, and then spend the rest of the week gathering the functional analytic definitions and theory to support it.  Note that _infinite-dimensional normed vector spaces_ are central to functional analysis.  These spaces are useful because they can contain the exact solutions of continuum problems like partial differential equations.  Generally these are spaces of functions on domains in euclidean space, with some given regularity, that is, _Sobolev spaces_.  However, these spaces also contain high-quality approximating finite-dimensional subspaces, such as the piecewise-simple spaces of the finite element method.  This course is not about finite element calculations themselves, and programming will not be an essential skill, but _linear functionals_, _bilinear forms_, _Sobolev spaces_, and _interpolation_ will be important ideas.  We will see how this structure works!  It is experimental.
 
 #### Instructor:  [Ed Bueler](http://bueler.github.io/)
 
@@ -27,17 +25,19 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
 
 ### Getting Started (WARNING: UNDER CONSTRUCTION!)
 
+* Get a copy of the textbook, [K. Saxe, _Beginning Functional Analysis_, Undergraduate Texts in Mathematics, Springer 2010](https://link.springer.com/book/10.1007/978-1-4757-3687-8).
+
 * Attend lectures: MWF 10:30-11:30am in Chapman 107, or online.
 
 * Read the [Syllabus (PDF) BROKENLINK](index.html).
 
 * The [Schedule (PDF) BROKENLINK](index.html) is my longer-term plan.  Check it for exam dates and due dates, and for which topics come next!
 
-* The [daily log BROKENLINK](daily) has the recent happenings, including handouts and worksheets as PDFs.
+* The [daily log](daily) has the recent happenings, including handouts and worksheets as PDFs.
 
-* Check out the nearly-weekly [homework Assignments BROKENLINK](homework).
+* Check out the nearly-weekly [homework Assignments](homework).
 
-* There are three Exams, two Midterm Quizzes and a Final.  All are in class, and the Final will happen at the scheduled time.  See the [Exams BROKENLINK](exams) tab for review guides.
+* There are three Exams, two Midterm Quizzes and a Final.  All are in class, and the Final will happen at the scheduled time.  See the [Exams](exams) tab for review guides.
 
 [<img src="assets/images/Heat.gif" height="200">](https://en.wikipedia.org/wiki/Partial_differential_equation "heat equation") &nbsp; &nbsp; [<img src="assets/images/bvp.png" height="200">](https://en.wikipedia.org/wiki/Boundary_value_problem "boundary value problem") &nbsp; &nbsp; [<img src="assets/images/fem.png" height="200">](https://en.wikipedia.org/wiki/Finite_element_method "finite element method") &nbsp; &nbsp; [<img src="assets/images/saxe.jpg" height="250">](https://link.springer.com/book/10.1007/978-1-4757-3687-8 "the textbook")
 
