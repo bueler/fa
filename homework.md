@@ -11,8 +11,4 @@ Assignments are **due at the start of class**.  Please turn in each Assignment o
 
 After each Assignment is due, complete solutions will be posted at the **Modules tab** of the [Canvas course page](https://canvas.alaska.edu/courses/30068).
 
-<!--
 {% include homework_table.md  data=site.data.homework %}
-/-->
-
-### UNDER CONSTRUCTION
