@@ -2,16 +2,16 @@ semester: Spring 2026
 home: assets/exams/S26
 exams:
 - name: Midterm Quiz 1
-  date: 
+  date: Monday 2 March
   info: <b>in class</b> or proctored
   #reviewguide: review/mid.pdf
   #blank: mid.pdf
   #solutions: midsolns.pdf
 - name: Midterm Quiz 2
-  date: 
+  date: Monday 13 April
   info: <b>in class</b> or proctored
 - name: Final Exam
-  date: 
+  date: Friday 1 May, 10:15am--12:15pm
   info: <b>in class</b> or proctored
   #blank: final.pdf
   #rubric: finalrubric.pdf
