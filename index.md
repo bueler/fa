@@ -5,8 +5,6 @@ title: Bueler's Math F617 in Spring 2026 at UAF
 
 Welcome to the public homepage of **Math F617 Functional Analysis**, Spring 2026, in the [Dept. of Mathematics and Statistics](http://www.uaf.edu/dms/) at the [University of Alaska Fairbanks](http://www.uaf.edu/).
 
-## UNDER CONSTRUCTION!  MANY LINKS BROKEN OR EMPTY
-
 ### Instructor:  [Ed Bueler](http://bueler.github.io/)
 
 Email me at [elbueler@alaska.edu](mailto:elbueler@alaska.edu).  I hold [office hours](http://bueler.github.io/OffHrs.htm) in Chapman 306C.
@@ -25,15 +23,15 @@ If you plan to be present on campus in Fairbanks during the semester, please sig
 
 Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30068) for the lecture Zoom link, Homework and Exam solutions, and to see your grades.
 
-### Getting Started (WARNING: UNDER CONSTRUCTION!)
+### Getting Started
 
 * Get a copy of the textbook, [K. Saxe, _Beginning Functional Analysis_, Undergraduate Texts in Mathematics, Springer 2010](https://link.springer.com/book/10.1007/978-1-4757-3687-8).
 
 * Attend lectures: MWF 10:30-11:30am in Chapman 107, or online.
 
-* Read the [Syllabus (PDF) BROKENLINK](index.html).
+* Read the [Syllabus (PDF)](assets/general/S26/syllabus.pdf).
 
-* The [Schedule (PDF) BROKENLINK](index.html) is my longer-term plan.  Check it for exam dates and due dates, and for which topics come next!
+* The [Schedule (PDF)](assets/general/S26/schedule.pdf) is my longer-term plan.  Check it for exam dates and due dates, and for which topics come next!
 
 * The [daily log](daily) has the recent happenings, including handouts and worksheets as PDFs.
 
@@ -62,10 +60,6 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
     * [partial differential equation (3Blue1Brown)](https://www.youtube.com/watch?v=ly4S0oi3Yz8)
     * [compactness](https://www.youtube.com/watch?v=td7Nz9ATyWY)
     * [Lebesgue integral](https://www.youtube.com/watch?v=LDNDTOVnKJk)
-
-<!--
-* [The course advertisement](assets/general/S26/advert.pdf)
-/-->
 
 ---
 _Site design derived from [coordinated Calc I](https://uaf-math.github.io/calc1/), an original [Jekyll](https://jekyllrb.com/) design by [David Maxwell](https://damaxwell.github.io/)._

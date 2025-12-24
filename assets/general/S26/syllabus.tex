@@ -73,35 +73,37 @@
 
 
 \heading{Description}
-Functional analysis is the theory of infinite-dimensional vector spaces and linear maps upon them. It is the mathematical home of partial differential equations, boundary value problems, quantum mechanics, the finite element method, field theories (electromagnetic and gravitational), fluid mechanics, and signal processing.
+Functional analysis is the theory of infinite-dimensional vector spaces, their topology, their subspaces, and linear maps upon them.  It is the mathematical home of partial differential equations, boundary value problems, quantum mechanics, continuous signals, the finite element method, field theories (electromagnetic and gravitational), continuum mechanics, fluids, and elasticity.
 
-The UAF catalog description of the course is this:  \textsl{Study of Banach and Hilbert spaces, and continuous linear maps between them.  Linear functionals and the Hahn-Banach theorem. Applications of the Baire Category theorem.  Compact operators, self adjoint operators, and their spectral properties. Weak topology and its applications.}
+The UAF catalog description of the course is this:  \textsl{Study of Banach and Hilbert spaces, and continuous linear maps between them.  Linear functionals and the Hahn-Banach theorem. Applications of the Baire Category theorem.  Compact operators, self adjoint operators, and their spectral properties.  Weak topology and its applications.}
 
-The above description is accurate, and all of these topics will arise.  However, I will strongly emphasize some aspects and gloss others.  This course will focus on:  \textsl{Hilbert spaces including Sobolev spaces.  Continuous and unbounded operators (linear maps) on Hilbert spaces.  The spectral theory of compact and self-adjoint operators, including the Laplacian.  Connections with finite-dimensional linear algebra and partial differential equations.  Motivation from the axioms and basic concepts of quantum mechanics.}
+The above description is accurate, and all of these topics will be covered.  However, I will emphasize some aspects and gloss others.
 
-Mathematically-inclined students from the sciences and engineering are encouraged to register, as are graduate students in mathematics looking for an elective with practical relevance.  This course is particularly aimed at students interested in the mathematics of partial differential equations and of quantum mechanics.  On the other hand, this will definitely be a graduate mathematics course, wherein almost every problem will be a proof!
+This course will focus on:  Spaces of continuous and integrable functions.  Hilbert and Banach spaces including Sobolev spaces.  Connections with finite-dimensional linear algebra and partial differential equations.  Bounded and compact operators (linear maps).  Approximation using polynomials, trigonometric functions, and finite-dimensional subspaces.  Weak forms and background for the finite element method.
+
+Mathematically-inclined students from the sciences and engineering are encouraged to register, as are graduate students in mathematics looking for an elective with practical relevance.  This course is particularly aimed at students interested in the mathematics of partial differential equations, including fluids and elastic solids, and the finite element method.  On the other hand, this will definitely be a graduate mathematics course; most problems will be proofs!
 
 
-\clearpage\newpage
+%\clearpage\newpage
 \phantom{foo}
 \heading{Prerequisites}
 Officially: \textsl{MATH F314 Linear Algebra and MATH 401 Introduction to Real Analysis, or permission of instructor. Recommended: MATH F422 Introduction to Complex Analysis and MATH F641 Real Analysis.}
 
-For graduate students with a background from another university, these prerequisites describe rigorous, though introductory, exposure to the analysis of real functions, plus a course in linear algebra.  The basics of complex numbers are assumed.  Quite a bit of mathematical maturity and motivation is assumed.  The experienced difficulty of assigned work will depend on the student's comfort doing proofs, especially with vector spaces, sequences, real functions, convergence, continuity, and integrals.
+For graduate students with a background from another university, these prerequisites suppose a rigorous, though introductory, exposure to the analysis of real functions, plus a course in linear algebra.  The basics of complex numbers are assumed.  Quite a bit of mathematical maturity and motivation is assumed.  The difficulty of the assigned work will depend on the student's comfort doing proofs, especially with vector spaces, sequences, real functions, convergence, continuity, and integrals.
 
 
 \heading{The Hybrid Classroom}
-There are two sections of the class, in-person (901) and online (701).  They are treated as one course and occur simultaneously.  In this ``hybrid'' set-up, each lecture will be a recorded Zoom session generated from Chapman 107.  (The link for the Zoom session is \href{https://canvas.alaska.edu/courses/27130}{in Canvas}.  The recordings will be linked from inside Canvas only; they are not public.)  I will try to treat all students the same regarding proctored assessments---see below---and participation during class time.  Students have certain obligations to help make this work:
-\begin{itemize}
-\item \textbf{in-person students}: To allow in-class play with Matlab etc., and to help classroom communication for e.g.~group work, please bring a laptop if you can, and perhaps join the Zoom session so you can see the online students.  I prefer that in-person students turn in their homework assignments on paper.
-\item \textbf{online students}: Please sign into the Zoom session, from Canvas, just before class starts.  Please participate as energetically as you can, and, if possible, keep your camera on.  Regarding in-class group work, check for worksheet PDFs \href{https://bueler.github.io/nla/}{on the Daily Log tab of the public site} before class starts.  When you turn in homework assignments electronically, please generate a clear, well-ordered, and combined PDF.  You will need to schedule proctoring for the in-class assessments (see below), or attend in-person on those days.
-\end{itemize}
+There are two sections of the class, in-person (901) and online (701).  They are treated as one course and occur simultaneously.  In this ``hybrid'' set-up, each lecture will be a Zoom session generated from Chapman 107.  (The link for the Zoom session is \href{https://canvas.alaska.edu/courses/30068}{in Canvas}.)  It will be recorded, and the recordings will be linked from inside Canvas only; they are not public.
+
+I will try to treat all students the same regarding participation during class time and for proctored assessments.
+
+For online students, please sign into the Zoom session (from Canvas) just before class starts.  Please participate as energetically as you can, and, if possible, keep your camera on.  Regarding in-class group work, check for worksheet PDFs \href{https://bueler.github.io/fa/}{on the Daily Log tab of the public site} before class starts.  You will need to schedule proctoring for the in-class assessments (see below), or attend in-person on those days.
 
 
 \heading{Schedule and Online Materials}
-The \href{https://bueler.github.io/nla/}{public course website} includes a \href{https://bueler.github.io/nla/assets/general/F25/schedule.pdf}{day-by-day schedule} listing the textbook sections to be covered, the due date of each homework Assignment, and timing of the Midterm Quizzes and Final Exam.  Please consult this schedule frequently.  It is subject to change, but it will be kept up to date.
+The \href{https://bueler.github.io/fa/}{public course website} includes a \href{https://bueler.github.io/fa/assets/general/S26/schedule.pdf}{day-by-day schedule} listing the textbook sections to be covered, the due date of each homework Assignment, and timing of the Midterm Quizzes and Final Exam.  Please consult this schedule frequently.  It is subject to change, but it will be kept up to date.
 
-Most course materials (syllabus, schedule, homework Assignments, code examples, etc.) will be posted on the \href{https://bueler.github.io/nla/}{public website}.  Some private-access course materials (student grades, homework and exam solutions) will go on the \href{https://canvas.alaska.edu/courses/27130}{Canvas site}.
+Most course materials (syllabus, schedule, homework Assignments, code examples, etc.) will be posted on the \href{https://bueler.github.io/fa/}{public website}.  Some private-access course materials (student grades, homework and exam solutions) will go on the \href{https://canvas.alaska.edu/courses/30068}{Canvas site}.
 
 
 \heading{Office Hours and Communication}
@@ -117,11 +119,11 @@ My Office Hours are shown online at \href{http://bueler.github.io/OffHrs.htm}{\t
 \hline
 Homework & nearly weekly & 50\% \\
 \hline
-Midterm Quiz 1 & in-class Wednesday 8 October  & 15\%  \\
+Midterm Exam 1 & in-class X  & 15\%  \\
 \hline
-Midterm Quiz 2 & in-class Wednesday 12 November & 15\%  \\
+Midterm Exam 2 & in-class X & 15\%  \\
 \hline
-Final Exam     & in-class Thursday 11 December 1-3 pm & 20\% \\
+Final Exam     & in-class X & 20\% \\
 \hline
 total & & 100\% \, \\
 \hline
@@ -142,18 +144,20 @@ These ranges are a guarantee and a lower bound.  I reserve the right to increase
 \heading{Homework}
 Homework is due at the start of class.  \emph{Late homework is not accepted.}  If you have unavoidable circumstances which do not allow you to turn in an Assignment on time then please contact me (\href{mailto:elbueler@alaska.edu}{\texttt{elbueler\@@alaska.edu}}) in advance.
 
-Assignments and their due dates will regularly be posted at the \href{https://bueler.github.io/nla/}{\texttt{public website}}.  The homework consists of by-hand computations, design and analysis of numerical algorithms, computer implementation of those algorithms, by-hand and computer visualization, rigorously-justified examples and counter-examples, and proofs.  Problems very similar to, or shortened versions of, Homework problems will appear on the in-class Midterm Quizzes.
+When you turn in homework assignments electronically, please generate a clear, well-ordered, and combined PDF. 
+
+Assignments and their due dates will regularly be posted at the \href{https://bueler.github.io/fa/}{\texttt{public website}}.  The homework consists of by-hand computations, design and analysis of numerical algorithms, computer implementation of those algorithms, by-hand and computer visualization, rigorously-justified examples and counter-examples, and proofs.  Problems very similar to, or shortened versions of, Homework problems will appear on the in-class Midterm Quizzes.
 
 Exercises on the homework will require Matlab, or another suitable scientific computing language, both as a super-calculator and for writing programs.  Codes on homework solutions will only be in Matlab/Octave.  The public website will also link a growing list of short Matlab/Octave codes; this is a good resource for examples.
 
 You may talk to other students about the Homework, and you may use internet and generative AI resources in your solutions.  However, note that actual comprehension of the ideas on the Homework is required to get even a passing grade in the course, and this is because the in-class, on paper assessments (Quizzes and the Final Exam) will allow no technology whatsoever.  These assessments will have a large overlap with Homework content; questions from Homework will be duplicated on to the assessments.
 
 \heading{Exams}
-There will be two in-class, hour-long Midterm Quizzes covering mostly basic concepts and definitions.
+There will be two in-class, hour-long Midterm Exams covering mostly basic concepts and definitions.
 
 The in-class Final Exam will require you to be familiar with \textbf{three} of the major methods we have studied.  I will describe the format of this Exam in more detail later.
 
-Make-up Quizzes or Final Exam will be given only for documented extenuating circumstances, at my discretion.  Department policy (below) does not allow me to move the time of the Final Exam.
+Make-up Exams will be given only for documented extenuating circumstances, at my discretion.  Department policy (below) does not allow me to move the time of the Final Exam.
 
 
 \phantom{foo}

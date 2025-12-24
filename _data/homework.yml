@@ -3,7 +3,7 @@ home: assets/homework/S26
 homework:
 - name: Assignment 1
   due: Wednesday 21 January
-  blank: A1.pdf (FIXME)
+  blank: A1.pdf
   #sections: 
   #seealsoname: Definitions and facts handout
   #seealsopdf: https://bueler.github.io/fa/assets/handouts/getstarted.pdf

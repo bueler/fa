@@ -3,12 +3,10 @@ sidenavtitle: 'MATH F617'
 docs:
 
 - title: Syllabus
-  #url: assets/general/S26/syllabus.pdf  # rebuild by "make syllabus.pdf" in assets/general/S26/
-  url: index.html
+  url: assets/general/S26/syllabus.pdf  # rebuild by "pdflatex syllabus.tex" in assets/general/S26/
 
 - title: Schedule
-  #url: assets/general/S26/schedule.pdf  # rebuild by "make schedule.pdf" in assets/general/S26/
-  url: index.html
+  url: assets/general/S26/schedule.pdf  # rebuild by "pdflatex schedule.tex" in assets/general/S26/
 
 - title: Homework
   url: homework.html
