@@ -1,7 +1,13 @@
 semester: Spring 2026
 home: assets/handouts
 daily:
+- name: Monday 19 January
+  description: _no class_ (Alaska Civil Rights Day)
+- name: Friday 16 January
+  description: C[0,1] and uniform convergence
+- name: Wednesday 14 January
+  description: normed vector spaces and metric spaces
 - name: Monday 12 January
-  description: 
+  description: integration is a functional
   #handout: Chapter6-Hall2013.pdf
   #handoutname: "handout: 'Perspectives on the spectral theorem' by Brian Hall"
