@@ -7,13 +7,15 @@ Welcome to the public homepage of **Math F617 Functional Analysis**, Spring 2026
 
 ## UNDER CONSTRUCTION!  MANY LINKS BROKEN OR EMPTY
 
-#### Plan
-
-I plan to teach this _functional analysis_ course as though it is in support of the _finite element method_.  Each week I will start with a numerical computation of some kind, and then spend the rest of the week gathering the functional analytic definitions and theory to support it.  Note that _infinite-dimensional normed vector spaces_ are central to functional analysis.  These spaces are useful because they can contain the exact solutions of continuum problems like partial differential equations.  Generally these are spaces of functions on domains in euclidean space, with some given regularity, that is, _Sobolev spaces_.  However, these spaces also contain high-quality approximating finite-dimensional subspaces, such as the piecewise-simple spaces of the finite element method.  This course is not about finite element calculations themselves, and programming will not be an essential skill, but _linear functionals_, _bilinear forms_, _Sobolev spaces_, and _interpolation_ will be important ideas.  We will see how this structure works!  It is experimental.
-
-#### Instructor:  [Ed Bueler](http://bueler.github.io/)
+### Instructor:  [Ed Bueler](http://bueler.github.io/)
 
 Email me at [elbueler@alaska.edu](mailto:elbueler@alaska.edu).  I hold [office hours](http://bueler.github.io/OffHrs.htm) in Chapman 306C.
+
+### Content
+
+I plan to teach this _functional analysis_ course as though it is in support of the _finite element method_.  Each week I will start with a numerical computation of some kind, and then spend the rest of the week gathering the functional analytic definitions and theory to support it.  Note that _infinite-dimensional normed vector spaces_, including _Hilbert_ and _Banach_ spaces, are central to functional analysis.  The exact solutions of continuum problems like partial differential equations live in such spaces.  Generally these are spaces of functions on domains in euclidean space, with some given regularity to allow derivatives and boundary values, so they are often _Sobolev spaces_.  These spaces also contain high-quality approximating finite-dimensional subspaces, such as the piecewise-polynomial spaces of the finite element method.  This course is not really about finite element calculations themselves, and programming will **not** be an essential skill, but _linear functionals_, _bilinear forms_, _Sobolev spaces_, and _interpolation_ will be important ideas.
+
+We will have to see if this course structure works!  It is experimental.
 
 ### Signing-up
 
