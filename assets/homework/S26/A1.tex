@@ -1,0 +1,136 @@
+\documentclass[12pt]{amsart}
+%prepared in AMSLaTeX, under LaTeX2e
+\addtolength{\oddsidemargin}{-.65in} 
+\addtolength{\evensidemargin}{-.65in}
+\addtolength{\topmargin}{-.55in}
+\addtolength{\textwidth}{1.3in}
+\addtolength{\textheight}{.9in}
+
+\renewcommand{\baselinestretch}{1.05}
+
+\usepackage{verbatim} % for "comment" environment
+
+\usepackage{palatino}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{defn}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{problem}{Problem}
+\newtheorem*{remark}{Remark}
+
+\usepackage{fancyvrb,xspace,dsfont}
+
+\usepackage[final]{graphicx}
+
+% macros
+\usepackage{amssymb}
+
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Ed Bueler},
+            pdfcreator={pdflatex},
+            colorlinks=true,
+            citecolor=blue,
+            linkcolor=red,
+            urlcolor=blue,
+            }
+
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\renewcommand{\Im}{\mathrm{Im}}
+\renewcommand{\Re}{\mathrm{Re}}
+
+\newcommand{\eps}{\epsilon}
+\newcommand{\grad}{\nabla}
+\newcommand{\lam}{\lambda}
+\newcommand{\lap}{\triangle}
+
+\newcommand{\ip}[2]{\ensuremath{\left<#1,#2\right>}}
+
+\newcommand{\image}{\operatorname{im}}
+\newcommand{\onull}{\operatorname{null}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\Span}{\operatorname{span}}
+
+\newcommand{\prob}[1]{\bigskip\noindent\textbf{#1.}\quad }
+
+\newcommand{\pts}[1]{(\emph{#1 pts}) }
+\newcommand{\epart}[1]{\medskip\noindent\textbf{(#1)}\quad }
+\newcommand{\ppart}[1]{\,\textbf{(#1)}\quad }
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\nex}{\medskip\noindent}
+
+
+\begin{document}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 12 January 2026}
+\normalsize\medskip
+
+\Large\centerline{\textbf{Assignment 1}}
+\large
+\medskip
+
+\centerline{\textbf{Due Wednesday 21 January}}
+\medskip
+\normalsize
+
+\thispagestyle{empty}
+
+\bigskip
+\noindent This Assignment is based on lectures and on Chapter 1 of our textbook.\footnote{Saxe (2010)~\emph{Beginning Functional Analysis}, Springer.}
+
+
+\bigskip
+\noindent \textsc{Do the following} Exercises for Chapter 1 (pages 13--15):
+
+\begin{itemize}
+\item \textbf{Exercise 1.1.1}
+\item \textbf{Exercise 1.1.3}
+\item \textbf{Exercise 1.1.5}
+\item \textbf{Exercise 1.1.10}
+\item \textbf{Exercise 1.3.2}
+\item \textbf{Exercise 1.3.3}
+\end{itemize}
+
+
+\medskip
+\noindent \textsc{Do the following additional problems.}
+
+\prob{P1}  Consider the real vector space $C([0,1])$ and the linear functional
+	$$\ell[f] = \int_0^1 f(x) \,e^x\, dx,$$
+that is, $\ell : C([0,1]) \to \RR$.
+
+\epart{a} Show $\ell$ is linear.
+
+\medskip
+\noindent  For a sequence of functions $\{f_k(x)\}_{k=1}^\infty \subset C([0,1])$ we define the real sequence $\ell_k = \ell[f_k] \in \RR$.
+
+\epart{b} For $k\in \NN$ compute $\ell_k$ if $f_k(x) = x^k$.
+
+\epart{c} For $k\in \NN$ compute $\ell_k$ if $f_k(x) = \sin(k\pi x)$.
+
+\bigskip
+\noindent  \emph{Comment.}  If the $\{f_k\}$ were a ``basis'' then the values $\{\ell_k = \ell[f_k]\}$ would ``represent'' $\ell$ as an infinite-length vector.  For a finite linear combination, $g(x)=\sum_{k=1}^n c_k f_k(x)$, we do have $\ell[g] = \sum_{k=1}^n c_k \ell_k$ by linearity, and from part \textbf{(b)} this defines $\ell$ on all polynomials.  However, defining ``basis'' for infinite-dimensional spaces is quite nontrivial.  The best kind of ``basis'' is the \emph{complete orthonormal sequence}, an orthonormal basis, defined in Chapter 4, but we are not there yet; also see the footnote on page 11.  Note that Problem \textbf{P1} only requires that you figure out how to do some integrals, and you don't have to prove anything is a basis.  We will eventually see that if we change the vector space to a Hilbert space then this $\ell$ does have a representation, and indeed it is represented by the function $e^x$ itself.
+
+\prob{P2}  Show that $a_k = 1/k$, $k\in\NN$, is in $\ell^2$, and find its norm.  Is it in $\ell^1$?  Is it in $\ell^\infty$?
+
+% P3 on A2?:  apply trapezoid rule to do the integrals in part (c), to get $\tilde \ell_k$.  for m=20 subintervals, compute $\|\ell
+\end{document}
