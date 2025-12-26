@@ -1,10 +1,13 @@
-all: slides.pdf
+# Find all week*.tex files and generate corresponding PDF targets
+WEEKS = $(patsubst %.tex,%.pdf,$(wildcard week*.tex))
 
-slides.pdf: slides.aux slides.tex
-	pdflatex -shell-escape slides
+all: $(WEEKS)
 
-slides.aux: slides.tex
-	pdflatex -shell-escape slides
+week%.pdf: week%.aux week%.tex
+	pdflatex -shell-escape week$*
+
+week%.aux: week%.tex
+	pdflatex -shell-escape week$*
 
 .PHONY: clean
 
