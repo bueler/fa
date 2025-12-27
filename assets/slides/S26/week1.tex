@@ -86,24 +86,68 @@
 {% do not put toc here this time
 }
 
-\section{integration}
+\section{continuity and integration}
 
 
-\begin{frame}{integral of a continuous function}
+\begin{frame}{continuity and $C([a,b])$}
+
+\begin{definition}[continuity]
+\begin{itemize}
+\item a function $f:[a,b] \to \RR$ is \emph{continuous at} $x\in[a,b]$ if for all $\eps>0$ there is $\delta>0$ so that
+  $$|y-x|<\delta \text{ and } y\in[a,b] \quad \implies \quad |f(y)-f(x)|<\eps$$
+\item a function $f:[a,b] \to \RR$ is \emph{continuous} if it is continuous at each $x\in[a,b]$
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+   $$C([a,b]) = \left\{f:[a,b] \to \RR \,:\, f \text{ is continuous}\right\}$$
+\end{definition}
+
+\begin{itemize}
+\item for example $a=0<1=b$:\quad  $C([0,1])$ \hfill [picture]
+
+\medskip
+\item note $C([0,1])$ is an infinite set
+
+because it contains distinct
+
+elements $1$, $x^1$, $x^2$, \dots
+\vspace{20mm}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{$C([0,1])$ is vector space}
+
+\begin{theorem}
+$V=C([0,1])$ is a (real) vector space
+\end{theorem}
+
+\begin{proof}
+If $f,g \in V$ then $h(x) = f(x)+g(x)=g(x)+f(x)$ is continuous,  so $V$ is closed under addition.  If $\alpha\in \RR$ then $\alpha f(x)$ is continuous, so $V$ is closed under scalar multiplication.   The zero function is a continuous function, and $f(x)+0=f(x)$, so $V$ has an additive identity.  Also $1 f(x) = f(x)$, so the scalar identity works.  And distribution rules are true: $\alpha(f+g) = \alpha f + \alpha g$, $\alpha(\beta f) = (\alpha \beta) f$.
+\end{proof}
+
+\vspace{50mm}
+\end{frame}
+
+
+\begin{frame}{definite integral}
 
 \begin{definition}[Riemann's integral]
 for a mesh $a = x_0 < x_1 < \dots < x_j < \dots < x_n = b$, and evaluation points $x_j^* \in [x_{j-1},x_j]$, define
   $$\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{j=1}^n f(x_j^*)\,(x_j - x_{j-1})$$ 
 \end{definition}
 
-\begin{itemize}
-\item not the only definition of an integral
-\item we will get to Lebesgue's, and cover it lightly!
-\end{itemize}
-
 \begin{theorem}
 if $f:[a,b] \to \RR$ is continuous then $\int_a^b f(x)\,dx \in \RR$ is well-defined
 \end{theorem}
+
+\begin{itemize}
+\item this is \emph{not} the only definition of an integral
+\item the limit process for the Riemann integral is more subtle than the limit process for continuity or derivatives
+\item we will get to Lebesgue's integral later \dots and cover it lightly
+\end{itemize}
 \end{frame}
 
 
@@ -118,7 +162,7 @@ Example: compute $\int_0^3 x\, dx$ from the definition
 \begin{frame}{fundamental theorem of calculus}
 
 \begin{theorem}
-if $f:[a,b] \to \RR$ is continuous and $F:[a,b]\to \RR$ satisfies $F'(x)=f(x)$ then
+if $f:[a,b] \to \RR$ is continuous and if $F:[a,b]\to \RR$ satisfies $F'(x)=f(x)$ then
     $$\int_a^b f(x)\, dx = F(b) - F(a)$$
 \end{theorem}
 
@@ -133,7 +177,22 @@ if $f:[a,b] \to \RR$ is continuous and $F:[a,b]\to \RR$ satisfies $F'(x)=f(x)$ t
 
 \begin{frame}{more integration examples}
 
-example: $\displaystyle \int_0^1 \frac{x^k}{1+x^2}\,dx$ for $k=0,1,2,3$
+example: $\displaystyle \int_0^1 x^k \,\frac{1}{1+x^2}\,dx$ for $k=0,1,2$
+
+\vspace{60mm}
+\end{frame}
+
+
+\begin{frame}{more integration examples}
+
+claim: for $k=0,1,2,\dots$,
+$$\int_0^1 x^k \frac{1}{1+x^2}\,dx = c_k$$
+where
+\begin{align*}
+c_k &= \frac{\pi}{4}, \frac{\ln(2)}{2}, 1 - \frac{\pi}{4}, \dots \\
+   &= 0.78539, 0.34657, 0.21460, 0.15342, 0.11873, 0.09657, \dots
+\end{align*}
+
 
 \vspace{60mm}
 \end{frame}
@@ -146,6 +205,9 @@ example: $\displaystyle \int_0^1 \frac{x^k}{1+x^2}\,dx$ for $k=0,1,2,3$
     \end{frame}
 }
 
+
+
+\section{integration as a linear functional}
 
 \begin{frame}{title}
 
@@ -171,7 +233,7 @@ example: $\displaystyle \int_0^1 \frac{x^k}{1+x^2}\,dx$ for $k=0,1,2,3$
 \end{frame}
 
 
-\section{vector spaces of functions, and norms}
+\section{normed vector spaces of functions}
 
 \begin{frame}{title}
 
