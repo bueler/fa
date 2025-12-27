@@ -1,5 +1,5 @@
 semester: Spring 2026
-home: assets/handouts
+home: assets
 daily:
 - name: Monday 19 January
   description: <i>no class (Alaska Civil Rights Day)</i>
@@ -9,5 +9,6 @@ daily:
   description: normed vector spaces and metric spaces
 - name: Monday 12 January
   description: integration is a functional
-  #handout: Chapter6-Hall2013.pdf
+  slides: slides/S26/week1.pdf
+  #handout: handouts/S24/Chapter6-Hall2013.pdf
   #handoutname: "handout: 'Perspectives on the spectral theorem' by Brian Hall"
