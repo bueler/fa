@@ -43,13 +43,17 @@
 \newcommand{\bzero}{\bm{0}}
 
 \newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
 
 \newcommand{\ddt}[1]{\ensuremath{\frac{\partial #1}{\partial t}}}
 \newcommand{\ddx}[1]{\ensuremath{\frac{\partial #1}{\partial x}}}
 \renewcommand{\t}[1]{\texttt{#1}}
 \newcommand{\Matlab}{\textsc{Matlab}\xspace}
 \newcommand{\eps}{\epsilon}
+
+\newcommand{\ds}{\displaystyle}
 
 \newcommand{\twovect}[4]{\ensuremath{{#1}_{#2} =
                             \begin{bmatrix} #3 \\ #4 \end{bmatrix}}}
@@ -78,6 +82,24 @@
   \maketitle
 \end{frame}
 
+
+\begin{frame}{welcome to functional analysis!}
+
+\begin{block}{plan}
+each week starts with a concrete calculation, then the rest of the week will cover the theory supporting that calculation
+\end{block}
+
+\begin{itemize}
+\item I will motivate functional analysis as the theory behind \emph{partial differential equations}, \emph{Fourier series}, and the \emph{finite element method}
+\item most of the theory will be from the textbook, K.~Saxe, \emph{Beginning Functional Analysis}
+    \begin{itemize}
+    \item[$\circ$] when in doubt, assume that \emph{material on the exams} comes from the theory and the textbook, not the more numerical/calculational parts
+    \end{itemize}
+\item this is an \emph{experiment} \dots I have taught functional analysis before but not this way
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{Outline}
   \tableofcontents[hideallsubsections]
 \end{frame}
@@ -91,6 +113,10 @@
 
 \begin{frame}{continuity and $C([a,b])$}
 
+\begin{itemize}
+\item continuity and integration are fundamental ideas we need from analysis
+\end{itemize}
+
 \begin{definition}[continuity]
 \begin{itemize}
 \item a function $f:[a,b] \to \RR$ is \emph{continuous at} $x\in[a,b]$ if for all $\eps>0$ there is $\delta>0$ so that
@@ -99,20 +125,29 @@
 \end{itemize}
 \end{definition}
 
+\begin{itemize}
+\item picture:
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{continuity and $C([a,b])$}
+
 \begin{definition}
    $$C([a,b]) = \left\{f:[a,b] \to \RR \,:\, f \text{ is continuous}\right\}$$
 \end{definition}
 
 \begin{itemize}
-\item for example $a=0<1=b$:\quad  $C([0,1])$ \hfill [picture]
+\item for example $a=0<1=b$:\quad  $C([0,1])$
 
 \medskip
-\item note $C([0,1])$ is an infinite set
+\item note $C([0,1])$ is an infinite set because it contains distinct elements $1$, $x^1$, $x^2$, \dots
 
-because it contains distinct
+\item picture:
 
-elements $1$, $x^1$, $x^2$, \dots
-\vspace{20mm}
+\vspace{30mm}
 \end{itemize}
 
 \end{frame}
@@ -128,7 +163,12 @@ $V=C([0,1])$ is a (real) vector space
 If $f,g \in V$ then $h(x) = f(x)+g(x)=g(x)+f(x)$ is continuous,  so $V$ is closed under addition.  If $\alpha\in \RR$ then $\alpha f(x)$ is continuous, so $V$ is closed under scalar multiplication.   The zero function is a continuous function, and $f(x)+0=f(x)$, so $V$ has an additive identity.  Also $1 f(x) = f(x)$, so the scalar identity works.  And distribution rules are true: $\alpha(f+g) = \alpha f + \alpha g$, $\alpha(\beta f) = (\alpha \beta) f$.
 \end{proof}
 
-\vspace{50mm}
+\begin{itemize}
+\item ``linear space'' is a synonym for vector space
+\item wait \dots what is the definition of a \emph{vector space}?
+\end{itemize}
+
+\vspace{30mm}
 \end{frame}
 
 
@@ -139,23 +179,29 @@ for a mesh $a = x_0 < x_1 < \dots < x_j < \dots < x_n = b$, and evaluation point
   $$\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{j=1}^n f(x_j^*)\,(x_j - x_{j-1})$$ 
 \end{definition}
 
+\begin{itemize}
+\item this is \emph{not} the only definition of an integral
+\item the limit process for an integral is more subtle than the limit process for continuity or derivatives
+\item we will get to Lebesgue's integral later; we will use it a lot, but only lightly cover its details
+\end{itemize}
+
 \begin{theorem}
 if $f:[a,b] \to \RR$ is continuous then $\int_a^b f(x)\,dx \in \RR$ is well-defined
 \end{theorem}
-
-\begin{itemize}
-\item this is \emph{not} the only definition of an integral
-\item the limit process for the Riemann integral is more subtle than the limit process for continuity or derivatives
-\item we will get to Lebesgue's integral later \dots and cover it lightly
-\end{itemize}
 \end{frame}
 
 
 \begin{frame}{integration example}
 
-Example: compute $\int_0^3 x\, dx$ from the definition
+\begin{itemize}
+\item picture:
 
-\vspace{60mm}
+\vspace{20mm}
+
+\item example: compute $\int_0^3 x\, dx$ from the definition
+
+\vspace{45mm}
+\end{itemize}
 \end{frame}
 
 
@@ -177,24 +223,18 @@ if $f:[a,b] \to \RR$ is continuous and if $F:[a,b]\to \RR$ satisfies $F'(x)=f(x)
 
 \begin{frame}{more integration examples}
 
-example: $\displaystyle \int_0^1 x^k \,\frac{1}{1+x^2}\,dx$ for $k=0,1,2$
+\begin{itemize}
+\item example: compute $\displaystyle \int_0^1 x^k \,\frac{1}{1+x^2}\,dx$ for $k=0,1,2$
 
 \vspace{60mm}
-\end{frame}
+\end{itemize}
 
+\noindent \hrulefill
 
-\begin{frame}{more integration examples}
-
-claim: for $k=0,1,2,\dots$,
-$$\int_0^1 x^k \frac{1}{1+x^2}\,dx = c_k$$
-where
-\begin{align*}
-c_k &= \frac{\pi}{4}, \frac{\ln(2)}{2}, 1 - \frac{\pi}{4}, \dots \\
-   &= 0.78539, 0.34657, 0.21460, 0.15342, 0.11873, 0.09657, \dots
-\end{align*}
-
-
-\vspace{60mm}
+{\footnotesize
+\emph{claim}: for $k\in \ZZ^+=\{0,1,2,\dots\}$, the values $c_k = \int_0^1 x^k \frac{1}{1+x^2}\,dx$ are
+    $$c_k = \frac{\pi}{4}, \frac{\ln(2)}{2}, 1 - \frac{\pi}{4}, \dots = 0.78539, 0.34657, 0.21460, 0.15342, 0.11873, 0.09657, \dots$$
+}
 \end{frame}
 
 
@@ -206,67 +246,225 @@ c_k &= \frac{\pi}{4}, \frac{\ln(2)}{2}, 1 - \frac{\pi}{4}, \dots \\
 }
 
 
+\section{integration is a linear functional}
 
-\section{integration as a linear functional}
 
-\begin{frame}{title}
+\begin{frame}{linear functionals on $C([0,1])$}
+
+\begin{definition}[linear functional]
+a function $\ell:C([0,1]) \to \RR$ is a \emph{linear functional} if
+	$$\ell[\alpha f + \beta g] = \alpha \ell[f] + \beta \ell[g]$$
+for all $\alpha,\beta \in\RR$ and $f,g\in C([0,1])$
+\end{definition}
+
+\bigskip
 
 \begin{itemize}
-\item foo
-   \begin{itemize}
-   \item[$\circ$] bar
-   \end{itemize}
+\item example: $\ell[f] = f(0.4)$
+
+\bigskip
+\item example?: $\ell[f] = 4 f$
+
+\bigskip
+\item example: $\ell[f] = 4 f(0) + 2 f(1)$
+
+\bigskip
+\item example?: $\ell[f] = f'(0.4)$
+\end{itemize}
+
+\vspace{20mm}
+\end{frame}
+
+
+\begin{frame}{integration against a weight}
+
+\begin{itemize}
+\item example: suppose $w\in C([0,1])$ is fixed.  then
+	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
+is a linear functional on $C([0,1])$
+
+\begin{proof}
+\vspace{10mm}
+\end{proof}
+
+\item example?: $\ds \ell[f] = \int_0^1 f(x) \,dx$
+
+\bigskip
+\item example?: $\ds \ell[f] = \int_0^x f(t) \,dt$
+
+\bigskip
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{example}
+
+\noindent example. let $\ds w(x) = \frac{1}{1+x^2}$.  consider the linear functional
+	$$\ell[f] = \int_0^1 f(x) \frac{1}{1+x^2}\,dx$$
+what are its values?
+
+\bigskip
+\noindent $f(x) = x^k$:
+
+\bigskip
+\noindent $f(x) = \sin(x)$: \hfill {\footnotesize $=0.3217935447$, says claude}
+
+\bigskip
+\noindent $f(x) = \sin(k\pi x)$:
+
+\bigskip
+\end{frame}
+
+
+\begin{frame}{questions about linear functionals}
+
+\begin{block}{regularity question}
+we don't need $f$ and $w$ to be continuous for this to be well-defined:
+	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
+how general can these functions be?  can they be discontinuous? completely arbitrary?
+\end{block}
+
+\begin{block}{recovery question}
+suppose we think $\ell$ has a formula $\ell[f] = \int_0^1 f(x) w(x)\,dx$, but we don't know $w(x)$.  can we recover $w(x)$ from the values $\ell[f]$ for various $f$?
+\end{block}
+
+\begin{block}{conceptual question}
+consider the space $V'$ of all linear functionals on $V=C([0,1])$.  is it a vector space? (yes!)  how do we \emph{concretelly} understand this abstractly-defined space?  is each $\ell \in V'$ represented by a $w(x)$?
+\end{block}
+\end{frame}
+
+
+\begin{frame}{recovery question 1}
+
+\begin{itemize}
+\item consider:
+	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
+\item suppose $w(x)$ is a degree 4 polynomial, but we don't know which one.  how to recover $w(x)$?
+
+\vspace{60mm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{recovery question 2}
+
+\begin{itemize}
+\item consider:
+	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
+\item suppose $w(x)=1/(1+x^2)$ in fact, but we don't know that.  how to recover $w(x)$?
+
+\medskip
+\noindent try $f(x) = x^k$?:
+
+\vspace{15mm}
+
+\medskip
+\noindent try $f(x) = \sin(k\pi x)$?:
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{recovery question 3}
+
+\begin{itemize}
+\item consider:
+	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
+\item suppose $w(x)=1/(1+x^2)$ in fact, but we don't know that.  how to recover $w(x)$?
+
+\medskip
+\noindent try hat functions on a uniform mesh:
+
+\vspace{50mm}
 \end{itemize}
 \end{frame}
 
 
 \section{numerical integration}
 
-\begin{frame}{title}
+\begin{frame}{numerical integration rules}
 
 \begin{itemize}
-\item foo
-   \begin{itemize}
-   \item[$\circ$] bar
-   \end{itemize}
+\item \textbf{trapezoid rule} for $m$ equal intervals on $[0,1]$:
+     $$\int_0^1 f(x)\,dx \approx T_m(f) = \frac{h}{2} \Big(f(x_0) + 2 f(x_1) + \dots + 2 f(x_{m-1}) + f(x_m)\Big)$$
+where $h=1/m$ and $x_j = j h$
+\item \textbf{Simpson's rule} for \emph{even} $m$ intervals, and same $h$, $x_j$:
+\begin{align*}
+\int_0^1 f(x)\,dx \approx S_m(f) = \frac{h}{3} &\Big(f(x_0) + 4 f(x_1) + 2 f(x_2) + 4 f(x_3) + 2 f(x_4) \\
+&\qquad + \dots + 4 f(x_{m-1}) + f(x_m)\Big)
+\end{align*}
+\item \dots there are many more rules, and many are better, but they have the same flavor \dots
 \end{itemize}
 \end{frame}
 
 
-\section{normed vector spaces of functions}
-
-\begin{frame}{title}
+\begin{frame}{numerical integration is a linear functional}
 
 \begin{itemize}
-\item foo
-   \begin{itemize}
-   \item[$\circ$] bar
-   \end{itemize}
+\item suppose we list values of $f$ in a column vector: \qquad $\ds f \approx \begin{bmatrix} f(x_0) \\ f(x_1) \\ \vdots \\ f(x_m) \end{bmatrix}$
+\item then
+	$$T_m(f) = \hspace{80mm}$$
+
+\vspace{20mm}
+	$$S_m(f) = \hspace{80mm}$$
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{linear functionals in finite dimensions}
+
+\begin{itemize}
+\item suppose we have a real, finite-dimensional vector space $V$
+\item suppose we have a basis for $V$: \quad $\mathcal{B} = \{b_1,\dots,b_m\} \subset V$
+\item write $f\in V$ in this basis: \quad for $f_j\in \RR$,
+	$$f = f_1 b_1 + \dots f_m b_m$$
+\item the coefficients are usually written in a column vector:
+  $$(f)_{\mathcal{B}} = \begin{bmatrix} f_1 \\ f_2 \\ \vdots \\ f_m \end{bmatrix}$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{linear functionals in finite dimensions}
+
+\begin{theorem}
+if $\ell:V \to \RR$ is a linear functional then there are values $\ell_j$, $j=1,\dots,m$, so that
+
+\vspace{-10mm}
+	$$\ell[f] = \begin{bmatrix} \ell_1 & \ell_2 & \dots & \ell_m \end{bmatrix}\begin{matrix} \vspace{8mm} \\ \begin{bmatrix} f_1 \\ f_2 \\ \vdots \\ f_m \end{bmatrix} \end{matrix} = \sum_{j=1}^m \ell_j f_j$$
+
+\smallskip
+\end{theorem}
+
+\begin{itemize}
+\item in other words, we usually represent linear functions by \emph{row vectors} when we are representing the vectors themselves by \emph{column vectors}
+\item then $\ell[f]$ is computed by usual rules of matrix-matrix multiplication
 \end{itemize}
 \end{frame}
 
 
 \section{theory this week}
 
-\begin{frame}{title}
+\begin{frame}{theory on Wednesday and Friday}
 
+\noindent definitions:
 \begin{itemize}
-\item foo
-   \begin{itemize}
-   \item[$\circ$] bar
-   \end{itemize}
+\item metric space
+\item norms
+\item normed vector space
+\item inner products
+\item sequence spaces $\ell^p$, and norms $\|(x_n)\|_p$ and $\|(x_n)\|_\infty$
 \end{itemize}
+
+
+\bigskip
+\noindent $=$ Chapter 1 in Saxe
+
+\bigskip
+\noindent Assignment 1 posted on \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
 \end{frame}
 
-
-
-%\begin{frame}{references}
-%
-%\begin{itemize}
-%{\small
-%\item D.~P.~Kingma \& J.~Ba (2014). \href{https://arxiv.org/abs/1412.6980}{\emph{Adam: A method for stochastic optimization}}, preprint arXiv:1412.6980
-%}
-%\end{itemize}
-%\end{frame}
 
 \end{document}
