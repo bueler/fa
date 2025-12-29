@@ -8,7 +8,7 @@ daily:
 - name: Friday 23 January
   description: open, closed, and compact sets in metric spaces
 - name: Wednesday 21 January
-  description: "week 2 calculation: boundary value problems and integral operators"
+  description: "<b>week 2 calculation: boundary value problems and integral operators</b>"
   slides: slides/S26/week2.pdf
 - name: Monday 19 January
   description: <i>no class (Alaska Civil Rights Day)</i>
@@ -17,7 +17,7 @@ daily:
 - name: Wednesday 14 January
   description: normed vector spaces and metric spaces
 - name: Monday 12 January
-  description: "week 1 calculation: integration is a linear functional"
+  description: "<b>week 1 calculation: integration is a linear functional</b>"
   slides: slides/S26/week1.pdf
   #handout: handouts/S26/foo.pdf
   #handoutname: "handout: 'title'"
