@@ -64,7 +64,7 @@
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 
-\title{Two-point boundary value problem}
+\title{Boundary value problems and integral operators}
 
 \subtitle{week 2 calculation}
 
@@ -91,13 +91,166 @@
 {% do not put toc here this time
 }
 
-\section{x}
+\section{integral solution of a classic boundary value problem}
 
+
+\begin{frame}{boundary value problem}
+
+\begin{block}{2-point BVP for the second derivative}
+suppose $\alpha,\beta\in\RR$ and $\phi \in C([0,1])$ are given.  solve for $u(x)$:
+\begin{align*}
+-u''(x) &= \phi(x), \quad \text{ for all } x\in (0,1) \\
+u(0) &= \alpha, \\
+u(1) &= \beta
+\end{align*}
+\end{block}
+
+\begin{itemize}
+\item picture of data $\phi$ (left) and solution $u$ (right):
+
+\vspace{30mm}
+\item \emph{solvable by hand} via an integral of the data $\phi(x)$
+\item \dots but a bit non-trivial, so we warm-up with an easier problem
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{easier: initial value problem}
+
+\begin{block}{IVP for the second derivative}
+suppose $\alpha,\beta\in\RR$ and $\phi \in C([0,1])$ are given.  solve for $u(x)$:
+\begin{align*}
+-u''(x) &= \phi(x), \quad \text{ for all } x\in (0,1) \\
+u(0) &= \alpha, \\
+u'(0) &= \beta
+\end{align*}
+\end{block}
+
+\begin{itemize}
+\item picture:
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{solution of IVP}
+
+apply fundamental theorem of calculus twice:
+
+$$-u''(x) = \phi(x)$$
+
+\vspace{70mm}
+\end{frame}
+
+
+\begin{frame}{solution of BVP}
+
+apply fundamental theorem of calculus twice?:
+
+$$-u''(x) = \phi(x)$$
+
+\vspace{70mm}
+\end{frame}
+
+
+\begin{frame}{solution of BVP}
+
+\vspace{50mm}
+
+result:
+	$$u(x) = \alpha + (\beta - \alpha) x + \int_0^1 k(x,t) \phi(t)\,dt$$
+where $k$ is a symmetric \emph{kernel}:
+	$$k(x,t) = \begin{cases} t (1 - x), & 0 \le t \le x \le 1 \\
+	                         x (1 - t), & 0 \le x \le t \le 1\end{cases}\, = \min\{x,t\} - xt$$
+\end{frame}
+
+
+\begin{frame}{$k(x,t)$ for the BVP}
+
+picture of $k(x,t)$:
+
+\vspace{70mm}
+\end{frame}
+
+
+\begin{frame}{integral solution of BVP}
+
+\begin{itemize}
+\item restrict to the $\alpha=\beta=0$ special case
+\item recall: $k(x,t) = \min\{x,t\} - xt$
+\end{itemize}
+
+\begin{block}{2-point BVP}
+the solution of
+    $$-u'' = \phi, \quad u(0) = u(1) = 0$$
+is
+	$$u(x) = \int_0^1 k(x,t) \phi(t)\,dt$$
+\end{block}
+
+\begin{itemize}
+\item this kind of formula defines a \emph{linear operator}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{the integral operator}
+
+\begin{definition}
+given an integrable \emph{kernel} $k(x,t)$, the corresponding \emph{integral operator} is
+\begin{align*}
+L \,:\, C([0,1]) &\to C([0,1]) \\
+         \phi(x) &\mapsto (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt \\
+\end{align*}
+\end{definition}
+
+\begin{itemize}
+\item $L$ is linear:
+
+\vspace{20mm}
+\item is $L$ a matrix?
+\end{itemize}
+
+\end{frame}
+
+
+\AtBeginSection[] {
+    \begin{frame}{Outline}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents[currentsection]%,hideallsubsections]
+    \end{frame}
+}
+
+\section{linear operators on $C([0,1])$}
 
 \begin{frame}{x}
 
 \begin{itemize}
-\item x
+\item FIXME $L\phi$ continuous; operator $L$ bounded; operator norm; unit ball $B$ not compact; $LB$ is compact because equicontinuous and Arzela-Ascoli
+\item picture:
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+
+\section{views of the boundary value problem}
+
+\begin{frame}{x}
+
+\begin{itemize}
+\item FIXME:  Dirac delta, Fourier, well-posedness
+\item picture:
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{approximations}
+
+\begin{itemize}
+\item FIXME finite elements
 \item picture:
 
 \vspace{30mm}
@@ -107,13 +260,22 @@
 
 \section{theory this week}
 
-\begin{frame}{theory on Friday}
+\begin{frame}{theory on Friday, Monday, Wednesday, Friday}
 
 \noindent definitions:
-\begin{itemize}
-\item y
-\end{itemize}
 
+\begin{itemize}
+\item open and closed sets in metric spaces
+\item compact sets in metric spaces
+\item equicontinuity of subsets of $C([a,b])$
+\item Heine-Borel theorem
+\item Arzela-Ascoli theorem
+\item separable metric space
+\item complete metric space
+\item Hilbert space
+\item Banach space
+\item $C([a,b])$ with $\|\cdot\|_\infty$ is complete (and a Banach space)
+\end{itemize}
 
 \bigskip
 \noindent $=$ Chapter 2 in Saxe
