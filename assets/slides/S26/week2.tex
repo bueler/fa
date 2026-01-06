@@ -91,8 +91,8 @@
 {% do not put toc here this time
 }
 
-\section{integral solution of a classic boundary value problem}
 
+\section{a classic boundary value problem}
 
 \begin{frame}{boundary value problem}
 
@@ -109,15 +109,14 @@ u(1) &= \beta
 \item picture of data $\phi$ (left) and solution $u$ (right):
 
 \vspace{30mm}
-\item \emph{solvable by hand} via an integral of the data $\phi(x)$
-\item \dots but a bit non-trivial, so we warm-up with an easier problem
+\item we will see this is \emph{solvable by hand}, via an integral of the data $\phi(x)$, but this is a bit non-trivial, so we warm-up with an easier problem
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{easier: initial value problem}
 
-\begin{block}{IVP for the second derivative}
+\begin{block}{IVP for the second derivative\phantom{p}}
 suppose $\alpha,\beta\in\RR$ and $\phi \in C([0,1])$ are given.  solve for $u(x)$:
 \begin{align*}
 -u''(x) &= \phi(x), \quad \text{ for all } x\in (0,1) \\
@@ -129,7 +128,7 @@ u'(0) &= \beta
 \begin{itemize}
 \item picture:
 
-\vspace{30mm}
+\vspace{39mm}
 \end{itemize}
 \end{frame}
 
@@ -143,6 +142,17 @@ $$-u''(x) = \phi(x)$$
 \vspace{70mm}
 \end{frame}
 
+
+
+\AtBeginSection[] {
+    \begin{frame}{Outline}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents[currentsection]%,hideallsubsections]
+    \end{frame}
+}
+
+
+\section{\dots its integral solution}
 
 \begin{frame}{solution of BVP}
 
@@ -197,11 +207,11 @@ is
 \begin{frame}{the integral operator}
 
 \begin{definition}
-given an integrable \emph{kernel} $k(x,t)$, the corresponding \emph{integral operator} is
-\begin{align*}
-L \,:\, C([0,1]) &\to C([0,1]) \\
-         \phi(x) &\mapsto (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt \\
-\end{align*}
+given a suitable \emph{kernel} $k(x,t)$, the corresponding \emph{integral operator} is
+\begin{gather*}
+L \,:\, C([0,1]) \to C([0,1]) \\
+(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt
+\end{gather*}
 \end{definition}
 
 \begin{itemize}
@@ -209,32 +219,122 @@ L \,:\, C([0,1]) &\to C([0,1]) \\
 
 \vspace{20mm}
 \item is $L$ a matrix?
+
+\vspace{10mm}
 \end{itemize}
 
 \end{frame}
 
-
-\AtBeginSection[] {
-    \begin{frame}{Outline}
-    \setbeamertemplate{section in toc}[sections numbered]
-    \tableofcontents[currentsection]%,hideallsubsections]
-    \end{frame}
-}
 
 \section{linear operators on $C([0,1])$}
 
-\begin{frame}{x}
+\begin{frame}{wait \dots does $\phi\in C([0,1]) \implies L\phi \in C([0,1])$?}
+
+\begin{definition}
+given a {\color{FireBrick} suitable} \emph{kernel} $k(x,t)$, the corresponding \emph{integral operator} is
+\begin{gather*}
+L \,:\, C([0,1]) \to C([0,1]) \\
+(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt
+\end{gather*}
+\end{definition}
 
 \begin{itemize}
-\item FIXME $L\phi$ continuous; operator $L$ bounded; operator norm; unit ball $B$ not compact; $LB$ is compact because equicontinuous and Arzela-Ascoli
-\item picture:
+\item what does ``suitable'' mean?
+\item for $\phi \in C([0,1])$, we see that $(L\phi)(x)$ is well-defined if $k(x,t) \phi(t)$ is (Riemann) integrable in $t$ for every $x$
+\item what conditions on $k(x,t)$ would assure that $\phi\in C([0,1])$ implies $L\phi \in C([0,1])$?
+  \begin{itemize}
+  \item[$\circ$] does $k(x,t)$ need to be continuous?
+  \end{itemize}
+\end{itemize}
+\end{frame}
 
-\vspace{30mm}
+\begin{frame}{the antiderivative is a well-behaved integral operator}
+
+\begin{itemize}
+\item FIXME antiderivative example, noting $k(x,t)$ is discontinuous
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lipschitz kernels give well-behaved integral operator}
+
+\begin{itemize}
+\item FIXME show that if there exists $C\ge 0$ so that $|k(x,t)-k(y,t)|\le C |x-y|$ for  $x,t$ then $L\phi$ is continuous
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lipschitz kernels give well-behaved integral operator}
+
+\begin{itemize}
+\item FIXME thus $u(x)$ solving BVP is indeed continous
+\end{itemize}
+\end{frame}
+
+\begin{frame}{bounded kernel is not enough}
+
+\begin{itemize}
+\item FIXME show by example a discontinuous $k(x,t)$ so that $L\phi$ is not continuous
+\item namely $k(x,t)=1$ if $x\le 0.5$ and $k(x,t)=0$ if $x>0.5$
 \end{itemize}
 \end{frame}
 
 
-\section{views of the boundary value problem}
+\section{$C([0,1])$ as a normed vector space, with $\|\cdot\|_\infty$}
+
+\begin{frame}{the supremum norm on $C([0,1])$}
+
+\begin{itemize}
+\item FIXME define it
+\end{itemize}
+\end{frame}
+
+\begin{frame}{compact sets}
+
+\begin{itemize}
+\item FIXME define compact by open cover
+\end{itemize}
+\end{frame}
+
+\begin{frame}{the unit ball in $C([0,1])$}
+
+\begin{itemize}
+\item FIXME unit ball $B$
+\item it is not compact
+\end{itemize}
+\end{frame}
+
+\begin{frame}{bounded operators}
+
+\begin{itemize}
+\item FIXME define $L$ is bounded
+\end{itemize}
+\end{frame}
+
+\begin{frame}{bounded integral operators}
+
+\begin{itemize}
+\item FIXME $\sup_{x} \int_0^1 |k(x,t)|\,dt<\infty$ implies operator $L$ bounded
+\end{itemize}
+\end{frame}
+
+
+\section{compactness and integral operators}
+
+\begin{frame}{new idea 1: $k(x,t)$ continuous \emph{is} enough to make $L\phi$ continous}
+
+\begin{itemize}
+\item FIXME $k(x,t)$ continuous on compact set $S=[0,1]\times[0,1]$ implies uniformly continous implies $(L\phi)(x)$ is continous
+\end{itemize}
+\end{frame}
+
+\begin{frame}{new idea 2: some integral operators are compact}
+
+\begin{itemize}
+\item FIXME $LB$ is compact because equicontinuous and Arzela-Ascoli
+\end{itemize}
+\end{frame}
+
+
+\section{other views of the boundary value problem}
 
 \begin{frame}{x}
 
@@ -258,7 +358,7 @@ L \,:\, C([0,1]) &\to C([0,1]) \\
 \end{frame}
 
 
-\section{theory this week}
+\section{theory for 2 weeks}
 
 \begin{frame}{theory on Friday, Monday, Wednesday, Friday}
 
@@ -270,11 +370,10 @@ L \,:\, C([0,1]) &\to C([0,1]) \\
 \item equicontinuity of subsets of $C([a,b])$
 \item Heine-Borel theorem
 \item Arzela-Ascoli theorem
-\item separable metric space
-\item complete metric space
-\item Hilbert space
-\item Banach space
-\item $C([a,b])$ with $\|\cdot\|_\infty$ is complete (and a Banach space)
+\item complete metric spaces
+\item Hilbert spaces
+\item Banach spaces
+\item $C([a,b])$ with $\|\cdot\|_\infty$ is complete (thus a Banach space)
 \end{itemize}
 
 \bigskip
