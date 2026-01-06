@@ -85,17 +85,31 @@
 
 \begin{frame}{welcome to functional analysis!}
 
+motivation for \textbf{functional analysis}:
+
+\medskip
+\begin{itemize}
+\item theory behind \emph{partial differential equations}
+\item theory behind \emph{Fourier series} and \emph{Fourier/Laplace transform}
+\item theory behind \emph{quantum mechanics}
+\item when made finite-dimensional, within a flexible framework, functional analysis practically becomes the \emph{finite element method}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{welcome to functional analysis!}
+
 \begin{block}{plan}
-each week starts with a concrete calculation, then the rest of the week will cover the theory supporting that calculation
+each week starts with a concrete calculation, sometimes related to finite elements, then the rest of the week will cover the theory supporting that calculation
 \end{block}
 
 \begin{itemize}
-\item I will motivate functional analysis as the theory behind \emph{partial differential equations}, \emph{Fourier series}, and the \emph{finite element method}
 \item most of the theory will be from the textbook, K.~Saxe, \emph{Beginning Functional Analysis}
+\item when in doubt, assume that \emph{material on the Exams} is from the theory and the textbook, not the more numerical/calculational parts
     \begin{itemize}
-    \item[$\circ$] when in doubt, assume that \emph{material on the exams} comes from the theory and the textbook, not the more numerical/calculational parts
+    \item[$\circ$] do not expect to become an expert at finite elements just from this course
     \end{itemize}
-\item this is an \emph{experiment} \dots I have taught functional analysis before but not this way
+\item this plan is an \emph{experiment} \dots I have taught functional analysis before but not this way
 \end{itemize}
 \end{frame}
 
@@ -113,14 +127,11 @@ each week starts with a concrete calculation, then the rest of the week will cov
 
 \begin{frame}{continuity and $C([a,b])$}
 
-\begin{itemize}
-\item continuity and integration are fundamental ideas we need from analysis
-\end{itemize}
-
 \begin{definition}[continuity]
 \begin{itemize}
 \item a function $f:[a,b] \to \RR$ is \emph{continuous at} $x\in[a,b]$ if for all $\eps>0$ there is $\delta>0$ so that
   $$|y-x|<\delta \text{ and } y\in[a,b] \quad \implies \quad |f(y)-f(x)|<\eps$$
+\item equivalently: \quad $\ds f(x) = \lim_{y\to x} f(y)$ \quad (where the limit exists!)
 \item a function $f:[a,b] \to \RR$ is \emph{continuous} if it is continuous at each $x\in[a,b]$
 \end{itemize}
 \end{definition}
@@ -140,10 +151,9 @@ each week starts with a concrete calculation, then the rest of the week will cov
 \end{definition}
 
 \begin{itemize}
-\item for example $a=0<1=b$:\quad  $C([0,1])$
-
-\medskip
-\item note $C([0,1])$ is an infinite set because it contains distinct elements $1$, $x^1$, $x^2$, \dots
+\item $C([a,b])$ is a set in which each element is a function $f$
+\item standard example $a=0$, $b=1$:\quad  $C([0,1])$
+\item $C([0,1])$ is an infinite set because it contains distinct elements $1$, $x^1$, $x^2$, $x^3$, \dots
 
 \item picture:
 
@@ -153,20 +163,40 @@ each week starts with a concrete calculation, then the rest of the week will cov
 \end{frame}
 
 
-\begin{frame}{$C([0,1])$ is vector space}
+\begin{frame}{$C([a,b])$ is vector space}
+
+\begin{itemize}
+\item what is the definition of a \emph{vector space}?
+\item ``linear space'' is a synonym for vector space
+\end{itemize}
 
 \begin{theorem}
-$V=C([0,1])$ is a (real) vector space
+$V=C([a,b])$ is a (real) vector space
 \end{theorem}
 
 \begin{proof}
-If $f,g \in V$ then $h(x) = f(x)+g(x)=g(x)+f(x)$ is continuous,  so $V$ is closed under addition.  If $\alpha\in \RR$ then $\alpha f(x)$ is continuous, so $V$ is closed under scalar multiplication.   The zero function is a continuous function, and $f(x)+0=f(x)$, so $V$ has an additive identity.  Also $1 f(x) = f(x)$, so the scalar identity works.  And distribution rules are true: $\alpha(f+g) = \alpha f + \alpha g$, $\alpha(\beta f) = (\alpha \beta) f$.
+If $f,g \in V$ then $h(x) = f(x)+g(x)=g(x)+f(x)$ is a continuous function, so $V$ is closed under addition.  If $\alpha\in \RR$ then $k(x)=\alpha f(x)$ is a continuous function, so $V$ is closed under scalar multiplication.   The zero function is a continuous function, and $f(x)+0=f(x)$, so $V$ has an additive identity.  Also $1 f(x) = f(x)$, so there is scalar identity.  And distribution rules hold: $\alpha(f+g) = \alpha f + \alpha g$, $\alpha(\beta f) = (\alpha \beta) f$.
 \end{proof}
 
+\vspace{30mm}
+\end{frame}
+
+
+\begin{frame}{derivatives \dots may not exist for continuous functions}
+
+\begin{definition}[ordinary derivative]
+given $f:[a,b] \to \RR$ and $c\in (a,b)$ define \quad $\ds f'(c) = \lim_{h\to 0} \frac{f(c+h) - f(c)}{h}$
+
+to be the \emph{derivative of $f$ at $c$}, but only \emph{if} the limit exists
+\end{definition}
+
 \begin{itemize}
-\item ``linear space'' is a synonym for vector space
-\item wait \dots what is the definition of a \emph{vector space}?
+\item for $f(x) = x(1-x) \in C([0,1])$ we have $f'(c) = 1 - 2 c$ for $c\in (0,1)$
+\item for $f(x) = |1 - 2 x| \in C([0,1])$,  the limit to define $f'(0.5)$ does not exist
 \end{itemize}
+
+\bigskip
+picture:
 
 \vspace{30mm}
 \end{frame}
@@ -175,18 +205,26 @@ If $f,g \in V$ then $h(x) = f(x)+g(x)=g(x)+f(x)$ is continuous,  so $V$ is close
 \begin{frame}{definite integral}
 
 \begin{definition}[Riemann's integral]
-for a mesh $a = x_0 < x_1 < \dots < x_j < \dots < x_n = b$, and evaluation points $x_j^* \in [x_{j-1},x_j]$, define
-  $$\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{j=1}^n f(x_j^*)\,(x_j - x_{j-1})$$ 
+for meshes $a = x_0 < x_1 < \dots < x_j < \dots < x_n = b$, and evaluation points $x_j^* \in [x_{j-1},x_j]$, define \quad $\ds \int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{j=1}^n f(x_j^*)\,(x_j - x_{j-1})$
+
+as the \emph{Riemann integral} of $f$ over $[a,b]$, but only \emph{if} the limit exists
 \end{definition}
 
 \begin{itemize}
-\item this is \emph{not} the only definition of an integral
 \item the limit process for an integral is more subtle than the limit process for continuity or derivatives
-\item we will get to Lebesgue's integral later; we will use it a lot, but only lightly cover its details
+    \begin{itemize}
+    \item[$\circ$] this limit \emph{does not} exist for some (non-continuous) functions
+    \end{itemize}
+\item Riemann's is not the only definition of an integral
+    \begin{itemize}
+    \item[$\circ$] we will get to Lebesgue's integral later
+    \item[$\circ$] it agrees with Riemann's when they are both defined
+    \item[$\circ$] we will use Lebesgue integration routinely, but only lightly cover its details
+    \end{itemize}
 \end{itemize}
 
 \begin{theorem}
-if $f:[a,b] \to \RR$ is continuous then $\int_a^b f(x)\,dx \in \RR$ is well-defined
+if $f:[a,b] \to \RR$ is continuous then $\ds \int_a^b f(x)\,dx \in \RR$ is well-defined
 \end{theorem}
 \end{frame}
 
@@ -266,10 +304,13 @@ for all $\alpha,\beta \in\RR$ and $f,g\in C([0,1])$
 \item example?: $\ell[f] = 4 f$
 
 \bigskip
-\item example: $\ell[f] = 4 f(0) + 2 f(1)$
+\item example?: $\ell[f] = 4 f(0) + 2 f(0.6)$
 
 \bigskip
-\item example?: $\ell[f] = f'(0.4)$
+\item example?: $\ell[f] = \int_{0.4}^{0.6} f(t)\,dt$
+
+\bigskip
+\item example?: $\ell[f] = \int_{0.4}^{x} f(t)\,dt$
 \end{itemize}
 
 \vspace{20mm}
@@ -289,19 +330,24 @@ is a linear functional on $C([0,1])$
 
 \item example?: $\ds \ell[f] = \int_0^1 f(x) \,dx$
 
-\bigskip
-\item example?: $\ds \ell[f] = \int_0^x f(t) \,dt$
+\medskip
+\item example?: $\ds \ell[f] = \int_0^1 \frac{f(t)}{1+t^2} \,dt$
 
-\bigskip
+\medskip
+\item example?: $\ds \ell[f] = \int_{0.4}^{0.6} f(t) \,dt$
+
+\medskip
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{example}
 
-\noindent example. let $\ds w(x) = \frac{1}{1+x^2}$.  consider the linear functional
+\begin{block}{example}
+let $\ds w(x) = \frac{1}{1+x^2}$.  consider the linear functional
 	$$\ell[f] = \int_0^1 f(x) \frac{1}{1+x^2}\,dx$$
 what are its values?
+\end{block}
 
 \bigskip
 \noindent $f(x) = x^k$:
@@ -312,7 +358,11 @@ what are its values?
 \bigskip
 \noindent $f(x) = \sin(k\pi x)$:
 
-\bigskip
+\vspace{10mm}
+
+\begin{itemize}
+\item generally we have to \emph{approximate} to answer such questions \dots
+\end{itemize}
 \end{frame}
 
 
@@ -325,34 +375,37 @@ how general can these functions be?  can they be discontinuous? completely arbit
 \end{block}
 
 \begin{block}{recovery question}
-suppose we think $\ell$ has a formula $\ell[f] = \int_0^1 f(x) w(x)\,dx$, but we don't know $w(x)$.  can we recover $w(x)$ from the values $\ell[f]$ for various $f$?
+suppose $\ell$ has a formula $\ell[f] = \int_0^1 f(x) w(x)\,dx$, but we don't know $w(x)$.  can we recover $w(x)$ from the values $\ell[f]$ for various $f$?
 \end{block}
 
 \begin{block}{conceptual question}
-consider the space $V'$ of all linear functionals on $V=C([0,1])$.  is it a vector space? (yes!)  how do we \emph{concretelly} understand this abstractly-defined space?  is each $\ell \in V'$ represented by a $w(x)$?
+consider the space $V'$ of all linear functionals on $V=C([0,1])$.  is it a vector space? (yes!)  how do we concretely understand this abstractly-defined space?  is each $\ell \in V'$ represented by a $w(x)$?
 \end{block}
 \end{frame}
 
 
-\begin{frame}{recovery question 1}
+\begin{frame}{recovery example 1}
 
 \begin{itemize}
 \item consider:
 	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
-\item suppose $w(x)$ is a degree 4 polynomial, but we don't know which one.  how to recover $w(x)$?
+\item suppose we know that $w(x)$ is a degree 4 polynomial
+\item how to recover $w(x)$?
 
 \vspace{60mm}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{recovery question 2}
+\begin{frame}{recovery example 2}
 
 \begin{itemize}
 \item consider:
 	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
-\item suppose $w(x)=1/(1+x^2)$ in fact, but we don't know that.  how to recover $w(x)$?
+\item suppose $w(x)=1/(1+x^2)$ in fact, but pretend we don't know that
+\item how to recover $w(x)$?
 
+\only<1>{
 \medskip
 \noindent try $f(x) = x^k$?:
 
@@ -362,22 +415,22 @@ consider the space $V'$ of all linear functionals on $V=C([0,1])$.  is it a vect
 \noindent try $f(x) = \sin(k\pi x)$?:
 
 \vspace{30mm}
+}
+\only<2>{
+\medskip
+\noindent try hat functions on a uniform mesh:
+
+\vspace{51mm}
+}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{recovery question 3}
+\begin{frame}{question: is $\ell[f] = f'(0.5)$ a linear functional on $C([0,1])$?}
 
-\begin{itemize}
-\item consider:
-	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
-\item suppose $w(x)=1/(1+x^2)$ in fact, but we don't know that.  how to recover $w(x)$?
+discuss!
 
-\medskip
-\noindent try hat functions on a uniform mesh:
-
-\vspace{50mm}
-\end{itemize}
+\vspace{70mm}
 \end{frame}
 
 
@@ -399,7 +452,7 @@ where $h=1/m$ and $x_j = j h$
 \end{frame}
 
 
-\begin{frame}{numerical integration is a linear functional}
+\begin{frame}{numerical integration is a linear functional is a row vector}
 
 \begin{itemize}
 \item suppose we list values of $f$ in a column vector: \qquad $\ds f \approx \begin{bmatrix} f(x_0) \\ f(x_1) \\ \vdots \\ f(x_m) \end{bmatrix}$
@@ -430,7 +483,7 @@ where $h=1/m$ and $x_j = j h$
 \begin{frame}{linear functionals in finite dimensions}
 
 \begin{theorem}
-if $\ell:V \to \RR$ is a linear functional then there are values $\ell_j$, $j=1,\dots,m$, so that
+if $V$ is a real, finite-dimensional vector space with a basis $\mathcal{B} = \{b_1,\dots,b_m\}$, and if $f = f_1 b_1 + \dots f_m b_m$ in this basis, then for any linear functional $\ell:V \to \RR$ there are values $\ell_j$, $j=1,\dots,m$, so that
 
 \vspace{-10mm}
 	$$\ell[f] = \begin{bmatrix} \ell_1 & \ell_2 & \dots & \ell_m \end{bmatrix}\begin{matrix} \vspace{8mm} \\ \begin{bmatrix} f_1 \\ f_2 \\ \vdots \\ f_m \end{bmatrix} \end{matrix} = \sum_{j=1}^m \ell_j f_j$$
@@ -439,8 +492,8 @@ if $\ell:V \to \RR$ is a linear functional then there are values $\ell_j$, $j=1,
 \end{theorem}
 
 \begin{itemize}
-\item in other words, we usually represent linear functions by \emph{row vectors} when we are representing the vectors themselves by \emph{column vectors}
-\item then $\ell[f]$ is computed by usual rules of matrix-matrix multiplication
+\item in other words, we represent linear functions by \emph{row vectors} when the vectors themselves are \emph{column vectors}
+\item \dots so that $\ell[f]$ is computed by usual rules of matrix-matrix multiplication
 \end{itemize}
 \end{frame}
 
