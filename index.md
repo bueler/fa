@@ -17,7 +17,7 @@ We will have to see if this course structure works!  It is experimental.
 
 ### Signing-up
 
-If you plan to be present on campus in Fairbanks during the semester, please sign up for the in-person "901" section (crn 35010), and plan to attend lecture in Chapman 107.  If you are remote, signing up for the web-based "701" section (crn 35018) is just fine!
+Please sign up for the in-person "901" section (crn 35010), and plan to attend lecture in Chapman 107.
 
 ### Canvas course page
 
