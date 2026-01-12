@@ -31,13 +31,13 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
 
 * Read the [Syllabus (PDF)](assets/general/S26/syllabus.pdf).
 
-* The [Schedule (PDF)](assets/general/S26/schedule.pdf) is my longer-term plan.  Check it for exam dates and due dates, and for which topics come next!
+* The [Schedule (PDF)](assets/general/S26/schedule.pdf) has exam dates and homework due dates.
 
-* The [daily log](daily) has the recent happenings, including handouts and worksheets as PDFs.
+* The [daily log](daily) has the recent happenings, including slides and worksheets as PDFs, and some planned material.
 
 * Check out the nearly-weekly [homework Assignments](homework).
 
-* There are three Exams, two Midterm Quizzes and a Final.  All are in class, and the Final will happen at the scheduled time.  See the [Exams](exams) tab for review guides.
+* There are three Exams: two Midterms and a Final.  All are in class, and the Final will happen at the scheduled time.  See the [Exams](exams) tab for review guides.
 
 [<img src="assets/images/Heat.gif" height="200">](https://en.wikipedia.org/wiki/Partial_differential_equation "heat equation") &nbsp; &nbsp; [<img src="assets/images/bvp.png" height="200">](https://en.wikipedia.org/wiki/Boundary_value_problem "boundary value problem") &nbsp; &nbsp; [<img src="assets/images/fem.png" height="200">](https://en.wikipedia.org/wiki/Finite_element_method "finite element method") &nbsp; &nbsp; [<img src="assets/images/saxe.jpg" height="250">](https://link.springer.com/book/10.1007/978-1-4757-3687-8 "the textbook")
 
