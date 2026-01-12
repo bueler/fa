@@ -276,6 +276,23 @@ if $f:[a,b] \to \RR$ is continuous and if $F:[a,b]\to \RR$ satisfies $F'(x)=f(x)
 \end{frame}
 
 
+\begin{frame}{non-integrable functions}
+
+\begin{itemize}
+\item describe a function $f:[0,1]\to \RR$ for which $\int_0^1 f(x)\,dx$ does not exist:
+
+\vspace{35mm}
+$\ds \sum_{j=1}^n f(x_j^*)\,(x_j - x_{j-1}) = $ \hfill
+
+\bigskip
+(so the Riemann integral $\int_0^1 f(x)\,dx = \lim_{n\to\infty} \sum_{j=1}^n f(x_j^*)\,(x_j - x_{j-1})$ does not exist)
+\bigskip
+
+\item \emph{the moral:}  For both derivatives and integrals, we need to restrict the input functions so that these limits are well-defined.  But integration is more flexible: continuity is sufficient.
+\end{itemize}
+\end{frame}
+
+
 \AtBeginSection[] {
     \begin{frame}{Outline}
     \setbeamertemplate{section in toc}[sections numbered]
@@ -328,13 +345,16 @@ is a linear functional on $C([0,1])$
 \vspace{10mm}
 \end{proof}
 
-\item example?: $\ds \ell[f] = \int_0^1 f(x) \,dx$
+\item example?: $\ell[f] = \int_0^1 f(x) \,dx$
 
 \medskip
-\item example?: $\ds \ell[f] = \int_0^1 \frac{f(t)}{1+t^2} \,dt$
+\item example?: $\ell[f] = \int_0^1 \frac{f(t)}{1+t^2} \,dt$
 
 \medskip
-\item example?: $\ds \ell[f] = \int_{0.4}^{0.6} f(t) \,dt$
+\item example?: $\ell[f] = \int_{x}^{0.6} f(t) \,dt$
+
+\medskip
+\item example?: $\ell[f] = \int_{0.4}^{0.6} f(t) \,dt$
 
 \medskip
 \end{itemize}
@@ -371,7 +391,7 @@ what are its values?
 \begin{block}{regularity question}
 we don't need $f$ and $w$ to be continuous for this to be well-defined:
 	$$\ell[f] = \int_0^1 f(x) w(x)\,dx$$
-how general can these functions be?  can they be discontinuous? completely arbitrary?
+how general can these functions be?  can they be discontinuous?  completely arbitrary?  is $\ell$ itself continuous?
 \end{block}
 
 \begin{block}{recovery question}
@@ -379,7 +399,7 @@ suppose $\ell$ has a formula $\ell[f] = \int_0^1 f(x) w(x)\,dx$, but we don't kn
 \end{block}
 
 \begin{block}{conceptual question}
-consider the space $V'$ of all linear functionals on $V=C([0,1])$.  is it a vector space? (yes!)  how do we concretely understand this abstractly-defined space?  is each $\ell \in V'$ represented by a $w(x)$?
+consider the space $V'$ of all linear functionals on $V=C([0,1])$.  is it a vector space?  how do we concretely understand this abstractly-defined space?  is each $\ell \in V'$ represented by a $w(x)$?
 \end{block}
 \end{frame}
 
@@ -467,13 +487,13 @@ where $h=1/m$ and $x_j = j h$
 \end{frame}
 
 
-\begin{frame}{linear functionals in finite dimensions}
+\begin{frame}{finite-dimensional vector spaces}
 
 \begin{itemize}
 \item suppose we have a real, finite-dimensional vector space $V$
 \item suppose we have a basis for $V$: \quad $\mathcal{B} = \{b_1,\dots,b_m\} \subset V$
-\item write $f\in V$ in this basis: \quad for $f_j\in \RR$,
-	$$f = f_1 b_1 + \dots f_m b_m$$
+\item write $f\in V$ in this basis:
+	$$f = f_1 b_1 + \dots f_m b_m \qquad \text{for } f_j\in \RR$$
 \item the coefficients are usually written in a column vector:
   $$(f)_{\mathcal{B}} = \begin{bmatrix} f_1 \\ f_2 \\ \vdots \\ f_m \end{bmatrix}$$
 \end{itemize}
@@ -492,8 +512,8 @@ if $V$ is a real, finite-dimensional vector space with a basis $\mathcal{B} = \{
 \end{theorem}
 
 \begin{itemize}
-\item in other words, we represent linear functions by \emph{row vectors} when the vectors themselves are \emph{column vectors}
-\item \dots so that $\ell[f]$ is computed by usual rules of matrix-matrix multiplication
+\item in other words, we may represent linear functions by \emph{row vectors} when the vectors themselves are, as usual, \emph{column vectors}
+\item \dots and then $\ell[f]$ is computed by usual rules of matrix-matrix multiplication
 \end{itemize}
 \end{frame}
 
