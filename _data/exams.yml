@@ -3,15 +3,15 @@ home: assets/exams/S26
 exams:
 - name: Midterm Exam 1
   date: Monday 2 March
-  info: <b>in class</b> or proctored
+  info: <b>in class</b>
   #reviewguide: review/mid.pdf
   #blank: mid.pdf
   #solutions: midsolns.pdf
 - name: Midterm Exam 2
   date: Monday 13 April
-  info: <b>in class</b> or proctored
+  info: <b>in class</b>
 - name: Final Exam
   date: Friday 1 May, 10:15am--12:15pm
-  info: <b>in class</b> or proctored
+  info: <b>in class</b>
   #blank: final.pdf
   #rubric: finalrubric.pdf
