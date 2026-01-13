@@ -81,7 +81,7 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 12 January 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 12 January 2026; version 1.1}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 1}}
@@ -128,7 +128,7 @@ that is, $\ell : C([0,1]) \to \RR$.
 \epart{c} For $k\in \NN$ compute $\ell_k$ if $f_k(x) = \sin(k\pi x)$.
 
 \bigskip
-\noindent  \emph{Comment.}  If the $\{f_k\}$ were a ``basis'' then the values $\{\ell_k = \ell[f_k]\}$ would ``represent'' $\ell$ as an infinite-length vector.  For a finite linear combination, $g(x)=\sum_{k=1}^n c_k f_k(x)$, we do have $\ell[g] = \sum_{k=1}^n c_k \ell_k$ by linearity, and from part \textbf{(b)} this defines $\ell$ on all polynomials.  However, defining ``basis'' for infinite-dimensional spaces is quite nontrivial.  The best kind of ``basis'' is the \emph{complete orthonormal sequence}, an orthonormal basis, defined in Chapter 4, but we are not there yet; also see the footnote on page 11.  Note that Problem \textbf{P1} only requires that you figure out how to do some integrals, and you don't have to prove anything is a basis.  We will eventually see that if we change the vector space to a Hilbert space then this $\ell$ does have a representation, and indeed it is represented by the function $e^x$ itself.
+\noindent  \emph{Comment (revised).}  For a finite linear combination, $g(x)=\sum_{k=1}^n c_k f_k(x)$, we have $\ell[g] = \sum_{k=1}^n c_k \ell_k$ by linearity, and from part \textbf{(b)} this defines $\ell$ on all polynomials.  If $\{f_k(x)=x^k\}$ were a ``basis'' then the values $\{\ell_k = \ell[f_k]\}$ would ``represent'' $\ell$ as an infinite-length vector.  However, correctly defining ``basis'' for infinite-dimensional spaces is rather difficult!  The best kind of ``basis'' is the \emph{complete orthonormal sequence} (Chapter 4), an but we are not there yet; also see the footnote on page 11.  Problem \textbf{P1} only requires that you figure out how to do some integrals, and you don't have to prove anything is a basis.  We will eventually see that if we change the vector space to a Hilbert space then this $\ell$ \emph{does} have a representation, and it is represented either by the function $e^x$ itself or the coefficients on a complete orthonormal sequence.
 
 \prob{P2}  Show that $a_k = 1/k$, $k\in\NN$, is in $\ell^2$, and find its norm.  Is it in $\ell^1$?  Is it in $\ell^\infty$?
 
