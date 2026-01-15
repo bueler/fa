@@ -19,7 +19,7 @@
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
 
-\usepackage{empheq,bm,xspace}
+\usepackage{empheq,bm,xspace,dsfont}
 %\usepackage{minted}
 %\usepackage{hyperref}
 \usepackage{tikz}
@@ -46,6 +46,8 @@
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\ZZ}{\mathbb{Z}}
+
+\newcommand{\one}{\mathds{1}}
 
 \newcommand{\ddt}[1]{\ensuremath{\frac{\partial #1}{\partial t}}}
 \newcommand{\ddx}[1]{\ensuremath{\frac{\partial #1}{\partial x}}}
@@ -252,19 +254,18 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \begin{frame}{the antiderivative is a well-behaved integral operator}
 
 \begin{definition}
-an \emph{antiderivative operator} is, for example,
+an \emph{antiderivative operator} \quad $A \,:\, C([0,1]) \to C([0,1])$ \quad is, for example,
 \begin{gather*}
-A \,:\, C([0,1]) \to C([0,1]) \\
 (A\phi)(x) = \int_0^x \phi(t)\,dt
 \end{gather*}
 \end{definition}
 
 \begin{itemize}
-\item the FTC shows this is the antiderivative:
+\item the FTC shows this is an antiderivative:
 
-\vspace{10mm}
-\item note that $(B\phi)(x) = \int_{0.4}^x \phi(t)\,dt$ is another antiderivative operator
-\item these are also examples of \emph{Volterra integral operator} \dots look it up?
+\vspace{20mm}
+\item note that $\ds (B\phi)(x) = \int_{0.4}^x \phi(t)\,dt$ is another antiderivative operator
+\item these are examples of \emph{Volterra integral operator} \dots look it up?
 \end{itemize}
 \end{frame}
 
@@ -272,23 +273,56 @@ A \,:\, C([0,1]) \to C([0,1]) \\
 \begin{frame}{kernel of the antiderivative operator}
 
 \begin{itemize}
-\item FIXME antiderivative example, noting $k(x,t)$ is discontinuous
+\item is the antiderivative operator $(A\phi)(x) = \int_0^x \phi(t)\,dt$ in the kernel form $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$?
+
+\medskip
+\item \emph{yes}, but $k(x,t)$ is discontinuous (picture at right):
+    $$k(x,t) = \begin{cases} 1, & t \le x \\ 0, & t>x \end{cases}\, = \one_{[0,x]}(t) \hspace{70mm}$$
+
+\vspace{30mm}
+\item compute:
+    $$(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt = \int_0^1 \one_{[0,x]}(t)\, \phi(t)\,dt = \int_0^x \phi(t)\,dt = (A\phi)(x)$$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Lipschitz kernels give well-behaved integral operator}
+\begin{frame}{Lipschitz kernels give well-behaved integral operators}
 
-\begin{itemize}
-\item FIXME show that if there exists $C\ge 0$ so that $|k(x,t)-k(y,t)|\le C |x-y|$ for  $x,t$ then $L\phi$ is continuous
-\end{itemize}
+\begin{definition}
+a function $k:[0,1]\times [0,1] \to \RR$ is \emph{Lipschitz in $x$} if there is $C\ge 0$ so that for all $x,y \in [0,1]$ and $t\in[0,1]$, \quad $|k(x,t)-k(y,t)|\le C |x-y|$
+\end{definition}
+
+\begin{lemma}
+if $k(x,t)$ is Lipschitz in $x$, and if $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ for $\phi \in C([0,1])$, then $L\phi \in C([0,1])$
+\end{lemma}
+
+{\footnotesize
+\noindent \emph{Proof.}  Let $\phi\in C([0,1])$, and consider the function $L\phi$ at a point $x\in[0,1]$.  Suppose $\eps>0$.  Let $\delta=\eps/(C\|\phi\|_\infty)$.  If $y\in[0,1]$ and $|x-y|<\delta$ then by the triangle inequality, and the definition of Lipschitz,
+\begin{align*}
+\left|(L\phi)(x) - (L\phi)(y)\right| &= \left|\int_0^1 k(x,t) \phi(t)\,dt - \int_0^1 k(y,t) \phi(t)\,dt\right| \\
+  &\le \int_0^1 \left|k(x,t) - k(y,t)\right| |\phi(t)| \,dt \le \int_0^1 C |x-y|\, |\phi(t)| \,dt \\
+  &\le \int_0^1 C|x-y|\, \|\phi\|_\infty \,dt = C \|\phi\|_\infty |x-y| < C \|\phi\|_\infty \delta = \eps \qquad \qed
+\end{align*}
+}
 \end{frame}
 
 
 \begin{frame}{returning to the BVP \dots}
 
+\begin{block}{recall: solution of 2-point BVP}
+the solution of
+    $$-u'' = \phi, \quad u(0) = u(1) = 0$$
+is \quad $\ds u(x) = \int_0^1 k(x,t) \phi(t)\,dt$ \quad where
+    $$k(x,t) = \begin{cases} t (1 - x), & t \le x \\ x (1 - t), & x \le t\end{cases}$$
+\end{block}
+
+\begin{corollary}
+since the above kernel is Lipschitz in $x$, with $C=0.5$, and if $\phi\in C([0,1])$, thus $u \in C([0,1])$
+\end{corollary}
+
 \begin{itemize}
-\item FIXME thus $u(x)$ solving BVP is indeed continous
+\item but we already knew that!
+\item in fact: if $\phi\in C([0,1])$ then $u(x)$ has two derivatives
 \end{itemize}
 \end{frame}
 
@@ -296,9 +330,26 @@ A \,:\, C([0,1]) \to C([0,1]) \\
 \begin{frame}{bounded kernel is not enough}
 
 \begin{itemize}
-\item FIXME show by example a discontinuous $k(x,t)$ so that $L\phi$ is not continuous
-\item namely $k(x,t)=1$ if $x\le 0.5$ and $k(x,t)=0$ if $x>0.5$
+\item there exist \emph{discontinuous} $k(x,t)$ so that $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ is not continuous
+\item for example,
+  $$k(x,t)=\begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}$$
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}{bad pictures of three kernels}
+
+\noindent on $t,x$ axes, draw pictures:
+{\scriptsize
+\begin{align*}
+k_1(x,t) &= \begin{cases} t (1 - x), & t \le x \\
+	                         x (1 - t), & x \le t\end{cases} \hspace{100mm} \\
+k_2(x,t) &= \begin{cases} 1, & t \le x \\ 0, & t>x \end{cases} \\
+k_3(x,t) &= \begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}
+\end{align*}
+}
+
+\vspace{50mm}
 \end{frame}
 
 
