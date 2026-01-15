@@ -63,10 +63,12 @@
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
+\newcommand{\textbook}{Saxe, \emph{Beginning Functional Analysis}}
+
 
 \title{Boundary value problems and integral operators}
 
-\subtitle{week 2 calculation}
+\subtitle{a calculation for weeks 2 \& 3}
 
 \author{Ed Bueler}
 
@@ -99,8 +101,8 @@
 \begin{block}{2-point BVP for the second derivative}
 suppose $\alpha,\beta\in\RR$ and $\phi \in C([0,1])$ are given.  solve for $u(x)$:
 \begin{align*}
--u''(x) &= \phi(x), \quad \text{ for all } x\in (0,1) \\
-u(0) &= \alpha, \\
+-u''(x) &= \phi(x) \quad \text{ for all } x\in (0,1) \\
+u(0) &= \alpha \\
 u(1) &= \beta
 \end{align*}
 \end{block}
@@ -109,7 +111,7 @@ u(1) &= \beta
 \item picture of data $\phi$ (left) and solution $u$ (right):
 
 \vspace{30mm}
-\item we will see this is \emph{solvable by hand}, via an integral of the data $\phi(x)$, but this is a bit non-trivial, so we warm-up with an easier problem
+\item we will see this is \emph{solvable by hand}, via an integral of the data $\phi(x)$, but this is \emph{a bit hard}, so we warm-up with an easier problem
 \end{itemize}
 \end{frame}
 
@@ -119,8 +121,8 @@ u(1) &= \beta
 \begin{block}{IVP for the second derivative\phantom{p}}
 suppose $\alpha,\beta\in\RR$ and $\phi \in C([0,1])$ are given.  solve for $u(x)$:
 \begin{align*}
--u''(x) &= \phi(x), \quad \text{ for all } x\in (0,1) \\
-u(0) &= \alpha, \\
+-u''(x) &= \phi(x) \quad \text{ for all } x\in (0,1) \\
+u(0) &= \alpha \\
 u'(0) &= \beta
 \end{align*}
 \end{block}
@@ -199,7 +201,7 @@ is
 \end{block}
 
 \begin{itemize}
-\item this kind of formula defines a \emph{linear operator}
+\item this is a linear \emph{integral operator}
 \end{itemize}
 \end{frame}
 
@@ -226,8 +228,6 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \end{frame}
 
 
-\section{linear operators on $C([0,1])$}
-
 \begin{frame}{wait \dots does $\phi\in C([0,1]) \implies L\phi \in C([0,1])$?}
 
 \begin{definition}
@@ -248,12 +248,34 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}{the antiderivative is a well-behaved integral operator}
+
+\begin{definition}
+an \emph{antiderivative operator} is, for example,
+\begin{gather*}
+A \,:\, C([0,1]) \to C([0,1]) \\
+(A\phi)(x) = \int_0^x \phi(t)\,dt
+\end{gather*}
+\end{definition}
+
+\begin{itemize}
+\item the FTC shows this is the antiderivative:
+
+\vspace{10mm}
+\item note that $(B\phi)(x) = \int_{0.4}^x \phi(t)\,dt$ is another antiderivative operator
+\item these are also examples of \emph{Volterra integral operator} \dots look it up?
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{kernel of the antiderivative operator}
 
 \begin{itemize}
 \item FIXME antiderivative example, noting $k(x,t)$ is discontinuous
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}{Lipschitz kernels give well-behaved integral operator}
 
@@ -262,12 +284,14 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Lipschitz kernels give well-behaved integral operator}
+
+\begin{frame}{returning to the BVP \dots}
 
 \begin{itemize}
 \item FIXME thus $u(x)$ solving BVP is indeed continous
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}{bounded kernel is not enough}
 
@@ -284,6 +308,7 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 
 \begin{itemize}
 \item FIXME define it
+\item there is more on this in Chapters 1 and 2 of \textbook
 \end{itemize}
 \end{frame}
 
@@ -302,12 +327,16 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \end{itemize}
 \end{frame}
 
+
+\section{compactness and integral operators}
+
 \begin{frame}{bounded operators}
 
 \begin{itemize}
 \item FIXME define $L$ is bounded
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}{bounded integral operators}
 
@@ -317,19 +346,12 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \end{frame}
 
 
-\section{compactness and integral operators}
-
-\begin{frame}{new idea 1: $k(x,t)$ continuous \emph{is} enough to make $L\phi$ continous}
+\begin{frame}{new idea: some integral operators are compact}
 
 \begin{itemize}
-\item FIXME $k(x,t)$ continuous on compact set $S=[0,1]\times[0,1]$ implies uniformly continous implies $(L\phi)(x)$ is continous
-\end{itemize}
-\end{frame}
-
-\begin{frame}{new idea 2: some integral operators are compact}
-
-\begin{itemize}
+\item FIXME define $L$ is bounded
 \item FIXME $LB$ is compact because equicontinuous and Arzela-Ascoli
+\item more on this in Chapter 2 of \textbook
 \end{itemize}
 \end{frame}
 
@@ -358,29 +380,31 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \end{frame}
 
 
-\section{theory for 2 weeks}
 
-\begin{frame}{theory on Friday, Monday, Wednesday, Friday}
+\begin{frame}{theory in weeks 2 and 3}
 
-\noindent definitions:
-
+\begin{block}{to define:}
 \begin{itemize}
 \item open and closed sets in metric spaces
 \item compact sets in metric spaces
 \item equicontinuity of subsets of $C([a,b])$
+\item complete metric spaces
+\item Hilbert and Banach spaces
+\end{itemize}
+\end{block}
+
+\begin{block}{to prove:}
+\begin{itemize}
 \item Heine-Borel theorem
 \item Arzela-Ascoli theorem
-\item complete metric spaces
-\item Hilbert spaces
-\item Banach spaces
 \item $C([a,b])$ with $\|\cdot\|_\infty$ is complete (thus a Banach space)
 \end{itemize}
+\end{block}
 
-\bigskip
-\noindent $=$ Chapter 2 in Saxe
-
-\bigskip
-\noindent Assignment 2 posted on \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\begin{itemize}
+\item this is Chapter 2 in \textbook
+\item note that Assignment 2 posted on \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\end{itemize}
 \end{frame}
 
 
