@@ -297,7 +297,7 @@ if $k(x,t)$ is Lipschitz in $x$, and if $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,d
 \end{lemma}
 
 {\footnotesize
-\noindent \emph{Proof.}  Let $\phi\in C([0,1])$, and consider the function $L\phi$ at a point $x\in[0,1]$.  Suppose $\eps>0$.  Let $\delta=\eps/(C\|\phi\|_\infty)$.  If $y\in[0,1]$ and $|x-y|<\delta$ then by the triangle inequality, and the definition of Lipschitz,
+\noindent \emph{Proof.}  Let $\phi\in C([0,1])$, and consider the function $L\phi$ at a point $x\in[0,1]$.  Suppose $\eps>0$.  Let $\delta=\eps/(C\|\phi\|_\infty)$.  If $y\in[0,1]$ and $|x-y|<\delta$ then by the triangle inequality for integrals, and the definition of Lipschitz,
 \begin{align*}
 \left|(L\phi)(x) - (L\phi)(y)\right| &= \left|\int_0^1 k(x,t) \phi(t)\,dt - \int_0^1 k(y,t) \phi(t)\,dt\right| \\
   &\le \int_0^1 \left|k(x,t) - k(y,t)\right| |\phi(t)| \,dt \le \int_0^1 C |x-y|\, |\phi(t)| \,dt \\
@@ -353,54 +353,108 @@ k_3(x,t) &= \begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}
 \end{frame}
 
 
-\section{$C([0,1])$ as a normed vector space, with $\|\cdot\|_\infty$}
+\section{$C([0,1])$, $\|\cdot\|_\infty$ is a normed vector space}
 
-\begin{frame}{the supremum norm on $C([0,1])$}
+\begin{frame}{recall the supremum norm on $C([0,1])$}
 
-\begin{itemize}
-\item FIXME define it
-\item there is more on this in Chapters 1 and 2 of \textbook
-\end{itemize}
-\end{frame}
-
-\begin{frame}{compact sets}
+\begin{definition}
+for $f \in C([0,1])$, let
+	$$\|f\|_\infty = \sup_{x\in[0,1]} |f(x)| = \max_{x\in[0,1]} |f(x)|$$
+\end{definition}
 
 \begin{itemize}
-\item FIXME define compact by open cover
-\end{itemize}
-\end{frame}
+\item picture:
 
-\begin{frame}{the unit ball in $C([0,1])$}
-
-\begin{itemize}
-\item FIXME unit ball $B$
-\item it is not compact
-\end{itemize}
-\end{frame}
-
-
-\section{compactness and integral operators}
-
-\begin{frame}{bounded operators}
-
-\begin{itemize}
-\item FIXME define $L$ is bounded
+\vspace{15mm}
+\item if $V=C([0,1])$ then $(V,\|\cdot\|_\infty)$ is a normed vector space
+    \begin{itemize}
+    \item[$\circ$] there are four properties to check: (i), (ii), (iii), (iv)
+    \item[$\circ$] $d(f,g) = \|f-g\|_\infty$ makes $(V,d)$ a metric space
+    \end{itemize}
+\item a subset $S\subset V$ is \emph{open} if for every $x\in S$ there is an open ball $B_r(x)=\{y\in V\,:\,\|y-x\|_\infty < r\}$ with $r>0$ so that $B_r(x)\subset S$
+\item more on this in Chapter 1 of \textbook
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{bounded integral operators}
+\begin{frame}{compact sets in $V=C([0,1])$}
 
 \begin{itemize}
-\item FIXME $\sup_{x} \int_0^1 |k(x,t)|\,dt<\infty$ implies operator $L$ bounded
+\item a collection $\mathcal{C}=\{S_\lambda\}_{\lambda\in I}$ is an \emph{open cover of } $E\subset V$ if $S_\lambda\subset V$ is open for each $\lambda \in I$, and if $E \subset \bigcup_{\lambda\in I} S_\lambda$
 \end{itemize}
+
+\begin{definition}
+a subset $E\subset V$ is \emph{compact} if every open cover of $E$ has a finite subcover
+\end{definition}
+
+\begin{block}{Theorem 2.4}
+$E\subset V$ is compact if and only if it is sequentially compact, that is, if every sequence in $E$ contains a convergent subsequence
+\end{block}
+
+\begin{itemize}
+\item fact: any finite subset of $V$ is compact
+\item compact subsets of $V=C([0,1])$ are a major focus of Chapter 2 of \textbook
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{the unit ball in $V=C([0,1])$ is not compact}
+
+\begin{theorem}
+the closed unit ball $B = B_1(0)=\{y\in V\,:\,\|y\|_\infty \le 1\}$ in $V$ is not compact
+\end{theorem}
+
+{\footnotesize
+\noindent \emph{Proof.}  The hat functions $\psi_n(x)$, $n\in \NN$, drawn below, are continuous, and each has norm $\|\psi_n\|_\infty = 1$, thus $\psi_n \in B$.  Also, for any $n\ne m$, $\|\psi_n - \psi_m\|_\infty = 1$.  Any subsequence $(\psi_{n_k})$ of the sequence $(\psi_n)$ would not converge because again $\|\psi_{n_j} - \psi_{n_k}\|_\infty = 1$ for $j\ne k$.  Thus $B$ is not compact.  \hfill \qed
+}
+
+\vspace{40mm}
+\end{frame}
+
+
+\section{bounded and compact integral operators}
+
+\begin{frame}{bounded and compact operators}
+
+\begin{itemize}
+\item assume $(V,\|\cdot\|)$ is a normed vector space
+\item the closed unit ball is $B =\{y\in V\,:\,\|y\| \le 1\}$
+\end{itemize}
+
+\begin{definition}
+a linear operator $L:V \to V$ is \emph{bounded} if there is a constant $C\ge 0$ so that $\|Lv\|\le C \|v\|$ for all $v\in V$
+
+\medskip
+a linear operator $L:V \to V$ is \emph{compact} if the image of the closed unit ball under $L$, that is, the set $LB$, is compact
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{bounded integral operators on $V=C([0,1])$}
+
+\begin{theorem}
+if $k(x,t)$ is integrable, and if
+    $$\sup_{x \in [0,1]} \int_0^1 |k(x,t)|\,dt<\infty,$$
+then the operator $L:V\to V$, \, $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$, \, is bounded
+\end{theorem}
+
+{\footnotesize
+\noindent \emph{Proof.}  Suppose $\phi \in V$.  Then by the triangle inequality,
+\begin{align*}
+\|L\phi\|_\infty &= \sup_{x \in [0,1]} |(L\phi)(x)| = \sup_{x \in [0,1]} \left|\int_0^1 k(x,t) \phi(t)\,dt \right| \\
+   &= \sup_{x \in [0,1]} \int_0^1 |k(x,t)| |\phi(t)|\,dt \le \sup_{x \in [0,1]} \int_0^1 |k(x,t)| \|\phi\|_\infty \,dt \\
+   &= \left(\sup_{x \in [0,1]} \int_0^1 |k(x,t)| \,dt\right)\|\phi\|_\infty
+\end{align*}
+Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$.
+}
+
 \end{frame}
 
 
 \begin{frame}{new idea: some integral operators are compact}
 
 \begin{itemize}
-\item FIXME define $L$ is bounded
 \item FIXME $LB$ is compact because equicontinuous and Arzela-Ascoli
 \item more on this in Chapter 2 of \textbook
 \end{itemize}
@@ -439,6 +493,7 @@ k_3(x,t) &= \begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}
 \item open and closed sets in metric spaces
 \item compact sets in metric spaces
 \item equicontinuity of subsets of $C([a,b])$
+\item separable metric spaces
 \item complete metric spaces
 \item Hilbert and Banach spaces
 \end{itemize}
