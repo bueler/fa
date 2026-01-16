@@ -9,9 +9,9 @@ daily:
   description: open, closed, and compact sets in metric spaces
 - name: Friday 23 January
   description: "<b>week 2 calculation: boundary value problems and integral operators</b>"
+  #slides: slides/S26/week2.pdf
 - name: Wednesday 21 January
   description: C[0,1] and uniform convergence; sequence spaces
-  slides: slides/S26/week2.pdf
 - name: Monday 19 January
   description: <i>no class (Alaska Civil Rights Day)</i>
 - name: Friday 16 January
