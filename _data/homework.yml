@@ -1,6 +1,9 @@
 semester: Spring 2026
 home: assets/homework/S26
 homework:
+- name: Assignment 2
+  due: Monday 2 February
+  blank: A2.pdf
 - name: Assignment 1
   due: Friday 23 January (updated)
   blank: A1.pdf
