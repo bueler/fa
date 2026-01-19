@@ -156,8 +156,6 @@ $$-u''(x) = \phi(x)$$
 }
 
 
-\section{\dots its integral solution}
-
 \begin{frame}{solution of BVP}
 
 apply fundamental theorem of calculus twice?:
@@ -208,6 +206,8 @@ is
 \end{frame}
 
 
+\section{integral operators}
+
 \begin{frame}{the integral operator}
 
 \begin{definition}
@@ -242,30 +242,29 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 
 \begin{itemize}
 \item what does ``suitable'' mean?
-\item for $\phi \in C([0,1])$, we see that $(L\phi)(x)$ is well-defined if $k(x,t) \phi(t)$ is (Riemann) integrable in $t$ for every $x$
-\item what conditions on $k(x,t)$ would assure that $\phi\in C([0,1])$ implies $L\phi \in C([0,1])$?
+\item for $\phi \in C([0,1])$, we see that $(L\phi)(x)$ is well-defined if $k(x,t)$ is (Riemann) integrable in $t$ for every $x$
+\item but what conditions on $k(x,t)$ would assure that $\phi\in C([0,1])$ implies $L\phi \in C([0,1])$?
   \begin{itemize}
-  \item[$\circ$] does $k(x,t)$ need to be continuous?
+  \item[$\circ$] does $k(x,t)$ itself need to be continuous?
   \end{itemize}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{the antiderivative is a well-behaved integral operator}
+\begin{frame}{example: the antiderivative (as an integral operator)}
 
 \begin{definition}
-an \emph{antiderivative operator} \quad $A \,:\, C([0,1]) \to C([0,1])$ \quad is, for example,
+for fixed $a\in [0,1]$, an \emph{antiderivative operator} \quad $A \,:\, C([0,1]) \to C([0,1])$ \quad is
 \begin{gather*}
-(A\phi)(x) = \int_0^x \phi(t)\,dt
+(A\phi)(x) = \int_a^x \phi(t)\,dt
 \end{gather*}
 \end{definition}
 
 \begin{itemize}
 \item the FTC shows this is an antiderivative:
 
-\vspace{20mm}
-\item note that $\ds (B\phi)(x) = \int_{0.4}^x \phi(t)\,dt$ is another antiderivative operator
-\item these are examples of \emph{Volterra integral operator} \dots look it up?
+\vspace{30mm}
+\item these are \emph{Volterra integral operators} \hfill {\footnotesize $\longleftarrow$ look it up?}
 \end{itemize}
 \end{frame}
 
@@ -276,12 +275,13 @@ an \emph{antiderivative operator} \quad $A \,:\, C([0,1]) \to C([0,1])$ \quad is
 \item is the antiderivative operator $(A\phi)(x) = \int_0^x \phi(t)\,dt$ in the kernel form $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$?
 
 \medskip
-\item \emph{yes}, but $k(x,t)$ is discontinuous (picture at right):
+\item \emph{yes}, and $k(x,t)$ is discontinuous (picture at right):
     $$k(x,t) = \begin{cases} 1, & t \le x \\ 0, & t>x \end{cases}\, = \one_{[0,x]}(t) \hspace{70mm}$$
 
-\vspace{30mm}
+\vspace{20mm}
 \item compute:
     $$(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt = \int_0^1 \one_{[0,x]}(t)\, \phi(t)\,dt = \int_0^x \phi(t)\,dt = (A\phi)(x)$$
+\item regarding the question ``what conditions on $k(x,t)$ imply $L\,:\,C([0,1])\to C([0,1])$?'', the next slide gives a sufficient condition
 \end{itemize}
 \end{frame}
 
@@ -321,7 +321,7 @@ since the above kernel is Lipschitz in $x$, with $C=0.5$, and if $\phi\in C([0,1
 \end{corollary}
 
 \begin{itemize}
-\item but we already knew that!
+\item but we already knew that this $L$ sends $C([0,1])$ to itself \dots why?
 \item in fact: if $\phi\in C([0,1])$ then $u(x)$ has two derivatives
 \end{itemize}
 \end{frame}
@@ -330,21 +330,23 @@ since the above kernel is Lipschitz in $x$, with $C=0.5$, and if $\phi\in C([0,1
 \begin{frame}{bounded kernel is not enough}
 
 \begin{itemize}
-\item there exist \emph{discontinuous} $k(x,t)$ so that $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ is not continuous
+\item is boundedness (and integrability) of $k$ sufficient for $L\,:\,C([0,1])\to C([0,1])$?
+\item \emph{no.}  there exist bounded and \emph{discontinuous} $k(x,t)$ so that $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ is not continuous
 \item for example,
   $$k(x,t)=\begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}$$
+\item regarding necessary and sufficient conditions, I do not know \dots and I invite you to contemplate that!
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{bad pictures of three kernels}
+\begin{frame}{pictures of three kernels}
 
-\noindent on $t,x$ axes, draw pictures:
+\noindent on $t,x$ axes, sketch contour maps?:
 {\scriptsize
 \begin{align*}
 k_1(x,t) &= \begin{cases} t (1 - x), & t \le x \\
-	                         x (1 - t), & x \le t\end{cases} \hspace{100mm} \\
-k_2(x,t) &= \begin{cases} 1, & t \le x \\ 0, & t>x \end{cases} \\
+	                         x (1 - t), & x \le t\end{cases} \hspace{10mm} &
+k_2(x,t) &= \begin{cases} 1, & t \le x \\ 0, & t>x \end{cases} \hspace{10mm} &
 k_3(x,t) &= \begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}
 \end{align*}
 }
@@ -353,13 +355,16 @@ k_3(x,t) &= \begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}
 \end{frame}
 
 
-\section{$C([0,1])$, $\|\cdot\|_\infty$ is a normed vector space}
+\section{bounded and compact operators}
 
-\begin{frame}{recall the supremum norm on $C([0,1])$}
+\begin{frame}{$C([0,1])$, $\|\cdot\|_\infty$ is a normed vector space}
+
+\begin{itemize}
+\item recall stuff from Chapter 1 of \textbook
+\end{itemize}
 
 \begin{definition}
-for $f \in C([0,1])$, let
-	$$\|f\|_\infty = \sup_{x\in[0,1]} |f(x)| = \max_{x\in[0,1]} |f(x)|$$
+for $f \in C([0,1])$, let \qquad $\ds \|f\|_\infty = \sup_{x\in[0,1]} |f(x)| = \max_{x\in[0,1]} |f(x)|$
 \end{definition}
 
 \begin{itemize}
@@ -371,29 +376,34 @@ for $f \in C([0,1])$, let
     \item[$\circ$] there are four properties to check: (i), (ii), (iii), (iv)
     \item[$\circ$] $d(f,g) = \|f-g\|_\infty$ makes $(V,d)$ a metric space
     \end{itemize}
-\item a subset $S\subset V$ is \emph{open} if for every $x\in S$ there is an open ball $B_r(x)=\{y\in V\,:\,\|y-x\|_\infty < r\}$ with $r>0$ so that $B_r(x)\subset S$
-\item more on this in Chapter 1 of \textbook
+\item recall: convergence in $\|\cdot\|_\infty$ is \emph{uniform} convergence
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{compact sets in $V=C([0,1])$}
+\begin{frame}{compact sets}
 
 \begin{itemize}
+\item following stuff is in Chapter 2 of \textbook
+\item we assume $(V,\|\cdot\|)$ is a normed vector space
+\item a subset $S\subset V$ is \emph{open} if for every $x\in S$ there is an open ball $B_r(x)=\{y\in V\,:\,\|y-x\| < r\}$ with $r>0$ so that $B_r(x)\subset S$
 \item a collection $\mathcal{C}=\{S_\lambda\}_{\lambda\in I}$ is an \emph{open cover of } $E\subset V$ if $S_\lambda\subset V$ is open for each $\lambda \in I$, and if $E \subset \bigcup_{\lambda\in I} S_\lambda$
 \end{itemize}
 
 \begin{definition}
-a subset $E\subset V$ is \emph{compact} if every open cover of $E$ has a finite subcover
+\begin{itemize}
+\item a subset $E\subset V$ is \emph{compact} if every open cover of $E$ has a finite subcover
+\item a subset $E\subset V$ is \emph{sequentially compact} if every sequence in $E$ contains a convergent subsequence
+\end{itemize}
 \end{definition}
 
 \begin{block}{Theorem 2.4}
-$E\subset V$ is compact if and only if it is sequentially compact, that is, if every sequence in $E$ contains a convergent subsequence
+$E\subset V$ is compact if and only if it is sequentially compact
 \end{block}
 
 \begin{itemize}
 \item fact: any finite subset of $V$ is compact
-\item compact subsets of $V=C([0,1])$ are a major focus of Chapter 2 of \textbook
+\item compact subsets of $V=C([0,1])$ are a major focus of Chapter 2
 \end{itemize}
 
 \end{frame}
@@ -402,18 +412,19 @@ $E\subset V$ is compact if and only if it is sequentially compact, that is, if e
 \begin{frame}{the unit ball in $V=C([0,1])$ is not compact}
 
 \begin{theorem}
-the closed unit ball $B = B_1(0)=\{y\in V\,:\,\|y\|_\infty \le 1\}$ in $V$ is not compact
+the closed unit ball $B_1(0)=\{y\in V\,:\,\|y\|_\infty \le 1\}$ in $V$ is not compact
 \end{theorem}
 
 {\footnotesize
-\noindent \emph{Proof.}  The hat functions $\psi_n(x)$, $n\in \NN$, drawn below, are continuous, and each has norm $\|\psi_n\|_\infty = 1$, thus $\psi_n \in B$.  Also, for any $n\ne m$, $\|\psi_n - \psi_m\|_\infty = 1$.  Any subsequence $(\psi_{n_k})$ of the sequence $(\psi_n)$ would not converge because again $\|\psi_{n_j} - \psi_{n_k}\|_\infty = 1$ for $j\ne k$.  Thus $B$ is not compact.  \hfill \qed
+\noindent \emph{Proof.}  The hat functions $\psi_n(x)$, $n\in \NN$, drawn below, are continuous, and each has norm $\|\psi_n\|_\infty = 1$, thus $\psi_n \in B_1(0)$.  Also, for any $n\ne m$, $\|\psi_n - \psi_m\|_\infty = 1$.  Any subsequence $(\psi_{n_k})$ of the sequence $(\psi_n)$ would not converge because again $\|\psi_{n_j} - \psi_{n_k}\|_\infty = 1$ for $j\ne k$.  Thus $B_1(0)$ is not compact.  \hfill \qed
 }
 
-\vspace{40mm}
+\bigskip
+\begin{corollary}
+if $E \subset V=C([0,1])$ contains any ball of positive radius, no matter how small, that is, there is $x\in V$ and $r>0$ so that $B_r(x) \subset E$, then $E$ is not compact
+\end{corollary}
 \end{frame}
 
-
-\section{bounded and compact integral operators}
 
 \begin{frame}{bounded and compact operators}
 
@@ -423,10 +434,10 @@ the closed unit ball $B = B_1(0)=\{y\in V\,:\,\|y\|_\infty \le 1\}$ in $V$ is no
 \end{itemize}
 
 \begin{definition}
-a linear operator $L:V \to V$ is \emph{bounded} if there is a constant $C\ge 0$ so that $\|Lv\|\le C \|v\|$ for all $v\in V$
-
-\medskip
-a linear operator $L:V \to V$ is \emph{compact} if the image of the closed unit ball under $L$, that is, the set $LB$, is compact
+\begin{itemize}
+\item a linear operator $L:V \to V$ is \emph{bounded} if there is a constant $C\ge 0$ so that $\|Lv\|\le C \|v\|$ for all $v\in V$
+\item a linear operator $L:V \to V$ is \emph{compact} if the image of the closed unit ball under $L$, that is, the set $LB$, is compact
+\end{itemize}
 \end{definition}
 \end{frame}
 
@@ -446,7 +457,7 @@ then the operator $L:V\to V$, \, $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$, \, 
    &= \sup_{x \in [0,1]} \int_0^1 |k(x,t)| |\phi(t)|\,dt \le \sup_{x \in [0,1]} \int_0^1 |k(x,t)| \|\phi\|_\infty \,dt \\
    &= \left(\sup_{x \in [0,1]} \int_0^1 |k(x,t)| \,dt\right)\|\phi\|_\infty
 \end{align*}
-Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$.
+Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$. \hfill \qed
 }
 
 \end{frame}
@@ -466,7 +477,17 @@ Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$.
 \begin{frame}{x}
 
 \begin{itemize}
-\item FIXME:  Dirac delta, Fourier, well-posedness
+\item FIXME:  Dirac delta
+\item picture:
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{x}
+
+\begin{itemize}
+\item FIXME:  Fourier series
 \item picture:
 
 \vspace{30mm}
@@ -477,16 +498,19 @@ Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$.
 \begin{frame}{approximations}
 
 \begin{itemize}
-\item FIXME finite elements
-\item picture:
+\item recall the integral operator $L \,:\, C([0,1]) \to C([0,1])$, with formula
+    $$(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$$
+\item neither $L$ nor $k$ \emph{is} a matrix, but how would we approximate it by a matrix?
+\item one answer: finite elements
+\item picture of a test (hat) function $\phi(x)=\psi_k(x)$ and the output $L\psi_k$:
 
-\vspace{30mm}
+\vspace{40mm}
 \end{itemize}
 \end{frame}
 
 
 
-\begin{frame}{theory in weeks 2 and 3}
+\begin{frame}{theory in weeks 2 \& 3: Chapter 2 in Saxe}
 
 \begin{block}{to define:}
 \begin{itemize}
@@ -508,8 +532,7 @@ Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$.
 \end{block}
 
 \begin{itemize}
-\item this is Chapter 2 in \textbook
-\item note that Assignment 2 posted on \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\item Assignment 2 is posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
 \end{itemize}
 \end{frame}
 
