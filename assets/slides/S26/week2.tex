@@ -585,33 +585,78 @@ is \, $u(x) = (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ \, where $k(x,t) = \min\
 
 \section{other views of the boundary value problem}
 
-\begin{frame}{x}
+\begin{frame}{the Dirac delta ``function''}
+
+\begin{definition}
+the \emph{Dirac delta function} on $[0,1]$, centered at $t\in (0,1)$, satisfies
+	$$\delta_t(x) = \begin{cases} 0, & x\ne t \\ \text{positive}, & x=t, \end{cases}$$
+and
+	$$\int_0^1 \delta_t(x) \, dx = 1$$
+\end{definition}
 
 \begin{itemize}
-\item FIXME:  Dirac delta
 \item picture:
 
-\vspace{30mm}
+\vspace{20mm}
+\item the above is a \alert{fake} definition \dots do not believe it
+\item the Dirac delta ``function'' is actually a positive \emph{measure}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{x}
 
-\begin{itemize}
-\item FIXME:  Fourier series
-\item picture:
+\begin{frame}{the kernel for the BVP comes from Dirac delta functions}
 
-\vspace{30mm}
-\end{itemize}
+\begin{block}{Theorem}
+for $t\in (0,1)$, the solution of
+    $$-u''(x) = \delta_t(x), \quad u(0) = u(1) = 0$$
+is $k(x,t) = \min\{x,t\} - xt$
+\end{block}
+
+{\footnotesize
+\noindent \emph{Proof.}  Integrate twice, as usual:
+\begin{align*}
+u'(x) &= C - \int_0^x \delta_t(s)\,ds = C - \one_{(t,1)}(x) \\
+u(x) &= 0 + \int_0^x C - \one_{(t,1)}(s) \,ds = C x - \begin{cases} 0, & x<t \\ x-t, & x>t \end{cases}
+\end{align*}
+But:
+    $$0 = u(1) = C - \begin{cases} 0, & 1<t \\ 1-t, & 1>t \end{cases} = C - (1-t)$$
+so $C=1-t$ so:
+\begin{equation*}
+u(x) = (1-t) x - \begin{cases} 0, & x<t \\ x-t, & x>t \end{cases} = \begin{cases} x (1 - t), & x < t \\ t (1 - x), & x > t \end{cases} = k(x,t) \hspace{10mm} \qed
+\end{equation*}
+}
 \end{frame}
 
 
-\begin{frame}{approximations}
+\begin{frame}{physicist's solution of the BVP}
+
+\begin{block}{Corollary}
+for $t\in (0,1)$, the solution of
+    $$-u''(x) = \phi(x), \quad u(0) = u(1) = 0$$
+is $u(x) = \int_0^1 k(x,t) \phi(t)\,dt$ where $k(x,t) = \min\{x,t\} - xt$
+\end{block}
+
+{\footnotesize
+\noindent \emph{Proof.}  The map from $\phi$ to the solution $u$ is linear: $u=L\phi$. Express $\phi$ as a linear combination of delta functions:
+    $$\phi(x) = \int_0^1 \phi(t) \delta_t(x)\,dt$$
+Now apply $L$ to both sides, to write the solution as a linear combination of solutions:
+	$$u(x) = (L\phi)(x) = \int_0^1 \phi(t) L(\delta_t(x))\,dt$$
+But from previous slide, $L(\delta_t(x))=k(x,t)$.  Thus
+	$$u(x) = \int_0^1 \phi(t) k(x,t)\,dt = \int_0^1 k(x,t) \phi(t)\,dt \hspace{10mm} \qed$$
 
 \begin{itemize}
-\item recall the integral operator $L \,:\, C([0,1]) \to C([0,1])$, with formula
+\item this proof is valid in the theory of \emph{distributions} or \emph{generalized functions}, due to L.~Schwartz
+\end{itemize}
+}
+\end{frame}
+
+
+\begin{frame}{approximation of the BVP}
+
+\begin{itemize}
+\item the integral operator $L \,:\, C([0,1]) \to C([0,1])$ has formula
     $$(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$$
-\item neither $L$ nor $k$ \emph{is} a matrix, but how would we approximate it by a matrix?
+\item neither $L$ nor $k$ \emph{is} a matrix, but could we approximate them by a matrix?
 \item one answer: finite elements
 \item picture of a test (hat) function $\phi(x)=\psi_k(x)$ and the output $L\psi_k$:
 
@@ -619,6 +664,41 @@ is \, $u(x) = (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ \, where $k(x,t) = \min\
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{solution of the BVP by Fourier series}
+
+\begin{block}{Lemma}
+for $n \in \NN$, the solution of
+    $$-u''(x) = \sin(n\pi x), \quad u(0) = u(1) = 0$$
+is \, $\ds u(x) = \frac{1}{n^2 \pi^2} \sin(n\pi x)$
+\end{block}
+
+\begin{itemize}
+\item the proof is very easy?
+\item suppose data $\phi(x)$ is written as a Fourier sine series (Chapter 4):
+    $$\phi(x) = \sum_{n=1}^\infty c_n \sin(n\pi x)$$
+\item then by linearity the solution of the BVP is
+	$$u(x) = \sum_{n=1}^\infty \frac{c_n}{n^2 \pi^2} \sin(n\pi x)$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{solution of the BVP by Fourier series 2}
+
+\begin{itemize}
+\item we have $\phi(x) = \sum_{n=1}^\infty c_n \sin(n\pi x)$ and $u(x) = \sum_{n=1}^\infty \frac{c_n}{n^2 \pi^2} \sin(n\pi x)$
+\item but Fourier says: \hfill {\footnotesize $\longleftarrow$ Chapter 4}
+	$$c_n = 2 \int_0^1 \sin(n\pi t) \phi(t) \,dt$$
+\item thus, assuming we may exchange the sums:
+\begin{align*}
+u(x) &= \sum_{n=1}^\infty \frac{2}{n^2 \pi^2} \left(\int_0^1 \sin(n\pi t) \phi(t) \,dt\right) \sin(n\pi x) \\
+&= \int_0^1 \left[\sum_{n=1}^\infty \frac{2}{n^2 \pi^2} \sin(n\pi t) \sin(n\pi x)\right] \phi(t) \,dt
+\end{align*}
+\item guess what!  we have the kernel again:
+	$$k(x,t) = \min\{x,t\} - xt = \sum_{n=1}^\infty \frac{2}{n^2 \pi^2} \sin(n\pi t) \sin(n\pi x)$$
+\item and again $u(x) = \int_0^1 k(x,t)\phi(t)\, dt$
+\end{itemize}
+\end{frame}
 
 
 \begin{frame}{theory in weeks 2 \& 3: Chapter 2 in Saxe}
