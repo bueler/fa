@@ -2,7 +2,10 @@
 
 \documentclass[10pt,
                svgnames,
-               hyperref={colorlinks,citecolor=DeepPink4,linkcolor=FireBrick,urlcolor=Maroon},
+               hyperref={colorlinks,
+                         citecolor=DeepPink4,
+                         linkcolor=FireBrick,
+                         urlcolor=Maroon},
                usepdftitle=false]{beamer}
 
 \usetheme{Madrid}
@@ -100,7 +103,7 @@
 
 \begin{frame}{boundary value problem}
 
-\begin{block}{2-point BVP for the second derivative}
+\begin{block}{second-order BVP (``2-point problem'')}
 suppose $\alpha,\beta\in\RR$ and $\phi \in C([0,1])$ are given.  solve for $u(x)$:
 \begin{align*}
 -u''(x) &= \phi(x) \quad \text{ for all } x\in (0,1) \\
@@ -113,14 +116,14 @@ u(1) &= \beta
 \item picture of data $\phi$ (left) and solution $u$ (right):
 
 \vspace{30mm}
-\item we will see this is \emph{solvable by hand}, via an integral of the data $\phi(x)$, but this is \emph{a bit hard}, so we warm-up with an easier problem
+\item we will see this is \emph{solvable by hand}, at least as an integral of the data $\phi(x)$, but this is mildly difficult, so we warm-up with an easier problem
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{easier: initial value problem}
 
-\begin{block}{IVP for the second derivative\phantom{p}}
+\begin{block}{second-order IVP\phantom{p}}
 suppose $\alpha,\beta\in\RR$ and $\phi \in C([0,1])$ are given.  solve for $u(x)$:
 \begin{align*}
 -u''(x) &= \phi(x) \quad \text{ for all } x\in (0,1) \\
@@ -158,7 +161,7 @@ $$-u''(x) = \phi(x)$$
 
 \begin{frame}{solution of BVP}
 
-apply fundamental theorem of calculus twice?:
+apply fundamental theorem of calculus twice: \hfill {\footnotesize $\longleftarrow$ it will be more work}
 
 $$-u''(x) = \phi(x)$$
 
@@ -190,18 +193,17 @@ picture of $k(x,t)$:
 
 \begin{itemize}
 \item restrict to the $\alpha=\beta=0$ special case
-\item recall: $k(x,t) = \min\{x,t\} - xt$
 \end{itemize}
 
 \begin{block}{2-point BVP}
 the solution of
     $$-u'' = \phi, \quad u(0) = u(1) = 0$$
 is
-	$$u(x) = \int_0^1 k(x,t) \phi(t)\,dt$$
+	$$u(x) = \int_0^1 k(x,t) \phi(t)\,dt \qquad \text{ where } k(x,t) = \min\{x,t\} - xt$$
 \end{block}
 
 \begin{itemize}
-\item this is a linear \emph{integral operator}
+\item $u$ is the output of a linear \emph{integral operator}
 \end{itemize}
 \end{frame}
 
@@ -211,9 +213,8 @@ is
 \begin{frame}{the integral operator}
 
 \begin{definition}
-given a suitable \emph{kernel} $k(x,t)$, the corresponding \emph{integral operator} is
+given a suitable \emph{kernel} $k(x,t)$, the \emph{integral operator} $L \,:\, C([0,1]) \to C([0,1])$ is
 \begin{gather*}
-L \,:\, C([0,1]) \to C([0,1]) \\
 (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt
 \end{gather*}
 \end{definition}
@@ -233,17 +234,21 @@ L \,:\, C([0,1]) \to C([0,1]) \\
 \begin{frame}{wait \dots does $\phi\in C([0,1]) \implies L\phi \in C([0,1])$?}
 
 \begin{definition}
-given a {\color{FireBrick} suitable} \emph{kernel} $k(x,t)$, the corresponding \emph{integral operator} is
+given a {\color{FireBrick} suitable} \emph{kernel} $k(x,t)$, the \emph{integral operator} $L \,:\, C([0,1]) \to C([0,1])$ is
 \begin{gather*}
-L \,:\, C([0,1]) \to C([0,1]) \\
 (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt
 \end{gather*}
 \end{definition}
 
 \begin{itemize}
 \item what does ``suitable'' mean?
+\item is $L\phi$ even well-defined?  is $L\phi \in C([0,1])$?
 \item for $\phi \in C([0,1])$, we see that $(L\phi)(x)$ is well-defined if $k(x,t)$ is (Riemann) integrable in $t$ for every $x$
-\item but what conditions on $k(x,t)$ would assure that $\phi\in C([0,1])$ implies $L\phi \in C([0,1])$?
+
+\bigskip
+\item what conditions on $k(x,t)$ guarantee that
+  $$\phi\in C([0,1]) \implies L\phi \in C([0,1])?$$
+
   \begin{itemize}
   \item[$\circ$] does $k(x,t)$ itself need to be continuous?
   \end{itemize}
@@ -264,7 +269,13 @@ for fixed $a\in [0,1]$, an \emph{antiderivative operator} \quad $A \,:\, C([0,1]
 \item the FTC shows this is an antiderivative:
 
 \vspace{30mm}
-\item these are \emph{Volterra integral operators} \hfill {\footnotesize $\longleftarrow$ look it up?}
+\item these integrals with variable limits give \emph{Volterra integral operators}, whereas $L$ on the previous slide is a \emph{Fredholm integral operator}
+
+{\footnotesize
+\begin{itemize}
+\item look it up?
+\end{itemize}
+}
 \end{itemize}
 \end{frame}
 
@@ -272,7 +283,7 @@ for fixed $a\in [0,1]$, an \emph{antiderivative operator} \quad $A \,:\, C([0,1]
 \begin{frame}{kernel of the antiderivative operator}
 
 \begin{itemize}
-\item is the antiderivative operator $(A\phi)(x) = \int_0^x \phi(t)\,dt$ in the kernel form $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$?
+\item can the antiderivative operator $(A\phi)(x) = \int_0^x \phi(t)\,dt$ be put into the kernel form $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$?
 
 \medskip
 \item \emph{yes}, and $k(x,t)$ is discontinuous (picture at right):
@@ -281,12 +292,15 @@ for fixed $a\in [0,1]$, an \emph{antiderivative operator} \quad $A \,:\, C([0,1]
 \vspace{20mm}
 \item compute:
     $$(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt = \int_0^1 \one_{[0,x]}(t)\, \phi(t)\,dt = \int_0^x \phi(t)\,dt = (A\phi)(x)$$
-\item regarding the question ``what conditions on $k(x,t)$ imply $L\,:\,C([0,1])\to C([0,1])$?'', the next slide gives a sufficient condition
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Lipschitz kernels give well-behaved integral operators}
+\begin{frame}{Lipschitz kernels}
+
+\begin{itemize}
+\item regarding what conditions on $k(x,t)$ imply $L\,:\,C([0,1])\to C([0,1])$, here is a sufficient condition
+\end{itemize}
 
 \begin{definition}
 a function $k:[0,1]\times [0,1] \to \RR$ is \emph{Lipschitz in $x$} if there is $C\ge 0$ so that for all $x,y \in [0,1]$ and $t\in[0,1]$, \quad $|k(x,t)-k(y,t)|\le C |x-y|$
@@ -296,7 +310,20 @@ a function $k:[0,1]\times [0,1] \to \RR$ is \emph{Lipschitz in $x$} if there is 
 if $k(x,t)$ is Lipschitz in $x$, and if $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ for $\phi \in C([0,1])$, then $L\phi \in C([0,1])$
 \end{lemma}
 
-{\footnotesize
+\begin{itemize}
+\item proof on next slide
+\item this is \emph{not} a comprehensive theory of integral operators, but it gives me something to prove with elementary tools
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Lipschitz kernels}
+
+\begin{lemma}
+if $k(x,t)$ is Lipschitz in $x$, and if $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ for $\phi \in C([0,1])$, then $L\phi \in C([0,1])$
+\end{lemma}
+
+{\small
 \noindent \emph{Proof.}  Let $\phi\in C([0,1])$, and consider the function $L\phi$ at a point $x\in[0,1]$.  Suppose $\eps>0$.  Let $\delta=\eps/(C\|\phi\|_\infty)$.  If $y\in[0,1]$ and $|x-y|<\delta$ then by the triangle inequality for integrals, and the definition of Lipschitz,
 \begin{align*}
 \left|(L\phi)(x) - (L\phi)(y)\right| &= \left|\int_0^1 k(x,t) \phi(t)\,dt - \int_0^1 k(y,t) \phi(t)\,dt\right| \\
@@ -313,15 +340,15 @@ if $k(x,t)$ is Lipschitz in $x$, and if $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,d
 the solution of
     $$-u'' = \phi, \quad u(0) = u(1) = 0$$
 is \quad $\ds u(x) = \int_0^1 k(x,t) \phi(t)\,dt$ \quad where
-    $$k(x,t) = \begin{cases} t (1 - x), & t \le x \\ x (1 - t), & x \le t\end{cases}$$
+    $$k(x,t) = \begin{cases} t (1 - x), & t \le x \\ x (1 - t), & x \le t\end{cases} \quad = \min\{x,t\} - xt$$
 \end{block}
 
 \begin{corollary}
-since the above kernel is Lipschitz in $x$, with $C=0.5$, and if $\phi\in C([0,1])$, thus $u \in C([0,1])$
+since the above kernel is Lipschitz in $x$, with $C=0.5$, it follows that $u \in C([0,1])$ if $\phi\in C([0,1])$
 \end{corollary}
 
 \begin{itemize}
-\item but we already knew that this $L$ sends $C([0,1])$ to itself \dots why?
+\item but we already knew that \emph{this} $L$ sends $C([0,1])$ to itself \dots why?
 \item in fact: if $\phi\in C([0,1])$ then $u(x)$ has two derivatives
 \end{itemize}
 \end{frame}
@@ -330,11 +357,21 @@ since the above kernel is Lipschitz in $x$, with $C=0.5$, and if $\phi\in C([0,1
 \begin{frame}{bounded kernel is not enough}
 
 \begin{itemize}
-\item is boundedness (and integrability) of $k$ sufficient for $L\,:\,C([0,1])\to C([0,1])$?
-\item \emph{no.}  there exist bounded and \emph{discontinuous} $k(x,t)$ so that $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ is not continuous
-\item for example,
+\item[Q.] is integrability and boundedness of $k$ sufficient for $L\,:\,C([0,1])\to C([0,1])$?
+\item[A.] \emph{no.}  there exist integrable, bounded, and discontinuous $k(x,t)$ so that $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ is not continuous
+\end{itemize}
+
+
+\begin{block}{example}
   $$k(x,t)=\begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}$$
-\item regarding necessary and sufficient conditions, I do not know \dots and I invite you to contemplate that!
+and $\phi(x)=1$ gives
+	$$(L\phi)(x) = \hspace{80mm}$$
+
+\vspace{10mm}
+\end{block}
+\begin{itemize}
+\item regarding necessary and sufficient conditions, I do not know!
+\item feel free to do research and try it yourself
 \end{itemize}
 \end{frame}
 
@@ -355,7 +392,7 @@ k_3(x,t) &= \begin{cases} 1, & x\le 0.5 \\ 0, & x>0.5\end{cases}
 \end{frame}
 
 
-\section{bounded and compact operators}
+\section{compact subsets of $C([0,1])$}
 
 \begin{frame}{$C([0,1])$, $\|\cdot\|_\infty$ is a normed vector space}
 
@@ -374,7 +411,7 @@ for $f \in C([0,1])$, let \qquad $\ds \|f\|_\infty = \sup_{x\in[0,1]} |f(x)| = \
 \item if $V=C([0,1])$ then $(V,\|\cdot\|_\infty)$ is a normed vector space
     \begin{itemize}
     \item[$\circ$] there are four properties to check: (i), (ii), (iii), (iv)
-    \item[$\circ$] $d(f,g) = \|f-g\|_\infty$ makes $(V,d)$ a metric space
+    \item[$\circ$] recall: $d(f,g) = \|f-g\|_\infty$ makes $(V,d)$ a metric space
     \end{itemize}
 \item recall: convergence in $\|\cdot\|_\infty$ is \emph{uniform} convergence
 \end{itemize}
@@ -384,11 +421,18 @@ for $f \in C([0,1])$, let \qquad $\ds \|f\|_\infty = \sup_{x\in[0,1]} |f(x)| = \
 \begin{frame}{compact sets}
 
 \begin{itemize}
-\item following stuff is in Chapter 2 of \textbook
+\item now Chapter 2 of \textbook
 \item we assume $(V,\|\cdot\|)$ is a normed vector space
-\item a subset $S\subset V$ is \emph{open} if for every $x\in S$ there is an open ball $B_r(x)=\{y\in V\,:\,\|y-x\| < r\}$ with $r>0$ so that $B_r(x)\subset S$
-\item a collection $\mathcal{C}=\{S_\lambda\}_{\lambda\in I}$ is an \emph{open cover of } $E\subset V$ if $S_\lambda\subset V$ is open for each $\lambda \in I$, and if $E \subset \bigcup_{\lambda\in I} S_\lambda$
+\item recall: a subset $S\subset V$ is \emph{open} if $\forall$ $x\in S$ $\exists$ $r>0$ so that $B_r(x)\subset S$
+
+     \begin{itemize}
+     \item[$\circ$] $B_r(x)=\{y\in V\,:\,\|y-x\| < r\}$ is an \emph{open ball}
+     \end{itemize}
 \end{itemize}
+
+\begin{definition}
+$\mathcal{C}=\{S_\lambda\}_{\lambda\in I}$ is an \emph{open cover of } $E\subset V$ if $S_\lambda\subset V$ is open for each $\lambda \in I$ and $E \subset \bigcup_{\lambda\in I} S_\lambda$
+\end{definition}
 
 \begin{definition}
 \begin{itemize}
@@ -397,34 +441,58 @@ for $f \in C([0,1])$, let \qquad $\ds \|f\|_\infty = \sup_{x\in[0,1]} |f(x)| = \
 \end{itemize}
 \end{definition}
 
+\begin{itemize}
+\item fact: a finite set is compact
+\end{itemize}
+
 \begin{block}{Theorem 2.4}
 $E\subset V$ is compact if and only if it is sequentially compact
 \end{block}
-
-\begin{itemize}
-\item fact: any finite subset of $V$ is compact
-\item compact subsets of $V=C([0,1])$ are a major focus of Chapter 2
-\end{itemize}
 
 \end{frame}
 
 
 \begin{frame}{the unit ball in $V=C([0,1])$ is not compact}
 
+\begin{block}{Theorem 2.3}
+if $E\subset V$ is compact then it is closed
+\end{block}
+
 \begin{theorem}
-the closed unit ball $B_1(0)=\{y\in V\,:\,\|y\|_\infty \le 1\}$ in $V$ is not compact
+the closed unit ball $B_1(0)=\{y\in V=C([0,1])\,:\,\|y\|_\infty \le 1\}$ is not compact
 \end{theorem}
 
 {\footnotesize
 \noindent \emph{Proof.}  The hat functions $\psi_n(x)$, $n\in \NN$, drawn below, are continuous, and each has norm $\|\psi_n\|_\infty = 1$, thus $\psi_n \in B_1(0)$.  Also, for any $n\ne m$, $\|\psi_n - \psi_m\|_\infty = 1$.  Any subsequence $(\psi_{n_k})$ of the sequence $(\psi_n)$ would not converge because again $\|\psi_{n_j} - \psi_{n_k}\|_\infty = 1$ for $j\ne k$.  Thus $B_1(0)$ is not compact.  \hfill \qed
 }
 
-\bigskip
-\begin{corollary}
-if $E \subset V=C([0,1])$ contains any ball of positive radius, no matter how small, that is, there is $x\in V$ and $r>0$ so that $B_r(x) \subset E$, then $E$ is not compact
-\end{corollary}
+\vspace{20mm}
+
+\begin{itemize}
+\item \emph{Corollary.} if $E \subset V=C([0,1])$ contains a ball of positive radius $B_r(x) \subset E$, no matter how small $r>0$ is, then $E$ is not compact
+\end{itemize}
 \end{frame}
 
+
+\begin{frame}{why would we want sets to be compact?}
+
+\begin{block}{Extreme Value Theorem (Weierstrauss)}
+if $E\subset V$ is compact and $f:E\to\RR$ is continuous then there exists a maximum and a minimum of $f$
+\end{block}
+
+\begin{itemize}
+\item here $(V,\|\cdot\|)$ is any normed vector space
+\item the conclusion is that there are $c,C\in E$ so that
+	$$f(c) \le f(x) \le f(C)$$
+for all $x\in E$
+\item slightly more generally, one can consider continuous $f:M\to \RR$ where $(M,d)$ is any compact metric space
+\item compact subsets of $V=C([0,1])$ are a major focus of Chapter 2
+\end{itemize}
+
+\end{frame}
+
+
+\section{bounded and compact operators}
 
 \begin{frame}{bounded and compact operators}
 
@@ -435,10 +503,16 @@ if $E \subset V=C([0,1])$ contains any ball of positive radius, no matter how sm
 
 \begin{definition}
 \begin{itemize}
-\item a linear operator $L:V \to V$ is \emph{bounded} if there is a constant $C\ge 0$ so that $\|Lv\|\le C \|v\|$ for all $v\in V$
+\item a linear operator $L:V \to V$ is \emph{bounded} if there is a constant $C\ge 0$ so that
+    $$\|Lv\|\le C \|v\| \quad \text{ for all } v\in V$$
 \item a linear operator $L:V \to V$ is \emph{compact} if the image of the closed unit ball under $L$, that is, the set $LB$, is compact
 \end{itemize}
 \end{definition}
+
+\begin{itemize}
+\item we will see that ``bounded'' is the same as ``continuous'' for \emph{linear} operators
+\end{itemize}
+
 \end{frame}
 
 
@@ -457,18 +531,55 @@ then the operator $L:V\to V$, \, $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$, \, 
    &= \sup_{x \in [0,1]} \int_0^1 |k(x,t)| |\phi(t)|\,dt \le \sup_{x \in [0,1]} \int_0^1 |k(x,t)| \|\phi\|_\infty \,dt \\
    &= \left(\sup_{x \in [0,1]} \int_0^1 |k(x,t)| \,dt\right)\|\phi\|_\infty
 \end{align*}
-Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$. \hfill \qed
+Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$ where $C=\sup_{x \in [0,1]} \int_0^1 |k(x,t)| \,dt$. \hfill \qed
 }
 
 \end{frame}
 
 
-\begin{frame}{new idea: some integral operators are compact}
+\begin{frame}{new idea: equicontinuous \underline{sets} of functions}
+
+\begin{definition}
+a set $E \subset C([a,b])$ is \emph{equicontinuous at } $x\in[a,b]$ if for each $\eps>0$ there is $\delta >0$ so that $y\in[a,b]$ and $|x-y|<\delta$ implies $|f(x)-f(y)|<\eps$ for all $f\in E$
+\end{definition}
 
 \begin{itemize}
-\item FIXME $LB$ is compact because equicontinuous and Arzela-Ascoli
-\item more on this in Chapter 2 of \textbook
+\item this is about quantifiers!
+\item $f$ continuous at $x \in [a,b]$:
+    $$\forall \eps>0 \; \exists\, \delta > 0 \; \forall y \in [a,b] \quad |x-y|<\delta \implies |f(x)-f(y)|<\eps$$
+\item $E$ equicontinuous at $x \in [a,b]$:
+    $$\forall \eps>0 \; \alert{\forall f\in E} \; \exists\, \delta > 0 \; \forall y \in [a,b] \quad |x-y|<\delta \implies |f(x)-f(y)|<\eps$$
 \end{itemize}
+
+\begin{definition}
+a set $E \subset C([a,b])$ is \emph{equicontinuous} if it is equicontinous at each $x\in [a,b]$
+\end{definition}
+
+\begin{itemize}
+\item more on equicontinuity in Chapter 2 of \textbook
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{new idea: some integral operators are compact}
+
+\begin{block}{Ascoli-Arzel\`a Theorem}
+a set $E\subset C([a,b])$ is compact if and only if it is closed, bounded, and equicontinuous
+\end{block}
+
+\begin{itemize}
+\item now we can return to the BVP!
+\end{itemize}
+
+\begin{block}{Theorem}
+Consider $B_R(0)\subset V=C([0,1])$.  For $\phi \in B_R(0)$ the solution of
+    $$-u'' = \phi, \quad u(0) = u(1) = 0$$
+is \, $u(x) = (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ \, where $k(x,t) = \min\{x,t\} - xt$.  Then $u\in E$ where $E= LB_R(0)$ is a compact subset of $V$.
+\end{block}
+
+{\footnotesize
+\noindent \emph{Proof.}  Show $E$ is closed and bounded.  Show $E$ equicontinuous by using the fact that $k(x,t)$ is Lipschitz in $x$. \hfill \qed
+}
 \end{frame}
 
 
