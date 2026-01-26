@@ -2,7 +2,12 @@
 
 <ul>
 {% for material in data.daily %}
-<li style=" margin-bottom: 10px;">{{ material.name }}: {{ material.description }}
+<li style=" margin-bottom: 10px;">
+    {% if material.week %}
+        {{ material.day }} <span style="color: #0A9396;"> (week {{material.week}})</span>: {{ material.description }}
+    {% else %}
+        {{ material.day }}: {{ material.description }}
+    {% endif %}
     {% if material.due %}
         <br><b>due: {{ material.due }}</b>
     {% endif %}

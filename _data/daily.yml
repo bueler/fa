@@ -1,25 +1,31 @@
 semester: Spring 2026
 home: assets
 daily:
-- name: Friday 30 January
+- day: Monday 2 February
+  week: 4
   description: Hilbert and Banach spaces
-- name: Wednesday 28 January
+- day: Friday 30 January
   description: equicontinuity and Arzela-Ascoli
-- name: Monday 26 January
+- day: Wednesday 28 January
   description: open, closed, and compact sets in metric spaces
-- name: Friday 23 January
-  description: "<b>week 2&3 calculation: boundary value problems and integral operators</b>"
+- day: Monday 26 January
+  week: 3
+  description: calculation cont.
+- day: Friday 23 January
+  description: "<b>calculation: boundary value problems and integral operators</b>"
   slides: slides/S26/week2.pdf
-- name: Wednesday 21 January
+- day: Wednesday 21 January
+  week: 2
   description: C[0,1] and uniform convergence; sequence spaces
-- name: Monday 19 January
+- day: Monday 19 January
   description: <i>no class (Alaska Civil Rights Day)</i>
-- name: Friday 16 January
+- day: Friday 16 January
   description: normed vector spaces and metric spaces
-- name: Wednesday 14 January
+- day: Wednesday 14 January
   description: calculation continued
-- name: Monday 12 January
-  description: "<b>week 1 calculation: integration is a linear functional</b>"
+- day: Monday 12 January
+  week: 1
+  description: "<b>calculation: integration is a linear functional</b>"
   slides: slides/S26/week1.pdf
   #handout: handouts/S26/foo.pdf
-  #handoutname: "handout: 'title'"
+  #handoutday: "handout: 'title'"
