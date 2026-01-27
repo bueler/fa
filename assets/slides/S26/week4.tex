@@ -52,13 +52,18 @@
 
 \newcommand{\one}{\mathds{1}}
 
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\Span}{\operatorname{span}}
+
 \newcommand{\ddt}[1]{\ensuremath{\frac{\partial #1}{\partial t}}}
 \newcommand{\ddx}[1]{\ensuremath{\frac{\partial #1}{\partial x}}}
-\renewcommand{\t}[1]{\texttt{#1}}
+
 \newcommand{\Matlab}{\textsc{Matlab}\xspace}
 \newcommand{\eps}{\epsilon}
 
 \newcommand{\ds}{\displaystyle}
+
+\newcommand{\ip}[2]{\left<#1,#2\right>}
 
 \newcommand{\twovect}[4]{\ensuremath{{#1}_{#2} =
                             \begin{bmatrix} #3 \\ #4 \end{bmatrix}}}
@@ -99,18 +104,69 @@
 }
 
 
-\section{$f(x)$ is just a sum of sines}
+\section{sines (and complex exponentials) are orthonormal}
 
-\begin{frame}{x}
-
-\begin{block}{y}
-x
-\end{block}
+\begin{frame}{product of sines integral}
 
 \begin{itemize}
-\item z
+\item for $n\in\NN$, $\sin(nx)$ is a \emph{wave}, with $n$ full periods in $[-\pi,\pi]$
+\item suppose $m,n\in\NN$ and integrate the product of sines:
+\end{itemize}
+\begin{align*}
+\int_{-\pi}^\pi \sin(mx)\sin(nx)\,dx &= \hspace{50mm} \\
+&\phantom{foo} \\
+&\phantom{foo} \\
+&\phantom{foo} \\
+&\phantom{foo} \\
+&\phantom{foo} \\
+&\phantom{foo} \\
+  &\hspace{50mm} = \begin{cases} \pi, & m=n \\ 0, & \text{otherwise} \end{cases}
+\end{align*}
+
+\noindent \hrulefill
+
+\noindent {\small \alert{$\cos(\theta \pm \psi) = \cos \theta \cos \psi \mp \sin \theta \sin \psi$} \, $\therefore$ \, $\sin \theta \sin \psi = \frac{1}{2} \left(\cos(\theta-\psi) - \cos(\theta + \psi)\right)$}
+\end{frame}
+
+
+\begin{frame}{an infinite orthonormal set in $C[-\pi,\pi]$}
+
+\begin{itemize}
+\item fact from last slide: \quad $\ds \int_{-\pi}^\pi \sin(mx)\sin(nx)\,dx = \pi \delta_{mn}$
+\item define
+    $$\phi_n(x) = \frac{1}{\sqrt{\pi}} \sin(n x) \qquad \text{and} \qquad S = \left\{\phi_n(x)\,:\,n\in \NN\right\}$$
+\item then:
+    \begin{enumerate}
+    \item $S$ is orthonormal in the (real) inner product $\ip{f}{g} = \int_{-\pi}^{\pi} f(x)g(x)\,dx$:
+
+\vspace{15mm}
+    \item $S$ is linearly independent:
+
+\vspace{15mm}
+    \end{enumerate}
+\item \emph{questions:}  what is $\Span(S)$?  what is $\overline{\Span(S)}$?
 \end{itemize}
 \end{frame}
+
+
+\begin{frame}{a complex-valued orthonormal set in $C[-\pi,\pi]$}
+
+\begin{itemize}
+\item \emph{easier} integral:
+	$$\int_{-\pi}^\pi e^{imx} e^{-inx}\,dx = \int_{-\pi}^\pi e^{i(m-n)x}\,dx = \hspace{40mm} = 2\pi \delta_{mn}$$
+\item define
+    $$\psi_n(x) = \frac{1}{\sqrt{2\pi}} e^{inx} \qquad \text{and} \qquad E = \left\{\psi_n(x)\,:\,n\in \ZZ\right\}$$
+\item recall \emph{complex} inner product:
+	$$\ip{f}{g} = \int_{-\pi}^\pi f(x) \overline{g(x)}\,dx$$
+\item then:
+    \begin{enumerate}
+    \item $E$ is orthonormal in $\ip{\cdot}{\cdot}$
+    \item $E$ is linearly-independent
+    \end{enumerate}
+\item same \emph{questions:}  what is $\Span(E)$?  what is $\overline{\Span(E)}$?
+\end{itemize}
+\end{frame}
+
 
 \AtBeginSection[] {
     \begin{frame}{Outline}
@@ -120,7 +176,51 @@ x
 }
 
 
-\section{foo}
+\section{what did Fourier believe? (1822)}
+
+\begin{frame}{Fourier's assertion}
+
+\begin{block}{claim (Fourier, \emph{Th\'eorie Analytique de la Chaleur}, 1822)}
+if $f\in C[-\pi,\pi]$, and if we compute these coefficients
+	$$c_n = \ip{f}{\phi_n} = \frac{1}{\sqrt{\pi}} \int_{-\pi}^\pi f(x) \sin(nx)\,dx,$$
+then
+	$$f(x) \stackrel{\ast}{=} \sum_{n=1}^\infty c_n\, \phi_n(x) = \frac{1}{\sqrt{\pi}} \sum_{n=1}^\infty c_n \sin(nx)$$
+\end{block}
+
+\begin{itemize}
+\item the right side of $\ast$ is the \emph{Fourier sine series} (or \emph{expansion}) of $f$
+\item actually Fourier claimed this for discontinuous functions too
+   \begin{itemize}
+   \item[$\circ$] he, and everybody else, agreed that the claim could not be exactly true at points of discontinuity
+   \item[$\circ$] $c_n$ is only affected by \emph{integrals}, so any feature of $f$ that does not change an integral will not (cannot) affect the expansion
+   \item[$\circ$] we will stick to ``$f\in C[-\pi,\pi]$''
+   \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{example 1: $f(x)=x$}
+
+\begin{itemize}
+\item by hand:
+\item \Matlab:
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{example 2: $g(x)=x(x - \pi)(x + \pi)$}
+
+\begin{block}{y}
+x
+\end{block}
+
+\begin{itemize}
+\item z
+\end{itemize}
+\end{frame}
+
+
+\section{what did Dirichlet prove? (1829)}
 
 \begin{frame}{x}
 
@@ -135,9 +235,40 @@ x
 
 
 
+
+\section{what is actually true? (1964)}
+
+\begin{frame}{x}
+
+\begin{block}{y}
+x
+\end{block}
+
+\begin{itemize}
+\item z
+\end{itemize}
+\end{frame}
+
+
+\section{what was Hilbert's version? ($\sim$1910)}
+
+\begin{frame}{x}
+
+\begin{block}{y}
+x
+\end{block}
+
+\begin{itemize}
+\item z
+\end{itemize}
+\end{frame}
+
+
+\section{theory from the book}
+
 \begin{frame}{theory in week 4: Chapter 4 in Saxe}
 
-FIXME do I want to put Fourier series stuff first?
+FIXME do I want to put Fourier series stuff before measure theory?
 
 \begin{block}{to define:}
 \begin{itemize}
