@@ -22,7 +22,7 @@
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
 
-\usepackage{empheq,bm,xspace,dsfont}
+\usepackage{fancyvrb,empheq,bm,xspace,dsfont}
 %\usepackage{minted}
 %\usepackage{hyperref}
 \usepackage{tikz}
@@ -75,6 +75,10 @@
 
 \newcommand{\textbook}{Saxe, \emph{Beginning Functional Analysis}}
 
+\DefineVerbatimEnvironment{mVerb}{Verbatim}{numbersep=2mm,
+frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
+
+
 
 \title{Fourier series for a continuous function}
 
@@ -109,18 +113,18 @@
 \begin{frame}{product of sines integral}
 
 \begin{itemize}
-\item for $n\in\NN$, $\sin(nx)$ is a \emph{wave}, with $n$ full periods in $[-\pi,\pi]$
+\item for $n\in\NN$, $\sin(nx)$ is a \emph{wave} on $[0,\pi]$
 \item suppose $m,n\in\NN$ and integrate the product of sines:
 \end{itemize}
 \begin{align*}
-\int_{-\pi}^\pi \sin(mx)\sin(nx)\,dx &= \hspace{50mm} \\
+\int_0^\pi \sin(mx)\sin(nx)\,dx &= \hspace{50mm} \\
 &\phantom{foo} \\
 &\phantom{foo} \\
 &\phantom{foo} \\
 &\phantom{foo} \\
 &\phantom{foo} \\
 &\phantom{foo} \\
-  &\hspace{50mm} = \begin{cases} \pi, & m=n \\ 0, & \text{otherwise} \end{cases}
+  &\hspace{50mm} = \begin{cases} \frac{\pi}{2}, & m=n \\ 0, & \text{otherwise} \end{cases}
 \end{align*}
 
 \noindent \hrulefill
@@ -129,15 +133,15 @@
 \end{frame}
 
 
-\begin{frame}{an infinite orthonormal set in $C[-\pi,\pi]$}
+\begin{frame}{an infinite orthonormal set in $C[0,\pi]$}
 
 \begin{itemize}
-\item fact from last slide: \quad $\ds \int_{-\pi}^\pi \sin(mx)\sin(nx)\,dx = \pi \delta_{mn}$
+\item fact from last slide: \quad $\ds \int_0^\pi \sin(mx)\sin(nx)\,dx = \frac{\pi}{2} \delta_{mn}$
 \item define
-    $$\phi_n(x) = \frac{1}{\sqrt{\pi}} \sin(n x) \qquad \text{and} \qquad S = \left\{\phi_n(x)\,:\,n\in \NN\right\}$$
+    $$\phi_n(x) = \sqrt{\frac{2}{\pi}} \sin(n x) \qquad \text{and} \qquad S = \left\{\phi_n(x)\,:\,n\in \NN\right\}$$
 \item then:
     \begin{enumerate}
-    \item $S$ is orthonormal in the (real) inner product $\ip{f}{g} = \int_{-\pi}^{\pi} f(x)g(x)\,dx$:
+    \item $S$ is orthonormal in the (real) inner product $\ip{f}{g} = \int_0^{\pi} f(x)g(x)\,dx$:
 
 \vspace{15mm}
     \item $S$ is linearly independent:
@@ -149,6 +153,14 @@
 \end{frame}
 
 
+\begin{frame}{an infinite orthonormal set in $C[0,\pi]$}
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/fourier1sines.png}
+\end{center}
+\end{frame}
+
+
 \begin{frame}{a complex-valued orthonormal set in $C[-\pi,\pi]$}
 
 \begin{itemize}
@@ -156,11 +168,11 @@
 	$$\int_{-\pi}^\pi e^{imx} e^{-inx}\,dx = \int_{-\pi}^\pi e^{i(m-n)x}\,dx = \hspace{40mm} = 2\pi \delta_{mn}$$
 \item define
     $$\psi_n(x) = \frac{1}{\sqrt{2\pi}} e^{inx} \qquad \text{and} \qquad E = \left\{\psi_n(x)\,:\,n\in \ZZ\right\}$$
-\item recall \emph{complex} inner product:
+\item recall \emph{complex} inner product (\emph{sesquilinear}), now on $C[-\pi,\pi]$:
 	$$\ip{f}{g} = \int_{-\pi}^\pi f(x) \overline{g(x)}\,dx$$
 \item then:
     \begin{enumerate}
-    \item $E$ is orthonormal in $\ip{\cdot}{\cdot}$
+    \item $E$ is orthonormal
     \item $E$ is linearly-independent
     \end{enumerate}
 \item same \emph{questions:}  what is $\Span(E)$?  what is $\overline{\Span(E)}$?
@@ -181,10 +193,10 @@
 \begin{frame}{Fourier's assertion}
 
 \begin{block}{claim (Fourier, \emph{Th\'eorie Analytique de la Chaleur}, 1822)}
-if $f\in C[-\pi,\pi]$, and if we compute these coefficients
-	$$c_n = \ip{f}{\phi_n} = \frac{1}{\sqrt{\pi}} \int_{-\pi}^\pi f(x) \sin(nx)\,dx,$$
-then
-	$$f(x) \stackrel{\ast}{=} \sum_{n=1}^\infty c_n\, \phi_n(x) = \frac{1}{\sqrt{\pi}} \sum_{n=1}^\infty c_n \sin(nx)$$
+if $f\in C[0,\pi]$, and if we compute these coefficients
+	$$c_n = \ip{f}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi f(x) \sin(nx)\,dx$$
+for $n\in \NN$, then
+	$$f(x) \stackrel{\ast}{=} \sum_{n=1}^\infty c_n\, \phi_n(x) = \sqrt{\frac{2}{\pi}} \sum_{n=1}^\infty c_n \sin(nx)$$
 \end{block}
 
 \begin{itemize}
@@ -192,9 +204,31 @@ then
 \item actually Fourier claimed this for discontinuous functions too
    \begin{itemize}
    \item[$\circ$] he, and everybody else, agreed that the claim could not be exactly true at points of discontinuity
-   \item[$\circ$] $c_n$ is only affected by \emph{integrals}, so any feature of $f$ that does not change an integral will not (cannot) affect the expansion
-   \item[$\circ$] we will stick to ``$f\in C[-\pi,\pi]$''
+   \item[$\circ$] $c_n$ is an \emph{integral}, so only those features of $f$ that change the integrals can affect the expansion
    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{complex version}
+
+\begin{itemize}
+\item Fourier used real numbers (to my knowledge)
+\item we may replace:
+	$$C[0,\pi] \to C[-\pi,\pi] \qquad \text{and} \qquad \sin(nx) \to e^{inx},$$
+\item we must also make the inner product complex
+\end{itemize}
+
+\begin{block}{essential claim}
+if $f\in C[-\pi,\pi]$, complex-valued, and if
+	$$c_n = \ip{f}{\psi_n} = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx$$
+for $n\in\ZZ$, then
+	$$f(x) \stackrel{\ast}{=} \sum_{n\in\ZZ} c_n\, \psi_n(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx}$$
+\end{block}
+
+\begin{itemize}
+\item called the \emph{Fourier series} of $f$, or the \emph{complex Fourier series}
+\item for formulas from different references, be careful with where the $2\pi$ goes
 \end{itemize}
 \end{frame}
 
@@ -202,21 +236,74 @@ then
 \begin{frame}{example 1: $f(x)=x$}
 
 \begin{itemize}
-\item by hand:
-\item \Matlab:
+\item we check Fourier's claim for $f(x)=x \in C[0,\pi]$
+\item using the real orthonormal set $\left\{\phi_n(x) = \sqrt{\frac{2}{\pi}} \sin(n x)\right\} \subset C[0,\pi]$
+\item integrate to get coefficients:
+\begin{align*}
+c_n &= \ip{f}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi x \sin(n x)\,dx = \hspace{60mm} \\
+&\phantom{x} \\
+&\phantom{x} \\
+&\phantom{x} \\
+&\phantom{x} \\
+&\phantom{x} \hspace{80mm} = \frac{\sqrt{2\pi} (-1)^{n-1}}{n}
+\end{align*}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{example 2: $g(x)=x(x - \pi)(x + \pi)$}
-
-\begin{block}{y}
-x
-\end{block}
+\begin{frame}[fragile]
+\frametitle{example 1: $f(x)=x$}
 
 \begin{itemize}
-\item z
+\item \Matlab:
+\begin{mVerb}
+f = @(x) x;
+x = 0:pi/300:pi;
+N = 150;  nn = 1:N;
+c = sqrt(2 * pi) * (-1).^(nn - 1) ./ nn;
+sN = zeros(size(x));
+for n=1:N
+    sN = sN + c(n) * sqrt(2/pi) * sin(n*x);
+end
+plot(x, f(x), x, sN)
+\end{mVerb}
+\item result (works \dots but \emph{Gibbs effect}!):
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{figs/fourier1result.png}
+\end{center}
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}{example 2: $g(x)$ cubic}
+
+\begin{itemize}
+\item note that if $f(x)=x$ is extended periodically to the real line then the result is \emph{not} continuous
+\item let $g(x) = x (x-1) (x-\pi)$ on the interval $[0,\pi]$
+\item now the periodic extension \emph{is} continuous
+\item coefficients: \quad $\ds c_n = \ip{g}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi g(x) \sin(n x)\,dx$
+\item but we do these integrals numerically \dots
+\end{itemize}
+
+\noindent \alert{\hrulefill}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\Matlab result:
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figs/fourier2result.png}
+\end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+coefficient decay:
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/coeffs12result.pdf}
+\end{center}
+\end{column}
+\end{columns}
 \end{frame}
 
 
