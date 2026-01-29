@@ -1,13 +1,15 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Wednesday 4 February
+  description: Hilbert and Banach spaces
 - day: Monday 2 February
   week: 4
-  description: Hilbert and Banach spaces
-- day: Friday 30 January
   description: equicontinuity and Arzela-Ascoli
-- day: Wednesday 28 January
+- day: Friday 30 January
   description: open, closed, and compact sets in metric spaces
+- day: Wednesday 28 January
+  description: calculation cont.
 - day: Monday 26 January
   week: 3
   description: calculation cont.
