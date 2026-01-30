@@ -1,0 +1,140 @@
+\documentclass[12pt]{amsart}
+%prepared in AMSLaTeX, under LaTeX2e
+\addtolength{\oddsidemargin}{-.65in} 
+\addtolength{\evensidemargin}{-.65in}
+\addtolength{\topmargin}{-.55in}
+\addtolength{\textwidth}{1.3in}
+\addtolength{\textheight}{.9in}
+
+\renewcommand{\baselinestretch}{1.05}
+
+\usepackage{verbatim} % for "comment" environment
+
+\usepackage{palatino}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{defn}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{problem}{Problem}
+\newtheorem*{remark}{Remark}
+
+\usepackage{fancyvrb,xspace,dsfont}
+
+\usepackage[final]{graphicx}
+
+% macros
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Ed Bueler},
+            pdfcreator={pdflatex},
+            colorlinks=true,
+            citecolor=blue,
+            linkcolor=red,
+            urlcolor=blue,
+            }
+
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\renewcommand{\Im}{\mathrm{Im}}
+\renewcommand{\Re}{\mathrm{Re}}
+
+\newcommand{\eps}{\epsilon}
+\newcommand{\grad}{\nabla}
+\newcommand{\lam}{\lambda}
+\newcommand{\lap}{\triangle}
+
+\newcommand{\ip}[2]{\ensuremath{\left<#1,#2\right>}}
+
+\newcommand{\image}{\operatorname{im}}
+\newcommand{\onull}{\operatorname{null}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\Span}{\operatorname{span}}
+
+\newcommand{\prob}[1]{\bigskip\noindent\textbf{#1.}\quad }
+
+\newcommand{\pts}[1]{(\emph{#1 pts}) }
+\newcommand{\epart}[1]{\medskip\noindent\textbf{(#1)}\quad }
+\newcommand{\ppart}[1]{\,\textbf{(#1)}\quad }
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\nex}{\medskip\noindent}
+
+
+\begin{document}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned February 2026}
+\normalsize\medskip
+
+\Large\centerline{\textbf{Assignment 3}}
+\large
+\medskip
+
+\centerline{\textbf{Due XX February at the beginning of class}}
+\medskip
+\normalsize
+
+\thispagestyle{empty}
+
+\bigskip
+\noindent This Assignment is based on Chapters 2 and 4 of our textbook,\footnote{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.} and on the lectures.  When you do calculations from Chapter 4 you will use the $L^2$ spaces, but knowledge of the Lebesgue integral will not be necessary; just regard integrals as Riemann integrals if you wish.
+
+
+\newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
+\newcommand{\augpart}[1]{\emph{\textbf{(#1)}}}
+
+\bigskip
+\noindent \textsc{Do the following} Exercises from Chapter 2 (see pages 29--31):
+
+\begin{itemize}
+\item \textbf{Exercise 2.2.3}
+\item \textbf{Exercise 2.3.4}
+\item \textbf{Exercise 2.3.7}
+\end{itemize}
+
+\bigskip
+\noindent \textsc{Do the following} Exercises from Chapter 4 (see pages x--y):
+
+\begin{itemize}
+\item \textbf{Exercise 4.1.1} \augment{Note that ``converges in mean'' is a synonym for ``converges in $\|\cdot\|_2$''.}
+\item \textbf{Exercise 4.1.3} \augment{For part \augpart{b} please justify the use of a theorem.  For part \augpart{c}, please give the correct answer even if you cannot prove it.  (Perhaps graph some partial sums?  Or look up theorems from other sources.)}
+\item \textbf{Exercise 4.1.4} \augment{Part \augpart{c} needs the fact that $[-\pi,\pi]$ is of finite length.}
+\item \textbf{Exercise 4.2.2} \augment{You may assume that ``$L^2$'' refers to $L^2([a,b])$ for $a,b\in\RR$, but the statement holds generally, for any $L^2(X,\mu)$.  Also, the hypotheses \emph{do} imply that $f\in L^2$.  (Why?)}
+\item \textbf{Exercise 4.2.3}
+\item \textbf{Exercise 4.2.5} \augment{This calculation was mostly done in the week 4 slides.  See the \href{https://bueler.github.io/fa/daily.html}{Daily Log tab} for the blank slides PDF.}
+\end{itemize}
+
+
+\medskip
+\noindent \textsc{Do the following additional problems.}
+
+\prob{P4}  \emph{Chapter 2 defines \emph{equicontinuous} and proves the Ascoli-Arzel\`a Theorem.  However, it gives no related exercises!  Here is one.}
+
+\epart{a}  Consider $V=C([0,1])$ with the supremum norm $\|\cdot\|_\infty$.  For $\eps>0$ and $\alpha \in (0,1)$ let
+	$$f_{\alpha,\eps}(x) = \begin{cases} 0, & 0 \le x \le \alpha \\
+	                                     (x-\alpha)/\eps, & \alpha \le x \le \alpha + \eps \\
+	                                     1, & \alpha + \eps \le x \le 1 \end{cases}$$
+	                             
+
+\medskip \noindent yy
+
+\end{document}
