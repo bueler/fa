@@ -73,7 +73,7 @@
 
 \title{Boundary value problems and integral operators}
 
-\subtitle{a calculation for weeks 2 \& 3}
+\subtitle{a calculation for weeks 2 \& 3 \quad (\emph{version 2})}
 
 \author{Ed Bueler}
 
@@ -476,7 +476,7 @@ the closed unit ball $B_1(0)=\{y\in V=C([0,1])\,:\,\|y\|_\infty \le 1\}$ is not 
 
 \begin{frame}{why would we want sets to be compact?}
 
-\begin{block}{Extreme Value Theorem (Weierstrauss)}
+\begin{block}{Extreme Value Theorem (Weierstrass)}
 if $E\subset V$ is compact and $f:E\to\RR$ is continuous then there exists a maximum and a minimum of $f$
 \end{block}
 
@@ -516,19 +516,20 @@ for all $x\in E$
 \end{frame}
 
 
-\begin{frame}{bounded integral operators on $V=C([0,1])$}
+\begin{frame}{bounded integral operators on $C([0,1])$}
 
 \begin{theorem}
-if $k(x,t)$ is integrable, and if
-    $$\sup_{x \in [0,1]} \int_0^1 |k(x,t)|\,dt<\infty,$$
-then the operator $L:V\to V$, \, $(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$, \, is bounded
+Let $V=C([0,1])$ with $\|\cdot\|_\infty$ as the norm.  Consider the operator $L:V\to V$, \, $\ds (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$.  If $k(x,t)$ is integrable and
+
+    $$\sup_{x \in [0,1]} \int_0^1 |k(x,t)|\,dt<\infty$$
+then $L$ is bounded.
 \end{theorem}
 
 {\footnotesize
 \noindent \emph{Proof.}  Suppose $\phi \in V$.  Then by the triangle inequality,
 \begin{align*}
 \|L\phi\|_\infty &= \sup_{x \in [0,1]} |(L\phi)(x)| = \sup_{x \in [0,1]} \left|\int_0^1 k(x,t) \phi(t)\,dt \right| \\
-   &= \sup_{x \in [0,1]} \int_0^1 |k(x,t)| |\phi(t)|\,dt \le \sup_{x \in [0,1]} \int_0^1 |k(x,t)| \|\phi\|_\infty \,dt \\
+   &\le \sup_{x \in [0,1]} \int_0^1 |k(x,t)| |\phi(t)|\,dt \le \sup_{x \in [0,1]} \int_0^1 |k(x,t)| \|\phi\|_\infty \,dt \\
    &= \left(\sup_{x \in [0,1]} \int_0^1 |k(x,t)| \,dt\right)\|\phi\|_\infty
 \end{align*}
 Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$ where $C=\sup_{x \in [0,1]} \int_0^1 |k(x,t)| \,dt$. \hfill \qed
@@ -539,7 +540,7 @@ Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$ where $C=\sup_{x \in [0,1]} \int_0
 
 \begin{frame}{new idea: equicontinuous \underline{sets} of functions}
 
-\begin{definition}
+\begin{definition}[see section 2.1]
 a set $E \subset C([a,b])$ is \emph{equicontinuous at } $x\in[a,b]$ if for each $\eps>0$ there is $\delta >0$ so that $y\in[a,b]$ and $|x-y|<\delta$ implies $|f(x)-f(y)|<\eps$ for all $f\in E$
 \end{definition}
 
@@ -548,7 +549,7 @@ a set $E \subset C([a,b])$ is \emph{equicontinuous at } $x\in[a,b]$ if for each 
 \item $f$ continuous at $x \in [a,b]$:
     $$\forall \eps>0 \; \exists\, \delta > 0 \; \forall y \in [a,b] \quad |x-y|<\delta \implies |f(x)-f(y)|<\eps$$
 \item $E$ equicontinuous at $x \in [a,b]$:
-    $$\forall \eps>0 \; \alert{\forall f\in E} \; \exists\, \delta > 0 \; \forall y \in [a,b] \quad |x-y|<\delta \implies |f(x)-f(y)|<\eps$$
+    $$\forall \eps>0 \; \exists\, \delta > 0 \;\alert{\text{\large $\forall f\in E$}} \;  \forall y \in [a,b] \quad |x-y|<\delta \implies |f(x)-f(y)|<\eps$$
 \end{itemize}
 
 \begin{definition}
@@ -564,7 +565,7 @@ a set $E \subset C([a,b])$ is \emph{equicontinuous} if it is equicontinous at ea
 \begin{frame}{new idea: some integral operators are compact}
 
 \begin{block}{Ascoli-Arzel\`a Theorem}
-a set $E\subset C([a,b])$ is compact if and only if it is closed, bounded, and equicontinuous
+a set $E\subset C([a,b])$is compact, in the topology of the $\|\cdot\|_\infty$ norm, if and only if it is closed, bounded, and equicontinuous
 \end{block}
 
 \begin{itemize}
@@ -599,7 +600,7 @@ and
 
 \vspace{20mm}
 \item the above is a \alert{fake} definition \dots do not believe it
-\item the Dirac delta ``function'' is actually a positive \emph{measure}
+\item the Dirac delta ``function'' is actually a positive \emph{measure} $\delta_t(x)\,dx$
 \end{itemize}
 \end{frame}
 
@@ -624,6 +625,10 @@ so $C=1-t$ so:
 \begin{equation*}
 u(x) = (1-t) x - \begin{cases} 0, & x<t \\ x-t, & x>t \end{cases} = \begin{cases} x (1 - t), & x < t \\ t (1 - x), & x > t \end{cases} = k(x,t) \hspace{10mm} \qed
 \end{equation*}
+
+\begin{itemize}
+\item this proof is valid if we interpret $\delta_t(x)\,dx$ as a measure
+\end{itemize}
 }
 \end{frame}
 
@@ -637,7 +642,7 @@ is $u(x) = \int_0^1 k(x,t) \phi(t)\,dt$ where $k(x,t) = \min\{x,t\} - xt$
 \end{block}
 
 {\footnotesize
-\noindent \emph{Proof.}  The map from $\phi$ to the solution $u$ is linear: $u=L\phi$. Express $\phi$ as a linear combination of delta functions:
+\noindent \emph{``Proof.''}  The map from $\phi$ to the solution $u$ is linear: $u=L\phi$. Express $\phi$ as a linear combination of delta functions:
     $$\phi(x) = \int_0^1 \phi(t) \delta_t(x)\,dt$$
 Now apply $L$ to both sides, to write the solution as a linear combination of solutions:
 	$$u(x) = (L\phi)(x) = \int_0^1 \phi(t) L(\delta_t(x))\,dt$$
@@ -645,7 +650,7 @@ But from previous slide, $L(\delta_t(x))=k(x,t)$.  Thus
 	$$u(x) = \int_0^1 \phi(t) k(x,t)\,dt = \int_0^1 k(x,t) \phi(t)\,dt \hspace{10mm} \qed$$
 
 \begin{itemize}
-\item this proof is valid in the theory of \emph{distributions} or \emph{generalized functions}, due to L.~Schwartz
+\item this ``proof'' becomes valid in the theory of \emph{distributions} or \emph{generalized functions}, due to L.~Schwartz
 \end{itemize}
 }
 \end{frame}
@@ -654,7 +659,7 @@ But from previous slide, $L(\delta_t(x))=k(x,t)$.  Thus
 \begin{frame}{approximation of the BVP}
 
 \begin{itemize}
-\item the integral operator $L \,:\, C([0,1]) \to C([0,1])$ has formula
+\item suppose that an integral operator $L \,:\, C([0,1]) \to C([0,1])$ has formula
     $$(L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$$
 \item neither $L$ nor $k$ \emph{is} a matrix, but could we approximate them by a matrix?
 \item one answer: finite elements
@@ -677,7 +682,7 @@ is \, $\ds u(x) = \frac{1}{n^2 \pi^2} \sin(n\pi x)$
 \item the proof is very easy?
 \item suppose data $\phi(x)$ is written as a Fourier sine series (Chapter 4):
     $$\phi(x) = \sum_{n=1}^\infty c_n \sin(n\pi x)$$
-\item then by linearity the solution of the BVP is
+\item then, by linearity of $(\cdot)''$, the solution of the BVP is
 	$$u(x) = \sum_{n=1}^\infty \frac{c_n}{n^2 \pi^2} \sin(n\pi x)$$
 \end{itemize}
 \end{frame}
