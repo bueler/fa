@@ -82,21 +82,21 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned February 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 2 February 2026}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 3}}
 \large
 \medskip
 
-\centerline{\textbf{Due XX February at the beginning of class}}
+\centerline{\textbf{Due Monday 16 February at the beginning of class}}
 \medskip
 \normalsize
 
 \thispagestyle{empty}
 
 \bigskip
-\noindent This Assignment is based on Chapters 2 and 4 of our textbook,\footnote{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.} and on the lectures.  When you do calculations from Chapter 4 you will use the $L^2$ spaces, but knowledge of the Lebesgue integral will not be necessary; just regard integrals as Riemann integrals if you wish.
+\noindent This Assignment is based on Chapters 2 and 4 of our textbook,\footnote{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.} and on the lectures.  When you do calculations from Chapter 4 you will use the $L^2$ space.  However, knowledge of the Lebesgue integral will not be necessary; you may regard integrals as Riemann integrals if you wish.
 
 
 \newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
@@ -106,21 +106,20 @@
 \noindent \textsc{Do the following} Exercises from Chapter 2 (see pages 29--31):
 
 \begin{itemize}
-\item \textbf{Exercise 2.2.3}
 \item \textbf{Exercise 2.3.4}
-\item \textbf{Exercise 2.3.7}
+\item \textbf{Exercise 2.3.8} \augment{The proof of Theorem 2.7 contains a strategy that works, but use careful sequence-of-sequences notation.  Note that ``$f_n(x)$'' in that proof will be replaced by something like ``$a_n^k$''.}
 \end{itemize}
 
 \bigskip
-\noindent \textsc{Do the following} Exercises from Chapter 4 (see pages x--y):
+\noindent \textsc{Do the following} Exercises from Chapter 4 (see pages 88--91):
 
 \begin{itemize}
-\item \textbf{Exercise 4.1.1} \augment{Note that ``converges in mean'' is a synonym for ``converges in $\|\cdot\|_2$''.}
-\item \textbf{Exercise 4.1.3} \augment{For part \augpart{b} please justify the use of a theorem.  For part \augpart{c}, please give the correct answer even if you cannot prove it.  (Perhaps graph some partial sums?  Or look up theorems from other sources.)}
-\item \textbf{Exercise 4.1.4} \augment{Part \augpart{c} needs the fact that $[-\pi,\pi]$ is of finite length.}
-\item \textbf{Exercise 4.2.2} \augment{You may assume that ``$L^2$'' refers to $L^2([a,b])$ for $a,b\in\RR$, but the statement holds generally, for any $L^2(X,\mu)$.  Also, the hypotheses \emph{do} imply that $f\in L^2$.  (Why?)}
+\item \textbf{Exercise 4.1.1}
+\item \textbf{Exercise 4.1.3} \augment{For part \augpart{b}, note that ``converges in mean'' is synonymous with ``converges in $\|\cdot\|_2$'', and please justify the use of a theorem.}
+\item \textbf{Exercise 4.1.4} \augment{For all parts, generally your examples $\{f_n\}$ do \emph{not} need to be continuous, but of course $f_n\in L^2$ is required.  Part \augpart{c} needs the fact that $[-\pi,\pi]$ is of finite length.}
+\item \textbf{Exercise 4.2.2} \augment{You may assume that ``$L^2$'' refers to $L^2([a,b])$ for $a,b\in\RR$, but the statement holds generally, for any $L^2(X,\mu)$.}
 \item \textbf{Exercise 4.2.3}
-\item \textbf{Exercise 4.2.5} \augment{This calculation was mostly done in the week 4 slides.  See the \href{https://bueler.github.io/fa/daily.html}{Daily Log tab} for the blank slides PDF.}
+\item \textbf{Exercise 4.2.5} \augment{This calculation was mostly done in the \href{https://bueler.github.io/fa/assets/slides/S26/week4.pdf}{week 4 slides}.}
 \end{itemize}
 
 
@@ -133,8 +132,9 @@
 	$$f_{\alpha,\eps}(x) = \begin{cases} 0, & 0 \le x \le \alpha \\
 	                                     (x-\alpha)/\eps, & \alpha \le x \le \alpha + \eps \\
 	                                     1, & \alpha + \eps \le x \le 1 \end{cases}$$
-	                             
+[sketch. show family not equicont]
 
-\medskip \noindent yy
+\epart{b} [$g$ is integral of $f$; sketch. show family IS equicont]
+
 
 \end{document}
