@@ -107,7 +107,7 @@
 
 \begin{itemize}
 \item \textbf{Exercise 2.3.4}
-\item \textbf{Exercise 2.3.8} \augment{The proof of Theorem 2.7 contains a strategy that works, but use careful sequence-of-sequences notation.  Note that ``$f_n(x)$'' in that proof will be replaced by something like ``$a_n^k$''.}
+\item \textbf{Exercise 2.3.7} \augment{Take $\ell^1$ to be real sequences.  First argue that if a sequence $(a_n) \subset \ell^1$ is Cauchy then for fixed location $k$ the entries are also Cauchy---$(a_n^k)_{k\in\NN}$ is Cauchy in $\RR$---so we get the entries of a limiting sequence $a$.  The next question is whether $a\in \ell^1$?  To show this, bound the relevant partial sums by a constant.  Then take a limit, and show that this limit has the same bound.  Complete the proof by showing that $\|a_n - a\|_1\to 0$.}
 \end{itemize}
 
 \bigskip
@@ -128,13 +128,17 @@
 
 \prob{P4}  \emph{Chapter 2 defines \emph{equicontinuous} and proves the Ascoli-Arzel\`a Theorem.  However, it gives no related exercises!  Here is one.}
 
-\epart{a}  Consider $V=C([0,1])$ with the supremum norm $\|\cdot\|_\infty$.  For $\eps>0$ and $\alpha \in (0,1)$ let
-	$$f_{\alpha,\eps}(x) = \begin{cases} 0, & 0 \le x \le \alpha \\
-	                                     (x-\alpha)/\eps, & \alpha \le x \le \alpha + \eps \\
-	                                     1, & \alpha + \eps \le x \le 1 \end{cases}$$
-[sketch. show family not equicont]
+\epart{a}  Consider $V=C([0,1])$ with the supremum norm $\|\cdot\|_\infty$.  For $\mu,\alpha \in (0,1)$ let
+	$$f_{\alpha,\mu}(x) = \begin{cases} 0, & 0 \le x \le \alpha \\
+	                                    (x-\alpha)/\mu, & \alpha \le x \le \alpha + \mu \\
+	                                    1, & \alpha + \mu \le x \le 1 \end{cases}$$
+Sketch the graphs of $f_{\alpha,\mu}$ in three cases of your choice.  (\emph{Generally $\mu$ should be small.})  Explain why $f_{\alpha,\mu}\in V$.  Let
+	$$E = \left\{f_{\alpha,\mu}\,:\,\mu,\alpha \in (0,1)\right\} \subset V.$$
+Show that $E$ is \emph{not} equicontinuous.
 
-\epart{b} [$g$ is integral of $f$; sketch. show family IS equicont]
+\epart{b}  Now define
+	$$g_{\alpha,\mu}(x) = \int_0^x f_{\alpha,\mu}(t)\,dt,$$
+and let $H = \{g_{\alpha,\mu}\,:\,\mu,\alpha \in (0,1)\}$.  Sketch the graphs of $g_{\alpha,\mu}$ in the same three cases as in part \textbf{(a)}.  Then show that $H$ \emph{is} an equicontinuous subset of $V$.
 
 
 \end{document}
