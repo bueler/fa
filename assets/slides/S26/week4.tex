@@ -182,6 +182,34 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \end{frame}
 
 
+\begin{frame}{before we move on \dots}
+
+
+\begin{block}{basic facts about $e^{i\theta}$:}
+\begin{itemize}
+\item $\ds e^{i\theta}=\cos\theta + i \sin\theta$
+    \begin{itemize}
+    \item[$\circ$] derive from $e^z = 1 + z + \frac{z^2}{2!} + \dots + \frac{n^2}{n!} + \dots$ and known Taylor series for $\cos$ and $\sin$?
+    \end{itemize}
+\item thus $\ds \cos\theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)$ and $\ds \sin\theta = \frac{1}{2i}\left(e^{i\theta}-e^{-i\theta}\right)$
+\end{itemize}
+\end{block}
+
+\begin{itemize}
+\item $f$ even then $\int_{-\pi}^\pi f(x) \sin(nx)\,dx=0$; $f$ odd then $\int_{-\pi}^\pi f(x) \cos(nx)\,dx=0$
+\end{itemize}
+
+\begin{block}{basic facts about even and odd Fourier series:}
+\begin{itemize}
+\item if $f$ is even then
+    $$\int_{-\pi}^\pi f(x) e^{-inx}\,dx=\int_{-\pi}^\pi f(x) \cos(nx)\,dx=2\int_0^\pi f(x) \cos(nx)\,dx$$
+\item if $f$ is odd then
+    $$\int_{-\pi}^\pi f(x) e^{-inx}\,dx=i\int_{-\pi}^\pi f(x) \sin(nx)\,dx=2i\int_0^\pi f(x) \sin(nx)\,dx$$
+\end{itemize}
+\end{block}
+\end{frame}
+
+
 \AtBeginSection[] {
     \begin{frame}{Outline}
     \setbeamertemplate{section in toc}[sections numbered]
@@ -549,7 +577,7 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 \begin{frame}{orthonormal sequences in inner product sets}
 
 \begin{itemize}
-\item the ideas of Hilbert and Riesz, circa 1910, are fundamentally \emph{simpler}
+\item the ideas of Hilbert and Riesz, circa 1910, are fundamentally \emph{simpler} than all the previous material in these slides
 \item consider an abstract inner product vector space $V, \ip{\cdot}{\cdot}$
 \end{itemize}
 
@@ -557,20 +585,42 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 \begin{itemize}
 \item vectors $v,w \in V$ are \emph{orthogonal} if $\ip{v}{w}=0$
 \item a set $S$ is \emph{orthogonal} if $v,w\in S$ and $v\ne w$ implies $v,w$ are orthogonal
-\item $(v_k)_{k=1}^\infty \subset V$ is an \emph{orthonormal sequence} if $v_k,v_l$ are orthogonal for $k\ne l$ and if $\|v_k\|^2 = \ip{v_k}{v_k} = 1$
+\item $(v_k)_{k=1}^\infty \subset V$ is an \emph{orthonormal sequence} if $v_k,v_l$ are orthogonal for $k\ne l$ ($\ip{v_k}{v_l} = 0$) and if $\|v_k\|^2 = \ip{v_k}{v_k} = 1$
 \end{itemize}
 \end{definition}
 
 \begin{lemma}
-an orthogonal set, or an orthonormal sequence, is linearly-independent
-\end{lemma}
+\begin{itemize}
+\item an orthogonal set is linearly-independent
+\item an orthonormal sequence is linearly-independent
+\end{itemize}
+\end{lemma} is linearly-independent
 \end{frame}
 
 
-\begin{frame}{x}
+\begin{frame}{examples of orthonormal sequences}
 
-\begin{block}{y}
-x
+{\small
+\begin{itemize}
+\item $\ds \left\{\sqrt{\frac{2}{\pi}} \sin(nx)\right\}_{n\in\NN}$ is a (real) orthonormal sequence on $[0,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ complete}}
+\item $\ds \left\{\frac{1}{\sqrt{2\pi}} e^{inx}\right\}_{n\in\ZZ}$ is an orthonormal sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ complete}}
+\item $\ds \left\{\frac{1}{\sqrt{2\pi}} e^{inx}\right\}_{n\in\NN}$ is an orthonormal sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
+\item $\ds \left\{\sqrt{\frac{2}{\pi}} \cos(nx)\right\}_{n\in\NN}$ is a (real) orthonormal sequence on $[0,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
+\item $\ds \left\{\sqrt{\frac{1}{\pi}} \sin(nx)\right\}_{n\in\NN}$ is a (real) orthonormal sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
+\item the Legendre polynomials\footnote{with a different normalization these are:  $1,x,\frac{1}{2}(3x^2=1),\frac{1}{2}(5x^3-3x),\dots$} are an orthonormal sequence \only<2>{\alert{\hfill $\longleftarrow$ complete}}
+\end{itemize}
+}
+\end{frame}
+
+
+\begin{frame}{fundamental question about an orthonormal sequence}
+
+\begin{block}{question}
+\begin{itemize}
+\item given an orthonormal sequence $(v_k)$ from an inner product space, is its span dense in $V$?
+\item equivalently, is
+	$$\overline{\Span \{v_k\}} = V?$$
+\end{itemize}
 \end{block}
 
 \begin{itemize}
