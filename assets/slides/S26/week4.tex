@@ -82,7 +82,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title{Fourier series for a continuous function}
+\title{Fourier series of continuous functions}
 
 \subtitle{a calculation for weeks 4 \& 5}
 
@@ -572,7 +572,7 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 \end{frame}
 
 
-\section{what was Hilbert's version? ($\sim$1910)}
+\section{what is the clean $L^2$ version? ($\sim$1910)}
 
 \begin{frame}{orthonormal sequences in inner product sets}
 
@@ -594,7 +594,7 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 \item an orthogonal set is linearly-independent
 \item an orthonormal sequence is linearly-independent
 \end{itemize}
-\end{lemma} is linearly-independent
+\end{lemma}
 \end{frame}
 
 
@@ -618,14 +618,24 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 \begin{block}{question}
 \begin{itemize}
 \item given an orthonormal sequence $(v_k)$ from an inner product space, is its span dense in $V$?
-\item equivalently, is
-	$$\overline{\Span \{v_k\}} = V?$$
+\item equivalently, is \,$\ds \overline{\Span \{v_k\}} = V$?
 \end{itemize}
 \end{block}
 
 \begin{itemize}
-\item z
+\item x
 \end{itemize}
+
+FIXME
+
+define "fourier coefficients for an ON sequence"
+
+new slide:  define complete
+
+say a,b of theorem 4.5 are equivalent
+
+new slide: state theorem 4.6; this is simplest positive answer to Fourier's original question, namely he's right, but convergence that is most obvious is in $L^2$
+
 \end{frame}
 
 
@@ -634,18 +644,24 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 \begin{frame}{theory in weeks 4 \& 5: Chapter 4 in Saxe}
 
 \begin{itemize}
-\item we will do Fourier series (Chapter 4) before Lebesgue integrals and measures (Chapter 3)
+\item we will do Fourier series (Chapter 4) \emph{before} Lebesgue integrals and measures (Chapter 3)
 \end{itemize}
 
 \begin{block}{to define:}
 \begin{itemize}
-\item x
+\item $L^2([a,b])$ and $L^2(X,\mu)$ \hfill \alert{$\longleftarrow$ not fully defined till Chapter 3}
+\item convergence in mean
+\item orthonormal sequence
+\item complete orthonormal sequence
+\item Fourier series and coefficients for any orthonormal sequence
 \end{itemize}
 \end{block}
 
 \begin{block}{to prove:}
 \begin{itemize}
-\item Y theorem
+\item Bessel's inequality
+\item Parseval's equality
+\item the Riesz-Fischer theorem
 \end{itemize}
 \end{block}
 
