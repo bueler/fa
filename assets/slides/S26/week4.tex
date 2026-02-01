@@ -5,7 +5,7 @@
                hyperref={colorlinks,
                          citecolor=DeepPink4,
                          linkcolor=FireBrick,
-                         urlcolor=Maroon},
+                         urlcolor=blue},
                usepdftitle=false]{beamer}
 
 \usetheme{Madrid}
@@ -487,21 +487,85 @@ Choose $N$ so that $(2\|g\|_\infty M)/N < \eps/2$.  If $n\ge N$ then
 \end{frame}
 
 
-\section{what is actually true for Fourier series on $C[-\pi,\pi]$? (1964)}
+\section{what is actually true for Fourier series on $C[-\pi,\pi]$? (1966)}
 
-\begin{frame}{x}
-
-\begin{block}{y}
-x
-\end{block}
+\begin{frame}{does the Fourier series converge for any $f\in C[-\pi,\pi]$?}
 
 \begin{itemize}
-\item z
+\item in 1873 Du Bois-Reymond constructed a continuous function for which the Fourier series did not converge at a point
+    \begin{itemize}
+    \item[$\circ$] in \href{https://www.mathcounterexamples.net/continuous-function-with-divergent-fourier-series/}{a search I found}: \quad $\ds f(x) = \sum_{k=1}^\infty \frac{1}{k^2} \sin\left(\frac{(2^{k^3}+1)|x|}{2}\right)$
+    \item[$\circ$] the function is even and continuous (by
+
+Weierstrass M-test)
+    \item[$\circ$] it can be shown that the Fourier partial sums
+
+are unbounded in a neighborhood of $x=0$
+    \end{itemize}
+
+\vspace{-13mm}
+
+\hfill \includegraphics[width=0.35\textwidth]{figs/duboisreymond.png}
+
+\medskip
+\item later examples fail convergence on infinite sets of points
+\item to state the full situation we need to define \emph{measure zero}
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}{sets of measure zero}
+
+\begin{definition}
+\begin{itemize}
+\item a set $E\subset \RR$ has \emph{(Lebesgue) measure zero} if for any $\eps>0$ there exists a countable list of open intervals $I_n=(a_n,b_n)$ so that
+    $$E \subset \bigcup_{n\in\NN} I_n \quad \text{and} \quad \sum_{n\in\NN} b_n-a_n < \eps$$
+\item if some fact holds except on a set $E$ which has measure zero, we say that the fact holds \emph{almost everywhere}
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+\item note that any open subset of $\RR$ is a countable union of open intervals
+\item more on measure zero in Chapter 3
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Carleson's and Katznelson's theorems}
+
+\begin{theorem}[Carleson, 1966]
+if $f\in C[-\pi,\pi]$, or even $f\in L^p[-\pi,\pi]$, then the Fourier series of $f$ converges pointwise almost everywhere:
+	$$\lim_{m\to\infty} \sum_{n=-m}^m c_n e^{inx} = f(x) \quad \text{except on $E\subset [-\pi,\pi]$ of measure zero}$$
+\end{theorem}
+
+\begin{theorem}[Katznelson, 1966]
+for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic function $f\in C[-\pi,\pi]$ whose Fourier series diverges at all points of $E$
+\end{theorem}
+\end{frame}
+
+
 \section{what was Hilbert's version? ($\sim$1910)}
+
+\begin{frame}{orthonormal sequences in inner product sets}
+
+\begin{itemize}
+\item the ideas of Hilbert and Riesz, circa 1910, are fundamentally \emph{simpler}
+\item consider an abstract inner product vector space $V, \ip{\cdot}{\cdot}$
+\end{itemize}
+
+\begin{definition}
+\begin{itemize}
+\item vectors $v,w \in V$ are \emph{orthogonal} if $\ip{v}{w}=0$
+\item a set $S$ is \emph{orthogonal} if $v,w\in S$ and $v\ne w$ implies $v,w$ are orthogonal
+\item $(v_k)_{k=1}^\infty \subset V$ is an \emph{orthonormal sequence} if $v_k,v_l$ are orthogonal for $k\ne l$ and if $\|v_k\|^2 = \ip{v_k}{v_k} = 1$
+\end{itemize}
+\end{definition}
+
+\begin{lemma}
+an orthogonal set, or an orthonormal sequence, is linearly-independent
+\end{lemma}
+\end{frame}
+
 
 \begin{frame}{x}
 
