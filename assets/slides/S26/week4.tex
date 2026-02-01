@@ -78,11 +78,13 @@
 \DefineVerbatimEnvironment{mVerb}{Verbatim}{numbersep=2mm,
 frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
+\newcommand{\itemnum}[1]{\setcounter{enumi}{#1}\usebeamertemplate{enumerate item}}
+
 
 
 \title{Fourier series for a continuous function}
 
-\subtitle{a calculation for week 4}
+\subtitle{a calculation for weeks 4 \& 5}
 
 \author{Ed Bueler}
 
@@ -110,7 +112,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 \section{sines (and complex exponentials) are orthonormal}
 
-\begin{frame}{product of sines integral}
+\begin{frame}{the product-of-sines integral}
 
 \begin{itemize}
 \item for $n\in\NN$, $\sin(nx)$ is a \emph{wave} on $[0,\pi]$
@@ -196,38 +198,38 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 if $f\in C[0,\pi]$, and if we compute these coefficients
 	$$c_n = \ip{f}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi f(x) \sin(nx)\,dx$$
 for $n\in \NN$, then
-	$$f(x) \stackrel{\ast}{=} \sum_{n=1}^\infty c_n\, \phi_n(x) = \sqrt{\frac{2}{\pi}} \sum_{n=1}^\infty c_n \sin(nx)$$
+	$$f(x) = \sum_{n=1}^\infty c_n\, \phi_n(x) = \sqrt{\frac{2}{\pi}} \sum_{n=1}^\infty c_n \sin(nx)$$
 \end{block}
 
 \begin{itemize}
-\item the right side of $\ast$ is the \emph{Fourier sine series} (or \emph{expansion}) of $f$
+\item the result is the \emph{Fourier sine series} (or \emph{expansion}) of $f$
 \item actually Fourier claimed this for discontinuous functions too
    \begin{itemize}
-   \item[$\circ$] he, and everybody else, agreed that the claim could not be exactly true at points of discontinuity
-   \item[$\circ$] $c_n$ is an \emph{integral}, so only those features of $f$ that change the integrals can affect the expansion
+   \item[$\circ$] he, and everybody else, agreed that the claim could not be exactly and generally true at the points of discontinuity of $f(x)$
+   \item[$\circ$] observe that $c_n$ is an \emph{integral}, so only features of $f$ that change the integrals can affect the expansion
    \end{itemize}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{complex version}
+\begin{frame}{complex version is easier}
 
 \begin{itemize}
 \item Fourier used real numbers (to my knowledge)
-\item we may replace:
+\item we may replace
 	$$C[0,\pi] \to C[-\pi,\pi] \qquad \text{and} \qquad \sin(nx) \to e^{inx},$$
-\item we must also make the inner product complex
+and use the complex (sesquilinear) inner product
 \end{itemize}
 
-\begin{block}{essential claim}
+\begin{block}{Fourier's claim}
 if $f\in C[-\pi,\pi]$, complex-valued, and if
 	$$c_n = \ip{f}{\psi_n} = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx$$
 for $n\in\ZZ$, then
-	$$f(x) \stackrel{\ast}{=} \sum_{n\in\ZZ} c_n\, \psi_n(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx}$$
+	$$f(x) = \sum_{n\in\ZZ} c_n\, \psi_n(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx}$$
 \end{block}
 
 \begin{itemize}
-\item called the \emph{Fourier series} of $f$, or the \emph{complex Fourier series}
+\item this is the \emph{Fourier series} of $f$, or the \emph{complex Fourier series}
 \item for formulas from different references, be careful with where the $2\pi$ goes
 \end{itemize}
 \end{frame}
@@ -236,8 +238,7 @@ for $n\in\ZZ$, then
 \begin{frame}{example 1: $f(x)=x$}
 
 \begin{itemize}
-\item we check Fourier's claim for $f(x)=x \in C[0,\pi]$
-\item using the real orthonormal set $\left\{\phi_n(x) = \sqrt{\frac{2}{\pi}} \sin(n x)\right\} \subset C[0,\pi]$
+\item consider the Fourier sine series for $f(x)=x$, using the real orthonormal set $\{\phi_n(x) = \sqrt{\frac{2}{\pi}} \sin(n x)\} \subset C[0,\pi]$
 \item integrate to get coefficients:
 \begin{align*}
 c_n &= \ip{f}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi x \sin(n x)\,dx = \hspace{60mm} \\
@@ -258,19 +259,17 @@ c_n &= \ip{f}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi x \sin(n x)\,dx = \hspac
 \item \Matlab:
 \begin{mVerb}
 f = @(x) x;
-x = 0:pi/300:pi;
-N = 150;  nn = 1:N;
+x = 0:pi/300:pi;  N = 150;  nn = 1:N;
 c = sqrt(2 * pi) * (-1).^(nn - 1) ./ nn;
 sN = zeros(size(x));
 for n=1:N
-    sN = sN + c(n) * sqrt(2/pi) * sin(n*x);
-end
+    sN = sN + c(n) * sqrt(2/pi) * sin(n*x);  end
 plot(x, f(x), x, sN)
 \end{mVerb}
 \item result (works \dots but \emph{Gibbs effect}!):
 
 \begin{center}
-\includegraphics[width=0.4\textwidth]{figs/fourier1result.png}
+\includegraphics[width=0.45\textwidth]{figs/fourier1result.png}
 \end{center}
 \end{itemize}
 \end{frame}
@@ -279,28 +278,32 @@ plot(x, f(x), x, sN)
 \begin{frame}{example 2: $g(x)$ cubic}
 
 \begin{itemize}
-\item note that if $f(x)=x$ is extended periodically to the real line then the result is \emph{not} continuous
-\item let $g(x) = x (x-1) (x-\pi)$ on the interval $[0,\pi]$
-\item now the periodic extension \emph{is} continuous
-\item coefficients: \quad $\ds c_n = \ip{g}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi g(x) \sin(n x)\,dx$
-\item but we do these integrals numerically \dots
+\item note that if $f(x)=x$ is \emph{extended periodically} to the real line then the result is \emph{not} continuous
 \end{itemize}
 
-\noindent \alert{\hrulefill}
+\vspace{-2mm}
 
+\noindent \hrulefill
+\begin{itemize}
+\item let $g(x) = x (x-1) (x-\pi)$ on the interval $[0,\pi]$
+\item now the periodic extension \emph{is} continuous
+\item coefficients, done numerically: \quad $\ds c_n = \ip{g}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi g(x) \sin(n x)\,dx$
+\end{itemize}
+
+\medskip
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \Matlab result:
 
 \begin{center}
-\includegraphics[width=0.7\textwidth]{figs/fourier2result.png}
+\includegraphics[width=0.8\textwidth]{figs/fourier2result.png}
 \end{center}
 \end{column}
 \begin{column}{0.5\textwidth}
 coefficient decay:
 
 \begin{center}
-\includegraphics[width=0.8\textwidth]{figs/coeffs12result.pdf}
+\includegraphics[width=0.9\textwidth]{figs/coeffs12result.pdf}
 \end{center}
 \end{column}
 \end{columns}
@@ -309,21 +312,114 @@ coefficient decay:
 
 \section{what did Dirichlet prove? (1829)}
 
-\begin{frame}{x}
-
-\begin{block}{y}
-x
-\end{block}
+\begin{frame}{approximating $f$}
 
 \begin{itemize}
-\item z
+\item again consider complex Fourier series for $f\in C[-\pi,\pi]$, namely
+   $$c_n = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx, \qquad f(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx}$$
+\item combine into one formula and exchange limit processes:
+\begin{align*}
+f(x) &= \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} \left(\frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(y) e^{-iny}\,dy\right) e^{inx} \\
+&= \int_{-\pi}^\pi \left(\frac{1}{2\pi} \sum_{n\in\ZZ} e^{-iny} e^{inx} \right) f(y)\,dy = \int_{-\pi}^\pi \left(\alert{\frac{1}{2\pi} \sum_{n\in\ZZ} e^{in(x-y)}}\right) f(y)\,dy
+\end{align*}
+
+    \begin{itemize}
+    \item[$\circ$] exchange of integral and sum is justified if $\sum |c_n|<\infty$
+    \end{itemize}
+
+\medskip
+\item if the \alert{inner sum} is made into a partial sum, then we are approximating $f$ by integrating it against a kernel
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}{Dirichlet's kernel}
+
+\begin{definition}[Dirichlet's kernel, 1829]
+$$D_m(x) = \frac{1}{2\pi} \sum_{n=-m}^m e^{inx} \quad \stackrel{\text{\alert{why?}}}{=}\, \frac{1}{2\pi} + \frac{1}{\pi} \sum_{n=1}^m \cos(nx)$$
+\end{definition}
+
+\medskip
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\includegraphics[width=\textwidth]{figs/dirkern.png}
+\end{column}
+\begin{column}{0.4\textwidth}
+{\small
+Fourier's claim has become:
+
+\begin{align*}
+f(x) &= \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx} \\
+  &= \lim_{m\to\infty} \int_{-\pi}^\pi D_m(x-y)\, f(y)\,dy
+\end{align*}
+}
+\end{column}
+\end{columns}
+\end{frame}
 
 
-\section{what is actually true? (1964)}
+\begin{frame}{properties of the kernel}
+
+{\footnotesize
+\begin{definition}[Dirichlet's kernel]
+$$D_m(x) = \frac{1}{2\pi} \sum_{n=-m}^m e^{inx} = \frac{1}{2\pi} + \frac{1}{\pi} \sum_{n=1}^m \cos(nx)$$
+\end{definition}
+}
+
+\begin{block}{lemma}
+\begin{enumerate}
+\item $\ds \int_{-\pi}^\pi D_m(x)\,dx = 1$
+\item $D_m(0) = \frac{m+1/2}{\pi}$, and $D_m(0) \to \infty$
+\item $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$ \, for $x\ne 0$
+\end{enumerate}
+\end{block}
+
+\begin{proof}
+Properties \itemnum{1} and \itemnum{2} are easy from the sum definition of $D_m$.  Property \itemnum{3} is on the next slide.
+\end{proof}
+\end{frame}
+
+
+\begin{frame}{Dirichlet's kernel as a sinc function}
+
+$$D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$$
+
+
+{\small
+\noindent \emph{Proof.}  Apply knowledge of geometric series, then use $\sin\theta = (e^{i\theta}-e^{-i\theta})/(2i)$:
+\begin{align*}
+\sum_{n=-m}^m e^{inx} &= \sum_{n=-m}^m \left(e^{ix}\right)^n = e^{-imx} \sum_{n=0}^{2m} \left(e^{ix}\right)^n \\
+&= e^{-imx} \frac{1 - (e^{ix})^{2m+1}}{1 - e^{ix}} = \frac{e^{-imx} - e^{i(m+1)x}}{1 - e^{ix}} \\
+&= \frac{e^{-i(m+1/2)x} - e^{i(m+1/2)x}}{e^{-i(x/2)} - e^{i(x/2)}} \\
+&= \frac{\sin((m+1/2)x)}{\sin(x/2)} \hspace{40mm} \qed
+\end{align*}
+}
+
+\begin{itemize}
+\item engineers who work with signals define\, $\ds \operatorname{sinc}(x) = \frac{\sin x}{x}$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Dirichlet's theorem (1829)}
+
+\begin{theorem}
+if $f\in C[-\pi,\pi]$ is periodic, and if $f'(x)$ exists at $x\in[-\pi,\pi]$, then
+    $$\lim_{m\to\infty} \int_{-\pi}^\pi D_m(x-y)\, f(y)\,dy = f(x),$$
+and thus Fourier's claim is true:
+{\small
+$$f(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx} \quad \text{ for }\, c_n =\frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx$$
+}
+\end{theorem}
+
+{\small
+\noindent \emph{Proof.}  foo
+}
+\end{frame}
+
+
+
+\section{what is actually true for Fourier series on $C[-\pi,\pi]$? (1964)}
 
 \begin{frame}{x}
 
@@ -353,9 +449,11 @@ x
 
 \section{theory from the book}
 
-\begin{frame}{theory in week 4: Chapter 4 in Saxe}
+\begin{frame}{theory in weeks 4 \& 5: Chapter 4 in Saxe}
 
-FIXME do I want to put Fourier series stuff before measure theory?
+\begin{itemize}
+\item we will do Fourier series (Chapter 4) before Lebesgue integrals and measures (Chapter 3)
+\end{itemize}
 
 \begin{block}{to define:}
 \begin{itemize}
