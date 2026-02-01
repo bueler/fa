@@ -366,24 +366,23 @@ $$D_m(x) = \frac{1}{2\pi} \sum_{n=-m}^m e^{inx} = \frac{1}{2\pi} + \frac{1}{\pi}
 \end{definition}
 }
 
-\begin{block}{lemma}
+\begin{lemma}[properties of the kernel]
 \begin{enumerate}
 \item $\ds \int_{-\pi}^\pi D_m(x)\,dx = 1$
 \item $D_m(0) = \frac{m+1/2}{\pi}$, and $D_m(0) \to \infty$
 \item $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$ \, for $x\ne 0$
 \end{enumerate}
-\end{block}
+\end{lemma}
 
-\begin{proof}
-Properties \itemnum{1} and \itemnum{2} are easy from the sum definition of $D_m$.  Property \itemnum{3} is on the next slide.
-\end{proof}
+{\small
+\noindent \emph{Proof.}  Properties \itemnum{1} and \itemnum{2} are easy from the sum definition of $D_m$.  Property \itemnum{3} is on the next slide. \hfill \qed
+}
 \end{frame}
 
 
 \begin{frame}{Dirichlet's kernel as a sinc function}
 
-$$D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$$
-
+Property \itemnum{3}: \, $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$
 
 {\small
 \noindent \emph{Proof.}  Apply knowledge of geometric series, then use $\sin\theta = (e^{i\theta}-e^{-i\theta})/(2i)$:
@@ -404,7 +403,7 @@ $$D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$$
 \begin{frame}{Dirichlet's theorem (1829)}
 
 \begin{theorem}
-if $f\in C[-\pi,\pi]$ is periodic, and if $f'(x)$ exists at $x\in[-\pi,\pi]$, then
+If $f\in C[-\pi,\pi]$ is periodic, and if $f'(x)$ exists at $x\in[-\pi,\pi]$, then
     $$\lim_{m\to\infty} \int_{-\pi}^\pi D_m(x-y)\, f(y)\,dy = f(x),$$
 and thus Fourier's claim is true:
 {\small
@@ -412,11 +411,80 @@ $$f(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx} \quad \text{ for }\, c
 }
 \end{theorem}
 
+\begin{itemize}
+\item The proof is based on the \emph{Riemann-Lebesgue lemma} for continuous functions.  This version only requires the Riemann integral, and Dirichlet might have known it.  I will prove it, but after using it for the theorem.
+\end{itemize}
+
+\begin{lemma}
+If $g \in C[a,b]$ then $\ds \lim_{n\to\infty} \int_a^b g(x) e^{inx}\,dx = 0$.
+\end{lemma}
+\end{frame}
+
+
+\begin{frame}{Dirichlet's theorem (1829)}
+
 {\small
-\noindent \emph{Proof.}  foo
+\noindent \emph{Proof.}  By the periodicity of $D_m$ and $f$, and since $D_m$ is even, use $y=x+\xi$ to show
+    $$\int_{-\pi}^\pi D_m(x-y)\, f(y)\,dy = \int_{-\pi}^\pi D_m(\xi)\, f(x+\xi)\,d\xi$$
+By replacing $f(x+\xi)$ with $\tilde f(\xi)$, we may assume $x=0$ and $f'(0)$ exists.  Next we calculate using the proven properties of the kernel:
+\begin{align*}
+\int_{-\pi}^\pi D_m(\xi)\, f(\xi)\,d\xi &= \int_{-\pi}^\pi D_m(\xi)\, \left(f(\xi) - f(0)\right)\,d\xi + \int_{-\pi}^\pi D_m(\xi)\, f(0)\,d\xi \\
+  &= f(0) + \frac{1}{2\pi} \int_{-\pi}^\pi \left(f(\xi) - f(0)\right)\,\frac{\sin((m+1/2)\xi)}{\sin(\xi/2)}\,d\xi
+\end{align*}
+However, $f'(0)$ exists, so by L'Hopital's rule,
+	$$\lim_{\xi\to 0} \frac{f(\xi) - f(0)}{\sin(\xi/2)} = \lim_{\xi\to 0} \frac{f(\xi) - f(0)}{\xi} \frac{\xi}{\sin(\xi/2)} = 2 f'(0)$$
 }
 \end{frame}
 
+
+\begin{frame}{Dirichlet's theorem (1829)}
+
+{\small
+\noindent \emph{Proof continued.}  So now we know that this function is continuous (removable discontinuity):
+	$$h(x) = \begin{cases} \frac{f(x) - f(0)}{\sin(x/2)}, & x\ne 0 \\
+	                       2f'(0), & x=0 \end{cases}$$
+Thus by the Riemann-Lebesgue lemma:
+\begin{align*}
+\lim_{m\to\infty} \int_{-\pi}^\pi D_m(\xi)\, f(\xi)\,d\xi &= f(0) + \frac{1}{2\pi} \lim_{m\to\infty}  \int_{-\pi}^\pi h(\xi) \sin((m+1/2)\xi)\,d\xi \\
+&= f(0) + 0 = f(0).  \hspace{30mm} \qed
+\end{align*}
+}
+\end{frame}
+
+
+\begin{frame}{Riemann-Lebesgue lemma for continuous functions}
+
+\begin{lemma}
+If $g \in C[a,b]$ then $\ds \lim_{n\to\infty} \int_a^b g(x) e^{inx}\,dx = 0$.
+\end{lemma}
+
+{\small
+\noindent \emph{Proof.}  Let $\eps>0$.  Since $g$ is continuous on the compact set $[a,b]$, it is uniformly continuous, so there is $\delta>0$ such that $|x-y|<\delta \implies |g(x)-g(y)|<\eps/(2(b-a))$.  In particular we can define a mesh of points $\{x_i\}_{i=0}^M$, with spacing less than $\delta$, and $x_i^*$ at the midpoints of each $[x_{i-1},x_i]$, so that
+	$$\tilde g(x) = \sum_{i=1}^M g(x_i^*) \one_{[x_{i-1},x_i)}(x)$$
+is a uniform approximation of $g$: \quad $\ds \|\tilde g - g\|_\infty = \sup_{x\in [a,b]} |\tilde g(x) - g(x)| < \frac{\eps}{2(b-a)}$
+
+picture:
+
+\vspace{25mm}
+}
+\end{frame}
+
+
+\begin{frame}{Riemann-Lebesgue lemma for continuous functions}
+
+{\small
+\noindent \emph{Proof continued.}  Now
+\begin{align*}
+\left|\int_a^b g(x) e^{inx}\,dx\right| &\le \left|\int_a^b (g(x) - \tilde g(x)) e^{inx}\,dx\right| + \left|\int_a^b \tilde g(x) e^{inx}\,dx\right| \\
+&\le \|g-\tilde g\|_\infty \int_a^b |e^{inx}|\,dx + \left|\int_a^b \sum_{i=1}^M g(x_i^*) \one_{[x_{i-1},x_i)}(x) e^{inx}\,dx\right| \\
+&\le \frac{\eps}{2(b-a)}(b-a) + \sum_{i=1}^M |g(x_i^*)| \left|\int_{x_{i-1}}^{x_i} e^{inx}\,dx\right|
+\end{align*}
+But each of the final integrals is bounded by the same constant:
+    $$\left|\int_{x_{i-1}}^{x_i} e^{inx}\,dx\right| = \left|\frac{e^{i n x_i} - e^{i n x_{i-1}}}{in}\right| \le \frac{2}{n}$$
+Choose $N$ so that $(2\|g\|_\infty M)/N < \eps/2$.  If $n\ge N$ then
+  $$\left|\int_a^b g(x) e^{inx}\,dx\right| \le \frac{\eps}{2} + \frac{2}{n} \sum_{i=1}^M |g(x_i^*)| \le \frac{\eps}{2} + \frac{2}{N} \sum_{i=1}^M \|g\|_\infty < \frac{\eps}{2} +  \frac{\eps}{2} = \eps \hspace{5mm} \qed$$
+}
+\end{frame}
 
 
 \section{what is actually true for Fourier series on $C[-\pi,\pi]$? (1964)}
