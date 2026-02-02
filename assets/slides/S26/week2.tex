@@ -73,7 +73,7 @@
 
 \title{Boundary value problems and integral operators}
 
-\subtitle{a calculation for weeks 2 \& 3 \quad (\emph{version 2})}
+\subtitle{a calculation for weeks 2 \& 3 \quad (\emph{version 3})}
 
 \author{Ed Bueler}
 
@@ -541,7 +541,7 @@ Thus $\|L\phi\|_\infty \le C \|\phi\|_\infty$ where $C=\sup_{x \in [0,1]} \int_0
 \begin{frame}{new idea: equicontinuous \underline{sets} of functions}
 
 \begin{definition}[see section 2.1]
-a set $E \subset C([a,b])$ is \emph{equicontinuous at } $x\in[a,b]$ if for each $\eps>0$ there is $\delta >0$ so that $y\in[a,b]$ and $|x-y|<\delta$ implies $|f(x)-f(y)|<\eps$ for all $f\in E$
+a set $E \subset C([a,b])$ is \emph{equicontinuous at } $x\in[a,b]$ if for each $\eps>0$ there is $\delta >0$ so that $f\in E$ and $y\in[a,b]$ and $|x-y|<\delta$ implies $|f(x)-f(y)|<\eps$
 \end{definition}
 
 \begin{itemize}
@@ -553,7 +553,7 @@ a set $E \subset C([a,b])$ is \emph{equicontinuous at } $x\in[a,b]$ if for each 
 \end{itemize}
 
 \begin{definition}
-a set $E \subset C([a,b])$ is \emph{equicontinuous} if it is equicontinous at each $x\in [a,b]$
+a set $E \subset C([a,b])$ is \emph{uniformly equicontinuous} if for each $\eps>0$ there is $\delta >0$ so that $f\in E$ and $\alert{x,}y\in[a,b]$ and $|x-y|<\delta$ implies $|f(x)-f(y)|<\eps$
 \end{definition}
 
 \begin{itemize}
@@ -565,7 +565,7 @@ a set $E \subset C([a,b])$ is \emph{equicontinuous} if it is equicontinous at ea
 \begin{frame}{new idea: some integral operators are compact}
 
 \begin{block}{Ascoli-Arzel\`a Theorem}
-a set $E\subset C([a,b])$is compact, in the topology of the $\|\cdot\|_\infty$ norm, if and only if it is closed, bounded, and equicontinuous
+a set $E\subset C([a,b])$is compact, in the topology of the $\|\cdot\|_\infty$ norm, if and only if it is closed, bounded, and uniformly equicontinuous
 \end{block}
 
 \begin{itemize}
@@ -579,7 +579,7 @@ is \, $u(x) = (L\phi)(x) = \int_0^1 k(x,t) \phi(t)\,dt$ \, where $k(x,t) = \min\
 \end{block}
 
 {\footnotesize
-\noindent \emph{Proof.}  Show $E$ is closed and bounded.  Show $E$ equicontinuous by using the fact that $k(x,t)$ is Lipschitz in $x$. \hfill \qed
+\noindent \emph{Proof.}  Show $E$ is closed and bounded.  Show $E$ is uniformly equicontinuous by using the fact that $k(x,t)$ is Lipschitz in $x$. \hfill \qed
 }
 \end{frame}
 
