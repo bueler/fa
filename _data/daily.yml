@@ -1,8 +1,11 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Friday 6 February
+  description: "<b>calculation: Fourier series of continuous functions</b>"
+  slides: slides/S26/week4.pdf
 - day: Wednesday 4 February
-  description: Hilbert and Banach spaces
+  description: separability, completeness, and Hilbert and Banach spaces
 - day: Monday 2 February
   week: 4
   description: equicontinuity and Arzela-Ascoli
