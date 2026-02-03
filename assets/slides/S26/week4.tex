@@ -24,7 +24,6 @@
 
 \usepackage{fancyvrb,empheq,bm,xspace,dsfont}
 %\usepackage{minted}
-%\usepackage{hyperref}
 \usepackage{tikz}
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
@@ -54,9 +53,6 @@
 
 \newcommand{\range}{\operatorname{range}}
 \newcommand{\Span}{\operatorname{span}}
-
-\newcommand{\ddt}[1]{\ensuremath{\frac{\partial #1}{\partial t}}}
-\newcommand{\ddx}[1]{\ensuremath{\frac{\partial #1}{\partial x}}}
 
 \newcommand{\Matlab}{\textsc{Matlab}\xspace}
 \newcommand{\eps}{\epsilon}
@@ -170,14 +166,14 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 	$$\int_{-\pi}^\pi e^{imx} e^{-inx}\,dx = \int_{-\pi}^\pi e^{i(m-n)x}\,dx = \hspace{40mm} = 2\pi \delta_{mn}$$
 \item define
     $$\psi_n(x) = \frac{1}{\sqrt{2\pi}} e^{inx} \qquad \text{and} \qquad E = \left\{\psi_n(x)\,:\,n\in \ZZ\right\}$$
-\item recall \emph{complex} inner product (\emph{sesquilinear}), now on $C[-\pi,\pi]$:
+\item recall \emph{complex} inner product (\emph{sesquilinear} \, :-) \,), now on $C[-\pi,\pi]$:
 	$$\ip{f}{g} = \int_{-\pi}^\pi f(x) \overline{g(x)}\,dx$$
 \item then:
     \begin{enumerate}
     \item $E$ is orthonormal
     \item $E$ is linearly-independent
     \end{enumerate}
-\item same \emph{questions:}  what is $\Span(E)$?  what is $\overline{\Span(E)}$?
+\item same big \emph{question:}  \quad what is $\overline{\Span(E)}$?
 \end{itemize}
 \end{frame}
 
@@ -189,15 +185,14 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \begin{itemize}
 \item $\ds e^{i\theta}=\cos\theta + i \sin\theta$
     \begin{itemize}
-    \item[$\circ$] derive from $e^z = 1 + z + \frac{z^2}{2!} + \dots + \frac{n^2}{n!} + \dots$ and known Taylor series for $\cos$ and $\sin$?
+    \item[$\circ$] derive this from $e^z = 1 + z + \frac{z^2}{2!} + \dots + \frac{n^2}{n!} + \dots$
+    \item[$\circ$] also recall Taylor series for $\cos$ and $\sin$
     \end{itemize}
-\item thus $\ds \cos\theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)$ and $\ds \sin\theta = \frac{1}{2i}\left(e^{i\theta}-e^{-i\theta}\right)$
+\item $\ds \cos\theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)$, \, $\ds \sin\theta = \frac{1}{2i}\left(e^{i\theta}-e^{-i\theta}\right)$
 \end{itemize}
 \end{block}
 
-\begin{itemize}
-\item $f$ even then $\int_{-\pi}^\pi f(x) \sin(nx)\,dx=0$; $f$ odd then $\int_{-\pi}^\pi f(x) \cos(nx)\,dx=0$
-\end{itemize}
+\medskip
 
 \begin{block}{basic facts about even and odd Fourier series:}
 \begin{itemize}
@@ -210,6 +205,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \end{frame}
 
 
+% at start of sections 2,3,... put outline
 \AtBeginSection[] {
     \begin{frame}{Outline}
     \setbeamertemplate{section in toc}[sections numbered]
@@ -258,7 +254,7 @@ for $n\in\ZZ$, then
 
 \begin{itemize}
 \item this is the \emph{Fourier series} of $f$, or the \emph{complex Fourier series}
-\item for formulas from different references, be careful with where the $2\pi$ goes
+\item for formulas from different references, be careful where the $2\pi$ goes
 \end{itemize}
 \end{frame}
 
@@ -313,7 +309,7 @@ plot(x, f(x), x, sN)
 
 \noindent \hrulefill
 \begin{itemize}
-\item let $g(x) = x (x-1) (x-\pi)$ on the interval $[0,\pi]$
+\item instead consider $g(x) = x (x-1) (x-\pi)$ on the interval $[0,\pi]$
 \item now the periodic extension \emph{is} continuous
 \item coefficients, done numerically: \quad $\ds c_n = \ip{g}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi g(x) \sin(n x)\,dx$
 \end{itemize}
@@ -356,7 +352,7 @@ f(x) &= \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} \left(\frac{1}{\sqrt{2\pi}} \int_{-
     \end{itemize}
 
 \medskip
-\item if the \alert{inner sum} is made into a partial sum, then we are approximating $f$ by integrating it against a kernel
+\item if the \alert{inner sum} is approximated by a partial sum, then we are approximating $f$ by integrating it against a kernel
 \end{itemize}
 \end{frame}
 
@@ -396,36 +392,35 @@ $$D_m(x) = \frac{1}{2\pi} \sum_{n=-m}^m e^{inx}$$
 
 \begin{lemma}[properties of the kernel]
 \begin{enumerate}
-\item $\ds \int_{-\pi}^\pi D_m(x)\,dx = 1$
-\item $D_m(0) = \frac{m+1/2}{\pi}$, and thus $D_m(0) \to \infty$
-\item $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$ \, for $x\ne 0$
+\item $D_m$ is continuous,
+\item $\ds \int_{-\pi}^\pi D_m(x)\,dx = 1$,
+\item $D_m(0) = \frac{m+1/2}{\pi}$, thus $D_m(0) \to \infty$ as $m\to\infty$, and
+\item $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$ \, for $x\ne 0$.
 \end{enumerate}
 \end{lemma}
 
 {\small
-\noindent \emph{Proof.}  Properties \itemnum{1} and \itemnum{2} are easy from the definition of $D_m$.  Property \itemnum{3} is on the next slide. \hfill \qed
+\noindent \emph{Proof.}  Properties \itemnum{1}, \itemnum{2}, \itemnum{3} are easy from the definition of $D_m$.  Property \itemnum{4} is on the next slide. \hfill \qed
 }
 \end{frame}
 
 
-\begin{frame}{Dirichlet's kernel as a sinc function}
+\begin{frame}[fragile]
+\frametitle{Dirichlet's kernel as a sine ratio}
 
-Property \itemnum{3}: \, $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$
+Property \itemnum{4}: \, $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$
 
 \bigskip
 {\small
-\noindent \emph{Proof.}  Apply knowledge of geometric series, then use $\sin\theta = (e^{i\theta}-e^{-i\theta})/(2i)$:
+\noindent \emph{Proof.}  Apply knowledge of \alert{geometric series}, then use $\sin\theta = (e^{i\theta}-e^{-i\theta})/(2i)$:
 \begin{align*}
 \sum_{n=-m}^m e^{inx} &= \sum_{n=-m}^m \left(e^{ix}\right)^n = e^{-imx} \sum_{n=0}^{2m} \left(e^{ix}\right)^n \\
 &= e^{-imx} \frac{1 - (e^{ix})^{2m+1}}{1 - e^{ix}} = \frac{e^{-imx} - e^{i(m+1)x}}{1 - e^{ix}} \\
 &= \frac{e^{-i(m+1/2)x} - e^{i(m+1/2)x}}{e^{-i(x/2)} - e^{i(x/2)}} \\
-&= \frac{\sin((m+1/2)x)}{\sin(x/2)} \hspace{40mm} \qed
+&= \frac{\sin((m+1/2)x)}{\sin(x/2)}
 \end{align*}
+The above calculation applies for $x\ne 0$. \hfill \qed
 }
-
-\begin{itemize}
-\item engineers who work with signals define\, $\ds \operatorname{sinc}(x) = \frac{\sin x}{x}$
-\end{itemize}
 \end{frame}
 
 
@@ -441,10 +436,10 @@ $$f(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx} \quad \text{ for }\, c
 \end{theorem}
 
 \begin{itemize}
-\item The proof is based on the \emph{Riemann-Lebesgue lemma} for continuous functions.  This version only requires the Riemann integral, and Dirichlet might have known it.  I will prove it, but after using it for the theorem.
+\item The proof is based on the \emph{Riemann-Lebesgue lemma}.  This version only requires the Riemann integral, and Dirichlet must have known it.  I will prove it after using it.
 \end{itemize}
 
-\begin{lemma}
+\begin{lemma}[Riemann-Lebesgue for continuous functions]
 If $g \in C[a,b]$ then $\ds \lim_{n\to\infty} \int_a^b g(x) e^{inx}\,dx = 0$.
 \end{lemma}
 \end{frame}
@@ -516,29 +511,32 @@ Choose $N$ so that $(2\|g\|_\infty M)/N < \eps/2$.  If $n\ge N$ then
 \end{frame}
 
 
-\section{what is actually true for Fourier series on $C[-\pi,\pi]$? (1966)}
+\section{what is the full story for Fourier series on $C[-\pi,\pi]$? (1966)}
 
 \begin{frame}{does the Fourier series converge for any $f\in C[-\pi,\pi]$?}
 
 \begin{itemize}
-\item in 1873 Du Bois-Reymond constructed a continuous function for which the Fourier series did not converge at a point
+\item in 1873 Du Bois-Reymond constructed a continuous function for which the Fourier series \alert{does not} converge at a point
     \begin{itemize}
-    \item[$\circ$] in \href{https://www.mathcounterexamples.net/continuous-function-with-divergent-fourier-series/}{a search I found}: \quad $\ds f(x) = \sum_{k=1}^\infty \frac{1}{k^2} \sin\left(\frac{(2^{k^3}+1)|x|}{2}\right)$
-    \item[$\circ$] the function is even and continuous (by
+    \item[$\circ$] \href{https://www.mathcounterexamples.net/continuous-function-with-divergent-fourier-series/}{found by google search}: \quad $\ds f(x) = \sum_{k=1}^\infty \frac{1}{k^2} \sin\left(\frac{(2^{k^3}+1)|x|}{2}\right)$
+    \item[$\circ$] the function is even and continuous,\footnote{use 
+Weierstrass M-test} so
 
-Weierstrass M-test)
-    \item[$\circ$] it can be shown that the Fourier partial sums
+its Fourier series is a cosine series
+    \item[$\circ$] it can be shown that the Fourier partial
 
-are unbounded in a neighborhood of $x=0$
+sums are unbounded in a neighborhood
+
+of $x=0$
     \end{itemize}
 
-\vspace{-13mm}
+\vspace{-19mm}
 
 \hfill \includegraphics[width=0.35\textwidth]{figs/duboisreymond.png}
 
 \medskip
-\item later examples fail convergence on infinite sets of points
-\item to state the full situation we need to define \emph{measure zero}
+\item in the early 1900s, further examples were constructed where convergence failed on infinite sets of points
+\item to state the full situation we need to define \emph{measure zero} \dots
 \end{itemize}
 \end{frame}
 
@@ -548,23 +546,23 @@ are unbounded in a neighborhood of $x=0$
 \begin{definition}
 \begin{itemize}
 \item a set $E\subset \RR$ has \emph{(Lebesgue) measure zero} if for any $\eps>0$ there exists a countable list of open intervals $I_n=(a_n,b_n)$ so that
-    $$E \subset \bigcup_{n\in\NN} I_n \quad \text{and} \quad \sum_{n\in\NN} b_n-a_n < \eps$$
-\item if some fact holds except on a set $E$ which has measure zero, we say that the fact holds \emph{almost everywhere}
+    $$E \subset \bigcup_{n\in\NN} I_n \quad \text{and} \quad \sum_{n\in\NN} m(I_n) = \sum_{n\in\NN} b_n-a_n < \eps$$
+\item if a proposition holds except on a set $E$ which has measure zero then we say that it holds \emph{almost everywhere}
 \end{itemize}
 \end{definition}
 
 \begin{itemize}
 \item note that any open subset of $\RR$ is a countable union of open intervals
-\item more on measure zero in Chapter 3
+\item more on Lebesgue measure $m$, and measure zero, in Chapter 3
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Carleson's and Katznelson's theorems}
+\begin{frame}{the full story for Fourier series of continuous functions}
 
 \begin{theorem}[Carleson, 1966]
 if $f\in C[-\pi,\pi]$, or even $f\in L^p[-\pi,\pi]$, then the Fourier series of $f$ converges pointwise almost everywhere:
-	$$\lim_{m\to\infty} \sum_{n=-m}^m c_n e^{inx} = f(x) \quad \text{except on $E\subset [-\pi,\pi]$ of measure zero}$$
+	$$\lim_{m\to\infty} \sum_{n=-m}^m c_n e^{inx} = f(x) \quad \text{except on $x\in E$ of measure zero}$$
 \end{theorem}
 
 \begin{theorem}[Katznelson, 1966]
@@ -573,27 +571,27 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 \end{frame}
 
 
-\section{what is the clean $L^2$ version? ($\sim$1910)}
+\section{what is the clean $L^2$ version of the story? ($\sim$1910)}
 
-\begin{frame}{orthonormal sequences in inner product sets}
+\begin{frame}{orthonormal sequences in inner product spaces}
 
 \begin{itemize}
-\item the ideas of Hilbert and Riesz, circa 1910, are fundamentally \emph{simpler} than all the previous material in these slides
+\item the abstract ideas of Hilbert and Riesz, circa 1910, are fundamentally \emph{simpler} than all of the previous material in these slides
 \item consider an abstract inner product vector space $V, \ip{\cdot}{\cdot}$
 \end{itemize}
 
 \begin{definition}
 \begin{itemize}
-\item vectors $v,w \in V$ are \emph{orthogonal} if $\ip{v}{w}=0$
+\item a pair of vectors $v,w \in V$ are \emph{orthogonal} if $\ip{v}{w}=0$
 \item a set $S$ is \emph{orthogonal} if $v,w\in S$ and $v\ne w$ implies $v,w$ are orthogonal
-\item $(v_k)_{k=1}^\infty \subset V$ is an \emph{orthonormal sequence} if $v_k,v_l$ are orthogonal for $k\ne l$ ($\ip{v_k}{v_l} = 0$) and if $\|v_k\|^2 = \ip{v_k}{v_k} = 1$
+\item $(v_k)_{k=1}^\infty \subset V$ is an \emph{orthonormal sequence} (\emph{ON sequence}) if $v_k,v_l$ are orthogonal for $k\ne l$ and if $\|v_k\|^2 = \ip{v_k}{v_k} = 1$
 \end{itemize}
 \end{definition}
 
 \begin{lemma}
 \begin{itemize}
 \item an orthogonal set is linearly-independent
-\item an orthonormal sequence is linearly-independent
+\item an ON sequence is linearly-independent
 \end{itemize}
 \end{lemma}
 \end{frame}
@@ -603,12 +601,12 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 
 {\small
 \begin{itemize}
-\item $\ds \left\{\sqrt{\frac{2}{\pi}} \sin(nx)\right\}_{n\in\NN}$ is a (real) orthonormal sequence on $[0,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ complete}}
-\item $\ds \left\{\frac{1}{\sqrt{2\pi}} e^{inx}\right\}_{n\in\ZZ}$ is an orthonormal sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ complete}}
-\item $\ds \left\{\frac{1}{\sqrt{2\pi}} e^{inx}\right\}_{n\in\NN}$ is an orthonormal sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
-\item $\ds \left\{\sqrt{\frac{2}{\pi}} \cos(nx)\right\}_{n\in\NN}$ is a (real) orthonormal sequence on $[0,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
-\item $\ds \left\{\sqrt{\frac{1}{\pi}} \sin(nx)\right\}_{n\in\NN}$ is a (real) orthonormal sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
-\item the Legendre polynomials\footnote{with a different normalization these are:  $1,x,\frac{1}{2}(3x^2=1),\frac{1}{2}(5x^3-3x),\dots$} are an orthonormal sequence \only<2>{\alert{\hfill $\longleftarrow$ complete}}
+\item $\ds \left\{\sqrt{\frac{2}{\pi}} \sin(nx)\right\}_{n\in\NN}$ is a (real) ON sequence on $[0,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ complete}}
+\item $\ds \left\{\frac{1}{\sqrt{2\pi}} e^{inx}\right\}_{n\in\ZZ}$ is an ON sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ complete}}
+\item $\ds \left\{\frac{1}{\sqrt{2\pi}} e^{inx}\right\}_{n\in\NN}$ is an ON sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
+\item $\ds \left\{\sqrt{\frac{2}{\pi}} \cos(nx)\right\}_{n\in\NN}$ is a (real) ON sequence on $[0,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
+\item $\ds \left\{\sqrt{\frac{1}{\pi}} \sin(nx)\right\}_{n\in\NN}$ is a (real) ON sequence on $[-\pi,\pi]$ \only<2>{\alert{\hfill $\longleftarrow$ \emph{not} complete}}
+\item the Legendre polynomials\footnote{with a different normalization these are:  $1,x,\frac{1}{2}(3x^2-1),\frac{1}{2}(5x^3-3x),\dots$} form an ON sequence \only<2>{\alert{\hfill $\longleftarrow$ complete}}
 \end{itemize}
 }
 \end{frame}
@@ -618,25 +616,85 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 
 \begin{block}{question}
 \begin{itemize}
-\item given an orthonormal sequence $(v_k)$ from an inner product space, is its span dense in $V$?
-\item equivalently, is \,$\ds \overline{\Span \{v_k\}} = V$?
+\item given an ON sequence $S=(f_k)$ from an inner product space $(V,\ip{\cdot}{\cdot})$, is its span dense in $V$?:
+    $$\text{is }\,\ds \overline{\Span S} = V?$$
 \end{itemize}
 \end{block}
 
 \begin{itemize}
-\item x
+\item this question becomes a definition \dots
 \end{itemize}
 
-FIXME
+\begin{definition}
+an ON sequence $S=(f_k)$ in an inner product space $(V,\ip{\cdot}{\cdot})$ is \emph{complete} if for every $f\in V$ there exist coefficients $c_k$ so that
+	$$f = \lim_{N\to\infty} \sum_{k=1}^N c_k f_k = \sum_{k=1}^\infty c_k f_k$$
+\end{definition}
+\end{frame}
 
-define "fourier coefficients for an ON sequence"
 
-new slide:  define complete
+\begin{frame}{abstract Fourier coefficients and Fourier series}
 
-say a,b of theorem 4.5 are equivalent
+\begin{block}{Theorem 4.1}
+Suppose that $f = \sum_{k=1}^\infty c_k f_k$ for an ON sequence $S=(f_k)$ in an inner product space $V,\ip{\cdot}{\cdot}$.  Then
+	$$c_k = \ip{f}{f_k}$$
+\end{block}
 
-new slide: state theorem 4.6; this is simplest positive answer to Fourier's original question, namely he's right, but convergence that is most obvious is in $L^2$
+\begin{itemize}
+\item the proof is easy \dots we will do it
+\end{itemize}
 
+\begin{definition}
+\begin{itemize}
+\item for $f\in V$, the \emph{Fourier coefficients} for an ON sequence $S=(f_k)$ are
+ 	$$c_k = \ip{f}{f_k}$$
+\item the \emph{Fourier series of $f\in V$}, for an ON sequence $S=(f_k)$, is
+	$$\sum_{k=1}^\infty \ip{f}{f_k} f$$
+\end{itemize}
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{how to prove an ON sequence is complete?}
+
+\begin{itemize}
+\item the Fourier series is always in $V$, but that does \emph{not} imply, by itself, that it equals $f$
+\item \emph{if} the ON sequence is complete then $f$ equals its Fourier series
+\item part (c) of the following theorem is the most practical way to show an ON sequence of functions on an interval is complete
+\end{itemize}
+
+\begin{block}{Theorem 4.5}
+for an ON sequence $S=(f_k)_{k\in\NN}$ in $L^2=L^2([-\pi,\pi],m)$, the following are equivalent:
+\begin{itemize}
+\item[(a)] $S$ is a complete ON sequence
+\item[(b)] for every $f\in L^2$ and $\eps>0$ there is a finite linear combination $g = \sum_{k=1}^n d_k f_k$ so that $\|f-g\|_2 < \eps$
+\item[(c)] if the Fourier coefficients of $f\in L^2$, for the ON sequence $S$, are zero then the function $f$ is zero almost everywhere
+\end{itemize}
+\end{block}
+
+\begin{itemize}
+\item we will prove this Theorem
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Fourier's claim is true \emph{if} convergence is in $L^2$}
+
+\begin{block}{Theorem 4.6 (rewritten in complex form)}
+The ON sequence $S = \left(\frac{1}{\sqrt{2\pi}} e^{inx}\right)_{n\in\ZZ}$ is complete in $L^2([-\pi,\pi],m)$.  Therefore
+	$$f(x) = \frac{1}{\sqrt{2\pi}}\sum_{n=-\infty}^\infty c_n e^{inx},$$
+for these coefficients
+    $$c_n = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx,$$
+in the sense that \alert{the partial sums converge to $f$ in the norm $\|\cdot\|_2$}
+\end{block}
+
+\begin{itemize}
+\item this is the simplest interpretation of Fourier's claim
+    \begin{itemize}
+    \item[$\circ$] however, it does address continuous functions directly
+    \end{itemize}
+\item if $f(x)$ is real-valued we may write, for some real constants $a_n,b_n$,
+    $$f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(nx) + b_n \sin(nx)$$
+\end{itemize}
 \end{frame}
 
 
@@ -650,9 +708,7 @@ new slide: state theorem 4.6; this is simplest positive answer to Fourier's orig
 
 \begin{block}{to define:}
 \begin{itemize}
-\item $L^2([a,b])$ and $L^2(X,\mu)$ \hfill \alert{$\longleftarrow$ not fully defined till Chapter 3}
-\item convergence in mean
-\item orthonormal sequence
+\item $L^2([a,b],m)$ and $L^2(X,\mu)$ \hfill \alert{$\longleftarrow$ not fully defined till Chapter 3}
 \item complete orthonormal sequence
 \item Fourier series and coefficients for any orthonormal sequence
 \end{itemize}
@@ -663,6 +719,7 @@ new slide: state theorem 4.6; this is simplest positive answer to Fourier's orig
 \item Bessel's inequality
 \item Parseval's equality
 \item the Riesz-Fischer theorem
+\item Theorem 4.6: Fourier series converge in $L^2$
 \end{itemize}
 \end{block}
 
