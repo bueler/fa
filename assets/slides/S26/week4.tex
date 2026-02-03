@@ -233,8 +233,8 @@ for $n\in \NN$, then
 \item the result is the \emph{Fourier sine series} (or \emph{expansion}) of $f$
 \item actually Fourier claimed this for discontinuous functions too
    \begin{itemize}
-   \item[$\circ$] he, and everybody else, agreed that the claim could not be exactly and generally true at the points of discontinuity of $f(x)$
    \item[$\circ$] observe that $c_n$ is an \emph{integral}, so only features of $f$ that change the integrals can affect the expansion
+   \item[$\circ$] Fourier, and everybody else, agreed that the claim could not be exactly true at the points of discontinuity of $f(x)$
    \end{itemize}
 \end{itemize}
 \end{frame}
@@ -249,7 +249,7 @@ for $n\in \NN$, then
 and use the complex (sesquilinear) inner product
 \end{itemize}
 
-\begin{block}{Fourier's claim}
+\begin{block}{Fourier's claim for complex exponentials}
 if $f\in C[-\pi,\pi]$, complex-valued, and if
 	$$c_n = \ip{f}{\psi_n} = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx$$
 for $n\in\ZZ$, then
@@ -390,20 +390,20 @@ f(x) &= \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx} \\
 
 {\footnotesize
 \begin{definition}[Dirichlet's kernel]
-$$D_m(x) = \frac{1}{2\pi} \sum_{n=-m}^m e^{inx} = \frac{1}{2\pi} + \frac{1}{\pi} \sum_{n=1}^m \cos(nx)$$
+$$D_m(x) = \frac{1}{2\pi} \sum_{n=-m}^m e^{inx}$$
 \end{definition}
 }
 
 \begin{lemma}[properties of the kernel]
 \begin{enumerate}
 \item $\ds \int_{-\pi}^\pi D_m(x)\,dx = 1$
-\item $D_m(0) = \frac{m+1/2}{\pi}$, and $D_m(0) \to \infty$
+\item $D_m(0) = \frac{m+1/2}{\pi}$, and thus $D_m(0) \to \infty$
 \item $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$ \, for $x\ne 0$
 \end{enumerate}
 \end{lemma}
 
 {\small
-\noindent \emph{Proof.}  Properties \itemnum{1} and \itemnum{2} are easy from the sum definition of $D_m$.  Property \itemnum{3} is on the next slide. \hfill \qed
+\noindent \emph{Proof.}  Properties \itemnum{1} and \itemnum{2} are easy from the definition of $D_m$.  Property \itemnum{3} is on the next slide. \hfill \qed
 }
 \end{frame}
 
@@ -412,6 +412,7 @@ $$D_m(x) = \frac{1}{2\pi} \sum_{n=-m}^m e^{inx} = \frac{1}{2\pi} + \frac{1}{\pi}
 
 Property \itemnum{3}: \, $\ds D_m(x) = \frac{1}{2\pi} \frac{\sin((m+1/2)x)}{\sin(x/2)}$
 
+\bigskip
 {\small
 \noindent \emph{Proof.}  Apply knowledge of geometric series, then use $\sin\theta = (e^{i\theta}-e^{-i\theta})/(2i)$:
 \begin{align*}
