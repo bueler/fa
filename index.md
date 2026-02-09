@@ -61,6 +61,8 @@ Log in to [canvas.alaska.edu/courses/30068](https://canvas.alaska.edu/courses/30
     * [compactness](https://www.youtube.com/watch?v=td7Nz9ATyWY)
     * [Lebesgue integral](https://www.youtube.com/watch?v=LDNDTOVnKJk)
 
+* Video series:  There is a whole [functional analysis playlist](https://www.youtube.com/playlist?list=PLBh2i93oe2quoBhxyar1rvLTOePOkUf7G) by [The Bright Side of Mathematics](https://www.youtube.com/@brightsideofmaths), which might be helpful.
+
 ---
 _Site design derived from [coordinated Calc I](https://uaf-math.github.io/calc1/), an original [Jekyll](https://jekyllrb.com/) design by [David Maxwell](https://damaxwell.github.io/)._
 
