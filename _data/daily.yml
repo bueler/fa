@@ -1,6 +1,11 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Wednesday 11 February
+  description: calculation cont., Bessel's inequality
+- day: Monday 9 February
+  description: calculation cont.
+  week: 5
 - day: Friday 6 February
   description: "<b>calculation: Fourier series of continuous functions</b>"
   slides: slides/S26/week4.pdf
