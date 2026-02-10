@@ -3,6 +3,8 @@ home: assets
 daily:
 - day: Wednesday 11 February
   description: calculation cont., Bessel's inequality
+  otherurlname: excellent Fourier series video by 3blue1brown
+  otherurl: https://www.youtube.com/watch?v=r6sGWTCMz2k&pp=ygUaZm91cmllciBzZXJpZXMgM2JsdWUxYnJvd24%3D
 - day: Monday 9 February
   description: calculation cont.
   week: 5
