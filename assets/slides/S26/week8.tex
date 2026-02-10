@@ -78,9 +78,9 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title{Piecewise functions: simple, step, \\ and piecewise-linear}
+\title{Interpolation on intervals \& triangles}
 
-\subtitle{a calculation for week 6}
+\subtitle{a calculation for week 8???}
 
 \author{Ed Bueler}
 
@@ -106,12 +106,20 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 }
 
 
-\section{simple functions}
+\section{sines (and complex exponentials) are orthonormal}
 
-\begin{frame}{foo}
 
-\begin{block}{x}
-y
+\begin{frame}{before we move on \dots}
+
+\begin{block}{basic facts about $e^{i\theta}$:}
+\begin{itemize}
+\item $\ds e^{i\theta}=\cos\theta + i \sin\theta$
+    \begin{itemize}
+    \item[$\circ$] derive this from $e^z = 1 + z + \frac{z^2}{2!} + \dots + \frac{n^2}{n!} + \dots$
+    \item[$\circ$] also recall Taylor series for $\cos$ and $\sin$
+    \end{itemize}
+\item $\ds \cos\theta = \frac{1}{2}\left(e^{i\theta}+e^{-i\theta}\right)$, \, $\ds \sin\theta = \frac{1}{2i}\left(e^{i\theta}-e^{-i\theta}\right)$
+\end{itemize}
 \end{block}
 \end{frame}
 
@@ -125,67 +133,55 @@ y
 }
 
 
-\section{step functions (piecewise-constant)}
+\section{what did Fourier believe? (1822)}
 
-\begin{frame}{foo}
+\begin{frame}{Fourier's assertion}
 
-\begin{block}{x}
-y
+\begin{block}{claim (Fourier, \emph{Th\'eorie Analytique de la Chaleur}, 1822)}
+if $f\in C[0,\pi]$, and if we compute these coefficients
+	$$c_n = \ip{f}{\phi_n} = \sqrt{\frac{2}{\pi}} \int_0^\pi f(x) \sin(nx)\,dx$$
+for $n\in \NN$, then
+	$$f(x) = \sum_{n=1}^\infty c_n\, \phi_n(x) = \sqrt{\frac{2}{\pi}} \sum_{n=1}^\infty c_n \sin(nx)$$
 \end{block}
+
+\begin{itemize}
+\item the result is the \emph{Fourier sine series} (or \emph{expansion}) of $f$
+\item actually Fourier claimed this for discontinuous functions too
+   \begin{itemize}
+   \item[$\circ$] observe that $c_n$ is an \emph{integral}, so only features of $f$ that change the integrals can affect the expansion
+   \item[$\circ$] Fourier, and everybody else, agreed that the claim could not be exactly true at the points of discontinuity of $f(x)$
+   \end{itemize}
+\end{itemize}
 \end{frame}
-
-
-\begin{frame}{foo}
-
-\begin{block}{x}
-y
-\end{block}
-\end{frame}
-
-
-\section{piecewise-linear functions}
-
-\begin{frame}{foo}
-
-\begin{block}{x}
-y
-\end{block}
-\end{frame}
-
-
-\section{piecewise functions on triangles (\emph{first look at finite elements})}
-
-\begin{frame}{foo}
-
-\begin{block}{x}
-y
-\end{block}
-\end{frame}
-
 
 
 \section{theory from the book}
 
-\begin{frame}{theory in week 6: Chapter 3 in Saxe}
+\begin{frame}{theory in weeks 4 \& 5: Chapter 4 in Saxe}
 
 \begin{itemize}
-\item x
+\item we will do Fourier series (Chapter 4) \emph{before} Lebesgue integrals and measures (Chapter 3)
 \end{itemize}
 
 \begin{block}{to define:}
 \begin{itemize}
-\item x
+\item $L^2([a,b],m)$ and $L^2(X,\mu)$ \hfill \alert{$\longleftarrow$ not fully defined till Chapter 3}
+\item complete orthonormal sequence
+\item Fourier series and coefficients for any orthonormal sequence
 \end{itemize}
 \end{block}
 
 \begin{block}{to prove:}
 \begin{itemize}
-\item x
+\item Bessel's inequality
+\item Parseval's equality
+\item the Riesz-Fischer theorem
+\item Theorem 4.6: Fourier series converge in $L^2$
 \end{itemize}
 \end{block}
 
 \begin{itemize}
-\item Assignment 4 is posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\item Assignment 3 is posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
 \end{itemize}
 \end{frame}
 
