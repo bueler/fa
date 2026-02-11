@@ -113,7 +113,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 }
 
 
-\section{measurable subsets of $\RR^1$, and simple functions}
+\section{measurable subsets of $\RR^1$}
 
 \begin{frame}{intervals and their lengths}
 
@@ -229,22 +229,56 @@ $\cM$ is the collection of \emph{Lebesgue measurable sets}
 \item every set of measure zero is measurable
 \item every measurable set can be well-approximated by a countable, disjoint union of intervals:
 	$$A \in \cM \iff \forall \eps>0\, \exists\, B=\bigcup_{k=1}^\infty I_k \text{ so that } m^*(S(A,B))<\eps$$
-\item a measurable set can be squeezed between a closed and an open set:
-	$$A \in \cM \iff \begin{matrix} \forall \eps>0\, \exists G \text{ open and } E \text{ closed s.t. } \\ E \subset A \subset G \text{ and } m^*(G\setminus E)<\eps \end{matrix}$$
-\item there exist $A\subset \RR^1$ that are not Lebesgue measurable
+\item<2> \alert{there exist $A\subset \RR^1$ that are not Lebesgue measurable}:
+   $$\cM \subsetneq 2^{(\RR^1)}$$
+\item<2> more on measurable sets in Chapter 3
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{simple functions}
+\begin{frame}{two very useful lemmas}
+
+\begin{lemma}
+$G \subset \RR^1$ is open if and only if $G$ is a countable, disjoint union of open intervals:
+	$$G = \bigcup_{k=1}^\infty (a_k, b_k) \qquad \text{ where } a_k,b_k \in [-\infty,+\infty]$$
+\end{lemma}
+
+\begin{itemize}
+\item thus $m^*(G) = \sum_{k} b_k - a_k$ for open sets $G$ \emph{if} intervals all have finite length
+\end{itemize}
+
+\begin{lemma}
+a measurable set can be well-squeezed between a closed and an open set:
+	$$A \in \cM \qquad \iff \qquad \begin{matrix} \forall \eps>0 \, \exists E \text{ closed } \, \exists G \text{ open } \text{ s.t. } \hspace{10mm} \\ E \subset A \subset G \text{ and } m^*(G\setminus E)<\eps \end{matrix}$$
+\end{lemma}
+
+\noindent picture:
+
+\vspace{13mm}
+\end{frame}
+
+
+\begin{frame}{but what is ``Lebesgue measure''?}
 
 \begin{definition}
-	$$\one_A(x) = \begin{cases} 1, & x\in A \\ 0, & x\notin A \end{cases}$$
-is the \emph{indicator function} $\one_A:\RR^1\to\RR$ for the set $A\subset \RR^1$
+\emph{Lebesgue measure} is the function $m:\cM \to [0,+\infty]$ defined as the outer measure restricted to the measurable sets:
+\begin{align*}
+m : \cM &\to [0,+\infty] \\
+    A &\mapsto m^*(A)
+\end{align*}
 \end{definition}
 
 \begin{itemize}
-\item FIXME
+\item what's the key property of a measure? \emph{countable additivity}
+\end{itemize}
+
+\begin{lemma}
+if $A_k\in \cM$ are pairwise disjoint ($A_j \cap A_k = \emptyset$ if $j\ne k$) then
+	$$m\left(\bigcup_{k=1}^\infty A_k\right) = \sum_{k=1}^\infty m(A_k)$$
+\end{lemma}
+
+\begin{itemize}
+\item more on Lebesgue measure, and the general idea of a measure, in Chapter 3
 \end{itemize}
 \end{frame}
 
@@ -257,8 +291,61 @@ is the \emph{indicator function} $\one_A:\RR^1\to\RR$ for the set $A\subset \RR^
     \end{frame}
 }
 
+\section{simple functions}
 
-\section{step functions (piecewise-constant)}
+\begin{frame}{simple functions}
+
+\begin{definition}
+the \emph{indicator function} for the set $A\subset \RR^1$ is
+	$$\one_A(x) = \chi_A(x) = \begin{cases} 1, & x\in A \\ 0, & x\notin A \end{cases}$$
+\end{definition}
+
+\begin{definition}
+a \emph{(measurable) simple function}, $s:\RR^1\to\RR$, is a finite linear combination of indicator functions of measurable sets $E_k \in \cM$:
+	$$s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$$
+\end{definition}
+
+\noindent picture:
+
+\vspace{13mm}
+\end{frame}
+
+
+\begin{frame}{integrals of simple functions}
+
+\begin{itemize}
+\item the integral of a simple function \, $\ds s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$ \, is almost obvious
+\end{itemize}
+
+\begin{definition}
+if $s$ is a measurable simple function then its \emph{Lebesque integral} is
+	$$\int_\RR s(x)\,dx = \sum_{k=1}^N c_k m(E_k)$$
+\end{definition}
+
+\noindent picture:
+
+\vspace{25mm}
+\end{frame}
+
+
+\begin{frame}{the fundamental idea of Lebesgue integrals}
+
+\begin{itemize}
+\item \textbf{idea:} cut-up the \emph{range} of $f:\RR^1 \to \RR$, and approximate by a simple function, and integrate that simple function
+   \begin{itemize}
+   \item[$\circ$] $f$ has to be \emph{measurable}
+   \end{itemize}
+\item the range is cut into $a_0<a_1<\dots<a_N$:
+	$$s(x) = \sum_{k=0}^{N-1} a_{k}\, \one_{f^{-1}([a_{k},a_{k+1}))}(x)$$
+\item the integral: \quad $\ds \int_\RR f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} a_{k}\, m\left(f^{-1}([a_{k},a_{k+1}))\right)$
+\end{itemize}
+
+\noindent picture:
+
+\vspace{25mm}
+\end{frame}
+
+\section{step functions ($=$ piecewise-constant)}
 
 \begin{frame}{foo}
 
