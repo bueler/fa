@@ -44,12 +44,19 @@
 
 \newcommand{\bzero}{\bm{0}}
 
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cM}{\mathcal{M}}
+
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\ZZ}{\mathbb{Z}}
 
 \newcommand{\one}{\mathds{1}}
+
+\newcommand{\stri}{\mathbin{\triangle}}
 
 \newcommand{\range}{\operatorname{range}}
 \newcommand{\Span}{\operatorname{span}}
@@ -106,13 +113,139 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 }
 
 
-\section{simple functions}
+\section{measurable subsets of $\RR^1$, and simple functions}
 
-\begin{frame}{foo}
+\begin{frame}{intervals and their lengths}
 
-\begin{block}{x}
-y
-\end{block}
+\begin{itemize}
+\item in Chapter 3 our textbook defines \emph{measurable} for subsets of $\RR^n$, and the \emph{simple function} for functions from $\RR^n$ to $\RR$
+\item I will give the definitions for $\RR^1$ here
+\end{itemize}
+
+\begin{definition}
+\begin{itemize}
+\item a \emph{(finite) interval} $I\subset \RR^1$ is either $(a,b)$ or $(a,b]$ or $[a,b)$ or $[a,b]$ for real numbers $a\le b$
+\item the \emph{length} of a (finite) interval is $m(I) = b - a < \infty$
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+\item the empty set is a finite interval: $\emptyset = (a,a)$
+\item a singleton set is a finite interval: $\{a\} = [a,a]$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{outer measure}
+
+\begin{definition}
+for any subset $A\subset \RR^1$, the \emph{outer measure} is
+	$$m^*(A) = \inf\, \left\{\sum_{k=1}^\infty m(I_k)\,:\,A \subset \bigcup_{k=1}^\infty I_k\right\}$$
+where the infimum is over countable unions of (finite) intervals $I_k$ covering $A$
+\end{definition}
+
+\begin{itemize}
+\item $m^*(A)$ is defined for \emph{any} subset $A\subset \RR^1$
+\item thus $m^* : 2^{(\RR^1)} \to [0,+\infty]$
+   \begin{itemize}
+   \item[$\circ$] the \emph{power set} of a set $S$ is \, $2^S = \left\{A \,:\, A\subset S\right\}$
+   \end{itemize}
+\item $m^*(A)=+\infty$ if there is no open covering of $A$ by countably-many intervals of finite total length
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{outer measure: examples}
+\begin{itemize}
+\item[Ex 1] if $I$ is any interval then $m^*(I)$ is the length of $I$
+   \begin{itemize}
+   \item[$\circ$] $m^*(\RR)=+\infty$, and likewise for half-infinite intervals like $[a,+\infty)$
+   \end{itemize}
+\item[Ex 2] if $A$ is a finite or countable set then $m^*(A)=0$
+
+\begin{proof}
+\phantom{x}
+
+\vspace{15mm}
+\end{proof}
+\item[Ex 3] $m^*(\QQ)=0$
+\item[Ex 4] $m^*(C)=0$ where $C \subset [0,1]$ is the \emph{Cantor middle-thirds set}  \hfill [\emph{picture}]
+
+\vspace{14mm}
+\item[Ex 5] $m^*([0,1]\setminus\QQ)=1$ and $m^*(\RR\setminus\QQ)=+\infty$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{measure zero}
+
+\begin{definition}
+a subset $A\subset \RR^1$ has \emph{measure zero} if $m^*(A)=0$, that is, if for every $\eps>0$ there is a countable covering of $A$ by intervals of total length less than $\eps$:
+	$$\sum_{k=1}^\infty m(I_k) < \eps \qquad \text{ where } A \subset \bigcup_{k=1}^\infty I_k$$
+\end{definition}
+
+\begin{itemize}
+\item every subset of a measure zero set has measure zero
+\item every finite or countable set has measure zero
+\item the Cantor set $C\subset[0,1]$, which has uncountable cardinality, has measure zero
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{certain collections of subsets of $\RR^1$}
+
+\begin{definition}
+given two sets $A,B$, their \emph{symmetric difference} is the set
+	$$S(A,B) = (A \setminus B) \cup (B \setminus A) = (A \cup B) \setminus (A\cap B)$$
+\end{definition}
+
+\begin{definition}
+section 3.2 defines three collections of subsets of $\RR^1$:
+\begin{itemize}
+\item $\cE$ is the collection of finite, disjoint unions of (finite) intervals
+\item $\cM_\cF$ is the collection of all $A\subset \RR^1$ such that
+	$$m^*(S(A_k,A)) \to 0 \text{ as } k \to \infty$$
+for some sequence $A_k \in \cE$
+\item $\cM$ is the collection of finite and countable unions of sets from $\cM_\cF$
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+\item thus:
+	$$\cE \subset \cM_{\cF} \subset \cM \subset 2^{(\RR^1)}$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Lebesgue measurable subsets of $\RR^1$}
+
+\begin{definition}
+$\cM$ is the collection of \emph{Lebesgue measurable sets}
+\end{definition}
+
+\begin{itemize}
+\item every interval is measurable: $I \in \cM$
+\item every finite union of intervals is measurable: $\cE \subset \cM$
+\item every set of measure zero is measurable
+\item every measurable set can be well-approximated by a countable, disjoint union of intervals:
+	$$A \in \cM \iff \forall \eps>0\, \exists\, B=\bigcup_{k=1}^\infty I_k \text{ so that } m^*(S(A,B))<\eps$$
+\item a measurable set can be squeezed between a closed and an open set:
+	$$A \in \cM \iff \begin{matrix} \forall \eps>0\, \exists G \text{ open and } E \text{ closed s.t. } \\ E \subset A \subset G \text{ and } m^*(G\setminus E)<\eps \end{matrix}$$
+\item there exist $A\subset \RR^1$ that are not Lebesgue measurable
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{simple functions}
+
+\begin{definition}
+	$$\one_A(x) = \begin{cases} 1, & x\in A \\ 0, & x\notin A \end{cases}$$
+is the \emph{indicator function} $\one_A:\RR^1\to\RR$ for the set $A\subset \RR^1$
+\end{definition}
+
+\begin{itemize}
+\item FIXME
+\end{itemize}
 \end{frame}
 
 
