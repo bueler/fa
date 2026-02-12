@@ -80,7 +80,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 \title{Fourier series of continuous functions}
 
-\subtitle{a calculation for weeks 4 \& 5}
+\subtitle{a calculation for weeks 4 \& 5 \quad (\emph{version 2})}
 
 \author{Ed Bueler}
 
@@ -629,6 +629,10 @@ for any set $E\subset [-\pi,\pi]$ of measure zero there is a continuous periodic
 an ON sequence $S=(f_k)$ in an inner product space $(V,\ip{\cdot}{\cdot})$ is \emph{complete} if for every $f\in V$ there exist coefficients $c_k$ so that
 	$$f = \lim_{N\to\infty} \sum_{k=1}^N c_k f_k = \sum_{k=1}^\infty c_k f_k$$
 \end{definition}
+
+\begin{itemize}
+\item language: \emph{complete ON sequence} $=$ \emph{ON basis}
+\end{itemize}
 \end{frame}
 
 
@@ -648,7 +652,7 @@ Suppose that $f = \sum_{k=1}^\infty c_k f_k$ for an ON sequence $S=(f_k)$ in an 
 \item for $f\in V$, the \emph{Fourier coefficients} for an ON sequence $S=(f_k)$ are
  	$$c_k = \ip{f}{f_k}$$
 \item the \emph{Fourier series of $f\in V$}, for an ON sequence $S=(f_k)$, is
-	$$\sum_{k=1}^\infty \ip{f}{f_k} f$$
+	$$\sum_{k=1}^\infty \ip{f}{f_k} f_k$$
 \end{itemize}
 \end{definition}
 \end{frame}
@@ -692,8 +696,7 @@ in the sense that \alert{the partial sums converge to $f$ in the norm $\|\cdot\|
     \begin{itemize}
     \item[$\circ$] however, it does address continuous functions directly
     \end{itemize}
-\item if $f(x)$ is real-valued we may write, for some real constants $a_n,b_n$,
-    $$f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(nx) + b_n \sin(nx)$$
+\item we will get to $L^2$ spaces seriously in Chapter 3
 \end{itemize}
 \end{frame}
 
@@ -718,7 +721,7 @@ in the sense that \alert{the partial sums converge to $f$ in the norm $\|\cdot\|
 \begin{itemize}
 \item Bessel's inequality
 \item Parseval's equality
-\item the Riesz-Fischer theorem
+\item the Riesz-Fischer theorem (in old and ``full-power'' forms)
 \item Theorem 4.6: Fourier series converge in $L^2$
 \end{itemize}
 \end{block}
