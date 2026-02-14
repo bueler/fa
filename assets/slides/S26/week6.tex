@@ -118,20 +118,24 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \begin{frame}{intervals and their lengths}
 
 \begin{itemize}
-\item in Chapter 3 our textbook defines \emph{measurable} for subsets of $\RR^n$, and the \emph{simple function} for functions from $\RR^n$ to $\RR$
+\item in Chapter 3 our textbook defines \emph{measurable subset} (of $\RR^n$), and then \emph{simple function} (from $\RR^n$ to $\RR$)
 \item I will give the definitions for $\RR^1$ here
 \end{itemize}
 
 \begin{definition}
 \begin{itemize}
-\item a \emph{(finite) interval} $I\subset \RR^1$ is either $(a,b)$ or $(a,b]$ or $[a,b)$ or $[a,b]$ for real numbers $a\le b$
-\item the \emph{length} of a (finite) interval is $m(I) = b - a < \infty$
+\item for real numbers $a\le b$, a \emph{finite interval} $I\subset \RR^1$ is either
+    $$(a,b) \text{ or } (a,b] \text{ or } [a,b) \text{ or } [a,b]$$ 
+\item the \emph{length} of a (finite) interval is
+    $$m(I) = b - a < \infty$$
 \end{itemize}
 \end{definition}
 
 \begin{itemize}
-\item the empty set is a finite interval: $\emptyset = (a,a)$
-\item a singleton set is a finite interval: $\{a\} = [a,a]$
+\item singleton sets, and the empty set, are finite intervals with length zero
+   \begin{itemize}
+   \item[$\circ$] $\{a\} = [a,a]$ and $\emptyset = (a,a)$
+   \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -180,19 +184,28 @@ where the infimum is over countable unions of (finite) intervals $I_k$ covering 
 \begin{frame}{measure zero}
 
 \begin{definition}
-a subset $A\subset \RR^1$ has \emph{measure zero} if $m^*(A)=0$, that is, if for every $\eps>0$ there is a countable covering of $A$ by intervals of total length less than $\eps$:
-	$$\sum_{k=1}^\infty m(I_k) < \eps \qquad \text{ where } A \subset \bigcup_{k=1}^\infty I_k$$
+a subset $A\subset \RR^1$ has \emph{measure zero} if $m^*(A)=0$
 \end{definition}
 
+\begin{lemma}
+$A\subset \RR^1$ has measure zero if and only if for every $\eps>0$ there is a countable covering of $A$ by intervals of total length less than $\eps$:
+	$$\sum_{k=1}^\infty m(I_k) < \eps \qquad \text{ where } A \subset \bigcup_{k=1}^\infty I_k$$
+\end{lemma}
+
+{\small \noindent \emph{Proof.}
+Just think through the definition of $m^*(A)=0$.  \qed
+}
+
+\bigskip
 \begin{itemize}
 \item every subset of a measure zero set has measure zero
 \item every finite or countable set has measure zero
-\item the Cantor set $C\subset[0,1]$, which has uncountable cardinality, has measure zero
+\item the Cantor set $C\subset[0,1]$, though it has uncountable cardinality, has measure zero
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{certain collections of subsets of $\RR^1$}
+\begin{frame}{certain subsets of $\RR^1$?}
 
 \begin{definition}
 given two sets $A,B$, their \emph{symmetric difference} is the set
@@ -202,18 +215,19 @@ given two sets $A,B$, their \emph{symmetric difference} is the set
 \begin{definition}
 section 3.2 defines three collections of subsets of $\RR^1$:
 \begin{itemize}
-\item $\cE$ is the collection of finite, disjoint unions of (finite) intervals
-\item $\cM_\cF$ is the collection of all $A\subset \RR^1$ such that
+\item {\large $\cE$} is the collection of finite, disjoint unions of (finite) intervals
+\item {\large $\cM_\cF$} is the collection of all $A\subset \RR^1$ such that
 	$$m^*(S(A_k,A)) \to 0 \text{ as } k \to \infty$$
 for some sequence $A_k \in \cE$
-\item $\cM$ is the collection of finite and countable unions of sets from $\cM_\cF$
+\item {\large $\cM$} is the collection of finite and countable unions of sets from $\cM_\cF$
 \end{itemize}
 \end{definition}
 
-\begin{itemize}
-\item thus:
+\vspace{-2mm}
+
+{\large
 	$$\cE \subset \cM_{\cF} \subset \cM \subset 2^{(\RR^1)}$$
-\end{itemize}
+}
 \end{frame}
 
 
@@ -239,17 +253,17 @@ $\cM$ is the collection of \emph{Lebesgue measurable sets}
 \begin{frame}{two very useful lemmas}
 
 \begin{lemma}
-$G \subset \RR^1$ is open if and only if $G$ is a countable, disjoint union of open intervals:
+$G \subset \RR^1$ is open if and only if it is a countable, disjoint union of open intervals:
 	$$G = \bigcup_{k=1}^\infty (a_k, b_k) \qquad \text{ where } a_k,b_k \in [-\infty,+\infty]$$
 \end{lemma}
 
 \begin{itemize}
-\item thus $m^*(G) = \sum_{k} b_k - a_k$ for open sets $G$ \emph{if} intervals all have finite length
+\item thus $m^*(G) = \sum_{k} b_k - a_k$ for open sets $G$
 \end{itemize}
 
 \begin{lemma}
-a measurable set can be well-squeezed between a closed and an open set:
-	$$A \in \cM \qquad \iff \qquad \begin{matrix} \forall \eps>0 \, \exists E \text{ closed } \, \exists G \text{ open } \text{ s.t. } \hspace{10mm} \\ E \subset A \subset G \text{ and } m^*(G\setminus E)<\eps \end{matrix}$$
+a measurable set can be squeezed between a closed and an open set:
+	$$A \in \cM \qquad \iff \qquad \begin{matrix} \forall \eps>0 \, \exists E \text{ closed } \, \exists G \text{ open } \text{ s.t. } \hspace{10mm} \\ E \subset A \subset G\, \text{ and }\, m^*(G\setminus E)<\eps \end{matrix}$$
 \end{lemma}
 
 \noindent picture:
@@ -276,10 +290,6 @@ m : \cM &\to [0,+\infty] \\
 if $A_k\in \cM$ are pairwise disjoint ($A_j \cap A_k = \emptyset$ if $j\ne k$) then
 	$$m\left(\bigcup_{k=1}^\infty A_k\right) = \sum_{k=1}^\infty m(A_k)$$
 \end{lemma}
-
-\begin{itemize}
-\item more on Lebesgue measure, and the general idea of a measure, in Chapter 3
-\end{itemize}
 \end{frame}
 
 
@@ -297,11 +307,15 @@ if $A_k\in \cM$ are pairwise disjoint ($A_j \cap A_k = \emptyset$ if $j\ne k$) t
 
 \begin{definition}
 the \emph{indicator function} for the set $A\subset \RR^1$ is
-	$$\one_A(x) = \chi_A(x) = \begin{cases} 1, & x\in A \\ 0, & x\notin A \end{cases}$$
+	$$\one_A(x) = \begin{cases} 1, & x\in A \\ 0, & x\notin A \end{cases}$$
 \end{definition}
 
+\begin{itemize}
+\item also denoted $\chi_A(x)$
+\end{itemize}
+
 \begin{definition}
-a \emph{(measurable) simple function}, $s:\RR^1\to\RR$, is a finite linear combination of indicator functions of measurable sets $E_k \in \cM$:
+a \emph{simple function}, $s:\RR^1\to\RR$, is a finite linear combination of indicator functions of measurable sets $E_k \in \cM$, using coefficients $c_k\in\RR$:
 	$$s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$$
 \end{definition}
 
@@ -314,7 +328,7 @@ a \emph{(measurable) simple function}, $s:\RR^1\to\RR$, is a finite linear combi
 \begin{frame}{integrals of simple functions}
 
 \begin{itemize}
-\item the integral of a simple function \, $\ds s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$ \, is almost obvious
+\item the integral of a simple function \, $\ds s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$ \, is obvious?
 \end{itemize}
 
 \begin{definition}
