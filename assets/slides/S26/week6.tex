@@ -120,7 +120,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 \begin{itemize}
 \item in Chapter 3 our textbook defines \emph{measurable subset} (of $\RR^n$), and then \emph{simple function} (from $\RR^n$ to $\RR$)
-\item I will give the definitions for $\RR^1$ here
+\item I will give the definitions for $\RR^1$ in these slides
 \end{itemize}
 
 \begin{definition}
@@ -155,7 +155,7 @@ where the infimum is over countable unions of (finite) intervals $I_k$ covering 
    \begin{itemize}
    \item[$\circ$] the \emph{power set} of a set $S$ is \, $2^S = \left\{A \,:\, A\subset S\right\}$
    \end{itemize}
-\item $m^*(A)=+\infty$ if there is no open covering of $A$ by countably-many intervals of finite total length
+\item $m^*(A)=+\infty$ is possible
 \end{itemize}
 \end{frame}
 
@@ -174,10 +174,10 @@ where the infimum is over countable unions of (finite) intervals $I_k$ covering 
 \vspace{15mm}
 \end{proof}
 \item[Ex 3] $m^*(\QQ)=0$
-\item[Ex 4] $m^*(C)=0$ where $C \subset [0,1]$ is the \emph{Cantor middle-thirds set}  \hfill [\emph{picture}]
+\item[Ex 4] $m^*([0,1]\setminus\QQ)=1$
+\item[Ex 5] $m^*(C)=0$ where $C \subset [0,1]$ is the \emph{Cantor middle-thirds set}  \hfill [\emph{picture}]
 
 \vspace{14mm}
-\item[Ex 5] $m^*([0,1]\setminus\QQ)=1$ and $m^*(\RR\setminus\QQ)=+\infty$
 \end{itemize}
 \end{frame}
 
@@ -206,12 +206,20 @@ Just think through the definition of $m^*(A)=0$.  \qed
 \end{frame}
 
 
-\begin{frame}{certain subsets of $\RR^1$?}
+\begin{frame}{symmetric difference of sets}
 
 \begin{definition}
 given two sets $A,B$, their \emph{symmetric difference} is the set
 	$$S(A,B) = (A \setminus B) \cup (B \setminus A) = (A \cup B) \setminus (A\cap B)$$
 \end{definition}
+
+\medskip \noindent picture:
+
+\vspace{60mm}
+\end{frame}
+
+
+\begin{frame}{certain subsets of $\RR^1$, in Chapter 3}
 
 \begin{definition}
 section 3.2 defines three collections of subsets of $\RR^1$:
@@ -224,7 +232,7 @@ for some sequence $A_k \in \cE$
 \end{itemize}
 \end{definition}
 
-\vspace{-2mm}
+\vspace{10mm}
 
 {\large
 	$$\cE \subset \cM_{\cF} \subset \cM \subset 2^{(\RR^1)}$$
@@ -246,7 +254,7 @@ $\cM$ is the collection of \emph{Lebesgue measurable sets}
 	$$A \in \cM \iff \forall \eps>0\, \exists\, B=\bigcup_{k=1}^\infty I_k \text{ so that } m^*(S(A,B))<\eps$$
 \item<2> \alert{there exist $A\subset \RR^1$ that are not Lebesgue measurable}:
    $$\cM \subsetneq 2^{(\RR^1)}$$
-\item<2> more on measurable sets in Chapter 3
+\item<2> I will be covering this Chapter 3 material somewhat more carefully in the next few days
 \end{itemize}
 \end{frame}
 
@@ -284,11 +292,11 @@ m : \cM &\to [0,+\infty] \\
 \end{definition}
 
 \begin{itemize}
-\item what's the key property of a measure? \emph{countable additivity}
+\item what's the key property of a measure?
 \end{itemize}
 
 \begin{lemma}
-if $A_k\in \cM$ are pairwise disjoint ($A_j \cap A_k = \emptyset$ if $j\ne k$) then
+$m$ is \alert{countably additive}, that is, if $A_k\in \cM$ are pairwise disjoint ($A_j \cap A_k = \emptyset$ for any $j\ne k$) then
 	$$m\left(\bigcup_{k=1}^\infty A_k\right) = \sum_{k=1}^\infty m(A_k)$$
 \end{lemma}
 \end{frame}
@@ -316,7 +324,7 @@ the \emph{indicator function} for the set $A\subset \RR^1$ is
 \end{itemize}
 
 \begin{definition}
-a \emph{simple function}, $s:\RR^1\to\RR$, is a finite linear combination of indicator functions of measurable sets $E_k \in \cM$, using coefficients $c_k\in\RR$:
+a \emph{simple function}, $s:\RR^1\to\RR$, is a \alert{finite linear combination of indicator functions of measurable sets} $E_k \in \cM$, using coefficients $c_k\in\RR$:
 	$$s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$$
 \end{definition}
 \end{frame}
@@ -326,12 +334,12 @@ a \emph{simple function}, $s:\RR^1\to\RR$, is a finite linear combination of ind
 
 \begin{itemize}
 \item the integral of a simple function \, $\ds s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$ \, is obvious?
-\item assume $\sum_k m(E_k)<\infty$ for simplicity
 \end{itemize}
 
 \begin{definition}
 if $s$ is a measurable simple function then its \emph{Lebesque integral} is
-	$$\int_\RR s(x)\,dx = \sum_{k=1}^N c_k m(E_k)$$
+	$$\int_\RR s(x)\,dx = \sum_{k=1}^N c_k m(E_k),$$
+assuming for simplicity that $\sum_k m(E_k)<\infty$
 \end{definition}
 
 \noindent picture:
@@ -343,15 +351,15 @@ if $s$ is a measurable simple function then its \emph{Lebesque integral} is
 \begin{frame}{the fundamental idea of Lebesgue integrals}
 
 \begin{itemize}
-\item \textbf{idea:} cut-up the \emph{range} of $f:[a,b] \to \RR$, and approximate by a simple function, and integrate that simple function
+\item idea: \alert{cut-up the \emph{range}} of $f:[a,b] \to \RR$, so as to approximate by a simple function, and integrate that simple function
    \begin{itemize}
-   \item[$\circ$] $f$ has to be \emph{measurable} \hfill \alert{$\longleftarrow$ to define!}
+   \item[$\circ$] $f$ has to be \emph{measurable} \hfill \alert{$\longleftarrow$ we will define!}
    \end{itemize}
-\item the range is cut into $y_0<y_1<\dots<y_N$:
+\item the range is cut into $y_0<y_1<\dots<y_N$ to define the simple function:
 	$$s(x) = \sum_{k=0}^{N-1} y_{k}\, \one_{f^{-1}([y_{k},y_{k+1}))}(x)$$
 
    \begin{itemize}
-   \item[$\circ$] $E_k = f^{-1}([y_{k},y_{k+1}))$ are the measurable sets for this simple function
+   \item[$\circ$] $E_k = f^{-1}([y_{k},y_{k+1}))$ are the measurable sets
    \end{itemize}
 \end{itemize}
 
@@ -359,12 +367,16 @@ if $s$ is a measurable simple function then its \emph{Lebesque integral} is
 for a measurable $f:[a,b] \to \RR$, the \emph{Lebesgue integral} is
     $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} y_{k}\, m\left(f^{-1}([y_{k},y_{k+1}))\right)$$
 \end{definition}
+
+\begin{itemize}
+\item the careful and correct definition first restricts to \emph{nonnegative} functions, and the uses ``$\sup$'' instead of the ``$\lim_{N\to\infty}$''
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}{the fundamental idea of Lebesgue integrals}
 
-\begin{definition}
+\begin{definition}[nearly the right definition]
 for a measurable $f:[a,b] \to \RR$, the \emph{Lebesgue integral} is
     $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} y_{k}\, m\left(f^{-1}([y_{k},y_{k+1}))\right)$$
 \end{definition}
@@ -375,14 +387,15 @@ for a measurable $f:[a,b] \to \RR$, the \emph{Lebesgue integral} is
 \end{frame}
 
 
-\section{step functions ($=$ piecewise-constant)}
+\section{step functions ($=$ piecewise-constant on meshes)}
 
-\begin{frame}{step functions on 1D meshes}
+\begin{frame}{step functions}
 
 \begin{itemize}
 \item simple functions $\ds s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$ are as complicated as the sets $E_k$
     \begin{itemize}
     \item[$\circ$] measurable sets $E_k$ can be quite intricate, e.g.~Cantor sets
+    \item[$\circ$] message: \alert{simple functions aren't actually simple}
     \end{itemize}
 \item what if we restrict $E_k$ to be intervals?
 \item given a 1D mesh $x_0<x_1<x_2<\dots<x_n$, define the (finite) intervals to be $I_k=[x_{k-1},x_k]$ or $[x_{k-1},x_k)$ or $(x_{k-1},x_k]$ or $(x_{k-1},x_k)$
@@ -398,44 +411,136 @@ for a measurable $f:[a,b] \to \RR$, the \emph{Lebesgue integral} is
 \end{frame}
 
 
-\begin{frame}{the two integrals (rough idea)}
+\begin{frame}{step functions}
+
+\begin{definition}
+given the mesh $x_0<x_1<x_2<\dots<x_n$ and $c_k \in \RR$ a \emph{step function} is
+     $$q(x) = \sum_{k=1}^N c_k \one_{I_k}(x),$$
+where $I_k$ is an interval of the mesh
+\end{definition}
+
+\medskip \noindent picture:
+
+\vspace{20mm}
 
 \begin{itemize}
-\item simple functions $\leftrightarrow$ Lebesgue integrals
-\item step functions $\leftrightarrow$ Riemann integrals
+\item weirdly, our textbook gets this definition \alert{wrong}!
+    \begin{itemize}
+    \item[$\circ$] please correct it on page 67
+    \item[$\circ$] the \emph{statement} of Theorem 3.22 is correct
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{the two integrals (rough comparison)}
+
+\begin{itemize}
+\item simple functions \alert{from meshing the range} $\leftrightarrow$ Lebesgue integrals
+\item step functions \alert{from meshing the domain} $\leftrightarrow$ Riemann integrals
 \end{itemize}
 
 \begin{block}{integration concepts}
 \begin{itemize}
-\item approximate $f:[a,b] \to \RR$ by simple functions, integrate those using the Lebesgue measure, and take a limit to get the \emph{Lebesgue integral}:
+\item approximate $f:[a,b] \to \RR$ by \alert{simple} functions, integrate those using the Lebesgue measure, and take a limit to get the \emph{Lebesgue integral}:
     $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} y_{k}\, m\left(f^{-1}([y_{k},y_{k+1}))\right)$$
-\item approximate $f:[a,b] \to \RR$ by step functions, integrate those, and take a limit to get the \emph{Riemann integral}:
+\item approximate $f:[a,b] \to \RR$ by \alert{step} functions, integrate those, and take a limit to get the \emph{Riemann integral}:
     $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} f(x_k^*)\, (x_k-x_{k-1})$$
 \end{itemize}
 \end{block}
 \end{frame}
 
 
+\begin{frame}{density theorems (mostly $\RR^1$ case)}
+
+\begin{theorem}
+\begin{enumerate}
+\item for every $f\in C([a,b])$ and $\eps>0$ there exists a step function $q$ such that $\|f-q\|_\infty < \infty$
+\item the simple functions are dense in $L^p(X,\mu),\|\cdot\|_p$, for $1 \le p \le \infty$
+\item the step functions are dense in $L^p(E,m),\|\cdot\|_p$, for $1 \le p < \infty$
+    \begin{itemize}
+    \item[$\circ$] here $E \subset \RR^1$ is measurable, e.g.~any interval
+    \end{itemize}
+\item the continuous functions $C([a,b])$ are dense in $L^p([a,b],m)$ for $1 \le p < \infty$
+\end{enumerate}
+\end{theorem}
+
+\begin{itemize}
+\item density of simple functions (item \itemnum{2}) in $L^p(X,\mu)$ is (essentially) the definition of the Lebesgue integral
+    \begin{itemize}
+    \item[$\circ$] this fact is completely general
+    \end{itemize}
+\item density of step functions $\implies$ density of simple functions
+\item \itemnum{1} is a 19th century fact which follows from uniform continuity
+    \begin{itemize}
+    \item[$\circ$] I have already used this idea in proving the Riemann-Lebesgue lemma
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
 \section{piecewise-linear functions}
 
-\begin{frame}{foo}
+\begin{frame}{piecewise-linear functions on 1D meshes}
 
-\begin{block}{x}
-y
-\end{block}
+\begin{itemize}
+\item restrict the (finite) intervals to be closed: $I_k=[x_{k-1},x_k]$
+\end{itemize}
+
+\begin{definition}
+\begin{itemize}
+\item given a mesh $a=x_0<x_1<x_2<\dots<x_n=b$ and coefficients $c_k, d_k \in \RR$, a \emph{continuous piecewise-linear function} on $[a,b]$ is
+     $$p(x) = \sum_{k=1}^N (c_k (x-x_{k-1}) + d_k) \, \one_{I_k}(x)$$
+if $c_{k-1} (x_k-x_{k-1}) + d_{k-1} \stackrel{\ast}{=} d_k$ for $k=2,3,\dots,N$
+\item a \emph{discontinuous piecewise-linear ``function''} is the same thing, but without requirement $\ast$
+\end{itemize}
+\end{definition}
+
+\medskip
+\noindent picture:
+
+\vspace{30mm}
+\end{frame}
+
+
+\begin{frame}{observation about piecewise functions}
+
+\begin{itemize}
+\item I have already used piecewise functions many times in proofs and counter-examples
+    \begin{itemize}
+    \item[$\circ$] often these are ``hat functions'' or moving spikes etc.
+    \item[$\circ$] the \alert{easiest constructable continuous functions} are often piecewise-linear
+    \item[$\circ$]the \alert{easiest constructable discontinuous functions} are often piecewise-constant
+    \end{itemize}
+\item a piecewise-linear or piecewise-constant ($=$ step) function \alert{is defined using finitely-many real numbers}, so it can be stored on a computer
+\item continuous piecewise-linear functions are foundational in applied and computational mathematics
+    \begin{itemize}
+    \item[$\circ$] generally: piecewise-polynomial functions
+    \item[$\circ$] also finite Fourier series ($=$ trigonometric polynomials)
+    \end{itemize}
+\item simple and step functions are foundational in theory
+    \begin{itemize}
+    \item[$\circ$] in fact piecewise-constant functions are very useful in practice
+    \end{itemize}
+\end{itemize}
 \end{frame}
 
 
 \section{piecewise functions on triangles (\emph{first look at finite elements})}
 
 \begin{frame}[fragile]
-\frametitle{foo}
+\frametitle{piecewise-linear and piecewise-constant functions on a polygon}
 
-\inputminted[fontsize=\small]{python}{codes/triangles.py}
+\begin{itemize}
+\item modern \emph{finite element} software is based (especially) on ``step'' and piecewise-linear functions on meshes in $\RR^d$ (especially: $d=1,2,3$)
+\item for example, \href{https://www.firedrakeproject.org/index.html}{Firedrake} is a Python library that makes this easy
+\item example below: mesh a polygonal approximation of the disk, approximate $f(x,y)=1-x^2-y^2$ by piecewise-linear, and put it in a file
+\item a separate program \href{https://www.paraview.org/}{Paraview} reads the file and generates the graphs
+\end{itemize}
 
-\begin{block}{x}
-y
-\end{block}
+\bigskip
+
+\inputminted[fontsize=\small,frame=single]{python}{codes/triangles.py}
 \end{frame}
 
 
