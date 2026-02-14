@@ -23,7 +23,7 @@
 % does not look nice, try deleting the line with the fontenc.
 
 \usepackage{fancyvrb,empheq,bm,xspace,dsfont}
-%\usepackage{minted}
+\usepackage{minted}
 \usepackage{tikz}
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
@@ -47,6 +47,7 @@
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cF}{\mathcal{F}}
 \newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
 
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\NN}{\mathbb{N}}
@@ -85,7 +86,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title{Piecewise functions: simple, step, \\ and piecewise-linear}
+\title{Functions defined in pieces: \\ simple, step, and piecewise-linear}
 
 \subtitle{a calculation for week 6}
 
@@ -113,7 +114,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 }
 
 
-\section{measurable subsets of $\RR^1$}
+\section{measurable subsets of $\RR^1$, and Lebesgue measure}
 
 \begin{frame}{intervals and their lengths}
 
@@ -318,10 +319,6 @@ the \emph{indicator function} for the set $A\subset \RR^1$ is
 a \emph{simple function}, $s:\RR^1\to\RR$, is a finite linear combination of indicator functions of measurable sets $E_k \in \cM$, using coefficients $c_k\in\RR$:
 	$$s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$$
 \end{definition}
-
-\noindent picture:
-
-\vspace{13mm}
 \end{frame}
 
 
@@ -329,6 +326,7 @@ a \emph{simple function}, $s:\RR^1\to\RR$, is a finite linear combination of ind
 
 \begin{itemize}
 \item the integral of a simple function \, $\ds s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$ \, is obvious?
+\item assume $\sum_k m(E_k)<\infty$ for simplicity
 \end{itemize}
 
 \begin{definition}
@@ -338,41 +336,82 @@ if $s$ is a measurable simple function then its \emph{Lebesque integral} is
 
 \noindent picture:
 
-\vspace{25mm}
+\vspace{35mm}
 \end{frame}
 
 
 \begin{frame}{the fundamental idea of Lebesgue integrals}
 
 \begin{itemize}
-\item \textbf{idea:} cut-up the \emph{range} of $f:\RR^1 \to \RR$, and approximate by a simple function, and integrate that simple function
+\item \textbf{idea:} cut-up the \emph{range} of $f:[a,b] \to \RR$, and approximate by a simple function, and integrate that simple function
    \begin{itemize}
-   \item[$\circ$] $f$ has to be \emph{measurable}
+   \item[$\circ$] $f$ has to be \emph{measurable} \hfill \alert{$\longleftarrow$ to define!}
    \end{itemize}
-\item the range is cut into $a_0<a_1<\dots<a_N$:
-	$$s(x) = \sum_{k=0}^{N-1} a_{k}\, \one_{f^{-1}([a_{k},a_{k+1}))}(x)$$
-\item the integral: \quad $\ds \int_\RR f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} a_{k}\, m\left(f^{-1}([a_{k},a_{k+1}))\right)$
+\item the range is cut into $y_0<y_1<\dots<y_N$:
+	$$s(x) = \sum_{k=0}^{N-1} y_{k}\, \one_{f^{-1}([y_{k},y_{k+1}))}(x)$$
+
+   \begin{itemize}
+   \item[$\circ$] $E_k = f^{-1}([y_{k},y_{k+1}))$ are the measurable sets for this simple function
+   \end{itemize}
 \end{itemize}
+
+\begin{definition}[nearly the right definition]
+for a measurable $f:[a,b] \to \RR$, the \emph{Lebesgue integral} is
+    $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} y_{k}\, m\left(f^{-1}([y_{k},y_{k+1}))\right)$$
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{the fundamental idea of Lebesgue integrals}
+
+\begin{definition}
+for a measurable $f:[a,b] \to \RR$, the \emph{Lebesgue integral} is
+    $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} y_{k}\, m\left(f^{-1}([y_{k},y_{k+1}))\right)$$
+\end{definition}
 
 \noindent picture:
 
-\vspace{25mm}
+\vspace{70mm}
 \end{frame}
+
 
 \section{step functions ($=$ piecewise-constant)}
 
-\begin{frame}{foo}
+\begin{frame}{step functions on 1D meshes}
 
-\begin{block}{x}
-y
-\end{block}
+\begin{itemize}
+\item simple functions $\ds s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$ are as complicated as the sets $E_k$
+    \begin{itemize}
+    \item[$\circ$] measurable sets $E_k$ can be quite intricate, e.g.~Cantor sets
+    \end{itemize}
+\item what if we restrict $E_k$ to be intervals?
+\item given a 1D mesh $x_0<x_1<x_2<\dots<x_n$, define the (finite) intervals to be $I_k=[x_{k-1},x_k]$ or $[x_{k-1},x_k)$ or $(x_{k-1},x_k]$ or $(x_{k-1},x_k)$
+\end{itemize}
+
+\begin{definition}[equivalent forms]
+\begin{itemize}
+\item given $x_0<x_1<x_2<\dots<x_n$ and $c_k \in \RR$ a \emph{step function} is
+     $$q(x) = \sum_{k=1}^N c_k \one_{I_k}(x)$$
+\item a simple function is a \emph{step function} if each $E_k$ is a finite interval
+\end{itemize}
+\end{definition}
 \end{frame}
 
 
-\begin{frame}{foo}
+\begin{frame}{the two integrals (rough idea)}
 
-\begin{block}{x}
-y
+\begin{itemize}
+\item simple functions $\leftrightarrow$ Lebesgue integrals
+\item step functions $\leftrightarrow$ Riemann integrals
+\end{itemize}
+
+\begin{block}{integration concepts}
+\begin{itemize}
+\item approximate $f:[a,b] \to \RR$ by simple functions, integrate those using the Lebesgue measure, and take a limit to get the \emph{Lebesgue integral}:
+    $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} y_{k}\, m\left(f^{-1}([y_{k},y_{k+1}))\right)$$
+\item approximate $f:[a,b] \to \RR$ by step functions, integrate those, and take a limit to get the \emph{Riemann integral}:
+    $$\int_a^b f(x)\,dx = \lim_{N\to \infty} \sum_{k=0}^{N-1} f(x_k^*)\, (x_k-x_{k-1})$$
+\end{itemize}
 \end{block}
 \end{frame}
 
@@ -389,11 +428,40 @@ y
 
 \section{piecewise functions on triangles (\emph{first look at finite elements})}
 
-\begin{frame}{foo}
+\begin{frame}[fragile]
+\frametitle{foo}
+
+\inputminted[fontsize=\small]{python}{codes/triangles.py}
 
 \begin{block}{x}
 y
 \end{block}
+\end{frame}
+
+
+\begin{frame}{piecewise-linear (and piecewise-constant) on a 2D mesh}
+
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\includegraphics[width=0.8\textwidth]{figs/mesh.png}
+
+mesh of triangles
+
+\bigskip
+\includegraphics[width=0.55\textwidth]{figs/meshfine.png}
+
+refined mesh
+\end{column}
+\begin{column}{0.6\textwidth}
+\hfill \includegraphics<1>[width=0.75\textheight]{figs/dome.png}\includegraphics<2>[width=0.8\textheight]{figs/DGdome.png}\includegraphics<3>[width=0.8\textheight]{figs/DGdomefine.png}
+
+\bigskip
+
+\hfill \only<1>{piecewise-linear interpolant of}\only<2-3>{piecewise-constant interpolant of}
+
+\hfill $f(x,y) = 1 - x^2 - y^2$
+\end{column}
+\end{columns}
 \end{frame}
 
 
@@ -402,19 +470,36 @@ y
 
 \begin{frame}{theory in week 6: Chapter 3 in Saxe}
 
-\begin{itemize}
-\item x
-\end{itemize}
-
 \begin{block}{to define:}
 \begin{itemize}
-\item x
+\item \emph{ring} of sets, and \emph{$\sigma$-ring} of sets $\cR$ \hfill ($=$ \emph{algebra} and $\sigma$-\emph{algebra})
+\item an abstract \emph{measure} $\mu$
+\item \emph{Lebesgue outer measure} $m^*$ on $\RR^n$
+\item \emph{Lebesgue measurable} subsets $\cM$ of $\RR^n$
+\item \emph{Lebesgue measure} $m$
+\item \emph{simple functions} and their integrals
+\item $f:\RR^n\to \RR$ is \emph{measurable}
+\item \emph{Lebesgue integral} $\int_E f\,dm$
+\item abstract/general: \emph{measure space} $(X,\cR,\mu)$, \emph{measurable} $f:X\to \RR$
+\item abstract/general: \emph{Lebesgue integral} $\int_X f\,d\mu$
+\item general: $L^p(X,\mu)$ space
 \end{itemize}
 \end{block}
+\end{frame}
 
-\begin{block}{to prove:}
+
+\begin{frame}{theory in week 6: Chapter 3 in Saxe}
+
+\begin{block}{to prove \dots or at least sketch the proof:}
 \begin{itemize}
-\item x
+\item $\cM$ is a $\sigma$-ring and $m^*$ is a measure on $\cM$ \hfill (\emph{which defines $m=m^*|_{\cM}$})
+\item Riemann integrable $\implies$ Lebesgue integrable
+\item monotone convergence theorem, Fatou's lemma, dominated convergence theorem
+\item $L^p(X,\mu), \|\cdot\|_p$ is a normed vector space
+\item $L^p(X,\mu)$ is complete \hfill (\emph{thus a Banach space; Hilbert if $p=2$})
+\item H\"older's inequality: if $\frac{1}{p} + \frac{1}{q} = 1$ then $\|fg\|_1 \le \|f\|_p\|g\|_q$
+\item Minkowski inequality $=$ triangle inequality in $L^p(X,\mu)$
+\item step functions are dense in $L^p(X,\mu)$
 \end{itemize}
 \end{block}
 
