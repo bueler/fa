@@ -1,9 +1,11 @@
 semester: Spring 2026
 home: assets
 daily:
-- day: Wednesday 18 February
+- day: Friday 20 February
   description: "<b>calculation: functions defined in pieces</b>"
   slides: slides/S26/week6.pdf
+- day: Wednesday 18 February
+  description: the Fourier ON sequence is complete
 - day: Monday 16 February
   description: Parseval's equality, Riesz-Fischer
   week: 6
