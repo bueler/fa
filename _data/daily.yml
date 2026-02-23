@@ -1,6 +1,16 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Monday 2 March
+  description: Midterm Exam 1
+  week: 8
+- day: Friday 27 February
+  description: abstract measure spaces, and L^p(X,mu)
+- day: Wednesday 25 February
+  description: Lebesgue measurable sets on R^n, and integrals
+- day: Monday 23 February
+  description: calculation cont.
+  week: 7
 - day: Friday 20 February
   description: "<b>calculation: functions defined in pieces</b>"
   slides: slides/S26/week6.pdf
