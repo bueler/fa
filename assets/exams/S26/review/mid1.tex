@@ -11,8 +11,8 @@
 \normalspacing
 
 % macros
-\usepackage{amssymb,xspace}
-\usepackage[pdftex,colorlinks=true]{hyperref}
+\usepackage{amssymb,xspace,dsfont}
+\usepackage[pdftex,colorlinks=true,urlcolor=blue]{hyperref}
 
 \usepackage[final]{graphicx}
 \newcommand{\regfigure}[3]{\includegraphics[height=#2in,width=#3in]{#1.eps}}
@@ -24,8 +24,10 @@
 \newcommand{\bu}{\mathbf{u}}
 \newcommand{\bv}{\mathbf{v}}
 
-\newcommand{\cH}{\mathcal{H}}
-\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
 
 \newcommand{\CC}{{\mathbb{C}}}
 \newcommand{\RR}{{\mathbb{R}}}
@@ -40,6 +42,8 @@
 
 \renewcommand{\Im}{\operatorname{Im}}
 \renewcommand{\Re}{\operatorname{Re}}
+
+\newcommand{\one}{\mathds{1}}
 
 \newcommand{\Span}{\operatorname{span}}
 \newcommand{\rank}{\operatorname{rank}}
@@ -72,9 +76,9 @@
 \normalsize
 \bigskip
 \begin{quote}
-The Midterm Quiz will be built from Chapters 1--4 in the textbook.\footnote{\textbook}  Specifically, it will cover sections 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.2, 3.3, 3.6, 4.1, 4.2, and 4.3.
+The Midterm Exam will cover Chapters 1--4 in the textbook,\footnote{\textbook} plus any closely-related ideas in the ``calculation'' slides.   Specifically, it will cover sections 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.2, 3.3, 3.6, 4.1, 4.2, and 4.3.  The slides are linked on the \href{https://bueler.github.io/fa/daily.html}{Daily Log tab} of the public course page.
 
-However, I will \emph{not} ask questions from sections 3.1 (probability), 3.4 (Lebesgue convergence theorems), and 3.5 (Riemann-versus-Lebesgue).  Also I will not ask about any of the nontrivial proofs in section 3.6, but I \emph{do} want you to read the main ideas.
+However, I will \emph{not} ask questions from sections 3.1 (probability), 3.4 (Lebesgue convergence theorems), or 3.5 (Riemann-versus-Lebesgue); we have not yet covered these sections adequately.  While I will not ask about any of the nontrivial proofs in section 3.6, please do \emph{read the main ideas}.
 
 The problems will be of the following types, based on the lists below: state definitions, state theorems, describe or illustrate geometrical ideas, apply theorems in easy situations, and prove simple theorems/corollaries.
 \end{quote}
@@ -100,36 +104,37 @@ The problems will be of the following types, based on the lists below: state def
 \item open and closed subsets of a metric space
 \item open covers, and subcovers, in metric spaces
 \item compact, and sequentially compact, sets in metric spaces
-
-FIXME
+\item separable metric space
 \item Cauchy sequence (in a metric space)
-\item sequential compactness of a set (in a metric space; p.~30)
 \item complete metric space
-\item Banach space
-\item linear map between vector spaces
-\item eigenvector and eigenvalue for a linear map on a vector space
-\item norm in an inner product space
-\item complex Hilbert space $\cH$
-\item positive measure
+\item Banach and Hilbert space
+\item ring of sets, and $\sigma$-ring of sets
+\item additive and countably additive functions on sets
+\item measure
+\item interval in $\RR^n$
+\item $\cE$ is the collection of all finite disjoint unions of intervals
+\item $2^X$ is the collection of all subsets of $X$
+\item outer measure $m^*$ on subsets of $\RR^n$
+\item symmetric difference $S(A,B)$ of sets $A,B$
+\item $\cM_\cF$ is the collection of all subsets $A\subset \RR^n$ for which there is a sequence $A_k\in\cE$ so that $m^*(S(A_k,A))\to 0$ as $k\to\infty$
+\item $\cM$ is the collection of all subsets of $\RR^n$ which can be written as finite or countable unions of sets in $\cM_\cF$
+\item measurable function $f:\RR^n\to \RR$
+\item (measurable) simple function
+\item Lebesgue integral of a (measurable) simple function
+\item Lebesgue integral of a (measurable) nonnegative function
+\item a real-valued function is integrable
+\item the Lebesgue integral of $f$ over $E$ is $\int_E f\,dm$
+\item a set $A\subset \RR^n$ has measure zero if $m^*(A)=0$
 \item almost everywhere
-\item simple function
-\item $L^p(X)=L^p(X,dm)$\footnote{For $1\le p \le \infty$ and $dm=(\text{Lebesgue measure})$, $L^p(X)=L^p(X,dm)$ can be defined for any Lebesgue-measurable set $X\subset \RR^n$.  Note that $L^p(X,dm)$ is a set of \emph{measurable} functions $f:X\to\CC$.} for $1\le p < \infty$, including norm
-\item $L^\infty(X)=L^\infty(X,dm)$, including norm
-\item $C^\infty(\RR)$, $C^\infty(a,b)$, $C_0^\infty(\RR)$, $C_0^\infty(a,b)$
-\item bounded operator between normed vector spaces
-\item $\cL(V,W)$ for $V,W$ normed vector spaces
-\item dual space $W'$, for $W$ a normed vector space
-\item operator norm
-\item multiplication operator $M_f$ on $L^p(X,d\mu)$, for $f\in L^\infty(X,d\mu)$
-\item kernel and range of $T \in \cL(V,W)$
-\item linear isometry between normed vector spaces (p.~11)
-\item left and right shift operators on $\ell^2$
-\item $S^\perp$, for $S\subset \cH$ any subset
-\item direct sum\footnote{We write $V\oplus W=X$ if: \quad \emph{i}) $X$ is a vector space, \emph{ii}) $V,W$ are subspaces of $X$, \emph{iii}) for each $x\in X$ there exists $v\in V$ and $w\in W$ so that $v+w=x$ (i.e.~$V+W=X$), and \emph{iv}) $V\cap W = \{0\}$.} $V\oplus W=X$ of subspaces
-\item separable Hilbert space
-\item $w_n \to w$ weakly in $\cH$ (p.~27)
-\item orthonormal (ON) sequence in $\cH$
-\item ON basis in $\cH$
+\item abstract measure space $(X,\cR,\mu)$
+\item counting measure on a set
+\item for $1\le p < \infty$, the vector space $L^p(X,\mu)$ is the set of equivalence classes of functions, up to almost everywhere, such that $\int_X |f|^p\,d\mu$ is finite
+\item for $1\le p < \infty$, $\|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}$ is a norm on  $L^p(X,\mu)$
+\item integral of a complex-valued function
+\item orthogonal vectors in an inner product space
+\item orthonormal (ON) sequence
+\item Fourier coefficients and Fourier series with respect to an ON sequence
+\item complete orthonormal sequence
 \end{itemize}
 
 \normalspacing
@@ -139,12 +144,8 @@ FIXME
 \item Cauchy-Schwarz (Theorem 1.3)
 \item Heine-Borel theorem for $\RR^n$ ()
 \item extreme value theorem for $\RR$-valued functions on compact $K\subset \RR^n$ (Handout)
-\item Fundamental Theorem of Calculus (Handout)
-\item $\cL(V,W)$ is complete in operator norm if $W$ is complete (Theorem 2.10)
 \item parallelogram law (Lemma 2.17; \textbf{be able to prove})
-\item if $W\subset \cH$ is closed then $\cH = W\oplus W^\perp$ (Theorem 2.27)
 \item Riesz lemma (Theorem 2.28)
-\item $\cH$ separable $\iff$ there exists an ON basis of $\cH$ (Theorem 2.33)
 \item Bessel's inequality (Theorem 2.34)
 \end{itemize}
 
@@ -153,27 +154,58 @@ FIXME
 \noindent \textbf{Techniques FIXME}.  Be able to justify and use these calculation/proof techniques.
 \begin{itemize}
 \item To show that $W\subset X$ is a subspace of a complex vector space it suffices to show that $0\in W$ and that for $v,w\in W$ and $\lambda \in \CC$ then $v + \lambda w \in W$.
-\item If $\cH$ is a Hilbert space and $\{e_j\}_{j\in\NN}$ is an ON basis of $\cH$ then for $v\in\cH$  there are coefficients $c_j\in\CC$ so that $\ds v = \sum_{j=1}^\infty c_j e_j$, and furthermore $c_j=\ip{e_j}{v}$.
-\item The triangle inequality $\|x+y\|\le \|x\|+\|y\|$ holds in a normed vector space, and its corollary $\big|\|x\|-\|y\|\big| \le \|x-y\|$ as well.
+\item If is a Hilbert space and $\{e_j\}_{j\in\NN}$ is an ON basis then for  there are coefficients $c_j\in\CC$ so that $\ds v = \sum_{j=1}^\infty c_j e_j$, and furthermore $c_j=\ip{e_j}{v}$.
 \item The norm in a normed vector space is continuous.
 \item The inner product in an inner product space is continuous.
 \end{itemize}
 
 \normalspacing
 \medskip
-\noindent \textbf{Corrections}.  There are 2 topics in the textbook,\footnote{\textbook} that I know of, that need correction.
+\noindent \textbf{Corrections}.  There are 3 topics in the textbook\footnote{\textbook} that need correction, to my knowledge.
 
+\renewcommand{\labelenumi}{\arabic{enumi}. \,}
 \begin{enumerate}
-\item On page 19 the textbook defined \emph{equicontinuous at $x \in [a,b]$}, for a set $E$, correctly.  However, the definition of an equicontinuous set on an interval is not correct, or at least the definition given is not the correct hypothesis for Theorem 2.6.  The textbook should say:
+\item On page 19 the textbook correctly defines \emph{equicontinuous at $x \in [a,b]$} for a set $E$.  However, the given definition of an equicontinuous set on an interval is not the correct hypothesis for Theorem 2.6.  The textbook should say:
 
 \medskip
 \begin{quote}
 \emph{Definition.}  Let $E\subset C([a,b])$.  The set $E$ is \emph{equicontinuous at} $x\in[a,b]$ if for any $\eps>0$ there exists a $\delta>0$ such that $y\in[a,b]$ and $|x-y|<\delta$ implies $|f(x)-f(y)|<\eps$ for all $f\in E$.  The set $E$ is \emph{uniformly equicontinuous} if for any $\eps>0$ there exists a $\delta > 0$ such that $f\in E$ and $x,y\in[a,b]$ and $|x-y|<\delta$ imply $|f(x)-f(y)|<\eps$.
 \end{quote}
 
-FIXME talk
+\medskip \noindent From this definition, Theorem 2.6 should say:
 
-\item FIXME step function
+\medskip
+\begin{quote}
+\emph{Theorem 2.6 (The Ascoli-Arzel\`a Theorem).}  Let $E\subset \big(C([a,b]), \|\cdot\|_\infty\big)$.  Then $E$ is compact if and only if $E$ is closed, bounded, and uniformly equicontinuous on $[a,b]$.
+\end{quote}
+
+\bigskip
+\item On page 46 of the textbook there is a minor omission, namely of a finite-measure assumption.  Presumably the author is trying to avoid a complicated statement, but without an addititional hypothesis the textbook's definition can generate $\infty-\infty$ ambiguities.  The textbook should say:
+
+\medskip
+\begin{quote}
+\emph{Definition.}  Let $E \in \cM$.  For a measurable simple function $s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$, such that $m(E\cap E_k)<\infty$ for each $k$, we define the \emph{Lebesgue integral of $s$ over $E$} by
+	$$\int_E s\,dm = \sum_{k=1}^N c_k m(E\cap E_k).$$
+If $c_k\ge 0$ for all $k$ then this integral gives a well-defined result in $[0,+\infty]$ even without the finite measure assumption.
+\end{quote}
+
+\bigskip
+\item The definition of a \emph{step function} on page 67 is not correct, nor is the proof of Theorem 3.22 correct for actual step functions.  What the textbook says is nearly vacuous, whereas Riesz's result for Euclidean space, which is Theorem 3.22 when correctly stated, is significant.
+
+\medskip
+\begin{quote}
+\emph{Definition.}  Suppose $X \subset \RR^n$ is an open subset or an interval.  A function $f:X\to\CC$, or $f:X\to \RR$, is a \emph{step function} if it is a finite linear combination of characteristic functions of intervals,
+	$$f(x) = \sum_{k=1}^n c_k \one_{I_k}(x),$$
+with $c_k\in \CC$ or $c_k\in\RR$, respectively.
+\end{quote}
+
+\medskip \noindent Now the idea is that any $L^p$ function can be approximated by a step function because step functions can approximate characteristic functions of measurable sets, that is, simple functions.  This is true \emph{if} the norm is an integral norm against Lebesgue measure $m$, which is why there is a $p<\infty$ restriction.  Note that the density of step functions is not automatic for other measures.
+
+\medskip
+\begin{quote}
+\emph{Theorem 3.22.}  Suppose $X \subset \RR^n$ is an open subset or an interval.  If $1 \le p < \infty$ then the step functions are dense in $L^p(X,m)$.
+\end{quote}
+
 \end{enumerate}
 \end{document}
 
