@@ -4,9 +4,9 @@ exams:
 - name: Midterm Exam 1
   date: Monday 2 March
   info: <b>in class</b>
-  #reviewguide: review/mid.pdf
-  #blank: mid.pdf
-  #solutions: midsolns.pdf
+  reviewguide: mid1review.pdf
+  #blank: mid1.pdf
+  #solutions: mid1solns.pdf
 - name: Midterm Exam 2
   date: Monday 13 April
   info: <b>in class</b>

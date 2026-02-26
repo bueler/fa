@@ -76,8 +76,7 @@
 \normalsize
 \bigskip
 \begin{quote}
-The Midterm Exam will cover Chapters 1--4 in the textbook,\footnote{\textbook} plus any closely-related ideas in the ``calculation'' slides.   Specifically, it will cover sections 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.2, 3.3, 3.6, 4.1, 4.2, and 4.3.  The slides are linked on the \href{https://bueler.github.io/fa/daily.html}{Daily Log tab} of the public course page.
-
+The first Midterm Exam will cover Chapters 1--4 in the textbook,\footnote{\textbook} plus any closely-related ideas in the ``calculation'' slides.\footnote{The slides are linked on the \href{https://bueler.github.io/fa/daily.html}{Daily Log tab} of the public course page.}  Specifically, the Exam will cover sections 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.2, 3.3, 3.6, 4.1, 4.2, and 4.3.
 However, I will \emph{not} ask questions from sections 3.1 (probability), 3.4 (Lebesgue convergence theorems), or 3.5 (Riemann-versus-Lebesgue); we have not yet covered these sections adequately.  While I will not ask about any of the nontrivial proofs in section 3.6, please do \emph{read the main ideas}.
 
 The problems will be of the following types, based on the lists below: state definitions, state theorems, describe or illustrate geometrical ideas, apply theorems in easy situations, and prove simple theorems/corollaries.
@@ -85,36 +84,36 @@ The problems will be of the following types, based on the lists below: state def
 \bigskip
 
 \bigspacing
-\noindent \textbf{Definitions}.  Be able to state the precise definition.
+\noindent \textbf{Definitions}.  Be able to state the precise definition.  Be able to prove ideas which follow immediately from the definitions.
 \begin{itemize}
 \item metric $d(\cdot,\cdot)$, and metric space
 \item discrete metric
 \item convergence of a sequence in a metric space
 \item continuity of a function $f:(M,d_M) \to (N,d_N)$, at a point $x_0\in M$
 \item norm $\|\cdot\|$, and normed vector space, both real and complex
-\item inner product $\ip{\cdot}{\cdot}$, and inner product space, both real and complex
+\item inner product $\ip{\cdot}{\cdot}$, and inner product space, both real and complex\footnote{In the textbook, complex inner products have the conjugate on the second variable, e.g.~$\ip{f}{g} = \int f(x)\overline{g(x)}\,dx$, and thus symmetry is $\ip{u}{v}=\overline{\ip{v}{u}}$, and linearity is in the first variable $\ip{\lambda u}{v} = \lambda \ip{u}{v}$.}
 \item sequence space $\ell^2$, and its inner product $\ip{\cdot}{\cdot}$
 \item sequence spaces $\ell^p$, for $1\le p < \infty$, including norm $\|\cdot\|_p$
 \item sequence space $\ell^\infty$, and its norm $\|\cdot\|_\infty$
-\item $C([a,b])$, continuous functions on $[a,b]$, real or complex, and the norm $\|\cdot\|_\infty$
+\item $C([a,b])$, continuous functions on $[a,b]$, real or complex, and the sup norm $\|\cdot\|_\infty$
 \item $C([a,b])$ as an inner product space with $\ip{f}{g}=\int_a^b f(x) \overline{g(x)}\,dx$
-\item linear algebra terms which do not require topology to define: linear independence, span, and infinite-dimensional
+\item linear algebra which needs no topology: linear independent, span, $\infty$-dimensional
 \item balls in metric spaces
-\item limit, isolated, and interior points in metric spaces
+\item limit points, isolated points, and interior points in metric spaces
 \item open and closed subsets of a metric space
 \item open covers, and subcovers, in metric spaces
-\item compact, and sequentially compact, sets in metric spaces
+\item compact sets and sequentially compact sets in metric spaces
 \item separable metric space
 \item Cauchy sequence (in a metric space)
 \item complete metric space
 \item Banach and Hilbert space
 \item ring of sets, and $\sigma$-ring of sets
-\item additive and countably additive functions on sets
+\item countably-additive functions on sets
 \item measure
 \item interval in $\RR^n$
 \item $\cE$ is the collection of all finite disjoint unions of intervals
-\item $2^X$ is the collection of all subsets of $X$
-\item outer measure $m^*$ on subsets of $\RR^n$
+\item $2^X$ is the collection of all subsets of $X$, the power set
+\item outer measure $m^*$ on arbitrary subsets of $\RR^n$
 \item symmetric difference $S(A,B)$ of sets $A,B$
 \item $\cM_\cF$ is the collection of all subsets $A\subset \RR^n$ for which there is a sequence $A_k\in\cE$ so that $m^*(S(A_k,A))\to 0$ as $k\to\infty$
 \item $\cM$ is the collection of all subsets of $\RR^n$ which can be written as finite or countable unions of sets in $\cM_\cF$
@@ -123,11 +122,11 @@ The problems will be of the following types, based on the lists below: state def
 \item Lebesgue integral of a (measurable) simple function
 \item Lebesgue integral of a (measurable) nonnegative function
 \item a real-valued function is integrable
-\item the Lebesgue integral of $f$ over $E$ is $\int_E f\,dm$
+\item $\int_E f\,dm$, that is, the Lebesgue integral of $f$ over $E$
 \item a set $A\subset \RR^n$ has measure zero if $m^*(A)=0$
 \item almost everywhere
 \item abstract measure space $(X,\cR,\mu)$
-\item counting measure on a set
+\item counting measure (on any set)
 \item for $1\le p < \infty$, the vector space $L^p(X,\mu)$ is the set of equivalence classes of functions, up to almost everywhere, such that $\int_X |f|^p\,d\mu$ is finite
 \item for $1\le p < \infty$, $\|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}$ is a norm on  $L^p(X,\mu)$
 \item integral of a complex-valued function
@@ -140,30 +139,40 @@ The problems will be of the following types, based on the lists below: state def
 \normalspacing
 \medskip
 \noindent \textbf{Theorems and Lemmas}.  Know the precise statement of the theorem.  Be able to prove if so indicated.
-\newcommand{\bap}{; \textbf{be able to prove}}
+\newcommand{\bap}{\textbf{be able to prove}}
 \begin{itemize}
-\item Cauchy-Schwarz (Theorem 1.3\bap)
-\item arbitrary unions of open sets and intersections of closed sets (Theorem 2.2\bap)
-\item compact sets in metric spaces are closed (Theorem 2.3\bap)
-\item in a metric space, compactness is equivalent to sequentially compactness (Theorem 2.4\bap)
-\item Heine-Borel theorem for $\RR^n$: a subset is compact if and only if it is closed and bounded (Theorem 2.5)
+\item Cauchy-Schwarz (Theorem 1.3; \bap \, in the real case)
+\item arbitrary unions/intersections of open/closed sets (Theorem 2.2; \bap)
+\item compact sets in metric spaces are closed (Theorem 2.3; \bap)
+\item compactness $\iff$ sequentially compactness (Theorem 2.4; \bap)
+\item Heine-Borel theorem for $\RR^n$: compact $\iff$ closed and bounded (Theorem 2.5)
 \item Arzel\`a-Ascoli theorem (Theorem 2.6)
+\item $C([a,b]),\|\cdot\|_\infty$ is separable (Section 2.2).
 \item $C([a,b]),\|\cdot\|_\infty$ is complete (Theorem 2.7)
-\item 
-\item FIXME
-\item Bessel's inequality (Theorem FIXME)
+\item the sequence spaces $\ell^p$, for $1\le p < \infty$, are separable (\bap)
+\item the sequence spaces $\ell^p$, for $1\le p \le \infty$, are complete
+\item $\cM$ is a $\sigma$-ring, and $m^*$ is countably additive on $\cM$ (Theorem 3.6)
+\item equivalent definitions of measurable (Theorem 3.7)
+\item algebra and limits preserve measurability (Theorem 3.9)
+\item approximating functions by simple functions (Theorem 3.10; \bap)
+\item basic properties of the Lebesgue integral (Theorems 3.11 and 3.12)
+\item for $1\le p <\infty$, $L^p(X,\mu)$ is a normed linear space (Theorems 3.17 and 3.19)
+\item for $1\le p <\infty$, $L^p(X,\mu)$ is complete (Theorems 3.21)
+\item Fourier coefficients are $c_k=\ip{f}{f_k}$ (Theorem 4.1; \bap)
+\item Bessel's inequality (Theorem 4.2)
+\item the original Riesz-Fischer theorem (Theorem 4.4)
+\item the full-power Riesz-Fischer theorem from lecture, proven using the Gram-Schmidt process: separable Hilbert spaces $H$ are isometrically isomorphic to $\ell^2$
+\item equivalent conditions showing that an ON sequence is complete (Theorem 4.5)
+\item Fourier's sequence is complete; classical series converge in mean (Theorem 4.6)
 \end{itemize}
 
 \normalspacing
 \medskip
-\noindent \textbf{Techniques and facts}.  Be able to justify and use these calculation/proof techniques.
+\noindent \textbf{Techniques and facts}.  Be able use these calculation/proof techniques, and justify if requested.
 \begin{itemize}
-\item Norms generate metrics (Theorem 1.1) and inner products generate norms (Theorem 1.2).
-\item To show that a vector space is infinite dimensional, find a linearly-independent set with $n$ elements, for each $n\in \NN$.
-\item $C([a,b]),\|\cdot\|_\infty$ and $\ell^p$ are separable (for $1\le p <\infty$).
-\item $\ell^p$ is complete (for $1\le p \le \infty$).
-\item FIXME
-\item The norm in a normed vector space, and the inner product in an inner product space, is continuous.
+\item Norms generate metrics (Theorem 1.1), inner products generate norms (Thm 1.2).
+\item To show infinite dimensional, find a linearly-independent set with $n$ elements, for each $n\in \NN$ (Section 1.3).
+\item The norm in a normed vector space, and the inner product in an inner product space, are continuous.
 \end{itemize}
 
 \normalspacing
@@ -172,7 +181,7 @@ The problems will be of the following types, based on the lists below: state def
 
 \renewcommand{\labelenumi}{\arabic{enumi}. \,}
 \begin{enumerate}
-\item On page 19 the textbook correctly defines \emph{equicontinuous at $x \in [a,b]$} for a set $E$.  However, the given definition of an equicontinuous set on an interval is not the correct hypothesis for Theorem 2.6.  The textbook should say:
+\item On page 19, \emph{equicontinuous at $x \in [a,b]$}, for a set $E$, is defined correctly.  However, the given definition of ``equicontinuous set on an interval'' is not the correct hypothesis for Theorem 2.6.  The textbook should say:
 
 \medskip
 \begin{quote}
@@ -187,7 +196,7 @@ The problems will be of the following types, based on the lists below: state def
 \end{quote}
 
 \bigskip
-\item On page 46 of the textbook there is a minor omission, namely of a finite-measure assumption.  Presumably the author is trying to avoid a complicated statement, but without an addititional hypothesis the textbook's definition can generate $\infty-\infty$ ambiguities.  The textbook should say:
+\item On page 46 of the textbook there is a minor omission, namely of a finite-measure assumption.  (\emph{I suppose that the author wants to avoid a complicated statement.  However, without an addititional hypothesis the textbook's definition can generate $\infty-\infty$ ambiguities.})  The textbook should say:
 
 \medskip
 \begin{quote}
@@ -197,7 +206,7 @@ If $c_k\ge 0$ for all $k$ then this integral gives a well-defined result in $[0,
 \end{quote}
 
 \bigskip
-\item The definition of a \emph{step function} on page 67 is not correct, nor is the proof of Theorem 3.22 correct for actual step functions.  What the textbook says is nearly vacuous, whereas Riesz's result for Euclidean space, which is Theorem 3.22 when correctly stated, is significant.
+\item The definition of a \emph{step function} on page 67 is not correct, and the proof of Theorem 3.22 should be ignored.  What the textbook says is nearly vacuous, whereas Riesz's result for Euclidean space, namely Theorem 3.22 when corrected, is significant.
 
 \medskip
 \begin{quote}
@@ -206,13 +215,14 @@ If $c_k\ge 0$ for all $k$ then this integral gives a well-defined result in $[0,
 with $c_k\in \CC$ or $c_k\in\RR$, respectively.
 \end{quote}
 
-\medskip \noindent Now the idea is that any $L^p$ function can be approximated by a step function because step functions can approximate characteristic functions of measurable sets, that is, simple functions.  This is true \emph{if} the norm is an integral norm against Lebesgue measure $m$, which is why there is a $p<\infty$ restriction.  Note that the density of step functions is not automatic for other measures.
+\medskip \noindent Now the idea is that any $L^p$ function can be approximated by a step function because step functions can approximate characteristic functions of measurable sets, that is, simple functions.  This is true \emph{if} the norm is an integral norm against Lebesgue measure $m$, which is why there is a $p<\infty$ restriction in the Theorem below.
 
 \medskip
 \begin{quote}
 \emph{Theorem 3.22.}  Suppose $X \subset \RR^n$ is an open subset or an interval.  If $1 \le p < \infty$ then the step functions are dense in $L^p(X,m)$.
 \end{quote}
 
+\medskip \noindent Finally, note that the density of step functions is \emph{not} automatic for general measure spaces $(X,\cR,\mu)$; Theorem 3.22 is for Lebesgue measure.
 \end{enumerate}
 \end{document}
 
