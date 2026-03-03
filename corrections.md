@@ -29,11 +29,11 @@ If $c_k \ge 0$ for all $k$ then this integral gives a well-defined result in $[0
 
 ---
 
-**Page 50.**  Unfortunately, the statement of Lebesgue's Monotone Convergence Theorem, which is Theorem 3.13, is not correct.  To make the statement match the proof, one must add an assumption that the set of integrals $\\left\\{\int_A f_k\,dm\\right\\}$ is bounded.  Thus:
+**Page 50.**  Unfortunately, the statement of Lebesgue's Monotone Convergence Theorem, which is Theorem 3.13, is not correct.  To make the statement match the proof, one must add an assumption that the set of integrals $\left\lbrace\int_A f_k\,dm\right\rbrace$ is bounded.  Thus:
 
-> **Theorem 3.13.**  Suppose that $A\in \mathcal{M}$ and that $\\{f_k\\}_{k=1}^\infty$ is a sequence of measurable functions such that
+> **Theorem 3.13.**  Suppose that $A\in \mathcal{M}$ and that $\lbrace f_k\rbrace_{k=1}^\infty$ is a sequence of measurable functions such that
 >  $$0 \le f_1(x) \le f_2(x) \le \cdots \quad \text{for almost all } x\in \mathcal{A}.$$
-> Suppose that $\\{\int_A f_k\,dm\\}_{k=1}^\infty$ is a bounded set of (nonnegative) real numbers.  Let $f$ be defined to be the pointwise limit, $f(x) = \lim_{k\to\infty} f_k(x)$, of this sequence.  Then $f$ is integrable and
+> Suppose that $\lbrace\int_A f_k\,dm\rbrace_{k=1}^\infty$ is a bounded set of (nonnegative) real numbers.  Let $f$ be defined to be the pointwise limit, $f(x) = \lim_{k\to\infty} f_k(x)$, of this sequence.  Then $f$ is integrable and
 >  $$\lim_{k\to\infty} \left(\int_A f_k\,dm\right) = \int_A f\,dm.$$
 
 The proof, as stated in the textbook, is wrong to assert that the given hypotheses imply that this set is bounded, because without the boundedness assumption the integral of $f$ could be infinite.  (In that case it would be well-defined as $+\infty$, but $f$ would not be integrable.)  But with the added boundedness assumption the book's proof is correct as far as I can tell.
