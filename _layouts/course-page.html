@@ -13,9 +13,14 @@
   {% if page.math %}
   <script>
   MathJax = {
+    loader: {load: ['[tex]/unicode']},
     tex: {
+      packages: {'[+]': ['unicode']},
       inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      macros: {
+        one: '\\unicode{x1D7D9}'
+      }
     }
   };
   </script>

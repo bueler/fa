@@ -6,7 +6,9 @@ math: true
 
 ## Corrections to the Textbook
 
-The following are some corrections to K. Saxe, *Beginning Functional Analysis*, Springer 2010.  Please send me any more you find ([elbueler@alaska.edu](mailto:elbueler@alaska.edu)); we can at least provide the author with a good errata page.
+The following are some corrections to [**K. Saxe, *Beginning Functional Analysis*, Springer 2010**](https://link.springer.com/book/10.1007/978-1-4757-3687-8).  (Note that the softcover edition was published 2010 while other editions may have 2002 publication dates.)
+
+Please send me any more errors in the textbook which you find ([elbueler@alaska.edu](mailto:elbueler@alaska.edu)).  We can at least provide the author with a good errata page!
 
 
 <!-- notes for typing MathJax:
@@ -15,6 +17,7 @@ The following are some corrections to K. Saxe, *Beginning Functional Analysis*, 
   * $\left\vert ... \right\vert$ also works
   * for norm symbols ||.|| do $\\|\cdot\\|$
   * insert a blank line before and after displayed equations
+  * use $\one$ for the characteristic function (double-struck 1, like \mathds{1} in dsfont)
 /-->
 
 ---
@@ -31,7 +34,7 @@ From this definition, Theorem 2.6 should say:
 
 **Page 46.**  Here there is a minor omission, namely of a finite-measure assumption.  The author apparently wants to avoid a complicated statement.  However, without an additional hypothesis the textbook's definition can generate $\infty - \infty$ ambiguities.  As one correct possibility the textbook might say:
 
-> **Definition.**  Let $E \in \mathcal{M}$.  For a measurable simple function $s(x) = \sum_{k=1}^N c_k \mathbf{1}_{E_k}(x)$, such that $m(E \cap E_k) < \infty$ for each $k$, we define the *Lebesgue integral of $s$ over $E$* by
+> **Definition.**  Let $E \in \mathcal{M}$.  For a measurable simple function $s(x) = \sum_{k=1}^N c_k \one_{E_k}(x)$, such that $m(E \cap E_k) < \infty$ for each $k$, we define the *Lebesgue integral of $s$ over $E$* by
 >
 > $$\int_E s\,dm = \sum_{k=1}^N c_k\, m(E \cap E_k).$$
 
@@ -42,7 +45,9 @@ If $c_k \ge 0$ for all $k$ then this integral gives a well-defined result in $[0
 **Page 50.**  Unfortunately, the statement of Lebesgue's Monotone Convergence Theorem, which is Theorem 3.13, is not correct.  To make the statement match the proof, one must add an assumption that the set of integrals $\left\lbrace\int_A f_k\,dm\right\rbrace$ is bounded.  Thus:
 
 > **Theorem 3.13.**  Suppose that $A\in \mathcal{M}$ and that $\lbrace f_k\rbrace_{k=1}^\infty$ is a sequence of measurable functions such that
->  $$0 \le f_1(x) \le f_2(x) \le \cdots \quad \text{for almost all } x\in \mathcal{A}.$$
+>
+>  $$0 \le f_1(x) \le f_2(x) \le \cdots \quad \text{for almost all } x\in A.$$
+>
 > Suppose that $\lbrace\int_A f_k\,dm\rbrace_{k=1}^\infty$ is a bounded set of (nonnegative) real numbers.  Let $f$ be defined to be the pointwise limit, $f(x) = \lim_{k\to\infty} f_k(x)$, of this sequence.  Then $f$ is integrable and
 >
 >  $$\lim_{k\to\infty} \left(\int_A f_k\,dm\right) = \int_A f\,dm.$$
@@ -55,7 +60,7 @@ The proof, as stated in the textbook, is wrong to assert that the given hypothes
 
 > **Definition.**  Suppose $X \subset \mathbb{R}^n$ is an open subset or an interval.  A function $f:X \to \mathbb{C}$, or $f:X \to \mathbb{R}$, is a *step function* if it is a finite linear combination of characteristic functions of intervals,
 >
-> $$f(x) = \sum_{k=1}^n c_k \mathbf{1}_{I_k}(x),$$
+> $$f(x) = \sum_{k=1}^n c_k \one_{I_k}(x),$$
 >
 > with $c_k \in \mathbb{C}$ or $c_k \in \mathbb{R}$, respectively.
 
