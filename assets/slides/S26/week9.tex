@@ -1,0 +1,359 @@
+% Copyright 2026  Ed Bueler
+
+\documentclass[10pt,
+               svgnames,
+               hyperref={colorlinks,
+                         citecolor=DeepPink4,
+                         linkcolor=FireBrick,
+                         urlcolor=blue},
+               usepdftitle=false]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\setbeamercovered{transparent}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamercolor*{block title}{bg=red!10}
+\setbeamercolor*{block body}{bg=red!5}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\usepackage{fancyvrb,empheq,bm,xspace,dsfont}
+%\usepackage{minted}
+\usepackage{tikz}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+%\beamerdefaultoverlayspecification{<+->}
+
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bbf}{\mathbf{f}}
+\newcommand{\bl}{\bm{\ell}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bs}{\mathbf{s}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bw}{\mathbf{w}}
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
+
+\newcommand{\bzero}{\bm{0}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\newcommand{\one}{\mathds{1}}
+
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\Span}{\operatorname{span}}
+
+\newcommand{\Matlab}{\textsc{Matlab}\xspace}
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\ip}[2]{\left<#1,#2\right>}
+
+\newcommand{\twovect}[4]{\ensuremath{{#1}_{#2} =
+                            \begin{bmatrix} #3 \\ #4 \end{bmatrix}}}
+
+\newcommand{\rbullet}{{\color{FireBrick} \bullet}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand{\textbook}{Saxe, \emph{Beginning Functional Analysis}}
+
+\DefineVerbatimEnvironment{mVerb}{Verbatim}{numbersep=2mm,
+frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
+
+\newcommand{\itemnum}[1]{\setcounter{enumi}{#1}\usebeamertemplate{enumerate item}}
+
+
+
+\title{Integration by parts and weak derivatives}
+
+\subtitle{a calculation for week 9}
+
+\author{Ed Bueler}
+
+\institute[]{UAF Math 617 Functional Analysis}
+
+\date{Spring 2026}
+
+
+\begin{document}
+\beamertemplatenavigationsymbolsempty
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\begin{frame}{Outline}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\AtBeginSection[]
+{% do not put toc here this time
+}
+
+
+\section{the fundamental theorem of calculus in $\RR^1$}
+
+\begin{frame}{indefinite integral of an $L^1$ function}
+
+\begin{itemize}
+\item for $a<b$ real numbers, recall that
+	$$L^1([a,b]) = \Big\{f:[a,b]\to\RR\,\big|\,f \text{ is measurable and } \int_a^b |f(x)|\,dx <\infty\Big\}$$
+
+    \begin{itemize}
+    \item[$\circ$] remember this is actually a \emph{lie}; the elements of $L^1$ are \emph{equivalence classes} up to almost everywhere
+    \end{itemize}
+\item what happens when you integrate $f\in L^1$ to get a new function?:
+	$$F(x) = \int_a^x f(t)\,dt$$
+
+    \begin{itemize}
+    \item[$\circ$] this is the \emph{indefinite integral}
+    \end{itemize}
+\item does the fundamental theorem of calculus (FTC) apply?:
+	$$\frac{d}{dx}\left(\int_a^x f(t)\,dt\right) \stackrel{?}{=} f(x)$$
+
+    \begin{itemize}
+    \item[$\circ$] that is, is $F'(x)=f(x)$?
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{fundamental theorem of calculus (FTC)}
+
+\begin{theorem}[easy direction]
+If $f\in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is continuous, and it is differentiable almost everywhere, and $F'=f$ almost everywhere.
+\end{theorem}
+
+\begin{proof}<2>[{\small Proof \alert{when we assume $f$ is continuous}}]
+{\footnotesize
+If $f\in C([a,b])$ then it is bounded: $|f|\le M$.  Let $\eps>0$.  Suppose $|x-y|<\delta=\frac{\eps}{M}$.  Then
+	$$|F(x)-F(y)| = \left|\int_x^y f(t)\,dt\right| \le \int_x^y |f(t)|\,dt \le M |x-y| < M\delta = \eps,$$
+so $F$ is continuous.  Since $f$ is continuous at $x$ then there is $\delta>0$ so that $|f(t)-f(x)|<\eps$ if $|t-x|<\delta$.  Choose any $0<h<\delta$.  Then
+\begin{align*}
+\left|\frac{F(x+h)-F(x)}{h} - f(x)\right| &= \left|\frac{1}{h} \int_x^{x+h} f(t)\,dt -  \frac{1}{h} \int_x^{x+h} f(x)\,dt\right| \\
+&\le \frac{1}{h} \int_x^{x+h} |f(t)-f(x)|\,dt < \frac{1}{h} \int_x^{x+h} \eps\,dt = \eps
+\end{align*}
+(A similar argument handles $-\delta<h<0$.)  This shows $f(x)=\lim_{h\to 0} \frac{F(x+h)-F(x)}{h}$; in particular the two-sided limit exists at every $x$.
+}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}{picture of the proof}
+
+\noindent picture:
+
+\vspace{70mm}
+\end{frame}
+
+
+\begin{frame}{how the integral is well-behaved when $f\in L^1$}
+
+\begin{lemma}[``absolute continuity of the Lebesgue integral'']
+Suppose $f\in L^1([a,b])$ and $\eps>0$.  There exists $\delta>0$ so that if $m(E)<\delta$ then
+	$$\int_E |f|\,dm < \eps.$$
+\end{lemma}
+
+\begin{proof}[{\small Proof.}]
+{\footnotesize
+Let $g_k = \min\{|f|, k\}$.  This defines a sequence $0\le g_k \le |f|$ so that $g_k \nearrow |f|$, but where $0 \le g_k \le k$ so $g_k$ is bounded.  By the Monotone Convergence Theorem,
+    $$\int_{[a,b]} |f|\,dm = \lim_{k\to\infty} \int_{[a,b]} g_k\,dm$$
+Given $\epsilon > 0$, choose $K$ large enough that $\int_{[a,b]} (|f| - g_K)\,dm < \epsilon/2$.  Then for any measurable $E \subset [a,b]$:
+    $$\int_E |f|\,dm = \int_E g_K\,dm + \int_E (|f| - g_K) \le \int_E K\,dm + \int_{[a,b]} (|f| - g_K) \le K \cdot m(E) + \frac{\epsilon}{2}$$
+Now set $\delta = \eps/(2K)$. If $m(E) < \delta$ then $\int_E |f|\,dm < \eps$.
+}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}{picture of the absolute continuity of the Lebesgue integral}
+
+\noindent picture:
+
+\vspace{70mm}
+\end{frame}
+
+
+\begin{frame}{classical definition of absolute continuity}
+
+\begin{definition}
+a continuous function $f:[a,b]\to\RR$ is \emph{absolutely continuous} if for all $\eps>0$ there is $\delta>0$ so that if we have a finite collection of disjoint intervals $[\alpha_i,\beta_i]$, with total length less than $\delta$:
+	$$\sum_{i=1}^n (\beta_i - \alpha_i) <\delta,$$
+then the variation of $f$ on those intervals is less than $\eps$:
+	$$\sum_{i=1}^n |f(\alpha_i) - f(\beta_i)| < \eps$$
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{picture of absolute continuity}
+
+\noindent picture:
+
+\vspace{70mm}
+\end{frame}
+
+
+\begin{frame}{flavors of continuity}
+
+\begin{itemize}
+\item uniform continuity $\implies$ continuous at $x\in[a,b]$
+\item absolute continuity $\implies$ uniform continuity
+
+\begin{definition}
+a continuous function $f:[a,b]\to\RR$ is \emph{Lipschitz continuous} if there is $L\ge 0$ so that
+	$$|f(x)-f(y)| \le L|x-y|$$
+for all $x,y\in [a,b]$
+\end{definition}
+
+\item Lipschitz continuous $\implies$ absolute continuity
+\item $C^1([a,b])$ $\implies$ Lipschitz continuous
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{the FTC again}
+
+\begin{theorem}[easy direction?]
+If $f\in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is \alert{absolutely continuous}, and it is differentiable almost everywhere, and $F'=f$ almost everywhere.
+\end{theorem}
+
+\begin{proof}[{\small sketch of the proof}]
+{\footnotesize
+Approximate $f$ in $L^1$ by a continuous function $g$.  Show that the difference $f-g$, which can be large, can't be large on a big set.  (Vitali covering lemma.)  Conclude.
+}
+\end{proof}
+
+\begin{theorem}[other direction]
+If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F(x)-F(a) = \int_a^x f(t)\,dt$ for all $x$.
+\end{theorem}
+
+\bigskip
+\begin{itemize}
+\item take-home message: if $f\in L^1$ then its indefinite integral $F(x) = \int_a^x f(t)\,dt$ is a nice ``very'' continuous function which is differentiable a.e.
+\item \emph{and} you can recover $f$ from $F$ by differentiating, at least a.e.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{the devil's staircase}
+
+\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is continuous, and if its derivative $f=F'$ exists almost everywhere, and if $f\in L^1$, then is true that
+    $$F(x) -F(a)= \int_a^x f(t)\,dt \quad \text{for all } x\in [a,b]?$$
+
+\medskip \noindent \emph{answer}: \alert{no}
+
+\bigskip
+\noindent picture:
+
+\vspace{50mm}
+\end{frame}
+
+
+
+% at start of sections 2,3,... put outline
+\AtBeginSection[] {
+    \begin{frame}{Outline}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents[currentsection]%,hideallsubsections]
+    \end{frame}
+}
+
+
+\section{integration by parts}
+
+\begin{frame}{y}
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
+
+\section{divergence theorem on $\RR^n$}
+
+\begin{frame}{y}
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
+
+\section{weak derivatives}
+
+\begin{frame}{y}
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
+
+\section{where this is going: Sobolev spaces to solve PDEs}
+
+\begin{frame}{y}
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
+
+\section{theory in weeks 9 \& 10}
+
+\begin{frame}{theory in weeks 9 \& 10}
+
+\begin{itemize}
+\item part of this material is only from slides
+\item \dots but part will be from Chapter 5 in Saxe, sections 5.1 and 5.2
+\end{itemize}
+
+\begin{block}{to define:}
+\begin{itemize}
+\item linear operator
+\item bounded linear operator
+\item operator norm
+\item dual space
+\item Sobolev space $H^1$
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{theory in weeks 9 \& 10}
+
+\begin{block}{to prove:}
+\begin{itemize}
+\item a linear operator is continuous if and only if it is bounded (Theorem 5.2)
+\item the bounded linear operators $\cB(X,Y)$ form a normed vector space under operator norm (Theorem 5.3)
+\item if $Y$ is complete then $\cB(X,Y)$ is complete (Theorem 5.4)
+\item the dual space is a Banach space
+\item dual vectors on a Hilbert space can be represented by elements of the Hilbert space (Riesz representation theorem)
+\end{itemize}
+\end{block}
+
+\begin{itemize}
+\item Assignments 5 and 6 are posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\end{itemize}
+\end{frame}
+
+\end{document}
