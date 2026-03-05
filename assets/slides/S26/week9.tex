@@ -145,14 +145,14 @@ If $f\in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is continuous, and it is di
 
 \begin{proof}<2>[{\small Proof \alert{when we assume $f$ is continuous}}]
 {\footnotesize
-If $f\in C([a,b])$ then it is bounded: $|f|\le M$.  Let $\eps>0$.  Suppose $|x-y|<\delta=\frac{\eps}{M}$.  Then
+If $f\in C([a,b])$ then bounded: $|f|\le M$.  Let $\eps>0$.  If $|x-y|<\delta=\frac{\eps}{M}$, and $x<y$, then
 	$$|F(x)-F(y)| = \left|\int_x^y f(t)\,dt\right| \le \int_x^y |f(t)|\,dt \le M |x-y| < M\delta = \eps,$$
-so $F$ is continuous.  Since $f$ is continuous at $x$ then there is $\delta>0$ so that $|f(t)-f(x)|<\eps$ if $|t-x|<\delta$.  Choose any $0<h<\delta$.  Then
+so $F$ is continuous.  Since $f$ is continuous at $x$ then there is $\gamma=\gamma(x)>0$ so that $|f(t)-f(x)|<\eps$ if $|t-x|<\gamma$.  Choose any $0<h<\gamma$.  Then
 \begin{align*}
 \left|\frac{F(x+h)-F(x)}{h} - f(x)\right| &= \left|\frac{1}{h} \int_x^{x+h} f(t)\,dt -  \frac{1}{h} \int_x^{x+h} f(x)\,dt\right| \\
 &\le \frac{1}{h} \int_x^{x+h} |f(t)-f(x)|\,dt < \frac{1}{h} \int_x^{x+h} \eps\,dt = \eps
 \end{align*}
-(A similar argument handles $-\delta<h<0$.)  This shows $f(x)=\lim_{h\to 0} \frac{F(x+h)-F(x)}{h}$; in particular the two-sided limit exists at every $x$.
+(A similar argument handles $-\gamma<h<0$.)  This shows $f(x)=\lim_{h\to 0} \frac{F(x+h)-F(x)}{h}$; in particular the two-sided limit exists at every $x$.
 }
 \end{proof}
 \end{frame}
@@ -178,7 +178,7 @@ Suppose $f\in L^1([a,b])$ and $\eps>0$.  There exists $\delta>0$ so that if $m(E
 Let $g_k = \min\{|f|, k\}$.  This defines a sequence $0\le g_k \le |f|$ so that $g_k \nearrow |f|$, but where $0 \le g_k \le k$ so $g_k$ is bounded.  By the Monotone Convergence Theorem,
     $$\int_{[a,b]} |f|\,dm = \lim_{k\to\infty} \int_{[a,b]} g_k\,dm$$
 Given $\epsilon > 0$, choose $K$ large enough that $\int_{[a,b]} (|f| - g_K)\,dm < \epsilon/2$.  Then for any measurable $E \subset [a,b]$:
-    $$\int_E |f|\,dm = \int_E g_K\,dm + \int_E (|f| - g_K) \le \int_E K\,dm + \int_{[a,b]} (|f| - g_K) \le K \cdot m(E) + \frac{\epsilon}{2}$$
+    $$\int_E |f|\,dm = \int_E g_K\,dm + \int_E (|f| - g_K)\,dm \le \int_E K\,dm + \int_{[a,b]} (|f| - g_K)\,dm \le K \cdot m(E) + \frac{\epsilon}{2}$$
 Now set $\delta = \eps/(2K)$. If $m(E) < \delta$ then $\int_E |f|\,dm < \eps$.
 }
 \end{proof}
