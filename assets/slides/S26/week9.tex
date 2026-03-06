@@ -34,6 +34,7 @@
 \newcommand{\bc}{\mathbf{c}}
 \newcommand{\bbf}{\mathbf{f}}
 \newcommand{\bl}{\bm{\ell}}
+\newcommand{\bn}{\mathbf{n}}
 \newcommand{\br}{\mathbf{r}}
 \newcommand{\bs}{\mathbf{s}}
 \newcommand{\bx}{\mathbf{x}}
@@ -54,6 +55,9 @@
 \newcommand{\ZZ}{\mathbb{Z}}
 
 \newcommand{\one}{\mathds{1}}
+
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\grad}{\nabla}
 
 \newcommand{\range}{\operatorname{range}}
 \newcommand{\Span}{\operatorname{span}}
@@ -254,9 +258,9 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 \end{frame}
 
 
-\begin{frame}{the devil's staircase}
+\begin{frame}{\emph{not} the FTC, part 1: continuity is necessary \dots}
 
-\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is continuous, and if its derivative $f=F'$ exists almost everywhere, and if $f\in L^1$, then is true that
+\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is differentiable almost everywhere ($f=F'$ a.e.), and if $f\in L^1$, then is true that
     $$F(x) -F(a)= \int_a^x f(t)\,dt \quad \text{for all } x\in [a,b]?$$
 
 \medskip \noindent \emph{answer}: \alert{no}
@@ -264,9 +268,46 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 \bigskip
 \noindent picture:
 
+\vspace{17mm}
+
+\noindent \hrulefill
+
+{\small
+\begin{itemize}
+\item my pair of formulas with $F'(x) = G'(x)$ a.e.:
+	$$F(x) = \begin{cases} x, & 0<x<1 \\ 2, & 1<x<2\end{cases} \qquad G(x) = \begin{cases} x, & 0<x<1 \\ 1, & 1<x<2\end{cases}$$
+    $$F'(x) = G'(x) = \begin{cases} 1, & 0<x<1 \\ 0, & 1<x<2\end{cases}$$
+\end{itemize}
+}
+\end{frame}
+
+
+\begin{frame}{\emph{not} the FTC, part 2: but not sufficient (the devil's staircase)}
+
+\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is continuous, and if its derivative $f=F'$ exists almost everywhere, and if $f\in L^1$, then is true that
+    $$F(x) -F(a)= \int_a^x f(t)\,dt \quad \text{for all } x\in [a,b]?$$
+
+\medskip \noindent \emph{answer}: also \alert{no}!
+
+\bigskip
+\noindent picture:
+
 \vspace{50mm}
 \end{frame}
 
+
+\begin{frame}{conclusion: Lebesgue's FTC in 1D}
+
+\begin{theorem}
+\begin{itemize}
+\item If $f \in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is in $AC([a,b])$, and it is differentiable almost everywhere, and $F'=f$ almost everywhere.
+\item If $F \in AC([a,b])$ then $f=F'$ exists a.e.~and $f\in L^1$ and $F(x)-F(a) = \int_a^x f(t)\,dt$ for all $x$.
+\end{itemize}
+\end{theorem}
+
+\vspace{10mm}
+where $AC([a,b])=(\text{absolutely continuous functions on } [a,b])$
+\end{frame}
 
 
 % at start of sections 2,3,... put outline
@@ -278,9 +319,95 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 }
 
 
-\section{integration by parts}
+\section{divergence theorem on $\RR^d$}
 
-\begin{frame}{y}
+\begin{frame}{divergence theorem in the plane $\RR^2$}
+
+\begin{theorem}[divergence theorem in $\RR^2$ \dots as Green's theorem]
+Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that the curve $C=\partial \Omega$ is continuously-differentiable, and orient it counter-clockwise.  If $u(x,y)$ and $v(x,y)$ are continuously-differentiable functions on $\overline{\Omega}$ then
+	$$\iint_\Omega u_x + v_y \,dx\,dy = \oint_{C} u\, dy - v\, dx.$$
+\end{theorem}
+
+{\small
+\begin{itemize}
+\item the right side is a \emph{curve (line) integral}; we must parameterize $C$ as $(x(t),y(t))$:
+  $$\oint_{C} u\, dy - v\, dx = \int_0^T u(x(t),y(t)) y'(t) - v(x(t),y(t)) x'(t)\,dt$$
+\item pictures (with disconnected and not-simply-connected possibilities):
+
+\vspace{25mm}
+\end{itemize}
+}
+\end{frame}
+
+
+\begin{frame}{divergence theorem in the plane $\RR^2$}
+
+\begin{theorem}[divergence theorem in $\RR^2$]
+Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $V$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
+	$$\int_\Omega \Div V\,dm = \int_{\partial\Omega} V\cdot \bn\,ds$$
+\end{theorem}
+
+\begin{itemize}
+\item let's just use ``$\int$'' instead of $\iint$, $\oint$, etc.
+\item $dm$ is Lebesgue measure in $\RR^2$
+\item $ds$ is (induced submanifold) Lebesgue measure along the 1D curve $\partial\Omega$
+    \begin{itemize}
+    \item[$\circ$] nontrivially defined! use parameterized boundary, Jacobian determinant, \dots
+    \end{itemize}
+\item $V=V(x,y)$ has components $V=\ip{u}{v}$
+\item \alert{$\Div V = u_x + v_y$} is the \emph{divergence} of the vector field
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{divergence theorem example}
+
+\begin{block}{Example}
+Suppose $\Omega = \{(x,y)\,:\,x^2+y^2<1\}$ is the unit disk, so that $C=\partial\Omega$ is the unit circle.  Let $V=\left<x,y+1\right>$ be the vector field.  Is it true?:
+	$$\int_\Omega \Div V\,dm \stackrel{?}{=} \int_{\partial\Omega} V\cdot \bn\,ds$$
+\end{block}
+
+\noindent solution steps:
+\begin{itemize}
+\item parameterize the circle: $(x(t),y(t))=(\cos(t),\sin(t))$, $0\le t \le 2\pi$
+\item $\bn=\ip{x}{y}=\ip{\cos(t)}{\sin(t)}$; already normalized
+\item $ds=dt$ (since arclength parameterized)
+\item $V\cdot \bn = \left<x,y+1\right> \cdot \ip{x}{y} = x^2 + y^2 + y = 1 + \sin(t)$
+\item $\Div V = 1 + 1 = 2$
+\item thus:
+\begin{align*}
+\int_\Omega \Div V\,dm &= \int_\Omega 2\,dm = 2 \pi\\
+\int_{\partial\Omega} V\cdot \bn\,ds &= \int_0^{2\pi} 1 + \sin(t)\,dt = 2\pi
+\end{align*}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{divergence theorem in the plane $\RR^d$}
+
+\begin{itemize}
+\item but there is nothing intrinsically two-dimensional about the theorem!
+\end{itemize}
+
+\begin{theorem}[divergence theorem]
+Suppose $\Omega\subset\RR^d$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $V$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
+	$$\int_\Omega \Div V\,dm = \int_{\partial\Omega} V\cdot \bn\,ds$$
+\end{theorem}
+
+\begin{itemize}
+\item<2> $dm$ is Lebesgue measure in $\RR^d$
+\item<2> $ds$ is $(d-1)$-dimensional Lebesgue measure (induced submanifold)
+\item<2> a point $x\in\RR^d$ has \emph{coordinates} $x_i$: \quad $x = (x_1,\dots,x_d)$
+\item<2> a vector field $V:\Omega \to \RR^d$ has \emph{components}, $V = \left<v_1,\dots,v_d\right>$, and the components are scalar functions, $v_k = v_k(x_1,\dots,x_d)$
+\item<2> the \emph{divergence} of the vector field is
+	$$\Div V = \frac{\partial v_1}{\partial x_1} + \dots + \frac{\partial v_d}{\partial x_d} = \sum_{k=1}^d \frac{\partial v_k}{\partial x_k}$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{most-famous 3D usage?}
+
+FIXME Gauss' law for electrostatics
 
 \begin{itemize}
 \item y
@@ -288,7 +415,44 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 \end{frame}
 
 
-\section{divergence theorem on $\RR^n$}
+\section{integration by parts (in $\RR^1$ and in $\RR^d$)}
+
+
+\begin{frame}{product rule in $\RR^1$}
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{integration by parts in $\RR^1$}
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{first product rule in $\RR^d$}
+
+FIXME $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{second product rule in $\RR^d$}
+
+FIXME $\Div (fV) = \grad f\cdot V + f\Div V$
+
+\begin{itemize}
+\item y
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}{y}
 
@@ -301,6 +465,8 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 \section{weak derivatives}
 
 \begin{frame}{y}
+
+FIXME start from $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
 
 \begin{itemize}
 \item y
