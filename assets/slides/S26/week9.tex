@@ -25,6 +25,7 @@
 \usepackage{fancyvrb,empheq,bm,xspace,dsfont,esint}
 %\usepackage{minted}
 \usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command: 
@@ -90,9 +91,9 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title{Integration by parts and weak derivatives}
+\title{Fundamental theorems of calculus, integration-by-parts, and weak derivatives}
 
-\subtitle{a calculation for week 9}
+\subtitle{calculations for week 9}
 
 \author{Ed Bueler}
 
@@ -129,17 +130,17 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
     \begin{itemize}
     \item[$\circ$] remember this is actually a \emph{lie}; the elements of $L^1$ are \emph{equivalence classes} up to almost everywhere
     \end{itemize}
-\item what happens when you integrate $f\in L^1$ to get a new function?:
+\item what happens when you integrate $f\in L^1$ to get a new function?
 	$$F(x) = \int_a^x f(t)\,dt$$
 
     \begin{itemize}
-    \item[$\circ$] this is the \emph{indefinite integral}
+    \item[$\circ$] this is an \emph{indefinite integral}
     \end{itemize}
-\item does the fundamental theorem of calculus (FTC) apply?:
+\item does the fundamental theorem of calculus (FTC) apply?
 	$$\frac{d}{dx}\left(\int_a^x f(t)\,dt\right) \stackrel{?}{=} f(x)$$
 
     \begin{itemize}
-    \item[$\circ$] that is, is $F'(x)=f(x)$?
+    \item[$\circ$] is $F'(x)=f(x)$?
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -151,7 +152,13 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 If $f\in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is continuous, and it is differentiable almost everywhere, and $F'=f$ almost everywhere.
 \end{theorem}
 
-\begin{proof}<2>[{\small Proof \alert{when we assume $f$ is continuous}}]
+\only<1>{
+\noindent picture of proof:
+
+\vspace{57mm}
+}
+\only<2>{
+\begin{proof}[{\small Proof \alert{when we also assume $f$ is continuous}}]
 {\footnotesize
 If $f\in C([a,b])$ then bounded: $|f|\le M$.  Let $\eps>0$.  If $|x-y|<\delta=\frac{\eps}{M}$, and $x<y$, then
 	$$|F(x)-F(y)| = \left|\int_x^y f(t)\,dt\right| \le \int_x^y |f(t)|\,dt \le M |x-y| < M\delta = \eps,$$
@@ -163,14 +170,7 @@ so $F$ is continuous.  Since $f$ is continuous at $x$ then there is $\gamma=\gam
 (A similar argument handles $-\gamma<h<0$.)  This shows $f(x)=\lim_{h\to 0} \frac{F(x+h)-F(x)}{h}$; in particular the two-sided limit exists at every $x$.
 }
 \end{proof}
-\end{frame}
-
-
-\begin{frame}{picture of the proof}
-
-\noindent picture:
-
-\vspace{70mm}
+}
 \end{frame}
 
 
@@ -222,25 +222,39 @@ then the variation of $f$ on those intervals is less than $\eps$:
 
 \begin{frame}{flavors of continuity}
 
-\begin{itemize}
-\item uniform continuity $\implies$ continuous at $x\in[a,b]$
-\item absolute continuity $\implies$ uniform continuity
+\begin{center}
+\begin{tikzpicture}[node distance=0.5cm,
+    box/.style={draw, rounded corners, align=center,
+                inner sep=4pt, minimum width=3.5cm, font=\small},
+    impl/.style={-{Implies}, double, double distance=2pt, thick}]
+\node[box] (C1)  {$C^1$};
+\node[box, below=of C1]  (Lip) {Lipschitz continuous};
+\node[box, below=of Lip] (AC)  {absolutely continuous};
+\node[box, below=of AC]  (UC)  {uniformly continuous};
+\node[box, below=of UC]  (C)   {continuous at each $x$};
+\draw[impl] (C1) -- (Lip);
+\draw[impl] (Lip) -- (AC);
+\draw[impl] (AC) -- (UC);
+\draw[impl] (UC) -- (C);
+\end{tikzpicture}
+\end{center}
 
+\medskip
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
 \begin{definition}
+\small
 a continuous function $f:[a,b]\to\RR$ is \emph{Lipschitz continuous} if there is $L\ge 0$ so that
 	$$|f(x)-f(y)| \le L|x-y|$$
 for all $x,y\in [a,b]$
 \end{definition}
-
-\item Lipschitz continuous $\implies$ absolute continuity
-\item $C^1([a,b])$ $\implies$ Lipschitz continuous
-\end{itemize}
+\endgroup
 \end{frame}
 
 
-\begin{frame}{the FTC again}
+\begin{frame}{the Fundamental Theorem of Calculus again}
 
-\begin{theorem}[easy direction?]
+\begin{theorem}[FTC 1]
 If $f\in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is \alert{absolutely continuous}, and it is differentiable almost everywhere, and $F'=f$ almost everywhere.
 \end{theorem}
 
@@ -250,7 +264,7 @@ Approximate $f$ in $L^1$ by a continuous function $g$.  Show that the difference
 }
 \end{proof}
 
-\begin{theorem}[other direction]
+\begin{theorem}[FTC 2]
 If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F(x)-F(a) = \int_a^x f(t)\,dt$ for all $x$.
 \end{theorem}
 
@@ -262,9 +276,9 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 \end{frame}
 
 
-\begin{frame}{\emph{not} the FTC, part 1: continuity is necessary \dots}
+\begin{frame}{\emph{not the FTC}, part 1: continuity is necessary \dots}
 
-\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is differentiable almost everywhere ($f=F'$ a.e.), and if $f\in L^1$, then is true that
+\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is differentiable almost everywhere ($f=F'$ a.e.), and if $f\in L^1$, then is it true that
     $$F(x) -F(a)= \int_a^x f(t)\,dt \quad \text{for all } x\in [a,b]?$$
 
 \medskip \noindent \emph{answer}: \alert{no}
@@ -286,9 +300,9 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 \end{frame}
 
 
-\begin{frame}{\emph{not} the FTC, part 2: but not sufficient (the devil's staircase)}
+\begin{frame}{\emph{not the FTC}, part 2: but not sufficient (the devil's staircase)}
 
-\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is continuous, and if its derivative $f=F'$ exists almost everywhere, and if $f\in L^1$, then is true that
+\medskip \noindent \emph{question}: if $F:[a,b]\to\RR$ is continuous, and if $f=F'$ exists almost everywhere, and if $f\in L^1$, then is it true that
     $$F(x) -F(a)= \int_a^x f(t)\,dt \quad \text{for all } x\in [a,b]?$$
 
 \medskip \noindent \emph{answer}: also \alert{no}!
@@ -300,14 +314,14 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 \end{frame}
 
 
-\begin{frame}{conclusion: Lebesgue's FTC in 1D}
+\begin{frame}{final conclusion: Lebesgue's FTC in 1D}
 
-\begin{theorem}
-\begin{itemize}
-\item If $f \in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is in $AC([a,b])$, and it is differentiable almost everywhere, and $F'=f$ almost everywhere.
-\item If $F \in AC([a,b])$ then $f=F'$ exists a.e.~and $f\in L^1$ and $F(x)-F(a) = \int_a^x f(t)\,dt$ for all $x$.
-\end{itemize}
-\end{theorem}
+\begin{block}{Fundamental Theorem of Calculus}
+\begin{enumerate}
+\item If $f \in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is in $AC([a,b])$, and it is differentiable a.e., and $F'=f$ a.e.
+\item If $F \in AC([a,b])$ then $f=F'$ exists a.e., and $f\in L^1$, and $F(x)-F(a) = \int_a^x f(t)\,dt$ for all $x$.
+\end{enumerate}
+\end{block}
 
 \vspace{10mm}
 where $AC([a,b])=(\text{absolutely continuous functions on } [a,b])$
@@ -327,7 +341,7 @@ where $AC([a,b])=(\text{absolutely continuous functions on } [a,b])$
 
 \begin{frame}{divergence theorem in the plane $\RR^2$}
 
-\begin{theorem}[divergence theorem in $\RR^2$ \dots as Green's theorem]
+\begin{theorem}[divergence theorem \dots as a Green's theorem]
 Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that the curve $C=\partial \Omega$ is continuously-differentiable, and orient it counter-clockwise.  If $u(x,y)$ and $v(x,y)$ are continuously-differentiable functions on $\overline{\Omega}$ then
 	$$\iint_\Omega u_x + v_y \,dx\,dy = \oint_{C} u\, dy - v\, dx.$$
 \end{theorem}
@@ -346,20 +360,20 @@ Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that the curve $C=\pa
 
 \begin{frame}{divergence theorem in the plane $\RR^2$}
 
-\begin{theorem}[divergence theorem in $\RR^2$]
-Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
+\begin{theorem}[divergence theorem]
+Suppose $\Omega\subset\RR^2$ is bounded and open, and $\partial \Omega$ is continuously-differentiable.  Let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
 	$$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds$$
 \end{theorem}
 
 \begin{itemize}
-\item let's just use ``$\int$'' instead of $\iint$, $\oint$, etc.
+\item $\bV=\bV(x,y)$ has components $\bV=\ip{u}{v}$
+\item \alert{$\Div \bV = u_x + v_y$} is the \emph{divergence} of the vector field
+\item I will just use ``$\int$'' instead of $\iint$, $\oint$, etc.
 \item $dm$ is Lebesgue measure in $\RR^2$
 \item $ds$ is (induced submanifold) Lebesgue measure along the 1D curve $\partial\Omega$
     \begin{itemize}
     \item[$\circ$] nontrivially defined! use parameterized boundary, Jacobian determinant, \dots
     \end{itemize}
-\item $\bV=\bV(x,y)$ has components $\bV=\ip{u}{v}$
-\item \alert{$\Div \bV = u_x + v_y$} is the \emph{divergence} of the vector field
 \end{itemize}
 \end{frame}
 
@@ -367,15 +381,15 @@ Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that $\partial \Omega
 \begin{frame}{divergence theorem example}
 
 \begin{block}{Example}
-Suppose $\Omega = \{(x,y)\,:\,x^2+y^2<1\}$ is the unit disk, so that $C=\partial\Omega$ is the unit circle.  Let $\bV=\left<x,y+1\right>$ be the vector field.  Is it true?:
+Let $\Omega = \{(x,y)\,:\,x^2+y^2<1\}$ be the unit disk.  Then $\partial\Omega$ is the unit circle.  Let $\bV=\left<x,y+1\right>$.  Is it true?
 	$$\int_\Omega \Div \bV\,dm \stackrel{?}{=} \int_{\partial\Omega} \bV\cdot \bn\,ds$$
 \end{block}
 
 \noindent solution steps:
 \begin{itemize}
-\item<2> parameterize the circle: $(x(t),y(t))=(\cos(t),\sin(t))$, $0\le t \le 2\pi$
-\item<2> $\bn=\ip{x}{y}=\ip{\cos(t)}{\sin(t)}$; already normalized
-\item<2> $ds=dt$ (since arclength parameterized)
+\item<2> parameterize $\partial\Omega$:\, $(x(t),y(t))=(\cos(t),\sin(t))$, $0\le t \le 2\pi$
+\item<2> $\bn=\ip{x}{y}=\ip{\cos(t)}{\sin(t)}$
+\item<2> $ds=dt$ (arclength parameterized)
 \item<2> $\bV\cdot \bn = \left<x,y+1\right> \cdot \ip{x}{y} = x^2 + y^2 + y = 1 + \sin(t)$
 \item<2> $\Div \bV = 1 + 1 = 2$
 \item<2> thus (\emph{no surprise!}) the two sides are equal:
@@ -390,17 +404,17 @@ Suppose $\Omega = \{(x,y)\,:\,x^2+y^2<1\}$ is the unit disk, so that $C=\partial
 \begin{frame}{divergence theorem in $\RR^d$}
 
 \begin{itemize}
-\item but there is nothing intrinsically two-dimensional about the theorem!
+\item there is nothing intrinsically two-dimensional about the theorem!
 \end{itemize}
 
 \begin{theorem}[divergence theorem]
-Suppose $\Omega\subset\RR^d$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
+Suppose $\Omega\subset\RR^d$ is bounded and open, and $\partial \Omega$ is continuously-differentiable.  Let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
 	$$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds$$
 \end{theorem}
 
 \begin{itemize}
 \item<2> $dm$ is Lebesgue measure in $\RR^d$
-\item<2> $ds$ is $(d-1)$-dimensional Lebesgue measure (induced submanifold)
+\item<2> $ds$ is $(d-1)$-dim'l Lebesgue measure (submanifold measure)
 \item<2> a point $x\in\RR^d$ has \emph{coordinates} $x_i$: \quad $x = (x_1,\dots,x_d)$
 \item<2> a vector field $\bV:\Omega \to \RR^d$ has \emph{components}, $\bV = \left<v_1,\dots,v_d\right>$, and the components are scalar functions, $v_k = v_k(x_1,\dots,x_d)$
 \item<2> the \emph{divergence} of the vector field is
@@ -409,7 +423,7 @@ Suppose $\Omega\subset\RR^d$ is bounded and open.  Suppose that $\partial \Omega
 \end{frame}
 
 
-\begin{frame}{picture, and sketch proof, of divergence theorem in $\RR^3$}
+\begin{frame}{picture of divergence theorem in $\RR^3$ (and hints of proof)}
 
 picture in $\RR^3$:
 
@@ -424,53 +438,66 @@ picture in $\RR^3$:
 \item Gauss' law for electric fields might look like this in a physics text.
 \end{itemize}
 
-\begin{block}{Gauss' law (integral form)}
-Suppose $\bE:\RR^3\to\RR^3$ is the electric field.  Suppose $\Omega \subset \RR^3$ is a bounded domain with smooth boundary $\partial\Omega$.  Then
+\begin{block}{Gauss' law (``integral form'')}
+Suppose $\bE:\RR^3\to\RR^3$ is the (continuously-differentiable) electric field.  Suppose $\Omega \subset \RR^3$ is a bounded domain with smooth boundary $\partial\Omega$.  Then
 	$$\boxed{\only<1>{\oiint_{\partial\Omega}}\only<2>{\int_{\partial\Omega}} \bE \cdot \bn \,ds = \frac{Q}{\eps_0}}$$
 where $Q$ is the net enclosed charge within $\Omega$, and $\eps_0>0$ is a constant.
 \end{block}
 
 \begin{itemize}
-\item apply the divergence theorem on the left, and write $Q$ as the integral of a charge density function $\rho:\RR^3\to\RR$:
+\item apply the divergence theorem on the left, and write $Q$ as the integral of a charge density function $\rho:\RR^3\to\RR$, $\rho \in L^1$:
 	$$\int_\Omega \Div \bE \,dm = \frac{1}{\eps_0} \int_\Omega \rho\,dm$$
-\item since this applies over any $\Omega\subset \RR^3$, we get Gauss' law in (PDE form):
+\item since this applies over any $\Omega\subset \RR^3$, we get Gauss' law in ``PDE form'':
 	$$\boxed{\Div \bE = \frac{\rho}{\eps_0}}$$
 \end{itemize}
 }
 \end{frame}
 
 
+\begin{frame}{fundamental theorems in any dimension}
+
+\begin{itemize}
+\item the Fundamental Theorem of Calculus, in any dimension, says that the integral of a derivative can be computed by integrating over the boundary:
+    $$\int_\Omega d\omega = \int_{\partial\Omega} \omega \qquad \text{\alert{\emph{(Stokes theorem)}}}$$
+
+    \begin{itemize}
+    \item[$\circ$] making this precise requires defining \emph{differential forms}
+    \item[$\circ$] which I'm not going to do
+    \end{itemize}
+\item but we have this stack of Fundamental/Divergence Theorems:
+\begin{align*}
+\int_a^b F'\,dm &= F(b)-F(a) &&\text{\footnotesize (interval domain, two-point boundary)} \\
+\iint_\Omega \Div \bV\,dm &= \oint_{\partial\Omega} \bV\cdot \bn\,ds &&\text{\footnotesize (planar domain, closed-curve boundary)} \\
+\iiint_\Omega \Div \bV\,dm &= \oiint_{\partial\Omega} \bV\cdot \bn\,ds &&\text{\footnotesize (solid domain, closed-surface boundary)} \\
+\int_\Omega \Div \bV\,dm &= \int_{\partial\Omega} \bV\cdot \bn\,ds &&\text{\footnotesize (dim $d$ domain, dim $d-1$ closed boundary)}
+\end{align*}
+\end{itemize}
+\end{frame}
+
+
 \section{integration by parts (in $\RR^1$ and in $\RR^d$)}
 
 
-\begin{frame}{product rule and integration by parts in $\RR^1$}
+\begin{frame}{product rule and integration-by-parts in $\RR^1$}
 
 \begin{itemize}
 \item this is very familiar!
 \item suppose $f(x),g(x)$ are continuously-differentiable {\small (or absolutely continuous)}
 \item then:
 	$$\Big(f(x) g(x)\Big)' = f'(x) g(x) + f(x) g'(x)$$
-\item if we apply the FTC on both sides, integrating from $a$ to $b$:
+\item if we integrate both sides from $a$ to $b$, and apply FTC on left:
 	$$\Big[f(x) g(x)\Big]_a^b = \int_a^b f'(x) g(x)\,dx + \int_a^b f(x) g'(x)\,dx$$
-\item thus:
-	$$\int_a^b f(x) g'(x)\,dx = \Big[f(x) g(x)\Big]_a^b - \int_a^b f'(x) g(x)\,dx$$
+\item rearranging, we get integration-by-parts:
+	$$\boxed{\int_a^b f(x) g'(x)\,dx = \Big[f(x) g(x)\Big]_a^b - \int_a^b f'(x) g(x)\,dx}$$
 \item also known as:
 	$$\int u\,dv = u\,v - \int v\,du$$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{first product rule in $\RR^d$}
+\begin{frame}{product rules in $\RR^d$}
 
 FIXME $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
-
-\begin{itemize}
-\item y
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{second product rule in $\RR^d$}
 
 FIXME $\Div (f\bV) = \grad f\cdot \bV + f\Div \bV$
 
@@ -510,12 +537,23 @@ FIXME start from $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
 \end{frame}
 
 
-\section{theory in weeks 9 \& 10}
+\section{theory in weeks 10 \& 11}
 
 \begin{frame}{theory in weeks 9 \& 10}
 
 \begin{itemize}
 \item part of this material is only from slides
+
+\begin{block}{to know from slides:}
+\begin{itemize}
+\item FTC with $f\in L^1$ and $F \in AC$
+\item divergence theorem in $\RR^d$
+\item integration-by-parts in $\RR^d$
+\item weak derivative in $\RR^d$
+\item Sobolev space $H^1$
+\end{itemize}
+\end{block}
+
 \item \dots but part will be from Chapter 5 in Saxe, sections 5.1 and 5.2
 \end{itemize}
 
@@ -524,14 +562,13 @@ FIXME start from $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
 \item linear operator
 \item bounded linear operator
 \item operator norm
-\item dual space
-\item Sobolev space $H^1$
+\item dual space \quad (\emph{I will add this closely-related topic})
 \end{itemize}
 \end{block}
 \end{frame}
 
 
-\begin{frame}{theory in weeks 9 \& 10}
+\begin{frame}{theory in weeks 10 \& 11}
 
 \begin{block}{to prove:}
 \begin{itemize}
@@ -544,7 +581,7 @@ FIXME start from $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
 \end{block}
 
 \begin{itemize}
-\item Assignments 5 and 6 are posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\item Assignment 6 is posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
 \end{itemize}
 \end{frame}
 
