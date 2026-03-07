@@ -22,7 +22,7 @@
 % Or whatever. Note that the encoding and the font should match. If T1
 % does not look nice, try deleting the line with the fontenc.
 
-\usepackage{fancyvrb,empheq,bm,xspace,dsfont}
+\usepackage{fancyvrb,empheq,bm,xspace,dsfont,esint}
 %\usepackage{minted}
 \usepackage{tikz}
 
@@ -43,7 +43,11 @@
 \newcommand{\bu}{\mathbf{u}}
 \newcommand{\bw}{\mathbf{w}}
 
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bV}{\mathbf{V}}
+
 \newcommand{\cB}{\mathcal{B}}
+\newcommand{\cE}{\mathcal{E}}
 \newcommand{\cM}{\mathcal{M}}
 \newcommand{\cR}{\mathcal{R}}
 
@@ -343,8 +347,8 @@ Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that the curve $C=\pa
 \begin{frame}{divergence theorem in the plane $\RR^2$}
 
 \begin{theorem}[divergence theorem in $\RR^2$]
-Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $V$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
-	$$\int_\Omega \Div V\,dm = \int_{\partial\Omega} V\cdot \bn\,ds$$
+Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
+	$$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds$$
 \end{theorem}
 
 \begin{itemize}
@@ -354,8 +358,8 @@ Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that $\partial \Omega
     \begin{itemize}
     \item[$\circ$] nontrivially defined! use parameterized boundary, Jacobian determinant, \dots
     \end{itemize}
-\item $V=V(x,y)$ has components $V=\ip{u}{v}$
-\item \alert{$\Div V = u_x + v_y$} is the \emph{divergence} of the vector field
+\item $\bV=\bV(x,y)$ has components $\bV=\ip{u}{v}$
+\item \alert{$\Div \bV = u_x + v_y$} is the \emph{divergence} of the vector field
 \end{itemize}
 \end{frame}
 
@@ -363,73 +367,95 @@ Suppose $\Omega\subset\RR^2$ is bounded and open.  Suppose that $\partial \Omega
 \begin{frame}{divergence theorem example}
 
 \begin{block}{Example}
-Suppose $\Omega = \{(x,y)\,:\,x^2+y^2<1\}$ is the unit disk, so that $C=\partial\Omega$ is the unit circle.  Let $V=\left<x,y+1\right>$ be the vector field.  Is it true?:
-	$$\int_\Omega \Div V\,dm \stackrel{?}{=} \int_{\partial\Omega} V\cdot \bn\,ds$$
+Suppose $\Omega = \{(x,y)\,:\,x^2+y^2<1\}$ is the unit disk, so that $C=\partial\Omega$ is the unit circle.  Let $\bV=\left<x,y+1\right>$ be the vector field.  Is it true?:
+	$$\int_\Omega \Div \bV\,dm \stackrel{?}{=} \int_{\partial\Omega} \bV\cdot \bn\,ds$$
 \end{block}
 
 \noindent solution steps:
 \begin{itemize}
-\item parameterize the circle: $(x(t),y(t))=(\cos(t),\sin(t))$, $0\le t \le 2\pi$
-\item $\bn=\ip{x}{y}=\ip{\cos(t)}{\sin(t)}$; already normalized
-\item $ds=dt$ (since arclength parameterized)
-\item $V\cdot \bn = \left<x,y+1\right> \cdot \ip{x}{y} = x^2 + y^2 + y = 1 + \sin(t)$
-\item $\Div V = 1 + 1 = 2$
-\item thus:
+\item<2> parameterize the circle: $(x(t),y(t))=(\cos(t),\sin(t))$, $0\le t \le 2\pi$
+\item<2> $\bn=\ip{x}{y}=\ip{\cos(t)}{\sin(t)}$; already normalized
+\item<2> $ds=dt$ (since arclength parameterized)
+\item<2> $\bV\cdot \bn = \left<x,y+1\right> \cdot \ip{x}{y} = x^2 + y^2 + y = 1 + \sin(t)$
+\item<2> $\Div \bV = 1 + 1 = 2$
+\item<2> thus (\emph{no surprise!}) the two sides are equal:
 \begin{align*}
-\int_\Omega \Div V\,dm &= \int_\Omega 2\,dm = 2 \pi\\
-\int_{\partial\Omega} V\cdot \bn\,ds &= \int_0^{2\pi} 1 + \sin(t)\,dt = 2\pi
+\int_\Omega \Div \bV\,dm &= \int_\Omega 2\,dm = 2 \pi\\
+\int_{\partial\Omega} \bV\cdot \bn\,ds &= \int_0^{2\pi} 1 + \sin(t)\,dt = 2\pi
 \end{align*}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{divergence theorem in the plane $\RR^d$}
+\begin{frame}{divergence theorem in $\RR^d$}
 
 \begin{itemize}
 \item but there is nothing intrinsically two-dimensional about the theorem!
 \end{itemize}
 
 \begin{theorem}[divergence theorem]
-Suppose $\Omega\subset\RR^d$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $V$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
-	$$\int_\Omega \Div V\,dm = \int_{\partial\Omega} V\cdot \bn\,ds$$
+Suppose $\Omega\subset\RR^d$ is bounded and open.  Suppose that $\partial \Omega$ is continuously-differentiable, and let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
+	$$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds$$
 \end{theorem}
 
 \begin{itemize}
 \item<2> $dm$ is Lebesgue measure in $\RR^d$
 \item<2> $ds$ is $(d-1)$-dimensional Lebesgue measure (induced submanifold)
 \item<2> a point $x\in\RR^d$ has \emph{coordinates} $x_i$: \quad $x = (x_1,\dots,x_d)$
-\item<2> a vector field $V:\Omega \to \RR^d$ has \emph{components}, $V = \left<v_1,\dots,v_d\right>$, and the components are scalar functions, $v_k = v_k(x_1,\dots,x_d)$
+\item<2> a vector field $\bV:\Omega \to \RR^d$ has \emph{components}, $\bV = \left<v_1,\dots,v_d\right>$, and the components are scalar functions, $v_k = v_k(x_1,\dots,x_d)$
 \item<2> the \emph{divergence} of the vector field is
-	$$\Div V = \frac{\partial v_1}{\partial x_1} + \dots + \frac{\partial v_d}{\partial x_d} = \sum_{k=1}^d \frac{\partial v_k}{\partial x_k}$$
+	$$\Div \bV = \frac{\partial v_1}{\partial x_1} + \dots + \frac{\partial v_d}{\partial x_d} = \sum_{k=1}^d \frac{\partial v_k}{\partial x_k}$$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{most-famous 3D usage?}
+\begin{frame}{picture, and sketch proof, of divergence theorem in $\RR^3$}
 
-FIXME Gauss' law for electrostatics
+picture in $\RR^3$:
+
+\vspace{70mm}
+\end{frame}
+
+
+\begin{frame}{most-famous usage in physics}
+
+{\small
+\begin{itemize}
+\item Gauss' law for electric fields might look like this in a physics text.
+\end{itemize}
+
+\begin{block}{Gauss' law (integral form)}
+Suppose $\bE:\RR^3\to\RR^3$ is the electric field.  Suppose $\Omega \subset \RR^3$ is a bounded domain with smooth boundary $\partial\Omega$.  Then
+	$$\boxed{\only<1>{\oiint_{\partial\Omega}}\only<2>{\int_{\partial\Omega}} \bE \cdot \bn \,ds = \frac{Q}{\eps_0}}$$
+where $Q$ is the net enclosed charge within $\Omega$, and $\eps_0>0$ is a constant.
+\end{block}
 
 \begin{itemize}
-\item y
+\item apply the divergence theorem on the left, and write $Q$ as the integral of a charge density function $\rho:\RR^3\to\RR$:
+	$$\int_\Omega \Div \bE \,dm = \frac{1}{\eps_0} \int_\Omega \rho\,dm$$
+\item since this applies over any $\Omega\subset \RR^3$, we get Gauss' law in (PDE form):
+	$$\boxed{\Div \bE = \frac{\rho}{\eps_0}}$$
 \end{itemize}
+}
 \end{frame}
 
 
 \section{integration by parts (in $\RR^1$ and in $\RR^d$)}
 
 
-\begin{frame}{product rule in $\RR^1$}
+\begin{frame}{product rule and integration by parts in $\RR^1$}
 
 \begin{itemize}
-\item y
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{integration by parts in $\RR^1$}
-
-\begin{itemize}
-\item y
+\item this is very familiar!
+\item suppose $f(x),g(x)$ are continuously-differentiable {\small (or absolutely continuous)}
+\item then:
+	$$\Big(f(x) g(x)\Big)' = f'(x) g(x) + f(x) g'(x)$$
+\item if we apply the FTC on both sides, integrating from $a$ to $b$:
+	$$\Big[f(x) g(x)\Big]_a^b = \int_a^b f'(x) g(x)\,dx + \int_a^b f(x) g'(x)\,dx$$
+\item thus:
+	$$\int_a^b f(x) g'(x)\,dx = \Big[f(x) g(x)\Big]_a^b - \int_a^b f'(x) g(x)\,dx$$
+\item also known as:
+	$$\int u\,dv = u\,v - \int v\,du$$
 \end{itemize}
 \end{frame}
 
@@ -446,7 +472,7 @@ FIXME $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
 
 \begin{frame}{second product rule in $\RR^d$}
 
-FIXME $\Div (fV) = \grad f\cdot V + f\Div V$
+FIXME $\Div (f\bV) = \grad f\cdot \bV + f\Div \bV$
 
 \begin{itemize}
 \item y
