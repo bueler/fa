@@ -497,21 +497,53 @@ where $Q$ is the net enclosed charge within $\Omega$, and $\eps_0>0$ is a consta
 
 \begin{frame}{product rules in $\RR^d$}
 
-FIXME $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
-
-FIXME $\Div (f\bV) = \grad f\cdot \bV + f\Div \bV$
-
 \begin{itemize}
-\item y
+\item notation:
+    \begin{itemize}
+    \item[$\circ$] $x\in\RR^d$ has coordinates: \quad $x = (x_1,\dots,x_d)$
+    \item[$\circ$] $f,g:\RR^d\to\RR$ are scalar functions
+    \item[$\circ$] $\bV$ has components: \quad $\bV = \left<v_1,\dots,v_d\right>$ \quad where $v_k$ are scalar functions
+    \item[$\circ$] gradient $\grad f = \left<\frac{\partial f}{\partial x_1}, \dots,\frac{\partial f}{\partial x_d}\right>$ and divergence $\Div \bV = \sum_{k=1}^d \frac{\partial v_k}{\partial x_k}$
+    \end{itemize}
+\item there are \alert{two} critical multi-variable product rules to know:\footnote{there are also product rules for the curl ($\nabla\times\bV$), and/or for the exterior derivative and differential-forms wedge product ($d$, $\omega\wedge\nu$); a priority if you work with electricity and magnetism}
+
+\begin{block}{product rule for partial derivatives (scalar functions)}
+    $$\frac{\partial}{\partial x_k} \Big(f \,g\Big) = \frac{\partial f}{\partial x_k} g + f \frac{\partial g}{\partial x_k}$$
+\end{block}
+
+\begin{block}{product rule for divergence}
+    $$\Div (f\,\bV) = \grad f\cdot \bV + f\,\Div \bV$$
+\end{block}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{y}
+\begin{frame}{integration-by-parts in $\RR^d$}
 
 \begin{itemize}
-\item y
+\item two integration-by-parts rules in $\RR^d$ come from the product rules \dots same logic as in $\RR^1$!
+\item stating the first cleanly requires making sure the boundary term is zero, thus the assumption of compact support
+
+\begin{block}{integration-by-parts: partial derivatives}
+hypo
+    $$XX\frac{\partial}{\partial x_k} \Big(f \,g\Big) = \frac{\partial f}{\partial x_k} g + f \frac{\partial g}{\partial x_k}$$
+\end{block} 
+
+\item the second formula, easily derived from the divergence theorem, is sometimes called a \emph{Green's identity}, or just a \emph{Green's theorem}
+
+\begin{block}{integration-by-parts: divergence/gradient}
+hypo
+    $$\int_\Omega f\,\Div \bV\,dm = \int_{\partial\Omega} f\,\bV\cdot \bn\,ds - \int_\Omega \grad f\cdot \bV\,dm$$
+\end{block}
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}{integration-by-parts in $\RR^d$}
+
+\noindent pictures (partial derivative version on left, divergence/gradient on right):
+
+\vspace{60mm}
 \end{frame}
 
 
