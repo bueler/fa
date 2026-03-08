@@ -70,6 +70,8 @@
 \newcommand{\Matlab}{\textsc{Matlab}\xspace}
 \newcommand{\eps}{\epsilon}
 
+\newcommand{\Lloc}{L_{\text{loc}}^1}
+
 \newcommand{\ds}{\displaystyle}
 
 \newcommand{\ip}[2]{\left<#1,#2\right>}
@@ -544,7 +546,7 @@ if $\Omega\subset\RR^d$ is open, and if $f,g\in C_c^1(\Omega)$ then
 \begin{definition}
 \begin{itemize}
 \item If $\Omega\subset\RR^d$ is open, we say that a function $f:\Omega\to\RR$ \emph{has compact support} if
-	 $$\operatorname{supp}(f) = \{x\in\Omega\,:\,f(x)\ne 0\}$$
+	 $$\operatorname{supp}(f) = \overline{\{x\in\Omega\,:\,f(x)\ne 0\}}$$
 is a compact subset of $\Omega$.
 \item $C_c(\Omega) = \left\{\text{$\RR$-valued continuous functions which have compact support}\right\}$
 \item $C_c^n(\Omega) = \left\{f\in C_c(\Omega)\,:\,\text{partial derivatives up to order $n$ are in } C_c(\Omega)\right\}$
@@ -575,30 +577,173 @@ if $\Omega\subset\RR^d$ is open, bounded, and has continuously-differentiable or
 
 \begin{frame}{compact support and integration-by-parts}
 
-\noindent pictures (partial derivative version on left, divergence/gradient on right):
+\noindent pictures:
 
-\vspace{60mm}
+\vspace{70mm}
+
+{\footnotesize left: for partial derivatives \hfill right: for divergence/gradient}
+\end{frame}
+
+
+\begin{frame}{application of integration-by-parts: weak form of a PDE}
+
+\begin{itemize}
+\item suppose we want to solve the \emph{Poisson equation}, a partial differential equation (PDE), on a domain $\Omega \subset \RR^d$, with given data $f\in L^1(\Omega)$:
+	$$-\grad^2 u \stackrel{\ast}{=} f$$
+
+    \begin{itemize}
+    \item[$\circ$] we seek $u:\Omega \to \RR$, which also satisfies some boundary conditions (below)
+    \item[$\circ$] notation: \, $\grad^2 u = \Div(\grad u)$ \, is the \emph{Laplacian} of $u$; it is also a scalar function
+    \end{itemize}
+\item concept: $\ast$ is true if and only if arbitrary integrals of the sides are equal
+\item multiply both sides of $\ast$ by another function $v$, a \emph{test function}, expanding the Laplacian, and integrate over $\Omega$:
+	$$- \int_\Omega \Div(\grad u) v\,dm = \int_\Omega f v\,dm$$
+\item apply integration-by-parts 2 for divergence/gradient:
+	$$\int_\Omega \grad u\cdot \grad v\,dm - \int_{\partial \Omega} v \grad u\cdot \bn\,ds = \int_\Omega f v\,dm$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{application of integration-by-parts: weak form of a PDE}
+
+\begin{itemize}
+\item from last slide, Poisson's equation $-\grad^2 u = f$ has become
+	$$\int_\Omega \grad u\cdot \grad v\,dm - \int_{\partial \Omega} v \grad u\cdot \bn\,ds = \int_\Omega f v\,dm$$
+\item the boundary term currently involves the solution $u$
+\item however, it becomes data if either
+    \begin{itemize}
+    \item[1.] we set the normal derivative, $\grad u\cdot\bn=g_N$ (\emph{Neumann condition}), or
+    \item[2.] we set $u=g_D$ and $v=0$ along the boundary (\emph{Dirichlet condition})
+    \end{itemize}
+\item if we choose homogeneous Dirichlet conditions ($v=0$ and $u=0$ along boundary) then, essentially, we have equivalent forms of Poisson's equation:
+\begin{align*}
+&\boxed{-\grad^2 u = f} &\iff &&&\boxed{\int_\Omega \grad u\cdot \grad v\,dm = \int_\Omega f v\,dm} \\
+&\text{\alert{strong form}} & &&&\text{\alert{weak form}}
+\end{align*}
+\item the weak form is what we will use for finite element approximations
+\end{itemize}
 \end{frame}
 
 
 \section{weak derivatives}
 
-\begin{frame}{y}
-
-FIXME start from $(fg)_{x_k} = f_{x_k} g + f g_{x_k}$
+\begin{frame}{simplifying awkward partial derivative notation}
 
 \begin{itemize}
-\item y
+\item integration by parts will allow us to differentiate very general functions
+\item but first: multi-indices simplify notation
+
+\smallskip
+\item let $\ZZ^+=\{0,1,2,\dots\} = \{0\}\cup\NN$
+\item suppose \alert{$\alpha=(\alpha_1,\dots,\alpha_d)$} is a \alert{multi-index}:
+	$$\alpha \in \ZZ^+\times \dots \times \ZZ^+ = \left(\ZZ^+\right)^d,$$
+\item \alert{$|\alpha| = \alpha_1 + \dots + \alpha_d$} is the \emph{order} of $\alpha$
+
+\begin{definition}
+$$\alert{D^\alpha = \frac{\partial^{|\alpha|}}{{\partial x_1}^{\alpha_1} \dots {\partial x_d}^{\alpha_d}}}$$
+\end{definition}
+
+\item for example on $f:\RR^3\to\RR$:
+\begin{align*}
+\alpha&=(3,0,0) &\to && D^\alpha f &= \frac{\partial^3 f}{{\partial x_1}^3} \quad (\text{3rd-order}) \\
+\alpha&=(0,1,1) &\to && D^\alpha f &= \frac{\partial^2 f}{\partial x_2 \partial x_3} \quad (\text{2nd-order mixed})\\
+\end{align*}
 \end{itemize}
 \end{frame}
 
 
-\section{where this is going: Sobolev spaces to solve PDEs}
-
-\begin{frame}{y}
+\begin{frame}{key idea about $C_c^\infty(\Omega)$}
 
 \begin{itemize}
-\item y
+\item suppose $\Omega\subset \RR^d$ is open
+\item for any function $\varphi:\Omega \to \RR$, recall that we defined the closed set
+	$$\operatorname{supp}(\varphi) = \overline{\left\{x\in\Omega\,:\, \varphi(x) \ne 0\right\}}$$
+\item recall that for $C_c^\infty(\Omega)$ functions we may differentiate as much as we want
+\item if $\varphi\in C_c^\infty(\Omega)$ then the support of $\varphi$ is compact
+\item if $\varphi\in C_c^\infty(\Omega)$ then the support of \emph{any} $D^\alpha \varphi$, for any $\alpha$, is compact
+\item idea:
+
+\begin{center}
+\alert{if $\varphi\in C_c^\infty(\Omega)$ then the integral over $K=\operatorname{supp}(D^\alpha \varphi)$, for any $\alpha$,}
+
+\vspace{2mm}
+\alert{of any continuous or integrable function, is well-defined and finite}
+\end{center}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{weak derivatives}
+
+\begin{itemize}
+\item we will use $\varphi \in C_c^\infty(\Omega)$ as a \emph{test function} to define a derivative of a much more general kind of function \dots if the derivative exists
+
+\begin{definition}  \only<1>{if $f\in L^1(\Omega)$, and if $g\in L^1(\Omega)$ satisfies}
+\only<2>{if $f\in \Lloc(\Omega)$, and if $g\in \Lloc(\Omega)$ satisfies}
+    $$\int_\Omega g\, \varphi\,dm = (-1)^{|\alpha|} \int_\Omega f\, D^\alpha\varphi\,dm \qquad \text{for all } \varphi \in C_c^\infty(\Omega)$$
+then we say $g$ is the \alert{\emph{$\alpha$th weak derivative}} of $f$, and we write $\alert{D^\alpha f = g}$ a.e.
+\end{definition}
+
+\item this definition uses ``integration-by-parts 1'' for partial derivatives
+\item<2> because we don't care if functions are (globally) integrable in this definition, we may loosen $f,g\in L^1(\Omega)$ to $f,g\in\Lloc(\Omega)$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{weak derivatives: 3 definitions to know}
+
+\begin{definition}
+if $\alpha\in(\ZZ^+)^d$ then \quad $\ds \alert{D^\alpha = \frac{\partial^{|\alpha|}}{{\partial x_1}^{\alpha_1} \dots {\partial x_d}^{\alpha_d}}}$
+\end{definition}
+
+\begin{definition}
+    $$\alert{\Lloc(\Omega)} = \left\{f : \Omega\to \RR\,\Big|\quad\begin{matrix} f \text{ is measurable, and} \\ \int_K |f|\,dm <\infty \text{ whenever } K\subset \Omega \text{ is compact}\end{matrix}\right\}$$
+\end{definition}
+
+\begin{definition}  if $f\in \Lloc(\Omega)$, and if $g\in \Lloc(\Omega)$ satisfies
+    $$\int_\Omega g\, \varphi\,dm = (-1)^{|\alpha|} \int_\Omega f\, D^\alpha\varphi\,dm \qquad \text{for all } \varphi \in C_c^\infty(\Omega)$$
+then we say $g$ is the \alert{\emph{$\alpha$th weak derivative}} of $f$, and we write $\alert{D^\alpha f = g}$ a.e.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{weak derivatives: Example 1}
+
+\begin{itemize}
+\item suppose $\Omega \subset \RR^d$ is open and $f\in C^k(\Omega)$
+\item then the usual partial derivative $D^\alpha f$ exists, as long as $|\alpha|\le k$
+\item integrate the usual derivative $D^\alpha f$ over $\Lambda$, using integration-by-parts 1, for each partial derivative in $\alpha=(\alpha_1,\dots,\alpha_d)$, a total of $|\alpha|$ times:
+\begin{align*}
+\int_\Omega D^\alpha f\, \varphi\,dm &= - \int_\Omega D^{\tilde\alpha} f\, D^{(1,0,\dots,0)}\varphi\,dm \\
+ &= \dots = (-1)^{\alpha_1} \int_\Omega D^{\tilde{\tilde\alpha}} f \, D^{(\alpha_1,0,\dots,0)}\varphi\,dm \\
+ &= \dots \\
+ &= (-1)^{|\alpha|} \int_\Omega f\, D^\alpha\varphi\,dm
+\end{align*}
+\item thus the weak derivative $g$ exists, and $g=D^\alpha f$ a.e.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{weak derivatives: Example 2}
+
+\begin{itemize}
+\item xx
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{weak derivatives: Example 3}
+
+\begin{itemize}
+\item xx
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{weak derivatives: Example 4}
+
+\begin{itemize}
+\item xx
 \end{itemize}
 \end{frame}
 
