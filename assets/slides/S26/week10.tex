@@ -231,7 +231,7 @@ then the variation of $f$ on those intervals is less than $\eps$:
 \node[box, below=of C1]  (Lip) {Lipschitz continuous};
 \node[box, below=of Lip] (AC)  {absolutely continuous};
 \node[box, below=of AC]  (UC)  {uniformly continuous};
-\node[box, below=of UC]  (C)   {continuous at each $x$};
+\node[box, below=of UC]  (C)   {$C^0$ (continuous at each $x$)};
 \draw[impl] (C1) -- (Lip);
 \draw[impl] (Lip) -- (AC);
 \draw[impl] (AC) -- (UC);
@@ -318,13 +318,16 @@ If $F(x)$ is absolutely continuous then $f=F'$ exists a.e.~and $f\in L^1$ and $F
 
 \begin{block}{Fundamental Theorem of Calculus}
 \begin{enumerate}
-\item If $f \in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is in $AC([a,b])$, and it is differentiable a.e., and $F'=f$ a.e.
-\item If $F \in AC([a,b])$ then $f=F'$ exists a.e., and $f\in L^1$, and $F(x)-F(a) = \int_a^x f(t)\,dt$ for all $x$.
+\item If $f \in L^1([a,b])$ then $F(x) = \int_a^x f(t)\,dt$ is in $AC([a,b])$,\footnote{We define $AC([a,b])=(\text{absolutely continuous functions on } [a,b])$.} and it is differentiable a.e., and
+    $$\frac{d}{dx}\left(\int_a^x f(t)\,dt\right) = f(x)$$
+for almost every $x$.
+\item If $F \in AC([a,b])$ then $f=F'$ exists a.e., and $f\in L^1([a,b])$, and
+    $$F(x)-F(a) = \int_a^x f(t)\,dt$$
+for all $x$.
 \end{enumerate}
 \end{block}
 
-\vspace{10mm}
-where $AC([a,b])=(\text{absolutely continuous functions on } [a,b])$
+
 \end{frame}
 
 
@@ -408,7 +411,7 @@ Let $\Omega = \{(x,y)\,:\,x^2+y^2<1\}$ be the unit disk.  Then $\partial\Omega$ 
 \end{itemize}
 
 \begin{theorem}[divergence theorem]
-Suppose $\Omega\subset\RR^d$ is bounded and open, and $\partial \Omega$ is continuously-differentiable.  Let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
+Suppose $\Omega\subset\RR^d$ is bounded and open, and $\partial \Omega$ is continuously-differentiable or Lipschitz.  Let $\bn$ be the outward normal along $\partial \Omega$.  If $\bV$ is a continuously-differentiable vector field on $\overline{\Omega}$ then
 	$$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds$$
 \end{theorem}
 
@@ -461,15 +464,15 @@ where $Q$ is the net enclosed charge within $\Omega$, and $\eps_0>0$ is a consta
     $$\int_\Omega d\omega = \int_{\partial\Omega} \omega \qquad \text{\alert{\emph{(Stokes theorem)}}}$$
 
     \begin{itemize}
-    \item[$\circ$] making this precise requires defining \emph{differential forms}
+    \item[$\circ$] making this precise requires defining \emph{chains} $\Omega$ and \emph{differential forms} $\omega$
     \item[$\circ$] which I'm not going to do
     \end{itemize}
-\item but we have this stack of Fundamental/Divergence Theorems:
+\item a stack of Fundamental Theorems for $\Omega\subset\RR^d$, in various dimensions:
 \begin{align*}
 \int_a^b F'\,dm &= F(b)-F(a) &&\text{\footnotesize (interval domain, two-point boundary)} \\
 \iint_\Omega \Div \bV\,dm &= \oint_{\partial\Omega} \bV\cdot \bn\,ds &&\text{\footnotesize (planar domain, closed-curve boundary)} \\
 \iiint_\Omega \Div \bV\,dm &= \oiint_{\partial\Omega} \bV\cdot \bn\,ds &&\text{\footnotesize (solid domain, closed-surface boundary)} \\
-\int_\Omega \Div \bV\,dm &= \int_{\partial\Omega} \bV\cdot \bn\,ds &&\text{\footnotesize (dim $d$ domain, dim $d-1$ closed boundary)}
+\int_\Omega \Div \bV\,dm &= \int_{\partial\Omega} \bV\cdot \bn\,ds &&\text{\footnotesize ($\RR^d$ domain, $(d-1)$-dim'l closed boundary)}
 \end{align*}
 \end{itemize}
 \end{frame}
@@ -487,10 +490,9 @@ where $Q$ is the net enclosed charge within $\Omega$, and $\eps_0>0$ is a consta
 	$$\Big(f(x) g(x)\Big)' = f'(x) g(x) + f(x) g'(x)$$
 \item if we integrate both sides from $a$ to $b$, and apply FTC on left:
 	$$\Big[f(x) g(x)\Big]_a^b = \int_a^b f'(x) g(x)\,dx + \int_a^b f(x) g'(x)\,dx$$
-\item rearranging, we get integration-by-parts:
+\item rearranging, we get integration-by-parts:\footnote{also known as $\int u\,dv = u\,v - \int v\,du$, but then you put in limits of integration \dots}
 	$$\boxed{\int_a^b f(x) g'(x)\,dx = \Big[f(x) g(x)\Big]_a^b - \int_a^b f'(x) g(x)\,dx}$$
-\item also known as:
-	$$\int u\,dv = u\,v - \int v\,du$$
+\item it suffices for $f,g$ to be absolutely continuous (and thus $f',g'\in L^1$)
 \end{itemize}
 \end{frame}
 
@@ -505,13 +507,13 @@ where $Q$ is the net enclosed charge within $\Omega$, and $\eps_0>0$ is a consta
     \item[$\circ$] $\bV$ has components: \quad $\bV = \left<v_1,\dots,v_d\right>$ \quad where $v_k$ are scalar functions
     \item[$\circ$] gradient $\grad f = \left<\frac{\partial f}{\partial x_1}, \dots,\frac{\partial f}{\partial x_d}\right>$ and divergence $\Div \bV = \sum_{k=1}^d \frac{\partial v_k}{\partial x_k}$
     \end{itemize}
-\item there are \alert{two} critical multi-variable product rules to know:\footnote{there are also product rules for the curl ($\nabla\times\bV$), and/or for the exterior derivative and differential-forms wedge product ($d$, $\omega\wedge\nu$); a priority if you work with electricity and magnetism}
+\item there are \alert{2 priority product rules} in $\RR^d$ to know:\footnote{there are also product rules for the curl (``$\nabla\times\bV$''), and/or for the exterior derivative and differential-forms wedge product (``$d$'' and ``$\omega\wedge\nu$''); know these for electricity and magnetism!}
 
-\begin{block}{product rule for partial derivatives (scalar functions)}
+\begin{block}{product rule 1: partial derivatives (of scalar functions)}
     $$\frac{\partial}{\partial x_k} \Big(f \,g\Big) = \frac{\partial f}{\partial x_k} g + f \frac{\partial g}{\partial x_k}$$
 \end{block}
 
-\begin{block}{product rule for divergence}
+\begin{block}{product rule 2: divergence/gradient}
     $$\Div (f\,\bV) = \grad f\cdot \bV + f\,\Div \bV$$
 \end{block}
 \end{itemize}
@@ -521,25 +523,57 @@ where $Q$ is the net enclosed charge within $\Omega$, and $\eps_0>0$ is a consta
 \begin{frame}{integration-by-parts in $\RR^d$}
 
 \begin{itemize}
-\item two integration-by-parts rules in $\RR^d$ come from the product rules \dots same logic as in $\RR^1$!
-\item stating the first cleanly requires making sure the boundary term is zero, thus the assumption of compact support
+\item the \alert{2 priority integration-by-parts rules} in $\RR^d$ come from the two product rules \dots via the same logic as in $\RR^1$!
+\item the first rule is simplest and most useful \emph{when the boundary integral is zero}, thus the assumption of compact support
+\item because of the assumption of compact support, the boundary of $\Omega$ is allowed to be weird
 
-\begin{block}{integration-by-parts: partial derivatives}
-hypo
-    $$XX\frac{\partial}{\partial x_k} \Big(f \,g\Big) = \frac{\partial f}{\partial x_k} g + f \frac{\partial g}{\partial x_k}$$
-\end{block} 
+\begin{block}{integration-by-parts 1: partial derivatives}
+if $\Omega\subset\RR^d$ is open, and if $f,g\in C_c^1(\Omega)$ then
+    $$\int_\Omega \frac{\partial f}{\partial x_k} g\,dm = -\int_\Omega f \frac{\partial g}{\partial x_k}\,dm$$
+\end{block}
+\end{itemize}
+\end{frame}
 
-\item the second formula, easily derived from the divergence theorem, is sometimes called a \emph{Green's identity}, or just a \emph{Green's theorem}
 
-\begin{block}{integration-by-parts: divergence/gradient}
-hypo
+\begin{frame}{nice functions}
+
+\begin{itemize}
+\item but what is ``$C_c^1(\Omega)$''?
+\end{itemize}
+
+\begin{definition}
+\begin{itemize}
+\item If $\Omega\subset\RR^d$ is open, we say that a function $f:\Omega\to\RR$ \emph{has compact support} if
+	 $$\operatorname{supp}(f) = \{x\in\Omega\,:\,f(x)\ne 0\}$$
+is a compact subset of $\Omega$.
+\item $C_c(\Omega) = \left\{\text{$\RR$-valued continuous functions which have compact support}\right\}$
+\item $C_c^n(\Omega) = \left\{f\in C_c(\Omega)\,:\,\text{partial derivatives up to order $n$ are in } C_c(\Omega)\right\}$
+\item $C_c^\infty(\Omega) = \left\{f\in C_c(\Omega)\,:\,\text{partial derivatives of all orders are in } C_c(\Omega)\right\}$
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+\item note $C_c^0(\Omega)=C_c(\Omega)$
+\item \alert{$C_c^\infty(\Omega)$ functions are the nicest}!  you can differentiate and/or integrate over $\Omega$ as much as you want
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{integration-by-parts in $\RR^d$}
+
+\begin{itemize}
+\item the second formula, easily derived from the divergence theorem, is sometimes called a \emph{Green's identity} or similar
+\item it requires the boundary to have a normal direction, so the boundary cannot be too weird
+
+\begin{block}{integration-by-parts 2: divergence/gradient}
+if $\Omega\subset\RR^d$ is open, bounded, and has continuously-differentiable or Lipschitz boundary, and if $f$ and the components of $\bV$ are in $C^1(\overline{\Omega})$, then
     $$\int_\Omega f\,\Div \bV\,dm = \int_{\partial\Omega} f\,\bV\cdot \bn\,ds - \int_\Omega \grad f\cdot \bV\,dm$$
 \end{block}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{integration-by-parts in $\RR^d$}
+\begin{frame}{compact support and integration-by-parts}
 
 \noindent pictures (partial derivative version on left, divergence/gradient on right):
 
