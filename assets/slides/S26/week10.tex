@@ -661,15 +661,12 @@ $$\alert{D^\alpha = \frac{\partial^{|\alpha|}}{{\partial x_1}^{\alpha_1} \dots {
 \item recall that for $C_c^\infty(\Omega)$ functions we may differentiate as much as we want
 \item if $\varphi\in C_c^\infty(\Omega)$ then the support of $\varphi$ is compact
 \item if $\varphi\in C_c^\infty(\Omega)$ then the support of \emph{any} $D^\alpha \varphi$, for any $\alpha$, is compact
-\item idea:
-
-\begin{center}
-\alert{if $\varphi\in C_c^\infty(\Omega)$ then the integral over $K=\operatorname{supp}(D^\alpha \varphi)$, for any $\alpha$,}
-
-\vspace{2mm}
-\alert{of any continuous or integrable function, is well-defined and finite}
-\end{center}
 \end{itemize}
+
+\begin{block}{main idea:}
+\alert{if $\varphi\in C_c^\infty(\Omega)$ then the integral over $K=\operatorname{supp}(D^\alpha \varphi)$, for any $\alpha$, of any continuous or integrable function, is well-defined and finite:}
+$$\alert{g \in L^1(\Omega) \quad \implies \quad \int_\Omega g\, D^\alpha \varphi\,dm = \int_K g\, D^\alpha \varphi\,dm \quad \text{ is finite}}$$
+\end{block}
 \end{frame}
 
 
@@ -714,12 +711,12 @@ then we say $g$ is the \alert{\emph{$\alpha$th weak derivative}} of $f$, and we 
 \item then the usual partial derivative $D^\alpha f$ exists, as long as $|\alpha|\le k$
 \item integrate the usual derivative $D^\alpha f$ over $\Lambda$, using integration-by-parts 1, for each partial derivative in $\alpha=(\alpha_1,\dots,\alpha_d)$, a total of $|\alpha|$ times:
 \begin{align*}
-\int_\Omega D^\alpha f\, \varphi\,dm &= - \int_\Omega D^{\tilde\alpha} f\, D^{(1,0,\dots,0)}\varphi\,dm \\
+\int_\Omega \left(D^\alpha f\right)\, \varphi\,dm &= - \int_\Omega D^{\tilde\alpha} f\, D^{(1,0,\dots,0)}\varphi\,dm \\
  &= \dots = (-1)^{\alpha_1} \int_\Omega D^{\tilde{\tilde\alpha}} f \, D^{(\alpha_1,0,\dots,0)}\varphi\,dm \\
  &= \dots \\
- &= (-1)^{|\alpha|} \int_\Omega f\, D^\alpha\varphi\,dm
+ &= (-1)^{|\alpha|} \int_\Omega f\, \left(D^\alpha \varphi\right)\,dm
 \end{align*}
-\item thus the weak derivative $g$ exists, and $g=D^\alpha f$ a.e.
+\item thus the weak derivative $g$ exists, namely $g=D^\alpha f$
 \end{itemize}
 \end{frame}
 
@@ -727,7 +724,16 @@ then we say $g$ is the \alert{\emph{$\alpha$th weak derivative}} of $f$, and we 
 \begin{frame}{weak derivatives: Example 2}
 
 \begin{itemize}
-\item xx
+\item let's do a small $\RR^1$ example
+\item I will draw pictures on the right
+\item consider this continuous function:
+	$$f(x) = \begin{cases} |x|, & -1 < x < 1 \\ 1, & |x| \ge 1 \end{cases} \hspace{60mm}$$
+\item one can show that, for the ordinary derivative $D^{\alpha} = \frac{d}{dx}$, $\alpha=(1)$, we have
+	$$\int_\RR g \varphi \,dm = -\int_\RR f \varphi' \,dm$$
+for every $\varphi \in C_c^\infty(\RR)$, where
+	$$g(x) = -\one_{(-1,0)}(x) + \one_{(0,1)}(x) \hspace{60mm}$$
+\item thus: $g = f'$, as a weak derivative, which is no surprise
+\item note that $g$ is only defined up to a set of measure zero
 \end{itemize}
 \end{frame}
 
@@ -735,7 +741,18 @@ then we say $g$ is the \alert{\emph{$\alpha$th weak derivative}} of $f$, and we 
 \begin{frame}{weak derivatives: Example 3}
 
 \begin{itemize}
-\item xx
+\item part of the concern with weak derivatives is local integrability
+\item for example, consider this $f\in\Lloc(\RR^2)$:
+	$$f(x) = \frac{1}{r}$$
+on $\RR^2$, where $x=(x_1,x_2)$ and $r=(x_1^2+x_2^2)^{1/2}$
+\item note $f$ is continuous, except at $x=0$
+\item let $B_\eps$ be the open ball of radius $\eps>0$ centered at the origin
+\item $f\in\Lloc(\RR^2)$ because this integral gives a finite answer:
+	$$\int_{B_\eps} |f|\,dm = \int_{B_\eps} \frac{1}{r}\,dm = \int_0^{2\pi} \int_0^\eps \frac{1}{r} \,r\,dr\,d\theta = 2\pi \int_0^\eps 1\,dr = 2\pi\eps<+\infty$$
+\item however, the only candidate (a.e.) for the weak derivative is
+	$$g(x) = (\grad f)(x) = -\frac{\left<x_1,x_2\right>}{r^3},$$
+and $g\notin \Lloc(\RR^2)$ because
+	$$\int_{B_\eps} |g|\,dm = \int_{B_\eps} \frac{1}{r^2}\,dm = 2\pi \int_0^\eps \frac{1}{r}\,dr = +\infty$$
 \end{itemize}
 \end{frame}
 
@@ -743,7 +760,15 @@ then we say $g$ is the \alert{\emph{$\alpha$th weak derivative}} of $f$, and we 
 \begin{frame}{weak derivatives: Example 4}
 
 \begin{itemize}
-\item xx
+\item however, weak derivatives can exist for functions with singularities!
+\item for example, consider a new $f\in\Lloc(\RR^2)$, which again is continuous, except at $x=0$:
+	$$f(x) = \ln(r)$$
+\item $f\in\Lloc(\RR^2)$ because this integral gives a finite answer:
+	$$\int_{B_\eps} |f|\,dm = \int_{B_\eps} |\ln(r)|\,dm = - 2\pi \int_0^\eps \ln(r) \,r\,dr = \frac{\pi\eps^2}{2}(1-2\ln(\eps)) < +\infty$$
+\item now the only candidate for the weak derivative is $g(x) = (\grad f)(x)$, namely
+	$$g(x) = -\frac{\left<x_1,x_2\right>}{r^2},$$
+and $g\in \Lloc(\RR^2)$ because
+	$$\int_{B_\eps} |g|\,dm = \int_{B_\eps} \frac{1}{r}\,dm = 2\pi \int_0^\eps 1\,dr = 2\pi\eps<+\infty$$
 \end{itemize}
 \end{frame}
 
