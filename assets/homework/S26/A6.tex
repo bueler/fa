@@ -132,4 +132,20 @@ plus slides
 
 \prob{P14}  show that if $f,g$ are absolutely continuous then so is $fg$; then complete the proof of int-by-parts
 
+\prob{P15}  \emph{Basic properties of the Fourier transform make good exercises with the $L^1(\RR^1)$ space.  There is a more advanced analysis, the Plancherel theorem, which shows that in fact the transform is a Hilbert space isometric isomorphism of $L^2(\RR^1)$, but that would take us too far afield.}
+
+\medskip \noindent Suppose $f:\RR^1\to\CC$ is measurable.  The \emph{Fourier transform} of $f$ is
+\begin{equation}
+\hat f(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty f(x) \, e^{-ixt} \, dx, \label{ft}
+\end{equation}
+for those $t\in\RR^1$ such that the integral exists, in which case $\hat f(t)\in\CC$.
+
+\medskip \noindent For all parts below, suppose $f\in L^1(\RR^1)$.
+
+\epart{a} Show that $\hat f(t)$ is then well-defined for every $t$, and that $\|\hat f\|_\infty \le \frac{1}{\sqrt{2\pi}} \|f\|_1$.
+
+\epart{b} Use Lebesgue's dominated convergence theorem (DCT) to show that in fact $\hat f$ is continuous at every $t$.  Is it uniformly continuous?
+
+\epart{c} Suppose also that $g(x)=-ixf(x)$ is in $L^1(\RR^1)$.  Use the DCT to show that $\hat f$ is differentiable at every $t$, and that $\hat f'(t) = \hat g(t)$.
+
 \end{document}
