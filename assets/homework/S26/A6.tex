@@ -35,10 +35,14 @@
             urlcolor=blue,
             }
 
+\newcommand{\bn}{\mathbf{n}}
 \newcommand{\br}{\mathbf{r}}
 \newcommand{\bv}{\mathbf{v}}
 \newcommand{\bx}{\mathbf{x}}
 \newcommand{\by}{\mathbf{y}}
+
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bV}{\mathbf{V}}
 
 \newcommand{\cB}{\mathcal{B}}
 \newcommand{\cD}{\mathcal{D}}
@@ -60,9 +64,11 @@
 \renewcommand{\Re}{\mathrm{Re}}
 
 \newcommand{\eps}{\epsilon}
-\newcommand{\grad}{\nabla}
 \newcommand{\lam}{\lambda}
 \newcommand{\lap}{\triangle}
+
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\grad}{\nabla}
 
 \newcommand{\one}{\mathds{1}}
 
@@ -87,52 +93,65 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned XX March 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 16 March 2026}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 6}}
 \large
 \medskip
 
-\centerline{\textbf{Due XX March at the beginning of class}}
+\centerline{\textbf{Due Friday 27 March at the beginning of class}}
 \medskip
 \normalsize
 
 \thispagestyle{empty}
 
 \bigskip
-\noindent This Assignment is based on Chapter FIXME of our textbook,\footnote{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.} AND SLIDES
+\noindent This Assignment is based on Chapters 3 and 5 of our textbook,\footnote{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.} and on the slides, especially those for \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10 \& 11}.
 
 \newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
 
 \newcommand{\augpart}[1]{\emph{\textbf{(#1)}}}
 
 \bigskip
-\noindent \textsc{Do the following} Exercises from Chapter 3 (see pages 69--73):
+\noindent \textsc{Do the following} Exercises from Chapter 5 (see pages 129--134):
 
 \begin{itemize}
-\item \textbf{Exercise s.z.x}
+\item \textbf{Exercise 5.1.1}
+\item \textbf{Exercise 5.2.1}
 \end{itemize}
 
 \medskip
 \noindent \textsc{Do the following additional problems.}
 
-FIXME  plan to do sections:
-5.1
-5.2
-[add dual spaces]
-[add Riesz rep'n thm]
-5.3
-6.1
-plus slides
+%plan to do sections: 5.1, 5.2, [add dual spaces], [add Riesz rep'n thm], 5.3, 6.1
+%plus slides
 
-\prob{P12}  show product rule for partial derivs (slides) implies prod rule for divergence
+\prob{P12}  \emph{Use the classical definition of absolute continuity, and the FTC2, from the slides.}
 
-\prob{P13}  show the ``int-by-parts: partial derivs'' in slides, with attention to zero on boundary
+\medskip \noindent Suppose throughout that $f,g:[a,b] \to \RR$ are absolutely continuous.
 
-\prob{P14}  show that if $f,g$ are absolutely continuous then so is $fg$; then complete the proof of int-by-parts
+\epart{a} Show that $fg$ is also absolutely continuous.
 
-\prob{P15}  \emph{Basic properties of the Fourier transform make good exercises with the $L^1(\RR^1)$ space.  There is a more advanced analysis, the Plancherel theorem, which shows that in fact the transform is a Hilbert space isometric isomorphism of $L^2(\RR^1)$, but that would take us too far afield.}
+\epart{b} Show that the product rule $\big(f(x) g(x)\big)' = f'(x) g(x) + f(x) g'(x)$ holds almost everywhere.
+
+\epart{c} Show the following integration-by-parts formula, justifying the existence of all (Lebesgue) integrals:
+	$$\int_a^b f(x) g'(x)\,dx = \Big[f(x) g(x)\Big]_a^b - \int_a^b f'(x) g(x)\,dx$$
+
+
+\prob{P13}  \emph{Use the product rule for partial derivatives of scalar functions, as stated in the slides.}
+
+\epart{a} Assume that $\Omega\subset \RR^d$ is open.  Suppose that $f:\Omega\to\RR$ and $\bV:\Omega\to \RR^d$ are differentiable at every point of $\Omega$.  Using the definition of the divergence and gradient, show this product rule:
+    $$\Div (f\,\bV) = \grad f\cdot \bV + f\,\Div \bV.$$
+
+\epart{b} Assume that $\Omega = (0,1)^d \subset \RR^d$ is the open unit cube.  Suppose that $f,g\in C_c^1(\Omega)$.  Show the ``integration-by-parts 1: partial derivatives'' rule in the slides, namely
+    $$\int_\Omega \frac{\partial f}{\partial x_k} g\,dm = -\int_\Omega f \frac{\partial g}{\partial x_k}\,dm,$$
+with careful attention to why there is no integral over $\partial \Omega$ in this rule.
+
+\epart{c} Outline how you would change the argument in \textbf{(b)} so that it would work on any open set $\Omega\subset\RR^d$, not just a cube.
+
+
+\prob{P14}  \emph{Basic properties of the Fourier transform make good exercises with the $L^1(\RR^1)$ space.  There is a more advanced analysis, the Plancherel theorem, which shows that in fact the transform is a Hilbert space isometric isomorphism of $L^2(\RR^1)$, but that would take us too far afield.}
 
 \medskip \noindent Suppose $f:\RR^1\to\CC$ is measurable.  The \emph{Fourier transform} of $f$ is
 \begin{equation}
@@ -140,12 +159,30 @@ plus slides
 \end{equation}
 for those $t\in\RR^1$ such that the integral exists, in which case $\hat f(t)\in\CC$.
 
-\medskip \noindent For all parts below, suppose $f\in L^1(\RR^1)$.
+\epart{a} Suppose $f\in L^1(\RR^1)$.  Show that $\hat f(t)$ is now well-defined for every $t$, and that $\|\hat f\|_\infty \le \frac{1}{\sqrt{2\pi}} \|f\|_1$.
 
-\epart{a} Show that $\hat f(t)$ is then well-defined for every $t$, and that $\|\hat f\|_\infty \le \frac{1}{\sqrt{2\pi}} \|f\|_1$.
+\epart{b} Again suppose $f\in L^1(\RR^1)$.  Use Lebesgue's dominated convergence theorem (DCT) to show that $\hat f$ is uniformly continuous.
 
-\epart{b} Use Lebesgue's dominated convergence theorem (DCT) to show that in fact $\hat f$ is continuous at every $t$.  Is it uniformly continuous?
+\epart{c} Suppose $f\in L^1(\RR^1)$, and also that $g(x)=-ixf(x)$ is in $L^1(\RR^1)$.  Use the DCT to show that $\hat f$ is differentiable at every $t$, and that $\hat f'(t) = \hat g(t)$.
 
-\epart{c} Suppose also that $g(x)=-ixf(x)$ is in $L^1(\RR^1)$.  Use the DCT to show that $\hat f$ is differentiable at every $t$, and that $\hat f'(t) = \hat g(t)$.
 
+\prob{P15}  Suppose $f\in L^1([0,1])$ and define the \emph{Ces\`aro operator}
+	$$(Tf)(s) = \frac{1}{s} \int_0^s f(t)\,dt.$$
+
+\epart{a}  Show that $T$ is linear, and determine a kernel $k(s,t)$ so that $T$ can be written as a Fredholm integral operator, in the form $(Tf)(s) = \int_0^1 k(s,t)\,f(t)\,dt$.
+
+\epart{b}  Show that $(Tf)(s)$ is continuous at $s>0$.  (\emph{Hint.}  DCT.)
+
+\epart{c}  Give an example of $f\in L^1([0,1])$ which shows that $Tf$ need not be continuous at $s=0$.  The same example should show that $Tf\notin L^\infty([0,1])$.
+
+
+\prob{P16}  Suppose $\rho=\rho(t,x)=\rho(t,x_1,x_2,x_3)$, for $t\in\RR^1$ and $x\in\RR^3$, is continuously-differentiable (in each variable).  Suppose $\bJ=\bJ(t,x) = \bJ(t,x_1,x_2,x_3)$ is also continuously-differentiable.  We may interpret $\rho$ as a scalar mass density, or charge density etc., and $\bJ$ as a vector-valued mass flux.  One says that mass is conserved if the PDE
+\begin{equation}
+\frac{\partial\rho}{\partial t} + \Div \bJ = 0  \label{cont}
+\end{equation}
+applies.  Now suppose that $\Omega\subset\RR^3$ is any open and bounded set such that $\partial\Omega$ is continuously-differentiable.  Apply the divergence theorem to \eqref{cont} to show
+\begin{equation}
+\frac{d}{dt}\left(\int_\Omega \rho\,dm\right) = - \int_{\partial\Omega} \bJ\cdot\bn\,ds.  \label{conttwo}
+\end{equation}
+Interpret \eqref{conttwo} physically.  (\emph{What is the total mass inside $\Omega$?  How does that quantity change?  Relate to the net normal flux across the boundary.  Note that $\bn$ is the \emph{outward} normal direction.})
 \end{document}
