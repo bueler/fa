@@ -1,0 +1,282 @@
+% Copyright 2026  Ed Bueler
+
+\documentclass[10pt,
+               svgnames,
+               hyperref={colorlinks,
+                         citecolor=DeepPink4,
+                         linkcolor=FireBrick,
+                         urlcolor=blue},
+               usepdftitle=false]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\setbeamercovered{transparent}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamercolor*{block title}{bg=red!10}
+\setbeamercolor*{block body}{bg=red!5}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\usepackage{fancyvrb,empheq,bm,xspace,dsfont,esint}
+%\usepackage{minted}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+%\beamerdefaultoverlayspecification{<+->}
+
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bbf}{\mathbf{f}}
+\newcommand{\bl}{\bm{\ell}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bs}{\mathbf{s}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bw}{\mathbf{w}}
+
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bV}{\mathbf{V}}
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
+
+\newcommand{\bzero}{\bm{0}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\newcommand{\one}{\mathds{1}}
+
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\grad}{\nabla}
+
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\Span}{\operatorname{span}}
+
+\newcommand{\Matlab}{\textsc{Matlab}\xspace}
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\Lloc}{L_{\text{loc}}^1}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\ip}[2]{\left<#1,#2\right>}
+
+\newcommand{\twovect}[4]{\ensuremath{{#1}_{#2} =
+                            \begin{bmatrix} #3 \\ #4 \end{bmatrix}}}
+
+\newcommand{\rbullet}{{\color{FireBrick} \bullet}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand{\textbook}{Saxe, \emph{Beginning Functional Analysis}}
+
+\DefineVerbatimEnvironment{mVerb}{Verbatim}{numbersep=2mm,
+frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
+
+\newcommand{\itemnum}[1]{\setcounter{enumi}{#1}\usebeamertemplate{enumerate item}}
+
+
+
+\title{Poisson equation, and the Sobolev spaces $H^k(\Omega)$}
+
+\subtitle{calculations for weeks 12 \& 13}
+
+\author{Ed Bueler}
+
+\institute[]{UAF Math 617 Functional Analysis}
+
+\date{Spring 2026}
+
+
+\begin{document}
+\beamertemplatenavigationsymbolsempty
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\begin{frame}{Outline}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\AtBeginSection[]
+{% do not put toc here this time
+}
+
+
+\section{the Poisson equation in strong form}
+
+\begin{frame}{the Poisson equation}
+
+\begin{itemize}
+\item let $\Omega \subset \RR^d$ be open
+\item you can assume $d=1,2,3$; I will usually draw pictures for $d=2$
+\item assume the boundary of $\Omega$ is not too crazy (more below)
+\item assume $f\in L^2(\Omega)$ is (square-)integrable
+\item the \emph{Poisson equation} is
+   $$- \grad^2 u = f$$
+\item picture:
+\end{itemize}
+
+\vspace{30mm}
+\end{frame}
+
+
+\begin{frame}{tools: Laplacian and divergence theorem}
+
+\begin{itemize}
+\item given $f$, finding $u$ from the Poisson equation $- \grad^2 u = f$ is a problem of inverting the \emph{Laplacian}
+
+\begin{definition}[Laplacian operator]
+for $\Omega\subset\RR^d$ open and $u:\Omega\to \RR$,
+\begin{equation*}
+  \grad^2 u = \Div(\grad u) = \frac{\partial^2 u}{\partial x_1^2} +\dots + \frac{\partial^2 u}{\partial x_d^2}
+\end{equation*}
+\end{definition}
+\item $\grad^2$ appears in mathematical models when a flux is proportional to a gradient, and a divergence connects to a boundary integral of the flux
+\item so it is no surprise that we will need the divergence theorem from the weeks 10\&11 slides:
+   $$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds,$$
+\item when using this, $\bV$ will be the gradient of a scalar function
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{boundary-value problems for the Poisson equation}
+
+FIXME nonhomogeneous?
+
+\begin{itemize}
+\item the homogeneous \emph{Dirichlet problem} for the Poisson equation is to find $u:\Omega\to \RR$ so that
+\begin{align}
+- \grad^2 u &= f \quad \text{ on } \Omega \\
+u &= 0 \quad \text{ on } \partial \Omega
+\end{align}
+
+
+%Instead of $u$ itself, the heat flux $-k\grad u$ could be set to known values along the boundary, so-called \emph{Neumann} boundary conditions.  In that case the Poisson problem is not well-posed because if $u$ is a solution then $v=u+c$ is also a solution for any constant $c$.  Finally, in the absence of any boundary conditions there is an infinite-dimensional space of solutions, i.e.~to the unconstrained PDE $\grad^2 w = 0$ on $\mathcal{S}$, namely the space of all \emph{harmonic functions} \cite{Evans2010} on $\mathcal{S}$.
+\item the homogeneous \emph{Neumann problem} for the Poisson equation is to find $u:\Omega\to \RR$ so that
+\begin{align}
+- \grad^2 u &= f \quad \text{ on } \Omega \\
+\grad u\cdot \bn &= 0 \quad \text{ on } \partial \Omega
+\end{align}
+where $\bn$ is the outward unit normal vector field along $\partial\Omega$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{applications}
+
+\begin{itemize}
+\item the Poisson equation can be used to model temperature, electrostatic potential, elastic membranes, equilibrium distributions for random walks, or many other physical phenomena
+\end{itemize}
+
+\begin{block}{application: temperature of a conductive solid}
+\begin{itemize}
+\small
+\item Fourier's law for heat conduction in solids says that the heat flux is $\bq = -k \grad u$, where $u$ is the temperature, $\bq$ is the heat flux, and $k$ is the conductivity
+\item a solid has a heat capacity $c$ (heat gained by given increase in temperature) and a mass density $\rho$ (mass per unit volume)
+\item given a heat source $f$ within the domain, conservation of energy says
+    $$c\rho\, \frac{\partial u}{\partial t} = - \Div\bq + f \quad \iff \quad \frac{d}{dt}\left(\int_\Omega c\rho\, u \,dx\right) = - \int_{\partial\Omega} \bq\cdot\bn\,ds + \int_\Omega f \,dx$$
+\item let's assume steady state, so $d/d t=0$ and $\partial/\partial t=0$
+\item if $k$ is constant then $- \Div\bq = - \Div(-k \grad u) = k \grad^2 u$
+\item we derive Poisson's equation
+    $$0 = k \grad^2 u + f$$
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{applications}
+
+\begin{block}{application: deflection of an elastic membrane}
+FIXME
+\end{block}
+\end{frame}
+
+
+\section{the Poisson equation in weak form}
+
+\begin{frame}{bar}
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\section{why does a solution exist?}
+
+\begin{frame}{bar}
+
+%For Dirichlet boundary conditions, standard theory says that a unique solution $u(x,y)$ exists and is continuous on the closed square $\bar{\mathcal{S}}$ \cite[Theorem 6 in section 5.6]{Evans2010}.
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\section{why is a solution smooth?}
+
+\begin{frame}{bar}
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\section{Sobolev spaces $H^k(\Omega)$}
+
+\begin{frame}{bar}
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+
+
+\section{lecture content in weeks 12 \& 13}
+
+\begin{frame}{lecture content in weeks 12 \& 13}
+
+\begin{itemize}
+\item most of this material is only from these slides
+
+\begin{block}{to know from slides:}
+\begin{itemize}
+\item x
+\end{itemize}
+\end{block}
+
+\begin{block}{to prove:}
+\begin{itemize}
+\item x
+\end{itemize}
+\end{block}
+
+\item Assignment 7 is posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\end{itemize}
+\end{frame}
+
+\end{document}
