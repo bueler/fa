@@ -94,7 +94,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title{Poisson equation, and the Sobolev spaces $H^k(\Omega)$}
+\title[Poisson equation and Sobolev spaces]{the Poisson equation $- \grad^2 u = f$, \\ and the Sobolev spaces $H^k(\Omega)$}
 
 \subtitle{calculations for weeks 12 \& 13}
 
@@ -122,7 +122,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 }
 
 
-\section{the Poisson equation in strong form}
+\section{the Poisson equation: $- \grad^2 u = f$}
 
 \begin{frame}{the Poisson equation}
 
@@ -131,8 +131,10 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \item you can assume $d=1,2,3$; I will usually draw pictures for $d=2$
 \item assume the boundary of $\Omega$ is not too crazy (more below)
 \item assume $f\in L^2(\Omega)$ is (square-)integrable
-\item the \emph{Poisson equation} is
+
+\begin{block}{Poisson equation}
    $$- \grad^2 u = f$$
+\end{block}
 \item picture:
 \end{itemize}
 
@@ -140,44 +142,81 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \end{frame}
 
 
-\begin{frame}{tools: Laplacian and divergence theorem}
+\begin{frame}{the Laplacian}
 
 \begin{itemize}
-\item given $f$, finding $u$ from the Poisson equation $- \grad^2 u = f$ is a problem of inverting the \emph{Laplacian}
+\item given $f$, finding $u$ from the Poisson equation $- \grad^2 u = f$ is a problem of inverting the Laplacian operator
 
-\begin{definition}[Laplacian operator]
-for $\Omega\subset\RR^d$ open and $u:\Omega\to \RR$,
+\begin{definition}[Laplacian]
+for $\Omega\subset\RR^d$ open and $u:\Omega\to \RR$, the \emph{Laplacian} of $u$ is
 \begin{equation*}
   \grad^2 u = \Div(\grad u) = \frac{\partial^2 u}{\partial x_1^2} +\dots + \frac{\partial^2 u}{\partial x_d^2}
 \end{equation*}
 \end{definition}
-\item $\grad^2$ appears in mathematical models when a flux is proportional to a gradient, and a divergence connects to a boundary integral of the flux
-\item so it is no surprise that we will need the divergence theorem from the weeks 10\&11 slides:
+
+\item in $d=1,2,3$: \quad $\grad^2 u = u'', \quad \grad^2 u = u_{xx}+u_{yy}, \quad \grad^2 u = u_{xx}+u_{yy}+u_{zz}$
+\end{itemize}
+
+\begin{definition}[Laplace's equation $=$ potential equation]
+\begin{equation*}
+  \grad^2 u = 0,
+\end{equation*}
+and a solution of this equation is called \emph{harmonic}
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{tool: divergence theorem}
+
+\begin{itemize}
+\item $\grad^2$ usually appears in models because a flux is proportional to a gradient, and then a divergence will connect the interior behavior to a boundary integral of the flux
+\item we will need the divergence theorem from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}:
    $$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds,$$
 \item when using this, $\bV$ will be the gradient of a scalar function
+\item the boundary integral will be a ``total flux of $\bV$ through the boundary''
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{boundary-value problems for the Poisson equation}
 
-FIXME nonhomogeneous?
+\begin{itemize}
+\item in the absence of any boundary conditions there is an infinite-dimensional space of solutions to $\grad^2 w = f$ on $\Omega$
+\item if $f=0$ then this is the space of all \emph{harmonic functions} on $\Omega$:
+    $$\grad^2 w= 0$$
+\item the space of harmonic functions is $\infty$-dimensional
+\item complex analysis is, essentially, the study of this space
+\item but we want to have models which make \emph{one} prediction, so we will focus on \emph{boundary-value problems} that will pick-out one solution $u$
+\end{itemize}
+
+\begin{block}{Dirichlet problem for the Poisson equation}
+for $f\in L^2(\Omega)$ and $g_D\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ so that
+\begin{align*}
+- \grad^2 u &= f \quad \text{ on } \Omega \\
+u &= g_D \quad \text{ on } \partial \Omega
+\end{align*}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{boundary-value problems for the Poisson equation}
 
 \begin{itemize}
-\item the homogeneous \emph{Dirichlet problem} for the Poisson equation is to find $u:\Omega\to \RR$ so that
-\begin{align}
-- \grad^2 u &= f \quad \text{ on } \Omega \\
-u &= 0 \quad \text{ on } \partial \Omega
-\end{align}
+\item instead of $u$ itself, the gradient $\grad u$ could be set to known values along the boundary, which makes sense because the gradient is often proportional to a physical flux
+\end{itemize}
 
-
-%Instead of $u$ itself, the heat flux $-k\grad u$ could be set to known values along the boundary, so-called \emph{Neumann} boundary conditions.  In that case the Poisson problem is not well-posed because if $u$ is a solution then $v=u+c$ is also a solution for any constant $c$.  Finally, in the absence of any boundary conditions there is an infinite-dimensional space of solutions, i.e.~to the unconstrained PDE $\grad^2 w = 0$ on $\mathcal{S}$, namely the space of all \emph{harmonic functions} \cite{Evans2010} on $\mathcal{S}$.
-\item the homogeneous \emph{Neumann problem} for the Poisson equation is to find $u:\Omega\to \RR$ so that
-\begin{align}
+\begin{block}{Neumann problem for the Poisson equation}
+for $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ so that
+\begin{align*}
 - \grad^2 u &= f \quad \text{ on } \Omega \\
-\grad u\cdot \bn &= 0 \quad \text{ on } \partial \Omega
-\end{align}
+\grad u\cdot \bn &= g_N \quad \text{ on } \partial \Omega
+\end{align*}
 where $\bn$ is the outward unit normal vector field along $\partial\Omega$
+\end{block}
+
+\begin{itemize}
+\item there are other ways to write the (scalar) directional derivative along the boundary:
+	$$\grad u\cdot \bn = \frac{\partial u}{\partial n} = u_n$$
 \end{itemize}
 \end{frame}
 
@@ -185,7 +224,7 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \begin{frame}{applications}
 
 \begin{itemize}
-\item the Poisson equation can be used to model temperature, electrostatic potential, elastic membranes, equilibrium distributions for random walks, or many other physical phenomena
+\item the Poisson equation can be used to model heat conduction, electrostatic potential, elastic membranes, equilibrium distributions for random walks, or many other physical phenomena
 \end{itemize}
 
 \begin{block}{application: temperature of a conductive solid}
@@ -199,6 +238,7 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \item if $k$ is constant then $- \Div\bq = - \Div(-k \grad u) = k \grad^2 u$
 \item we derive Poisson's equation
     $$0 = k \grad^2 u + f$$
+\item also called the (steady) \emph{heat equation} or \emph{diffusion equation}
 \end{itemize}
 \end{block}
 \end{frame}
@@ -207,26 +247,42 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \begin{frame}{applications}
 
 \begin{block}{application: deflection of an elastic membrane}
-FIXME
+\begin{itemize}
+\small
+\item suppose $z=u(x,y)$ is a vertical displacement function over a domain $\Omega\subset \RR^2$
+\item suppose that along FIXME
+\item we derive Poisson's equation
+    $$- \grad^2 u = f$$
+\end{itemize}
 \end{block}
 \end{frame}
 
+
+% at start of sections 2,3,... put outline
+\AtBeginSection[] {
+    \begin{frame}{Outline}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents[currentsection]%,hideallsubsections]
+    \end{frame}
+}
 
 \section{the Poisson equation in weak form}
 
 \begin{frame}{bar}
 
+FIXME multiply by $v$ and integrate by parts
+
+FIXME Dirichlet and Neumann cases
+
 \begin{itemize}
 \item x
 \end{itemize}
 \end{frame}
 
-
-\section{why does a solution exist?}
 
 \begin{frame}{bar}
 
-%For Dirichlet boundary conditions, standard theory says that a unique solution $u(x,y)$ exists and is continuous on the closed square $\bar{\mathcal{S}}$ \cite[Theorem 6 in section 5.6]{Evans2010}.
+FIXME localized $v$; hint at FE method
 
 \begin{itemize}
 \item x
@@ -234,26 +290,84 @@ FIXME
 \end{frame}
 
 
-\section{why is a solution smooth?}
+\section{the Sobolev spaces $H^k(\Omega)$}
 
 \begin{frame}{bar}
 
+FIXME follow Braess II.1 presentation (pages 28-31)
+
+FIXME note $H^0(\Omega) = L^2(\Omega)$, and $H^k(\Omega) = W^{k,2}(\Omega)$ in some books; $W^{k,p}(\Omega)$ is the general case
+
 \begin{itemize}
 \item x
 \end{itemize}
 \end{frame}
 
-
-\section{Sobolev spaces $H^k(\Omega)$}
 
 \begin{frame}{bar}
 
+FIXME $H_0^1(\Omega)$
+
 \begin{itemize}
 \item x
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}{bar}
+
+FIXME Poincare-Friedrichs
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\section{why does a Poisson solution exist?}
+
+\begin{frame}{bar}
+
+FIXME: minimization route
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{bar}
+
+FIXME: Riesz representation theory route
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\section{why is that solution smooth?}
+
+\begin{frame}{bar}
+
+FIXME: sketch how ellipticity means $u\in H^{2+k}(\Omega)$ if $f\in H^k(\Omega)$
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Poisson on a disc}
+
+FIXME Fourier series along boundary converts to smooth in the interior
+
+FIXME relate to definition of $H^k([-\pi,\pi])$
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
 
 
 \section{lecture content in weeks 12 \& 13}
