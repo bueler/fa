@@ -290,13 +290,26 @@ subject to $u=g$ along $\partial \Omega$
     \end{frame}
 }
 
-\section{the Poisson equation in weak form}
+\section{the Poisson equation in weak form: $\ds \int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx$}
 
-\begin{frame}{bar}
+\begin{frame}{what is a ``weak form''?}
+
+\begin{itemize}
+\item FIXME strong form is pointwise
+\item weak form is averaged by a test function
+\end{itemize}
+
+\noindent picture of where the equation is enforced:
+
+\vspace{40mm}
+\end{frame}
+
+
+\begin{frame}{deriving the weak for of the Poisson equation}
 
 FIXME multiply by $v$ and integrate by parts
 
-FIXME Dirichlet and Neumann cases
+$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx$
 
 \begin{itemize}
 \item x
@@ -304,9 +317,20 @@ FIXME Dirichlet and Neumann cases
 \end{frame}
 
 
-\begin{frame}{bar}
+\begin{frame}{incorporating Dirichlet and Neumann boundary conditions}
 
-FIXME localized $v$; hint at FE method
+\begin{itemize}
+\item FIXME Neumann through boundary integral
+\item FIXME Dirichlet through mod of vector space
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{what is a finite element method}
+
+FIXME localized $v$ based on a mesh
+
+FIXME $V_h\subset V$ is finite-dimensional
 
 \begin{itemize}
 \item x
