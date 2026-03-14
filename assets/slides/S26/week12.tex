@@ -128,33 +128,35 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 \begin{itemize}
 \item let $\Omega \subset \RR^d$ be open
-\item you can assume $d=1,2,3$; I will usually draw pictures for $d=2$
+\item assume $d\in\{1,2,3\}$ \dots but I will usually draw pictures for $d=2$
 \item assume the boundary of $\Omega$ is not too crazy (more below)
-\item assume $f\in L^2(\Omega)$ is (square-)integrable
+\item assume $f=f(x)\in L^2(\Omega)$ is (square-)integrable
 
-\begin{block}{Poisson equation}
-   $$- \grad^2 u = f$$
+\begin{block}{Poisson equation}  find $u=u(x)$ so that
+   $$- \grad^2 u = f \qquad \text{ on } \Omega$$
 \end{block}
+
+\item next slide defines ``$\grad^2$'' \dots
 \item picture:
 \end{itemize}
 
-\vspace{30mm}
+\vspace{35mm}
 \end{frame}
 
 
 \begin{frame}{the Laplacian}
 
 \begin{itemize}
-\item given $f$, finding $u$ from the Poisson equation $- \grad^2 u = f$ is a problem of inverting the Laplacian operator
+\item given $f$, finding $u$ from the Poisson equation $- \grad^2 u = f$ is a problem of inverting the operator $-\grad^2$
 
-\begin{definition}[Laplacian]
+\begin{definition}[Laplacian operator]
 for $\Omega\subset\RR^d$ open and $u:\Omega\to \RR$, the \emph{Laplacian} of $u$ is
 \begin{equation*}
   \grad^2 u = \Div(\grad u) = \frac{\partial^2 u}{\partial x_1^2} +\dots + \frac{\partial^2 u}{\partial x_d^2}
 \end{equation*}
 \end{definition}
 
-\item in $d=1,2,3$: \quad $\grad^2 u = u'', \quad \grad^2 u = u_{xx}+u_{yy}, \quad \grad^2 u = u_{xx}+u_{yy}+u_{zz}$
+\item $\grad^2 u \stackrel{d=1}{=} u'', \quad \grad^2 u \stackrel{d=2}{=} u_{xx}+u_{yy}, \quad \grad^2 u \stackrel{d=3}{=} u_{xx}+u_{yy}+u_{zz}$
 \end{itemize}
 
 \begin{definition}[Laplace's equation $=$ potential equation]
@@ -169,11 +171,15 @@ and a solution of this equation is called \emph{harmonic}
 \begin{frame}{tool: divergence theorem}
 
 \begin{itemize}
-\item $\grad^2$ usually appears in models because a flux is proportional to a gradient, and then a divergence will connect the interior behavior to a boundary integral of the flux
+\item $\grad^2=\Div \grad$ usually appears in models because a flux is proportional to a gradient, and then a divergence connects interior behavior to a boundary integral of the flux
 \item we will need the divergence theorem from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}:
    $$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds,$$
+
+   \begin{itemize}
+   \item[$\circ$] there is an $\RR^d$ version of this theorem for any $d$
+   \end{itemize}
 \item when using this, $\bV$ will be the gradient of a scalar function
-\item the boundary integral will be a ``total flux of $\bV$ through the boundary''
+\item recall the boundary integral is the total flux of $\bV$ outward through the boundary
 \end{itemize}
 \end{frame}
 
@@ -181,12 +187,14 @@ and a solution of this equation is called \emph{harmonic}
 \begin{frame}{boundary-value problems for the Poisson equation}
 
 \begin{itemize}
-\item in the absence of any boundary conditions there is an infinite-dimensional space of solutions to $\grad^2 w = f$ on $\Omega$
-\item if $f=0$ then this is the space of all \emph{harmonic functions} on $\Omega$:
-    $$\grad^2 w= 0$$
-\item the space of harmonic functions is $\infty$-dimensional
-\item complex analysis is, essentially, the study of this space
-\item but we want to have models which make \emph{one} prediction, so we will focus on \emph{boundary-value problems} that will pick-out one solution $u$
+\item in the absence of any boundary conditions there is an infinite-dimensional space of solutions to $-\grad^2 u = f$ on $\Omega$
+\item if $f=0$ then this is the space of all \emph{harmonic functions} on $\Omega$, an $\infty$-dimensional subspace of all smooth functions:
+    $$\left\{w\,:\,\grad^2 w= 0\right\} \subset C^2(\Omega)$$
+
+   \begin{itemize}
+   \item[$\circ$] complex analysis is, essentially, the study of this space
+   \end{itemize}
+\item but we want to build models which make \emph{one} prediction, so we will focus on \emph{boundary-value problems} that pick-out one solution $u$
 \end{itemize}
 
 \begin{block}{Dirichlet problem for the Poisson equation}
@@ -215,8 +223,10 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \end{block}
 
 \begin{itemize}
-\item there are other ways to write the (scalar) directional derivative along the boundary:
+\item other notation for the (scalar) directional derivative:
 	$$\grad u\cdot \bn = \frac{\partial u}{\partial n} = u_n$$
+\item one could have Dirichlet conditions on part of the boundary and Neumann on another part, so that the boundary is a disjoint union:
+	$$\partial \Omega = \partial_D \Omega \cup \partial_N \Omega$$
 \end{itemize}
 \end{frame}
 
@@ -230,15 +240,14 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \begin{block}{application: temperature of a conductive solid}
 \begin{itemize}
 \small
-\item Fourier's law for heat conduction in solids says that the heat flux is $\bq = -k \grad u$, where $u$ is the temperature, $\bq$ is the heat flux, and $k$ is the conductivity
-\item a solid has a heat capacity $c$ (heat gained by given increase in temperature) and a mass density $\rho$ (mass per unit volume)
-\item given a heat source $f$ within the domain, conservation of energy says
+\item Fourier's law for heat conduction in solids says that the heat flux is $\bq = -k \grad u$, where $u$ is the temperature, $\bq$ is the heat flux, and $k>0$ is the conductivity
+\item consider a solid with a heat capacity $c>0$ (heat gained by given increase in temperature) and a mass density $\rho>0$ (mass per unit volume)
+\item given a heat source $f$ within the domain $\Omega$, conservation of energy says
     $$c\rho\, \frac{\partial u}{\partial t} = - \Div\bq + f \quad \iff \quad \frac{d}{dt}\left(\int_\Omega c\rho\, u \,dx\right) = - \int_{\partial\Omega} \bq\cdot\bn\,ds + \int_\Omega f \,dx$$
-\item let's assume steady state, so $d/d t=0$ and $\partial/\partial t=0$
+\item assume steady state, so $\partial/\partial t=d/d t=0$
 \item if $k$ is constant then $- \Div\bq = - \Div(-k \grad u) = k \grad^2 u$
-\item we derive Poisson's equation
-    $$0 = k \grad^2 u + f$$
-\item also called the (steady) \emph{heat equation} or \emph{diffusion equation}
+\item we derive Poisson's equation, the (steady) \emph{heat} or \emph{diffusion equation}
+    $$0 = k \grad^2 u + f \qquad \text{ within } \Omega$$
 \end{itemize}
 \end{block}
 \end{frame}
@@ -249,12 +258,27 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \begin{block}{application: deflection of an elastic membrane}
 \begin{itemize}
 \small
-\item suppose $z=u(x,y)$ is a vertical displacement function over a domain $\Omega\subset \RR^2$
-\item suppose that along FIXME
-\item we derive Poisson's equation
-    $$- \grad^2 u = f$$
+\item suppose $z=u(x,y)$ is a vertical displacement of an elastic membrane over a domain $\Omega\subset \RR^2$
+\item suppose that along $\partial \Omega$ we have put a rigid frame with height $z=g(x,y)$
+\item suppose that the slopes along the graph of $g$ are small
+\item suppose that the membrane is loaded by a force $f$ (per unit area)
+\item group the elastic properties of the membrane into a constant $\kappa>0$
+\item then the vertical displacement satisfies Poisson's equation
+    $$- \kappa \grad^2 u = f \qquad \text{ within } \Omega$$
+subject to $u=g$ along $\partial \Omega$
 \end{itemize}
 \end{block}
+\end{frame}
+
+
+\begin{frame}{applications: Poisson equation boundary value problems}
+
+\noindent pictures for $d=1$ steady heat in a rod, with insulated ends:
+
+\vspace{30mm}
+\noindent pictures for $d=2$ membrane over a frame:
+
+\vspace{35mm}
 \end{frame}
 
 
@@ -292,11 +316,57 @@ FIXME localized $v$; hint at FE method
 
 \section{the Sobolev spaces $H^k(\Omega)$}
 
+\begin{frame}{first Sobolev space}
+
+\begin{itemize}
+\item given a bounded open set $\Omega\subset \RR^d$
+\item recall the definition of (real-valued) $L^2(\Omega)$
+\item recall that we say $f$ has a weak (partial) derivative $g=\partial f/\partial x_k$ if $g\in L^1(\Omega)$ so that
+    $$\int_\Omega g\, \varphi\,dm = - \int_\Omega f\, \frac{\partial\varphi}{\partial x_k}\,dm \qquad \text{for all } \varphi \in C_c^\infty(\Omega)$$
+\item note that if $\Omega$ is bounded then $L^2(\Omega) \subset L^1(\Omega)$
+\end{itemize}
+
+\begin{definition}[Sobolev space $H^1(\Omega)$]
+    $$H^1(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix}  \text{the weak partial derivatives } \frac{\partial f}{\partial x_k} \text{ exist} \\ \text{and are in } L^2(\Omega) \text{ for } k=1,\dots,d \end{matrix} \right\}$$
+\end{definition}
+
+\begin{itemize}
+\item ``$H$\,'' is for Hilbert
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{more Sobolev spaces}
+
+\begin{itemize}
+\item recall our multi-index derivative notation from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}
+\end{itemize}
+
+\begin{definition}[weak derivative]
+\small
+if $f\in \Lloc(\Omega)$, and if $g\in \Lloc(\Omega)$ satisfies
+    $$\int_\Omega g\, \varphi\,dm = (-1)^{|\alpha|} \int_\Omega f\, D^\alpha\varphi\,dm \qquad \text{for all } \varphi \in C_c^\infty(\Omega)$$
+then we say $g$ is the \emph{$\alpha$th weak derivative} of $f$, and we write $D^\alpha f = g$ a.e.
+\end{definition}
+
+\begin{definition}[Sobolev space $H^k(\Omega)$]
+    $$H^k(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix}  \text{the weak derivatives } D^\alpha f \text{ exist} \\ \text{and are in } L^2(\Omega) \text{ for all } |\alpha|\le k\end{matrix} \right\}$$
+\end{definition}
+
+\begin{itemize}
+\item we may write $H^0(\Omega) = L^2(\Omega)$
+\item other books use notation $H^k(\Omega) = W^{k,2}(\Omega)$; the ``$2$'' indicates that the weak derivatives are in $L^2(\Omega)$
+\item $W^{k,p}(\Omega)$ is the general case, with weak derivatives in $L^p(\Omega)$ up to order $k$
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{bar}
 
-FIXME follow Braess II.1 presentation (pages 28-31)
+FIXME inner product and norm
 
-FIXME note $H^0(\Omega) = L^2(\Omega)$, and $H^k(\Omega) = W^{k,2}(\Omega)$ in some books; $W^{k,p}(\Omega)$ is the general case
+FIXME follow Braess II.1 presentation (pages 28-31) re completion of $S=H^k(\Omega)\cap C^\infty(\Omega)$ in $H^k$ norm
 
 \begin{itemize}
 \item x
@@ -306,7 +376,7 @@ FIXME note $H^0(\Omega) = L^2(\Omega)$, and $H^k(\Omega) = W^{k,2}(\Omega)$ in s
 
 \begin{frame}{bar}
 
-FIXME $H_0^1(\Omega)$
+FIXME $H_0^k(\Omega)$ is completion of $C_c(\infty)$ in $H^k$ norm
 
 \begin{itemize}
 \item x
