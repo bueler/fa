@@ -6,6 +6,7 @@ daily:
 - day: Wednesday 18 March
   description: "<b>calculation: FTCs, IBP, and weak derivatives</b>"
   slides: slides/S26/week10.pdf
+  slidesweek: weeks 10 & 11
 - day: Monday 16 March
   description: more on L^p(X,mu); Holder's inequality
   week: 10
@@ -29,6 +30,7 @@ daily:
 - day: Friday 20 February
   description: "<b>calculation: functions defined in pieces</b>"
   slides: slides/S26/week6.pdf
+  slidesweek: weeks 6 & 7
 - day: Wednesday 18 February
   description: the Fourier ON sequence is complete
 - day: Monday 16 February
@@ -46,6 +48,7 @@ daily:
 - day: Friday 6 February
   description: "<b>calculation: Fourier series of continuous functions</b>"
   slides: slides/S26/week4.pdf
+  slidesweek: weeks 4 & 5
 - day: Wednesday 4 February
   description: separability, completeness, and Hilbert and Banach spaces
 - day: Monday 2 February
@@ -61,6 +64,7 @@ daily:
 - day: Friday 23 January
   description: "<b>calculation: boundary value problems and integral operators</b>"
   slides: slides/S26/week2.pdf
+  slidesweek: week 2
 - day: Wednesday 21 January
   week: 2
   description: C[0,1] and uniform convergence; sequence spaces
@@ -74,5 +78,6 @@ daily:
   week: 1
   description: "<b>calculation: integration is a linear functional</b>"
   slides: slides/S26/week1.pdf
+  slidesweek: week 1
   #handout: handouts/S26/foo.pdf
   #handoutday: "handout: 'title'"

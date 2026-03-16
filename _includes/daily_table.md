@@ -18,7 +18,7 @@
         <br><a href="{{ data.home }}/{{ material.handout }}">{{ material.handoutname }}</a>
     {% endif %}
     {% if material.slides %}
-        <br><a href="{{ data.home }}/{{ material.slides }}">blank slides</a>
+        <br><a href="{{ data.home }}/{{ material.slides }}">blank slides for {{ material.slidesweek }}</a>
     {% endif %}
     {% if material.otherurl %}
         <br><a href="{{ material.otherurl }}">{{ material.otherurlname }}</a>
