@@ -23,7 +23,7 @@
 % does not look nice, try deleting the line with the fontenc.
 
 \usepackage{fancyvrb,empheq,bm,xspace,dsfont,esint}
-%\usepackage{minted}
+\usepackage{minted}
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta}
 
@@ -311,11 +311,13 @@ subject to $u=g$ along $\partial \Omega$
 
 \begin{itemize}
 \item first I'll describe \emph{how} to get the weak formulation, then I'll explain \emph{why}
-\item start from the Poisson equation, for an unknown function $u:\Omega\to\RR$, remembering that $\grad^2=\Div\grad$:
+\item let's start from the Poisson equation, $-\grad^2 u=f$
+\item we seek the solution function $u:\Omega\to\RR$
+\item remember that $\grad^2=\Div\grad$, so the problem is:
     $$- \Div(\grad u) = f \qquad \text{ within } \Omega$$
 \item suppose $v:\Omega\to\RR$ is another function, which we call a \emph{test function}
 \item multiply the Poisson equation by $v$ and integrate over $\Omega$:
-    $$\int_\Omega \left(- \Div(\grad u)\right) v\,dx \stackrel{\ast}{=} \int_\Omega f v\,dx$$
+    $$- \int_\Omega \Div(\grad u) v\,dx \stackrel{\ast}{=} \int_\Omega f v\,dx$$
 \item apply the integration by parts rule from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}:
     $$\int_\Omega \phi\,\Div \bV\,dm = \int_{\partial\Omega} \phi\,\bV\cdot \bn\,ds - \int_\Omega \grad \phi\cdot \bV\,dm$$
 
@@ -333,11 +335,17 @@ subject to $u=g$ along $\partial \Omega$
     $$-\int_{\partial\Omega} v\,(\grad u)\cdot \bn\,ds + \int_\Omega \grad v\cdot \grad u\,dx = \int_\Omega f v\,dx$$
 \item rearrange to get:
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \alert{\int_{\partial\Omega} v\,(\grad u\cdot \bn)\,ds}$$
-\item existence and uniqueness of this equation, as it determines $u$, essentially requires turning the \alert{boundary integral} into ``data'' 
+
    \begin{itemize}
-   \item[$\circ$] the integral $\int_\Omega f v\,dx$ is already data, because $f$ is given
+   \item[$\circ$] the integral $\int_\Omega f v\,dx$ is \emph{data}, because $f$ is given
+   \item[$\circ$] existence and uniqueness of the solution $u$, essentially requires turning the \alert{boundary integral} into data also
    \end{itemize}
-\item FIXME talk options
+\item there are two options for removing $u$ from the boundary integral:
+
+\begin{enumerate}
+\item for Dirichlet boundary conditions, only use test functions $v$ which have zero value along $\partial \Omega$
+\item for Neumann boundary conditions, replace $\grad u\cdot \bn$ with the data $g_N$
+\end{enumerate}
 \end{itemize}
 \end{frame}
 
@@ -357,45 +365,135 @@ for all test functions \only<1>{$v\in C^1(\Omega)$}\only<2>{\alert{$v\in H^1(\Om
 \end{block}
 
 \begin{itemize}
-\item<2> for this to make sense, I must define the \emph{Sobolev space} $H^1(\Omega)$
+\item<2> \alert{I will define the \emph{Sobolev space} $H^1(\Omega)$ in the next section}
+\item<2> general Dirichlet conditions have an additional complication
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{what is a ``weak form''?}
+\begin{frame}{what is the ``weak formulation''?}
+
+\begin{block}{observation 1.}
+The strong form is pointwise: $(-\grad^2 u)(x) = f(x)$ holds at every $x\in \Omega$.  By contrast, the weak form is \alert{averaged by a test function}.  That is, the weak form holds on the support of $v$.
+\end{block}
 
 \begin{itemize}
-\item FIXME strong form is pointwise
-\item weak form is averaged by a test function
+\item here's a cartoon of where the equation is enforced:
+\end{itemize}
 
-\noindent picture of where the equation is enforced:
+\vspace{25mm}
 
-\vspace{40mm}
-\item observation: only first derivs needed in weak form
+\begin{block}{observation 2.}
+The strong form refers to the second derivatives, the Laplacian, of the unknown solution $u$.  By contrast, only the \alert{first derivatives} of $u$, namely the gradient, is needed in the weak form.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{general Dirichlet boundary conditions}
+
+\begin{itemize}
+\item Suppose $\Omega\subset \RR^d$ is an open, bounded domain with Lipschitz boundary.
+\item Suppose $f\in L^2(\Omega)$ and $g_D\in L^2(\partial\Omega)$ are given.
+\item Recall the strong form of the general Dirichlet problem:
+   $$- \grad^2 u = f \quad \text{ on } \Omega, \quad \text{ and }
+u = g_D \quad \text{ on } \partial \Omega$$
+\item To build the general Dirichlet weak form we substitute $u+u_D$ into the homogeneous weak form.
+\end{itemize}
+
+\begin{block}{weak form general Dirichlet problem}
+Let $u_D \in H^1(\Omega) \cap C(\bar\Omega)$ be any function, \emph{defined on the whole domain} $\Omega$, so that $u_D=g_D$ along $\partial\Omega$.  Find a solution $u\in H_0^1(\Omega)$ so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx - \int_\Omega \grad u_D \cdot \grad v\,dx$$
+for all test functions $v\in H_0^1(\Omega)$.
+\end{block}
+
+\begin{itemize}
+\item The new right-hand side is data.
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{incorporating Dirichlet and Neumann boundary conditions}
+\begin{frame}{what is a finite element method?}
 
 \begin{itemize}
-\item FIXME Neumann through boundary integral (already)
-\item FIXME general Dirichlet through mod of vector space
+\item suppose $\Omega \subset \RR^2$ is a polygon
+\item put a mesh $\mathcal{T}$ of triangles on $\Omega$
+\item denote nodes $x_i$ and triangles $T_k$
+
+\vspace{-20mm}
+
+\hfill \input{figs/blob.tikz}
+
+\medskip
+\item we call $f(x,y)=a + bx + cy$ a \emph{linear polynomial} in two variables
+
+\begin{definition}[the continuous $P_1$ finite element space over $\mathcal{T}$]
+    $$P_1 = \left\{f \in C(\Omega)\,:\,f\big|_{T_k} \text{ is a linear polynomial}\right\}$$
+\end{definition}
+
+\item the approximate solution $u_h$, and the test functions $v_h$, will be from the following \alert{finite-dimensional} subspace of $V$:
+	$$V_h = \left\{f \in P_1\,:\,f\big|_{\partial\Omega} = 0\right\} \subset V$$
+\item $w_h\in V_h$ is determined by finitely-many numbers, the nodal values
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{what is a finite element method}
+\begin{frame}{what is a finite element method (FEM)?}
 
-FIXME do homogeneous Dirichlet only, for now
-
-FIXME localized $v$ based on a mesh
-
-FIXME $V_h\subset V=H_0^1(\Omega)$ is finite-dimensional
+\begin{block}{weak form of the Poisson equation (homogeneous Dirichlet)}
+Find a solution $u\in V = H_0^1(\Omega)$ so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \qquad \forall v\in V \hspace{15mm}$$
+\end{block}
 
 \begin{itemize}
-\item x
+\item FEM solves the \alert{same weak form}, but over the finite-dim'l subspace $V_h$
 \end{itemize}
+
+\begin{block}{a FEM for the Poisson equation (homogeneous Dirichlet)}
+Find a solution $u_h\in V_h =\left\{f \in P_1\,:\,f\big|_{\partial\Omega} = 0\right\}$ so that
+    $$\int_\Omega \grad u_h \cdot \grad v_h\,dx = \int_\Omega f v_h\,dx \qquad \forall v_h\in V_h \hspace{20mm}$$
+\end{block}
+
+\vspace{-17mm}
+\hfill \includegraphics[width=0.2\textwidth]{figs/blob.png}
+
+\bigskip
+\begin{itemize}
+\item a finite-dimensional vector $\bu \in \RR^N$ holds values of $u_h$ at nodes $x_i$
+\item a computer program loops over the triangles $T_k$, computing the above integrals, to assemble a linear system in $\RR^N$: \quad $A \bu = \bb$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{finite element method automation}
+
+\begin{columns}
+\begin{column}{0.34\textwidth}
+\small
+here is an FEM workflow:
+\begin{itemize}
+\item define a mesh in \href{https://gmsh.info/}{Gmsh} format (\texttt{.msh})
+\item solve the finite element problem using a Python program (\texttt{.py}) which calls the \href{https://www.firedrakeproject.org/index.html}{Firedrake} library
+\item visualize the result using \href{https://www.paraview.org/}{Paraview} (\texttt{.pvd})
+\end{itemize}
+
+\bigskip
+\includegraphics[width=\textwidth]{figs/blob.png}
+\end{column}
+\begin{column}{0.08\textwidth}
+\end{column}
+\begin{column}{0.58\textwidth}
+{\small \textbf{\texttt{blob.msh}:}}
+\inputminted[fontsize=\scriptsize, lastline=12]{text}{codes/blob.msh}
+
+\vspace{-2mm}
+\dots
+
+\bigskip
+
+{\small \textbf{\texttt{blob.py}:}}
+\inputminted[fontsize=\scriptsize]{python}{codes/blob.py}
+\end{column}
+\end{columns}
 \end{frame}
 
 
