@@ -94,7 +94,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title[Poisson equation and Sobolev spaces]{the Poisson equation $- \grad^2 u = f$, \\ and the Sobolev spaces $H^k(\Omega)$}
+\title[Poisson equation and Sobolev spaces]{Poisson equation and Sobolev spaces}
 
 \subtitle{calculations for weeks 12 \& 13}
 
@@ -127,10 +127,12 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \begin{frame}{the Poisson equation}
 
 \begin{itemize}
-\item let $\Omega \subset \RR^d$ be open
-\item assume $d\in\{1,2,3\}$ \dots but I will usually draw pictures for $d=2$
+\item let $\Omega \subset \RR^d$ be open; denote points by $x=(x_1,\dots,x_d)\in\Omega$
+    \begin{itemize}
+    \item[$\circ$] assume $d\in\{1,2,3\}$ \dots I will draw pictures for $d=2$
+    \end{itemize}
 \item assume the boundary of $\Omega$ is not too crazy (more below)
-\item assume $f=f(x)\in L^2(\Omega)$ is (square-)integrable
+\item assume $f\in L^2(\Omega)$ is (square-)integrable
 
 \begin{block}{Poisson equation}  find $u=u(x)$ so that
    $$- \grad^2 u = f \qquad \text{ on } \Omega$$
@@ -156,15 +158,13 @@ for $\Omega\subset\RR^d$ open and $u:\Omega\to \RR$, the \emph{Laplacian} of $u$
 \end{equation*}
 \end{definition}
 
-\item $\grad^2 u \stackrel{d=1}{=} u'', \quad \grad^2 u \stackrel{d=2}{=} u_{xx}+u_{yy}, \quad \grad^2 u \stackrel{d=3}{=} u_{xx}+u_{yy}+u_{zz}$
+\item in each dimension:
+\begin{align*}
+d=1: && \grad^2 u &= u'' \\
+d=2: && \grad^2 u &= u_{xx}+u_{yy} \\
+d=3: && \grad^2 u &= u_{xx}+u_{yy}+u_{zz}
+\end{align*}
 \end{itemize}
-
-\begin{definition}[Laplace's equation $=$ potential equation]
-\begin{equation*}
-  \grad^2 u = 0,
-\end{equation*}
-and a solution of this equation is called \emph{harmonic}
-\end{definition}
 \end{frame}
 
 
@@ -176,7 +176,7 @@ and a solution of this equation is called \emph{harmonic}
    $$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds,$$
 
    \begin{itemize}
-   \item[$\circ$] there is an $\RR^d$ version of this theorem for any $d$
+   \item[$\circ$] recall that this theorem applies to $\Omega\subset \RR^d$ if $\partial\Omega$ is Lipschitz or $C^1$
    \end{itemize}
 \item when using this, $\bV$ will be the gradient of a scalar function
 \item recall the boundary integral is the total flux of $\bV$ outward through the boundary
@@ -184,17 +184,31 @@ and a solution of this equation is called \emph{harmonic}
 \end{frame}
 
 
-\begin{frame}{boundary-value problems for the Poisson equation}
+\begin{frame}{Laplace's equation, and harmonic functions}
 
 \begin{itemize}
 \item in the absence of any boundary conditions there is an infinite-dimensional space of solutions to $-\grad^2 u = f$ on $\Omega$
-\item if $f=0$ then this is the space of all \emph{harmonic functions} on $\Omega$, an $\infty$-dimensional subspace of all smooth functions:
-    $$\left\{w\,:\,\grad^2 w= 0\right\} \subset C^2(\Omega)$$
 
-   \begin{itemize}
-   \item[$\circ$] complex analysis is, essentially, the study of this space
-   \end{itemize}
-\item but we want to build models which make \emph{one} prediction, so we will focus on \emph{boundary-value problems} that pick-out one solution $u$
+\begin{definition}[Laplace's equation $=$ potential equation]
+\begin{equation*}
+  \grad^2 u = 0
+\end{equation*}
+a solution of this $f=0$ equation is called \emph{harmonic}
+\end{definition}
+
+\item the set of harmonic functions on $\Omega$ is an $\infty$-dimensional vector space of smooth functions:
+    $$\left\{w\,:\,\grad^2 w= 0\right\} \subset C^\infty(\Omega)$$
+\item complex analysis is, essentially, the study of this space
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{boundary-value problems for the Poisson equation}
+
+\begin{itemize}
+\item however, we want to build models which make \emph{one} prediction
+\item the Poisson equation can be used to model heat conduction, electrostatic potential, elastic membranes, equilibrium distributions for random walks, or many other physical phenomena
+\item we will focus on \emph{boundary-value problems} that pick-out one solution $u$
 \end{itemize}
 
 \begin{block}{Dirichlet problem for the Poisson equation}
@@ -210,7 +224,8 @@ u &= g_D \quad \text{ on } \partial \Omega
 \begin{frame}{boundary-value problems for the Poisson equation}
 
 \begin{itemize}
-\item instead of $u$ itself, the gradient $\grad u$ could be set to known values along the boundary, which makes sense because the gradient is often proportional to a physical flux
+\item instead of $u$ itself, the gradient $\grad u$ could be set to known values along the boundary
+\item in models, the gradient is often proportional to a physical flux
 \end{itemize}
 
 \begin{block}{Neumann problem for the Poisson equation}
@@ -225,7 +240,7 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \begin{itemize}
 \item other notation for the (scalar) directional derivative:
 	$$\grad u\cdot \bn = \frac{\partial u}{\partial n} = u_n$$
-\item one could have Dirichlet conditions on part of the boundary and Neumann on another part, so that the boundary is a disjoint union:
+\item one could have Dirichlet conditions on part of the boundary and Neumann on another part, as a disjoint union:
 	$$\partial \Omega = \partial_D \Omega \cup \partial_N \Omega$$
 \end{itemize}
 \end{frame}
@@ -233,21 +248,20 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 
 \begin{frame}{applications}
 
-\begin{itemize}
-\item the Poisson equation can be used to model heat conduction, electrostatic potential, elastic membranes, equilibrium distributions for random walks, or many other physical phenomena
-\end{itemize}
-
 \begin{block}{application: temperature of a conductive solid}
 \begin{itemize}
 \small
-\item Fourier's law for heat conduction in solids says that the heat flux is $\bq = -k \grad u$, where $u$ is the temperature, $\bq$ is the heat flux, and $k>0$ is the conductivity
-\item consider a solid with a heat capacity $c>0$ (heat gained by given increase in temperature) and a mass density $\rho>0$ (mass per unit volume)
+\item Fourier's law for heat conduction in solids says that the heat flux is
+    $$\bq = -k \grad u,$$
+where $u$ is the temperature, $\bq$ is the heat flux, and $k>0$ is the conductivity
+\item consider a solid with a heat capacity $c>0$ (heat energy gained by increase in temperature) and a mass density $\rho>0$ (mass per unit volume)
 \item given a heat source $f$ within the domain $\Omega$, conservation of energy says
     $$c\rho\, \frac{\partial u}{\partial t} = - \Div\bq + f \quad \iff \quad \frac{d}{dt}\left(\int_\Omega c\rho\, u \,dx\right) = - \int_{\partial\Omega} \bq\cdot\bn\,ds + \int_\Omega f \,dx$$
 \item assume steady state, so $\partial/\partial t=d/d t=0$
 \item if $k$ is constant then $- \Div\bq = - \Div(-k \grad u) = k \grad^2 u$
 \item we derive Poisson's equation, the (steady) \emph{heat} or \emph{diffusion equation}
     $$0 = k \grad^2 u + f \qquad \text{ within } \Omega$$
+\item boundary conditions are needed!  (coming soon)
 \end{itemize}
 \end{block}
 \end{frame}
@@ -266,6 +280,7 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \item then the vertical displacement satisfies Poisson's equation
     $$- \kappa \grad^2 u = f \qquad \text{ within } \Omega$$
 subject to $u=g$ along $\partial \Omega$
+\item the standard derivation starts from a the total elastic energy of the membrane, in which case the Poisson equation is the condition that the derivative is zero at the minimizer
 \end{itemize}
 \end{block}
 \end{frame}
@@ -292,27 +307,71 @@ subject to $u=g$ along $\partial \Omega$
 
 \section{the Poisson equation in weak form: $\ds \int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx$}
 
+\begin{frame}{deriving the weak form of the Poisson equation}
+
+\begin{itemize}
+\item first I'll describe \emph{how} to get the weak formulation, then I'll explain \emph{why}
+\item start from the Poisson equation, for an unknown function $u:\Omega\to\RR$, remembering that $\grad^2=\Div\grad$:
+    $$- \Div(\grad u) = f \qquad \text{ within } \Omega$$
+\item suppose $v:\Omega\to\RR$ is another function, which we call a \emph{test function}
+\item multiply the Poisson equation by $v$ and integrate over $\Omega$:
+    $$\int_\Omega \left(- \Div(\grad u)\right) v\,dx \stackrel{\ast}{=} \int_\Omega f v\,dx$$
+\item apply the integration by parts rule from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}:
+    $$\int_\Omega \phi\,\Div \bV\,dm = \int_{\partial\Omega} \phi\,\bV\cdot \bn\,ds - \int_\Omega \grad \phi\cdot \bV\,dm$$
+
+   \begin{itemize}
+   \item[$\circ$] we'll apply this on the left side of $\ast$, with $\phi=v$ and $\bV=\grad u$
+   \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{deriving the weak form of the Poisson equation}
+
+\begin{itemize}
+\item we get:
+    $$-\int_{\partial\Omega} v\,(\grad u)\cdot \bn\,ds + \int_\Omega \grad v\cdot \grad u\,dx = \int_\Omega f v\,dx$$
+\item rearrange to get:
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \alert{\int_{\partial\Omega} v\,(\grad u\cdot \bn)\,ds}$$
+\item existence and uniqueness of this equation, as it determines $u$, essentially requires turning the \alert{boundary integral} into ``data'' 
+   \begin{itemize}
+   \item[$\circ$] the integral $\int_\Omega f v\,dx$ is already data, because $f$ is given
+   \end{itemize}
+\item FIXME talk options
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{the weak form of the Poisson equation}
+
+\begin{block}{weak formulation of the Poisson equation}
+Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, and suppose $f\in L^2(\Omega)$ is given.  Solve one of these problems:
+\begin{enumerate}
+\item Find a solution \only<1>{$u\in C_c^1(\Omega)$}\only<2>{\alert{$u\in H_0^1(\Omega)$}} so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \hspace{20mm} \text{(homogeneous Dirichlet)}$$
+for all test functions \only<1>{$v\in C_c^1(\Omega)$}\only<2>{\alert{$v\in H_0^1(\Omega)$}}.
+\item Find a solution \only<1>{$u\in C^1(\Omega)$}\only<2>{\alert{$u\in H^1(\Omega)$}} so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds \hspace{10mm} \text{(general Neumann)}$$
+for all test functions \only<1>{$v\in C^1(\Omega)$}\only<2>{\alert{$v\in H^1(\Omega)$}}.
+\end{enumerate}
+\end{block}
+
+\begin{itemize}
+\item<2> for this to make sense, I must define the \emph{Sobolev space} $H^1(\Omega)$
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{what is a ``weak form''?}
 
 \begin{itemize}
 \item FIXME strong form is pointwise
 \item weak form is averaged by a test function
-\end{itemize}
 
 \noindent picture of where the equation is enforced:
 
 \vspace{40mm}
-\end{frame}
-
-
-\begin{frame}{deriving the weak for of the Poisson equation}
-
-FIXME multiply by $v$ and integrate by parts
-
-$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx$
-
-\begin{itemize}
-\item x
+\item observation: only first derivs needed in weak form
 \end{itemize}
 \end{frame}
 
@@ -320,17 +379,19 @@ $\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx$
 \begin{frame}{incorporating Dirichlet and Neumann boundary conditions}
 
 \begin{itemize}
-\item FIXME Neumann through boundary integral
-\item FIXME Dirichlet through mod of vector space
+\item FIXME Neumann through boundary integral (already)
+\item FIXME general Dirichlet through mod of vector space
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{what is a finite element method}
 
+FIXME do homogeneous Dirichlet only, for now
+
 FIXME localized $v$ based on a mesh
 
-FIXME $V_h\subset V$ is finite-dimensional
+FIXME $V_h\subset V=H_0^1(\Omega)$ is finite-dimensional
 
 \begin{itemize}
 \item x
@@ -338,7 +399,7 @@ FIXME $V_h\subset V$ is finite-dimensional
 \end{frame}
 
 
-\section{the Sobolev spaces $H^k(\Omega)$}
+\section{the Sobolev spaces: $H^k(\Omega)$}
 
 \begin{frame}{first Sobolev space}
 
@@ -400,7 +461,7 @@ FIXME follow Braess II.1 presentation (pages 28-31) re completion of $S=H^k(\Ome
 
 \begin{frame}{bar}
 
-FIXME $H_0^k(\Omega)$ is completion of $C_c(\infty)$ in $H^k$ norm
+FIXME $H_0^k(\Omega)$ is completion of $C_c^\infty(\Omega)$ in $H^k$ norm
 
 \begin{itemize}
 \item x
@@ -418,7 +479,7 @@ FIXME Poincare-Friedrichs
 \end{frame}
 
 
-\section{why does a Poisson solution exist?}
+\section{why and when does a Poisson solution exist?}
 
 \begin{frame}{bar}
 
@@ -440,8 +501,6 @@ FIXME: Riesz representation theory route
 \end{frame}
 
 
-\section{why is that solution smooth?}
-
 \begin{frame}{bar}
 
 FIXME: sketch how ellipticity means $u\in H^{2+k}(\Omega)$ if $f\in H^k(\Omega)$
@@ -452,11 +511,19 @@ FIXME: sketch how ellipticity means $u\in H^{2+k}(\Omega)$ if $f\in H^k(\Omega)$
 \end{frame}
 
 
+\begin{frame}{$H^k$ on an interval}
+
+FIXME relate to definition of $H^k([-\pi,\pi])$ using Fourier series
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{Poisson on a disc}
 
 FIXME Fourier series along boundary converts to smooth in the interior
-
-FIXME relate to definition of $H^k([-\pi,\pi])$
 
 \begin{itemize}
 \item x
