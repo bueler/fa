@@ -93,7 +93,7 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 16 March 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 16 March 2026; {\color{red} version 2}}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 6}}
@@ -124,9 +124,6 @@
 \medskip
 \noindent \textsc{Do the following additional problems.}
 
-%plan to do sections: 5.1, 5.2, [add dual spaces], [add Riesz rep'n thm], 5.3, 6.1
-%plus slides
-
 \prob{P12}  \emph{Use the classical definition of absolute continuity, and the FTC2, from the slides.}
 
 \medskip \noindent Suppose throughout that $f,g:[a,b] \to \RR$ are absolutely continuous.
@@ -135,8 +132,8 @@
 
 \epart{b} Show that the product rule $\big(f(x) g(x)\big)' = f'(x) g(x) + f(x) g'(x)$ holds almost everywhere.
 
-\epart{c} Show the following integration-by-parts formula, justifying the existence of all (Lebesgue) integrals:
-	$$\int_a^b f(x) g'(x)\,dx = \Big[f(x) g(x)\Big]_a^b - \int_a^b f'(x) g(x)\,dx$$
+\epart{c} Show the following integration-by-parts formula, justifying the existence of all (Lebesgue) integrals and the existence of point values:
+	$$\int_a^b f(x) g'(x)\,dx = f(b)g(b) - f(a)g(a) - \int_a^b f'(x) g(x)\,dx$$
 
 
 \prob{P13}  \emph{Use the product rule for partial derivatives of scalar functions, as stated in the slides.}
@@ -148,8 +145,6 @@
     $$\int_\Omega \frac{\partial f}{\partial x_k} g\,dm = -\int_\Omega f \frac{\partial g}{\partial x_k}\,dm,$$
 with careful attention to why there is no integral over $\partial \Omega$ in this rule.
 
-\epart{c} Outline how you would change the argument in \textbf{(b)} so that it would work on any open set $\Omega\subset\RR^d$, not just a cube.
-
 
 \prob{P14}  \emph{Basic properties of the Fourier transform make good exercises with the $L^1(\RR^1)$ space.  There is a more advanced analysis, the Plancherel theorem, which shows that in fact the transform is a Hilbert space isometric isomorphism of $L^2(\RR^1)$, but that would take us too far afield.}
 
@@ -159,11 +154,11 @@ with careful attention to why there is no integral over $\partial \Omega$ in thi
 \end{equation}
 for those $t\in\RR^1$ such that the integral exists, in which case $\hat f(t)\in\CC$.
 
-\epart{a} Suppose $f\in L^1(\RR^1)$.  Show that $\hat f(t)$ is now well-defined for every $t$, and that $\|\hat f\|_\infty \le \frac{1}{\sqrt{2\pi}} \|f\|_1$.
+\epart{a} Suppose $f\in L^1(\RR^1)$.  Show that $\hat f(t)$ is well-defined for every $t$, and that $\|\hat f\|_\infty \le \frac{1}{\sqrt{2\pi}} \|f\|_1$.  (\emph{Thus} $\hat f\in L^\infty(\RR^1)$.)
 
-\epart{b} Again suppose $f\in L^1(\RR^1)$.  Use Lebesgue's dominated convergence theorem (DCT) to show that $\hat f$ is uniformly continuous.
+\epart{b} Again suppose $f\in L^1(\RR^1)$.  Use Lebesgue's dominated convergence theorem (DCT) to show that $\hat f$ is uniformly continuous.  (\emph{Thus} $\hat f\in C(\RR^1)\cap L^\infty(\RR^1)$.)
 
-\epart{c} Suppose $f\in L^1(\RR^1)$, and also that $g(x)=-ixf(x)$ is in $L^1(\RR^1)$.  Use the DCT to show that $\hat f$ is differentiable at every $t$, and that $\hat f'(t) = \hat g(t)$.
+\epart{c} Suppose $f\in L^1(\RR^1)$, and also that $g(x)=-ixf(x)$ is in $L^1(\RR^1)$.  Use the DCT to show that $\hat f$ is differentiable at every $t$, and that $\hat f'(t) = \hat g(t)$.  (\emph{Thus} $\hat f\in C^1(\RR^1)\cap L^\infty(\RR^1)$.)
 
 
 \prob{P15}  Suppose $f\in L^1([0,1])$ and define the \emph{Ces\`aro operator}
