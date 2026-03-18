@@ -1,6 +1,11 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Wednesday 25 March
+  description: dual spaces
+- day: Monday 23 March
+  description: linear operators, boundedness and continuity
+  week: 11
 - day: Friday 20 March
   description: calculation, cont.
 - day: Wednesday 18 March
