@@ -374,7 +374,7 @@ for all test functions \only<1>{$v\in C^1(\Omega)$}\only<2>{\alert{$v\in H^1(\Om
 \begin{frame}{what is the ``weak formulation''?}
 
 \begin{block}{observation 1.}
-The strong form is pointwise: $(-\grad^2 u)(x) = f(x)$ holds at every $x\in \Omega$.  By contrast, the weak form is \alert{averaged by a test function}.  That is, the weak form holds on the support of $v$.
+The strong form is pointwise: $(-\grad^2 u)(x) = f(x)$ holds at every $x\in \Omega$.  By contrast, \alert{the weak form is about the average using a test function}.  That is, the weak form holds on the support of $v$.
 \end{block}
 
 \begin{itemize}
@@ -384,7 +384,7 @@ The strong form is pointwise: $(-\grad^2 u)(x) = f(x)$ holds at every $x\in \Ome
 \vspace{25mm}
 
 \begin{block}{observation 2.}
-The strong form refers to the second derivatives, the Laplacian, of the unknown solution $u$.  By contrast, only the \alert{first derivatives} of $u$, namely the gradient, is needed in the weak form.
+The strong form refers to the second derivatives, the Laplacian, of the unknown solution $u$.  By contrast, \alert{only the first derivatives of $u$}, namely the gradient, \alert{is needed in the weak form}.
 \end{block}
 \end{frame}
 
@@ -499,31 +499,15 @@ here is an FEM workflow:
 
 \section{the Sobolev spaces: $H^k(\Omega)$}
 
-\begin{frame}{first Sobolev space}
+\begin{frame}{recall weak derivatives}
 
 \begin{itemize}
 \item given a bounded open set $\Omega\subset \RR^d$
-\item recall the definition of (real-valued) $L^2(\Omega)$
-\item recall that we say $f$ has a weak (partial) derivative $g=\partial f/\partial x_k$ if $g\in L^1(\Omega)$ so that
-    $$\int_\Omega g\, \varphi\,dm = - \int_\Omega f\, \frac{\partial\varphi}{\partial x_k}\,dm \qquad \text{for all } \varphi \in C_c^\infty(\Omega)$$
-\item note that if $\Omega$ is bounded then $L^2(\Omega) \subset L^1(\Omega)$
-\end{itemize}
-
-\begin{definition}[Sobolev space $H^1(\Omega)$]
-    $$H^1(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix}  \text{the weak partial derivatives } \frac{\partial f}{\partial x_k} \text{ exist} \\ \text{and are in } L^2(\Omega) \text{ for } k=1,\dots,d \end{matrix} \right\}$$
-\end{definition}
-
-\begin{itemize}
-\item ``$H$\,'' is for Hilbert
-\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}{more Sobolev spaces}
-
-\begin{itemize}
-\item recall our multi-index derivative notation from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}
+\item recall the definition: $L^2(\Omega) = \{f:\Omega\to\RR\,\big|\,\int_\Omega |f|^2 <\infty\}$
+   \begin{itemize}
+   \item[$\circ$] if $\Omega$ is bounded then $L^2(\Omega) \subset L^1(\Omega)$
+   \end{itemize}
+\item recall our multi-index derivative notation $D^\alpha \varphi$, from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}, and the main definition:
 \end{itemize}
 
 \begin{definition}[weak derivative]
@@ -533,21 +517,92 @@ if $f\in \Lloc(\Omega)$, and if $g\in \Lloc(\Omega)$ satisfies
 then we say $g$ is the \emph{$\alpha$th weak derivative} of $f$, and we write $D^\alpha f = g$ a.e.
 \end{definition}
 
-\begin{definition}[Sobolev space $H^k(\Omega)$]
-    $$H^k(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix}  \text{the weak derivatives } D^\alpha f \text{ exist} \\ \text{and are in } L^2(\Omega) \text{ for all } |\alpha|\le k\end{matrix} \right\}$$
+\begin{itemize}
+\item \emph{example:} $f$ has a weak derivative $g=\partial f/\partial x_k \in L^1(\Omega)$ if
+    $$\int_\Omega g\, \varphi\,dm = - \int_\Omega f\, \frac{\partial\varphi}{\partial x_k}\,dm \qquad \text{for all } \varphi \in C_c^\infty(\Omega)$$
+and $\int_\Omega|g|\,dm < \infty$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{first Sobolev space}
+
+\begin{definition}[Sobolev space $H^1(\Omega)$]
+    $$H^1(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix}  \text{the weak partial derivatives } \frac{\partial f}{\partial x_k} \text{ exist} \\ \text{and are in } L^2(\Omega) \text{ for } k=1,\dots,d \end{matrix} \right\}$$
+is a Hilbert space with inner product:
+	$$\ip{f}{g}_{H^1} = \int_\Omega f(x)g(x)\,dx + \int_\Omega \grad f(x)\cdot \grad g(x)\,dx$$
+and norm: \quad $\|f\|_{H^1} = \sqrt{\ip{f}{f}_{H^1}} = \left(\int_\Omega |f|^2 + \int_\Omega |\grad f|^2\right)^{1/2}$
 \end{definition}
 
 \begin{itemize}
-\item we may write $H^0(\Omega) = L^2(\Omega)$
-\item other books use notation $H^k(\Omega) = W^{k,2}(\Omega)$; the ``$2$'' indicates that the weak derivatives are in $L^2(\Omega)$
-\item $W^{k,p}(\Omega)$ is the general case, with weak derivatives in $L^p(\Omega)$ up to order $k$
+\small
+\item \emph{example on $\RR^2$:} Consider the unit square $\Omega = (0,1)^2$ and the function $f(x)=x_1 + x_2$.  It has gradient $\grad f = \ip{1}{1}$, and norm $\|f\|_{H^1} = \sqrt{19/6}$:
+\begin{align*}
+\|f\|_{H^1}^2 &= \int_\Omega |x_1 + x_2|^2\,dx + \int_\Omega |\ip{1}{1}|^2\,dx \\
+&= \int_0^1 \int_0^1 x_1^2 + 2 x_1 x_2 + x_2^2 \,dx_1\,dx_2 + \int_0^1 \int_0^1 2 \,dx_1\,dx_2 = \frac{7}{6} + 2 = \frac{19}{6}
+\end{align*}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{more Sobolev spaces}
+
+\begin{definition}[Sobolev space $H^k(\Omega)$]
+    $$H^k(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix}  \text{the weak derivatives } D^\alpha f \text{ exist} \\ \text{and are in } L^2(\Omega) \text{ for all } |\alpha|\le k\end{matrix} \right\}$$
+is a Hilbert space with inner product:
+	$$\ip{f}{g}_{H^k} = \sum_{|\alpha|\le k} \int_\Omega (D^\alpha f)(x) (D^\alpha g)(x)\,dx$$
+and norm: \quad $\|f\|_{H^k} = \sqrt{\ip{f}{f}_{H^k}}$
+\end{definition}
+
+\begin{itemize}
+\item ``$H$\,'' is for Hilbert
+\item we may write $H^0(\Omega) = L^2(\Omega)$, because $D^\alpha f = f$ if $\alpha=(0,\dots,0)$
+\item some sources use notation $H^k(\Omega) = W^{k,2}(\Omega)$
+   \begin{itemize}
+   \item[$\circ$] the ``$2$'' indicates that the weak derivatives are in $L^2(\Omega)$
+   \item[$\circ$] general case: $W^{k,p}(\Omega)$ has weak derivatives in $L^p(\Omega)$ up to order $k$
+   \end{itemize}
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{bar}
 
-FIXME inner product and norm
+FIXME example in $\RR^1$: $H^1([a,b])$ functions are AC
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{$H^k$ on an interval}
+
+FIXME relate to definition of $H^k([-\pi,\pi])$ using Fourier series
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{bar}
+
+FIXME example in $\RR^2$: if $\Omega$ is unit disc, $f(r)=1/r$ is not in $H^1$ but $f(r)=\ln r$ is
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{bar}
+
+FIXME: completion of a normed vector space to get a Banach space
+\end{frame}
+
+
+\begin{frame}{bar}
 
 FIXME follow Braess II.1 presentation (pages 28-31) re completion of $S=H^k(\Omega)\cap C^\infty(\Omega)$ in $H^k$ norm
 
@@ -591,7 +646,7 @@ FIXME: minimization route
 
 \begin{frame}{bar}
 
-FIXME: Riesz representation theory route
+FIXME: Riesz representation theorem route
 
 \begin{itemize}
 \item x
@@ -602,16 +657,6 @@ FIXME: Riesz representation theory route
 \begin{frame}{bar}
 
 FIXME: sketch how ellipticity means $u\in H^{2+k}(\Omega)$ if $f\in H^k(\Omega)$
-
-\begin{itemize}
-\item x
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{$H^k$ on an interval}
-
-FIXME relate to definition of $H^k([-\pi,\pi])$ using Fourier series
 
 \begin{itemize}
 \item x
@@ -636,7 +681,7 @@ FIXME Fourier series along boundary converts to smooth in the interior
 \begin{itemize}
 \item most of this material is only from these slides
 
-\begin{block}{to know from slides:}
+\begin{block}{to know from these slides:}
 \begin{itemize}
 \item x
 \end{itemize}
