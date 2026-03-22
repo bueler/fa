@@ -593,24 +593,88 @@ and norm: \quad $\|f\|_{H^k} = \sqrt{\ip{f}{f}_{H^k}}$
 \end{frame}
 
 
-\section{more about $H^1$}
+\section{more about $H^1(\Omega)$ and $H_0^1(\Omega)$}
 
-\begin{frame}{bar}
-
-FIXME example in $\RR^1$: $H^1([a,b])$ functions are AC
+\begin{frame}{$H^1$ on an interval}
 
 \begin{itemize}
-\item x
+\item if $\Omega=(a,b)$ is an interval of the real line, then we have \alert{a simple definition using ordinary derivatives}
+\end{itemize}
+
+\begin{definition}
+    $$H^1(a,b) = \left\{f\in L^2(a,b) \,\Big|\, \begin{matrix}  \text{the weak derivative } f' \text{ exists} \\ \text{and } f' \in L^2(a,b) \end{matrix} \right\}$$
+\end{definition}
+
+\begin{itemize}
+\item the norm is: \quad $\ds \left(\|f\|_{H^1}\right)^2 = \int_a^b |f(x)|^2 \, dx + \int_a^b |f'(x)|^2\,dx$
+\item but recall:
+    \begin{itemize}
+    \item[$\circ$] $L^2(a,b) \subset L^1(a,b)$, since $m((a,b))<\infty$, and
+    \item[$\circ$] $\ds f' \in L^1(a,b) \quad \implies \quad f \in AC(a,b) \quad \text{and}  \quad f(x) = f(a) + \int_a^x f'(t)\,dt$
+    \end{itemize}
+\item most importantly:
+	$$\alert{H^1(a,b) \subset C^0([a,b])}$$
+
+    \begin{itemize}
+    \item[$\circ$] and $C^1([a,b]) \subsetneq H^1(a,b) \subsetneq C^0([a,b]) \subsetneq L^2(a,b)$
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{$H^k$ on an interval}
+\begin{frame}{$H^1$ on an interval, via Fourier series}
 
-FIXME relate to definition of $H^k([-\pi,\pi])$ using Fourier series
+\begin{block}{{\small recall Fourier series in $L^2(-\pi,\pi)$}}
+{\footnotesize
+using ON sequence $\frac{1}{\sqrt{2\pi}} e^{inx}$, $n\in\ZZ$, we have convergence in the $\|\cdot\|_2$ norm:
+	$$f(x) = \frac{1}{\sqrt{2\pi}}\sum_{n=-\infty}^\infty c_n e^{inx} \quad \text{with} \quad c_n = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx,$$
+Parseval's equality: \quad $\ds \|f\|_{L^2}^2 = \sum_{n=-\infty}^\infty |c_n|^2$
+}
+\end{block}
 
 \begin{itemize}
-\item x
+{\small
+\item but now consider the derivative formula: \quad $\ds f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n=-\infty}^\infty i n c_n e^{inx}$
+\item \dots and we can norm the derivative (\emph{use orthonormality}):
+{\footnotesize
+\begin{align*}
+\int_{-\pi}^\pi |f'(x)|^2\,dx &= \sum_{k,n} \frac{1}{2\pi} \int_{-\pi}^\pi (i n c_n\, e^{inx})(\overline{i k c_k\, e^{ikx}})\,dx = \sum_{k,n} n k c_n c_k \delta_{kn} = \sum_{n=-\infty}^\infty n^2 |c_n|^2
+\end{align*}
+}
+}
+\end{itemize}
+
+{\small
+\begin{definition}[via Fourier series]
+    $$H^1(-\pi,\pi) = \left\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n=-\infty}^\infty n^2 |c_n|^2 < \infty\right\}$$
+\end{definition}
+}
+\end{frame}
+
+
+\begin{frame}{$H^k$ on an interval, via Fourier series}
+
+\begin{itemize}
+\item the same logic applies for higher derivatives, e.g.:
+{\small
+\begin{align*}
+\int_{-\pi}^\pi |f''|^2 &= \sum_{k,n} \frac{1}{2\pi} \int_{-\pi}^\pi ((i n)^2 c_n\, e^{inx})(\overline{(i k)^2 c_k\, e^{ikx}})\,dx = \sum_{n\in\ZZ} n^4 |c_n|^2
+\end{align*}
+}
+
+\begin{definition}
+    $$H^k(-\pi,\pi) = \Big\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n\in\ZZ} n^{2k} |c_n|^2 < \infty\Big\}$$
+\end{definition}
+
+\item with norm formula, by Parseval:
+{\small
+\begin{align*}
+\|f\|_{H^k}^2 &= \int_{-\pi}^\pi |f|^2 + \dots + \int_{-\pi}^\pi |f^{(k)}|^2 \\
+&= \sum_{n\in\ZZ} (1+ n^2 + \dots + n^{2k}) |c_n|^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2
+\end{align*}
+}
+\item we \alert{do not need weak derivatives} in this definition
+\item also: \alert{$k$ does not need to be an integer}
 \end{itemize}
 \end{frame}
 
