@@ -6,9 +6,7 @@ math: true
 
 ## Corrections to the Textbook
 
-The following are some corrections to [**K. Saxe, *Beginning Functional Analysis*, Springer 2010**](https://link.springer.com/book/10.1007/978-1-4757-3687-8).  (Note that the softcover edition was published 2010 while other editions may have 2002 publication dates.)
-
-Please send me any more errors in the textbook which you find ([elbueler@alaska.edu](mailto:elbueler@alaska.edu)).  We can at least provide the author with a good errata page!
+The following are some corrections to [**K. Saxe, *Beginning Functional Analysis*, Springer 2010**](https://link.springer.com/book/10.1007/978-1-4757-3687-8).  (Note that the softcover edition was published 2010 while other editions may have 2002 publication dates.)  Please send me any further errors which you find ([elbueler@alaska.edu](mailto:elbueler@alaska.edu)); we can at least provide the author with a good errata page!
 
 
 <!-- notes for typing MathJax:
