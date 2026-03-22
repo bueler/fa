@@ -593,7 +593,7 @@ and norm: \quad $\|f\|_{H^k} = \sqrt{\ip{f}{f}_{H^k}}$
 \end{frame}
 
 
-\section{more about $H^1(\Omega)$ and $H_0^1(\Omega)$}
+\section{more about $H^1(\Omega)$}
 
 \begin{frame}{$H^1$ on an interval}
 
@@ -645,9 +645,9 @@ Parseval's equality: \quad $\ds \|f\|_{L^2}^2 = \sum_{n=-\infty}^\infty |c_n|^2$
 \end{itemize}
 
 {\small
-\begin{definition}[via Fourier series]
+\begin{lemma}[$H^1(-\pi,\pi)$ via Fourier series]
     $$H^1(-\pi,\pi) = \left\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n=-\infty}^\infty n^2 |c_n|^2 < \infty\right\}$$
-\end{definition}
+\end{lemma}
 }
 \end{frame}
 
@@ -662,9 +662,10 @@ Parseval's equality: \quad $\ds \|f\|_{L^2}^2 = \sum_{n=-\infty}^\infty |c_n|^2$
 \end{align*}
 }
 
-\begin{definition}
+\vspace{-2mm}
+\begin{lemma}[$H^k(-\pi,\pi)$ via Fourier series]
     $$H^k(-\pi,\pi) = \Big\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n\in\ZZ} n^{2k} |c_n|^2 < \infty\Big\}$$
-\end{definition}
+\end{lemma}
 
 \item with norm formula, by Parseval:
 {\small
@@ -673,74 +674,179 @@ Parseval's equality: \quad $\ds \|f\|_{L^2}^2 = \sum_{n=-\infty}^\infty |c_n|^2$
 &= \sum_{n\in\ZZ} (1+ n^2 + \dots + n^{2k}) |c_n|^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2
 \end{align*}
 }
-\item we \alert{do not need weak derivatives} in this definition
-\item also: \alert{$k$ does not need to be an integer}
+\item we could make the lemma a definition, and \alert{not need weak derivatives}
+\item also: \alert{$k$ does not need to be an integer}, but we will not pursue this
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{bar}
-
-FIXME example in $\RR^2$: if $\Omega$ is unit disc, $f(r)=1/r$ is not in $H^1$ but $f(r)=\ln r$ is
+\begin{frame}{are functions in $H^1(\Omega)$ continuous for $\Omega\subset\RR^2$?}
 
 \begin{itemize}
-\item x
+\item we have $H^1(a,b) \subset C^0([a,b])$, but \alert{this inclusion is dimension-dependent} 
+\item in examples below,
+    $$D = \{x\in\RR^2\,:\,|x|^2<1\}$$
+is the unit disc, and $r=|x|$
+\item the first two examples are expected
 \end{itemize}
+
+\begin{block}{a continuous function in $H^1(D)$ \dots \emph{expected}}
+{\small
+$\alert{f(x)= \sqrt{r}}$: \, $f\in C^0(D)\setminus C^1(D)$, and with polar coordinates $dm=r\,dr\,d\theta$,
+\begin{align*}
+\|f\|_{H^1}^2 &= \int_D |f|^2 + |\grad f|^2 = 2\pi \int_0^1 \Big[(\sqrt{r})^2 + \left(\frac{-1}{2\sqrt{r}}\right)^2\Big]\,r\, dr \\
+&= 2\pi \int_0^1 \big(r^2 + \frac{1}{4}\big)\,dr = \frac{7\pi}{6} < \infty
+\end{align*}
+}
+\end{block}
 \end{frame}
 
 
-\begin{frame}{bar}
+\begin{frame}{are functions in $H^1(\Omega)$ continuous for $\Omega\subset\RR^2$?}
 
-FIXME: completion of a normed vector space to get a Banach space
+\begin{block}{a discontinuous function not in $H^1(D)$ \dots \emph{expected}}
+{\small
+$\alert{g(x)= \ln(r)}$: \, $g\notin C^0(D)$, and
+\begin{align*}
+\|g\|_{H^1}^2 &= 2\pi \int_0^1 \Big[(\ln(r))^2 + \left(\frac{1}{r}\right)^2\Big]\,r\, dr = (\text{finite}) + 2\pi \int_0^1 \frac{1}{r}\, dr = +\infty
+\end{align*}
+}
+\end{block}
 \end{frame}
 
 
-\begin{frame}{bar}
-
-FIXME follow Braess II.1 presentation (pages 28-31) re completion of $S=H^k(\Omega)\cap C^\infty(\Omega)$ in $H^k$ norm
+\begin{frame}{are functions in $H^1(\Omega)$ continuous for $\Omega\subset\RR^2$? \quad NO}
 
 \begin{itemize}
-\item x
+\item define
+	$$p(x) = \begin{cases} \ln(|\ln(r)|), & 0 < r < 1/2 \\
+	                       \ln(\ln(2)), & 1/2 \le r < 1 \end{cases}$$
 \end{itemize}
-\end{frame}
 
-
-\begin{frame}{bar}
-
-FIXME $H_0^1(\Omega)$ is completion of $C_c^\infty(\Omega)$ in $H^1$ norm
+\begin{block}{a discontinuous function \alert{which is in} $H^1(D)$ \dots \emph{unexpected!}}
+{\small
+$\alert{p(x)}$: \, $p\notin C^0(D)$, and
+\begin{align*}
+\|p\|_{H^1}^2 &= (\text{finite}) + 2\pi \int_0^{1/2} \left(\frac{-1}{r|\ln(r)|}\right)^2\, r\,dr = (\text{finite}) + 2\pi \int_0^{1/2} \frac{1}{r(\ln(r))^2} \,dr \\
+&\stackrel{u=\ln(r)}{=} (\text{finite}) + 2\pi \int_{-\infty}^{-\ln(2)} \frac{du}{u^2} = (\text{finite}) + (\text{finite}) < \infty
+\end{align*}
+}
+\end{block}
 
 \begin{itemize}
-\item x
+\item \alert{$p\in H^1(D)$}
+    \begin{itemize}
+    \item[$\circ$] computing exact values of $L^2$ and $H^1$ norms for $g$ and $p$ is on Assignment 7
+    \end{itemize}
+\item generally, \alert{$H^1(\Omega) \nsubseteq C^0(\Omega)$ when $\Omega \subset \RR^2$}
+    \begin{itemize}
+    \item[$\circ$] but $H^2(\Omega) \subset C^0(\Omega)$ does hold
+    \end{itemize}
+\item generally \emph{Sobolev's} (and related) \emph{inequalities} show which $H^k(\Omega)$, $\Omega\subset\RR^d$, will contain continuous representatives
 \end{itemize}
 \end{frame}
 
+%FIXME follow Braess II.1 presentation (pages 28-31) re completion of $S=H^k(\Omega)\cap C^\infty(\Omega)$ in $H^k$ norm
+%\begin{frame}{a general construction of Banach spaces}
+%
+%\begin{lemma}[\footnotesize proof at \href{https://proofwiki.org/wiki/Completion_Theorem_(Metric_Space)}{proofwiki.org/wiki/Completion\_Theorem\_(Metric\_Space)}]
+%Suppose $(V,\|\cdot\|)$ is a normed vector space, and recall that $(f_n)$ is \emph{Cauchy} if for all $\eps>0$ there exists $N$ so that if $j,k\ge N$ then $\|f_j-f_k\|<\eps$, that is, $\|f_j-f_k\|\to 0$.  Let
+%	$$W = \left\{[(f_n)]\,:\, f_n \in V \text{ and } (f_n)\sim(g_n) \text{ if } \|f_n-g_n\| \to 0\right\}$$
+%be the set of equivalence classes of Cauchy sequences under $\sim$. Then $W$ can be given the structure of a normed vector space, $(V,\|\cdot\|)$, in which case $W$ is complete (a Banach space), and $V\subset W$ (in a canonical manner).
+%\end{lemma}
+%
+%\begin{itemize}
+%\item the construction can be done for metric spaces 
+%\end{itemize}
+%\end{frame}
 
-\begin{frame}{bar}
 
-FIXME Poincare-Friedrichs
+\begin{frame}{$H_0^1(\Omega)$ is the closed subspace with zero boundary values}
 
 \begin{itemize}
-\item x
+\item for any open domain $\Omega \subset \RR^d$, the inclusion $C_c^1(\Omega) \subset H^1(\Omega)$ is clear
+
+\begin{definition}
+    $$H_0^1(\Omega) = \overline{C_c^1(\Omega)}, \quad \text{where closure is in $H^1$ norm}$$
+\end{definition}
+
+\item the 1D case already shows that $H_0^1(\Omega)$ is a proper closed subspace: $f(x)=1 \in H^1(a,b)$ but $f \notin H_0^1(a,b)$ because of the FTC
+    \begin{itemize}
+    \item[$\circ$] $H_0^1(\Omega)$ is a proper closed subspace in any dimension
+    \end{itemize}
+\item picture:
+
+\vspace{30mm}
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{\emph{fact:} \quad $\|\grad f\|_{L^2}$ is equivalent to $\|f\|_{H^1}$ in $H_0^1(\Omega)$}
+
+\begin{itemize}
+\item once you have zero boundary values, then \alert{the only way for the function to get large is for the gradient to also be large}
+
+\begin{theorem}[Poincar\'e-Friedrichs inequality]
+Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, or an open set which is bounded in one direction.  There is $C>0$, depending on $\Omega$, so that
+	$$\|f\|_{L^2} \le C \|\grad f\|_{L^2} \quad \text{for all } f\in H_0^1(\Omega).$$
+\end{theorem}
+
+\item main consequence: the simpler formula
+	$$|f|_{H^1} = \|\grad f\|_{L^2} = \left(\int_\Omega |\grad f|^2\right)^{1/2}$$
+is equivalent to the full norm $\|f\|_{H^1} = \left(\int_\Omega |f|^2 + \int_\Omega |\grad f|^2\right)^{1/2}$ on $H_0^1(\Omega)$
+    \begin{itemize}
+    \item[$\circ$] it is \emph{not} equivalent on the whole space $H^1(\Omega)$
+    \end{itemize}
+\item $|f|_{H^1}$ is called the \emph{$H^1$ seminorm}
+    \begin{itemize}
+    \item[$\circ$] with the understanding that it is actually a norm on $H_0^1(\Omega)$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Poisson equation Dirichlet problems: weak forms}
+
+\begin{itemize}
+\item now that $H_0^1(\Omega)$ is defined, we can make sense of these problems
+\end{itemize}
+
+\begin{block}{weak formulation of Dirichlet problems}
+Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, and suppose $f\in L^2(\Omega)$ is given.  Solve:
+\begin{enumerate}
+\item \alert{homogeneous Dirichlet}: Find $u\in H_0^1(\Omega)$ so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx$$
+for all test functions $v\in H_0^1(\Omega)$.
+\item \alert{general Dirichlet}: Let $u_D \in H^1(\Omega) \cap C(\bar\Omega)$ be any function so that $u_D=g_D$ along $\partial\Omega$.  Find $\tilde u\in H_0^1(\Omega)$ so that
+    $$\int_\Omega \grad \tilde u \cdot \grad v\,dx = \int_\Omega f v\,dx - \int_\Omega \grad u_D \cdot \grad v\,dx$$
+for all test functions $v\in H_0^1(\Omega)$.  The solution is $u=\tilde u + u_D \in H^1(\Omega)$.
+\end{enumerate}
+\end{block}
+\end{frame}
 
 \section{lecture content in week 12}
 
 \begin{frame}{lecture content in week 12}
 
 \begin{itemize}
-\item most of this material is only from these slides
+\item most of this material is \alert{only from these slides}
 
-\begin{block}{to know from these slides:}
+\begin{block}{definitions to know:}
 \begin{itemize}
-\item x
+\item Laplacian
+\item strong form of Poisson problems (Dirichlet and Neumann)
+\item weak form of Poisson problems (Dirichlet and Neumann)
+\item continuous $P_1$ finite element space over a mesh of triangles
+\item Sobolev spaces $H^k(\Omega)$
+\item examples showing $H^1(\Omega) \nsubseteq C^0(\Omega)$ for $\Omega \subset \RR^2$
+\item $H_0^1(\Omega)$
 \end{itemize}
 \end{block}
 
-\begin{block}{to prove:}
+\begin{block}{propositions to know:}
 \begin{itemize}
-\item x
+\item lemma: characterize $H^k(-\pi,\pi)$ using Fourier series coefficients
+\item theorem: Poincar\'e-Friedrichs inequality for $H_0^1(\Omega)$
 \end{itemize}
 \end{block}
 

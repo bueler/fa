@@ -1,13 +1,20 @@
 semester: Spring 2026
 home: assets
 daily:
-- day: Wednesday 25 March
+- day: Monday 30 March
+  description: "<b>calculation: Poisson equation and Sobolev spaces</b>"
+  slides: slides/S26/week12.pdf
+  slidesweek: week 12
+  week: 12
+- day: Friday 27 March
   description: dual spaces
-- day: Monday 23 March
+- day: Wednesday 25 March
   description: linear operators, boundedness and continuity
+- day: Monday 23 March
+  description: IBP and weak derivatives
   week: 11
 - day: Friday 20 March
-  description: calculation, cont.
+  description: FTC cont.
 - day: Wednesday 18 March
   description: "<b>calculation: FTCs, IBP, and weak derivatives</b>"
   slides: slides/S26/week10.pdf
