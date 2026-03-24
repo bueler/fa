@@ -93,21 +93,21 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned XX March 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 25 March 2026}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 7}}
 \large
 \medskip
 
-\centerline{\textbf{Due XX at the beginning of class}}
+\centerline{\textbf{Due Friday 10 April at the beginning of class}}
 \medskip
 \normalsize
 
 \thispagestyle{empty}
 
 \bigskip
-\noindent This Assignment is based on the slides, especially those for \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10 \& 11} and for \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12}.
+\noindent This Assignment is based on the slides, especially \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10 \& 11} and \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12}.
 
 \newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
 
@@ -129,20 +129,20 @@
     $$s(x)=a_k+b_k (x-x_{k-1}) + c_k (x-x_{k-1})^2 + d_k (x-x_{k-1})^3 \quad \text{ on } [t_{k-1},t_k],$$
 for $k=1,\dots,n$, and so that $s(t_k) = y_k$, for $k=0,1,\dots,n$.  It is a theorem, which you do \emph{not} need to prove, that for the data $(t_k,y_k)$ there is a unique function $s(x)$ with these properties.  Give a formula for the weak second derivative $s''$, on $[a,b]$, and \underline{show} that it satisfies the definition of a weak derivative.  Approximately sketch the spline $s(x)$ and its second derivative $s''(x)$ in a simple case, for instance with $n=3$. (\emph{Note the key fact that $s$ and $s'$ are \emph{continuous} on $[a,b]$.  Generally $s''$ is not continuous, or even defined at all points in $[a,b]$.}) 
 
-\prob{P19}  Recall that the usual definition of the norm in $H^k(-\pi,\pi)$ is
-	$$\|f\|_{H^k}^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx,$$
-where $f^{(\ell)}$ denotes the weak derivative of order $\ell$.
+\prob{P19}  Recall that, if $f^{(\ell)}$ denotes the weak derivative of order $\ell$, then the usual definition of the norm in $H^k(-\pi,\pi)$ is \quad  $\ds (\|f\|_{H^k})^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx$.
 
-\epart{a}  Suppose $f\in H^1(-\pi,\pi)$.  Using the formulas for Fourier series from the week 12 slides, justify the derivative formula
+\epart{a}  Suppose $f\in H^1(-\pi,\pi)$.  Using the formulas for Fourier series,\footnote{See ``recall Fourier series in $L^2(-\pi,\pi)$'' in the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} slides.} prove the derivative formula
 	$$f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} i n c_n e^{inx},$$
-where $c_n$ are the Fourier coefficients of $f$.  (\emph{Hint.  Use Lebesgue's DCT.})
+with convergence in $L^2$, where $c_n$ are the Fourier coefficients of $f$.
 
-\epart{b}  Show in detail, that
+\epart{b}  Show that
 	$$\|f\|_{H^k}^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2.$$
 (\emph{There is no need to justify derivative formulas, beyond what you did in part} \textbf{(a)}.)
 
 \prob{P20}  FIXME exactly compute $L^2(D)$ and $H^1(D)$ norms of $g(x)=\ln(r)$ and $p(x)=\ln(|\ln(r)|)$; plot $p(r)$ on $(0,1)$
 
 \prob{P21}  FIXME shows that $H_0^1(\Omega)$ is a proper closed subspace if $\Omega=(a,b)$: $f(x)=1 \in H^1(a,b)$ but $f \notin H_0^1(a,b)$ because of the FTC
+
+\prob{P22}  FIXME $p(z)=z^3 - 5 z^2 + 2 z - 1$  show real and imaginary parts are harmonic
 
 \end{document}
