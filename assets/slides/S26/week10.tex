@@ -95,7 +95,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 \title[FTCs, IBP, and weak derivatives]{Fundamental theorems of calculus, integration-by-parts, and weak derivatives}
 
-\subtitle{calculations for weeks 10 \& 11}
+\subtitle{calculations for weeks 10 \& 11 \quad (\emph{version 2})}
 
 \author{Ed Bueler}
 
@@ -738,36 +738,20 @@ for every $\varphi \in C_c^\infty(\RR)$, where
 \end{frame}
 
 
-\begin{frame}{weak derivatives: Example 3}
+\begin{frame}{weak derivatives: Example 3 (\emph{revised})}
 
 \begin{itemize}
-\item part of the concern with weak derivatives is local integrability
-\item for example, consider this $f\in\Lloc(\RR^2)$:
-	$$f(x) = \frac{1}{r}$$
-on $\RR^2$, where $x=(x_1,x_2)$ and $r=(x_1^2+x_2^2)^{1/2}$
-\item note $f$ is continuous, except at $x=0$
-\item let $B_\eps$ be the open ball of radius $\eps>0$ centered at the origin
-\item $f\in\Lloc(\RR^2)$ because this integral gives a finite answer:
-	$$\int_{B_\eps} |f|\,dm = \int_{B_\eps} \frac{1}{r}\,dm = \int_0^{2\pi} \int_0^\eps \frac{1}{r} \,r\,dr\,d\theta = 2\pi \int_0^\eps 1\,dr = 2\pi\eps<+\infty$$
-\item however, the only candidate (a.e.) for the weak derivative is
-	$$g(x) = (\grad f)(x) = -\frac{\left<x_1,x_2\right>}{r^3},$$
-and $g\notin \Lloc(\RR^2)$ because
-	$$\int_{B_\eps} |g|\,dm = \int_{B_\eps} \frac{1}{r^2}\,dm = 2\pi \int_0^\eps \frac{1}{r}\,dr = +\infty$$
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{weak derivatives: Example 4}
-
-\begin{itemize}
-\item however, weak derivatives can exist for functions with singularities!
-\item for example, consider a new $f\in\Lloc(\RR^2)$, which again is continuous, except at $x=0$:
-	$$f(x) = \ln(r)$$
-\item $f\in\Lloc(\RR^2)$ because this integral gives a finite answer:
+\item weak derivatives can exist for unbounded functions
+\item for example, consider $f\in\Lloc(\RR^2)$ given by $f(x) = \ln(r)$ where $r=|x|$
+\item $f\in\Lloc(\RR^2)$ because $f$ is continuous except at $x=0$, and because this integral gives a finite answer:
 	$$\int_{B_\eps} |f|\,dm = \int_{B_\eps} |\ln(r)|\,dm = - 2\pi \int_0^\eps \ln(r) \,r\,dr = \frac{\pi\eps^2}{2}(1-2\ln(\eps)) < +\infty$$
-\item now the only candidate for the weak derivative is $g(x) = (\grad f)(x)$, namely
+
+    \begin{itemize}
+    \item[$\circ$] note that $dm = r\,dr\,d\theta$ in polar coordinates for $\RR^2$, where $r=|x|$
+    \end{itemize}
+\item the weak derivative is $g(x) = (\grad f)(x)$, namely
 	$$g(x) = -\frac{\left<x_1,x_2\right>}{r^2},$$
-and $g\in \Lloc(\RR^2)$ because
+and $g\in \Lloc(\RR^2)$ because again $g$ is continuous except at $x=0$, and
 	$$\int_{B_\eps} |g|\,dm = \int_{B_\eps} \frac{1}{r}\,dm = 2\pi \int_0^\eps 1\,dr = 2\pi\eps<+\infty$$
 \end{itemize}
 \end{frame}

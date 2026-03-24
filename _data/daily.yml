@@ -18,7 +18,7 @@ daily:
 - day: Wednesday 18 March
   description: "<b>calculation: FTCs, IBP, and weak derivatives</b>"
   slides: slides/S26/week10.pdf
-  slidesweek: weeks 10 & 11
+  slidesweek: weeks 10 & 11 (v2)
 - day: Monday 16 March
   description: more on L^p(X,mu); Holder's inequality
   week: 10
