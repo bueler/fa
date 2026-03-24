@@ -107,7 +107,7 @@
 \thispagestyle{empty}
 
 \bigskip
-\noindent This Assignment is based on the slides, especially those for \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{week 12}.
+\noindent This Assignment is based on the slides, especially those for \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10 \& 11} and for \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12}.
 
 \newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
 
@@ -116,16 +116,33 @@
 \medskip
 \noindent \textsc{Do the following problems.}
 
-\prob{P17}  FIXME show in detail that $\|f\|_{H^k}^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2$ for $H^1(-\pi,\pi)$
 
-\prob{P18}  FIXME exactly compute $L^2(D)$ and $H^1(D)$ norms of $g(x)=\ln(r)$ and $p(x)=\ln(|\ln(r)|)$; plot $p(r)$ on $(0,1)$
+\prob{P17} \emph{Compare the ``main idea'' about the definition of $C_c^\infty(\Omega)$ in the weeks 10 \& 11 slides.}
 
-\prob{P19}  FIXME shows that $H_0^1(\Omega)$ is a proper closed subspace if $\Omega=(a,b)$: $f(x)=1 \in H^1(a,b)$ but $f \notin H_0^1(a,b)$ because of the FTC
+\epart{a} Suppose $\Omega\subset \RR^d$ is open.  Suppose $g\in L_{loc}^1(\Omega)$ and $\varphi \in C_c^\infty(\Omega)$.  Prove that $g D^\alpha\varphi \in L^1(\Omega)$, thus that $\int_\Omega g D^\alpha \varphi\,dm$ is well-defined.
 
-P20: FIXME example related to weak derivatives definition: weak 2nd deriv of spline in 1D, 
+\epart{b}  Show that $C(\Omega)\subset L_{loc}^1(\Omega)$.  Then, for each dimension $d$, construct an example showing that ``$C(\Omega)\subset L^1(\Omega)$'' is false.
 
-P21: FIXME (re ``main idea'' in week 10 slides) Suppose $g\in L_{loc}^1(\Omega)$ and $\varphi \in C_c^\infty(\Omega)$.  Prove that $g D^\alpha\varphi \in L^1(\Omega)$ (so that $\int_\Omega g D^\alpha \varphi\,dm$ is well-defined).
+\prob{P18} \emph{Here is a practical case where the weak derivative concept is appropriate in 1D.}
 
-P22: FIXME show $C(\Omega)\subset L_{loc}^1(\Omega)$, but give an example where this is false when we remove ``loc''
+\medskip \noindent Suppose $a=t_0<t_1<\dots<t_n=b$ is a mesh on a closed interval $[a,b]\subset \RR^1$, and consider values $y_0,y_1,\dots,y_n\in\RR^1$.  An interpolating \emph{cubic spline} is a function $s\in C^1([a,b])$ such that $s(x)$ on each subinterval is a cubic polynomial,
+    $$s(x)=a_k+b_k (x-x_{k-1}) + c_k (x-x_{k-1})^2 + d_k (x-x_{k-1})^3 \quad \text{ on } [t_{k-1},t_k],$$
+for $k=1,\dots,n$, and so that $s(t_k) = y_k$, for $k=0,1,\dots,n$.  It is a theorem, which you do \emph{not} need to prove, that for the data $(t_k,y_k)$ there is a unique function $s(x)$ with these properties.  Give a formula for the weak second derivative $s''$, on $[a,b]$, and \underline{show} that it satisfies the definition of a weak derivative.  Approximately sketch the spline $s(x)$ and its second derivative $s''(x)$ in a simple case, for instance with $n=3$. (\emph{Note the key fact that $s$ and $s'$ are \emph{continuous} on $[a,b]$.  Generally $s''$ is not continuous, or even defined at all points in $[a,b]$.}) 
+
+\prob{P19}  Recall that the usual definition of the norm in $H^k(-\pi,\pi)$ is
+	$$\|f\|_{H^k}^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx,$$
+where $f^{(\ell)}$ denotes the weak derivative of order $\ell$.
+
+\epart{a}  Suppose $f\in H^1(-\pi,\pi)$.  Using the formulas for Fourier series from the week 12 slides, justify the derivative formula
+	$$f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} i n c_n e^{inx},$$
+where $c_n$ are the Fourier coefficients of $f$.  (\emph{Hint.  Use Lebesgue's DCT.})
+
+\epart{b}  Show in detail, that
+	$$\|f\|_{H^k}^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2.$$
+(\emph{There is no need to justify derivative formulas, beyond what you did in part} \textbf{(a)}.)
+
+\prob{P20}  FIXME exactly compute $L^2(D)$ and $H^1(D)$ norms of $g(x)=\ln(r)$ and $p(x)=\ln(|\ln(r)|)$; plot $p(r)$ on $(0,1)$
+
+\prob{P21}  FIXME shows that $H_0^1(\Omega)$ is a proper closed subspace if $\Omega=(a,b)$: $f(x)=1 \in H^1(a,b)$ but $f \notin H_0^1(a,b)$ because of the FTC
 
 \end{document}
