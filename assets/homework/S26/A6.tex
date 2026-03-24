@@ -93,14 +93,14 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 16 March 2026; {\color{red} version 2}}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 16 March 2026; {\color{red} version 3}}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 6}}
 \large
 \medskip
 
-\centerline{\textbf{Due Friday 27 March at the beginning of class}}
+\centerline{\textbf{Due Monday 30 March at the beginning of class} {\color{red} (updated!)}}
 \medskip
 \normalsize
 
@@ -171,11 +171,11 @@ for those $t\in\RR^1$ such that the integral exists, in which case $\hat f(t)\in
 \epart{c}  Give an example of $f\in L^1([0,1])$ which shows that $Tf$ need not be continuous at $s=0$.  The same example should show that $Tf\notin L^\infty([0,1])$.
 
 
-\prob{P16}  Suppose $\rho=\rho(t,x)=\rho(t,x_1,x_2,x_3)$, for $t\in\RR^1$ and $x\in\RR^3$, is continuously-differentiable (in each variable).  Suppose $\bJ=\bJ(t,x) = \bJ(t,x_1,x_2,x_3)$ is also continuously-differentiable.  We may interpret $\rho$ as a scalar mass density, or charge density etc., and $\bJ$ as a vector-valued mass flux.  One says that mass is conserved if the PDE
+\prob{P16}  Suppose $\rho(t,x)=\rho(t,x_1,x_2,x_3)$, for $t\in\RR^1$ and $x\in\RR^3$, is continuously-differentiable (in each variable).  Suppose that the vector field $\bJ(t,x) = \bJ(t,x_1,x_2,x_3)$ is also continuously-differentiable.  We interpret $\rho$ as a scalar mass density (or charge density etc.) and $\bJ$ as a vector-valued mass flux.  One says that mass is conserved if
 \begin{equation}
-\frac{\partial\rho}{\partial t} + \Div \bJ = 0  \label{cont}
+\frac{\partial\rho}{\partial t} + \Div \bJ = 0,  \label{cont}
 \end{equation}
-applies.  Now suppose that $\Omega\subset\RR^3$ is any open and bounded set such that $\partial\Omega$ is continuously-differentiable.  Apply the divergence theorem to \eqref{cont} to show
+a partial differential equation (PDE), applies.  Now suppose that $\Omega\subset\RR^3$ is any open and bounded set such that $\partial\Omega$ is continuously-differentiable.  Apply the divergence theorem to \eqref{cont} to show
 \begin{equation}
 \frac{d}{dt}\left(\int_\Omega \rho\,dm\right) = - \int_{\partial\Omega} \bJ\cdot\bn\,ds.  \label{conttwo}
 \end{equation}
