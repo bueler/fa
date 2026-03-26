@@ -94,7 +94,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title[Poisson equation theory]{Theory of the Poisson equation}
+\title[Poisson equation: theory and approximation]{Poisson equation: some theory, and approximation}
 
 \subtitle{calculations for week 13}
 
@@ -124,54 +124,22 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 \section{recall the Poisson equation}
 
-\begin{frame}{recall the Poisson equation in strong and weak form}
+
+\begin{frame}{recall: boundary-value problems for the Poisson equation}
 
 \begin{itemize}
-\item let $\Omega \subset \RR^d$ be open; denote points by $x=(x_1,\dots,x_d)\in\Omega$
-    \begin{itemize}
-    \item[$\circ$] assume $d\in\{1,2,3\}$ \dots I will draw pictures for $d=2$
-    \end{itemize}
-\item assume the boundary of $\Omega$ is not too crazy (more below)
-\item assume $f\in L^2(\Omega)$ is (square-)integrable
-
-\begin{block}{Poisson equation}  find $u=u(x)$ so that
-   $$- \grad^2 u = f \qquad \text{ on } \Omega$$
-\end{block}
-
-\item next slide defines ``$\grad^2$'' \dots
-\item picture:
+\item suppose $\Omega\subset \RR^d$ is open and has Lipschitz (or continuously-differentiable) boundary
 \end{itemize}
 
-\vspace{35mm}
-\end{frame}
-
-
-\begin{frame}{boundary-value problems for the Poisson equation}
-
-\begin{itemize}
-\item however, we want to build models which make \emph{one} prediction
-\item the Poisson equation can be used to model heat conduction, electrostatic potential, elastic membranes, equilibrium distributions for random walks, or many other physical phenomena
-\item we will focus on \emph{boundary-value problems} that pick-out one solution $u$
-\end{itemize}
-
-\begin{block}{Dirichlet problem for the Poisson equation}
+\begin{block}{general Dirichlet problem (\emph{strong form})}
 for $f\in L^2(\Omega)$ and $g_D\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ so that
 \begin{align*}
 - \grad^2 u &= f \quad \text{ on } \Omega \\
 u &= g_D \quad \text{ on } \partial \Omega
 \end{align*}
 \end{block}
-\end{frame}
 
-
-\begin{frame}{boundary-value problems for the Poisson equation}
-
-\begin{itemize}
-\item instead of $u$ itself, the gradient $\grad u$ could be set to known values along the boundary
-\item in models, the gradient is often proportional to a physical flux
-\end{itemize}
-
-\begin{block}{Neumann problem for the Poisson equation}
+\begin{block}{general Neumann problem (\emph{strong form})}
 for $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ so that
 \begin{align*}
 - \grad^2 u &= f \quad \text{ on } \Omega \\
@@ -181,51 +149,44 @@ where $\bn$ is the outward unit normal vector field along $\partial\Omega$
 \end{block}
 
 \begin{itemize}
-\item other notation for the (scalar) directional derivative:
-	$$\grad u\cdot \bn = \frac{\partial u}{\partial n} = u_n$$
-\item one could have Dirichlet conditions on part of the boundary and Neumann on another part, as a disjoint union:
-	$$\partial \Omega = \partial_D \Omega \cup \partial_N \Omega$$
+\item other notation: $\grad u\cdot \bn = \frac{\partial u}{\partial n}$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{the weak form of the Poisson equation}
+\begin{frame}{recall: the weak form}
 
 \begin{block}{weak formulation of the Poisson equation}
-Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, and suppose $f\in L^2(\Omega)$ is given.  Solve one of these problems:
+Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ are given.  Solve one of these problems:
 \begin{enumerate}
-\item Find a solution \only<1>{$u\in C_c^1(\Omega)$}\only<2>{\alert{$u\in H_0^1(\Omega)$}} so that
+\item Find a solution $u\in H_0^1(\Omega)$ so that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \hspace{20mm} \text{(homogeneous Dirichlet)}$$
-for all test functions \only<1>{$v\in C_c^1(\Omega)$}\only<2>{\alert{$v\in H_0^1(\Omega)$}}.
-\item Find a solution \only<1>{$u\in C^1(\Omega)$}\only<2>{\alert{$u\in H^1(\Omega)$}} so that
+for all test functions $v\in H_0^1(\Omega)$.
+\item Find a solution $u\in H^1(\Omega)$ so that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds \hspace{10mm} \text{(general Neumann)}$$
-for all test functions \only<1>{$v\in C^1(\Omega)$}\only<2>{\alert{$v\in H^1(\Omega)$}}.
+for all test functions $v\in H^1(\Omega)$.
 \end{enumerate}
 \end{block}
-
-\begin{itemize}
-\item<2> \alert{I will define the \emph{Sobolev space} $H^1(\Omega)$ in the next section}
-\item<2> general Dirichlet conditions have an additional complication
-\end{itemize}
 \end{frame}
 
 
-\begin{frame}{general Dirichlet boundary conditions}
+\begin{frame}{recall: general Dirichlet boundary conditions}
 
 \begin{itemize}
-\item Suppose $\Omega\subset \RR^d$ is an open, bounded domain with Lipschitz boundary.
-\item Suppose $f\in L^2(\Omega)$ and $g_D\in L^2(\partial\Omega)$ are given.
-\item Recall the strong form of the general Dirichlet problem:
-   $$- \grad^2 u = f \quad \text{ on } \Omega, \quad \text{ and }
-u = g_D \quad \text{ on } \partial \Omega$$
-\item To build the general Dirichlet weak form we substitute $u+u_D$ into the homogeneous weak form.
+\item general Dirichlet conditions have an additional complication
 \end{itemize}
 
-\begin{block}{weak form general Dirichlet problem}
-Let $u_D \in H^1(\Omega) \cap C(\bar\Omega)$ be any function, \emph{defined on the whole domain} $\Omega$, so that $u_D=g_D$ along $\partial\Omega$.  Find a solution $u\in H_0^1(\Omega)$ so that
+\begin{block}{weak form: general Dirichlet problem}
+Suppose $f\in L^2(\Omega)$ and $g_D\in L^2(\partial\Omega)$ are given.  Let $u_D \in H^1(\Omega) \cap C(\bar\Omega)$ be any function, defined on the whole domain $\Omega$, so that $u_D=g_D$ along $\partial\Omega$.  Find a solution $u\in H_0^1(\Omega)$ so that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx - \int_\Omega \grad u_D \cdot \grad v\,dx$$
 for all test functions $v\in H_0^1(\Omega)$.
 \end{block}
+
+\begin{itemize}
+\item the actually solution to the problem is $u+u_D$
+\item even more generally, ``mixed'' conditions could partition the boundary: $\partial \Omega = \partial_D \Omega \cup \partial_N \Omega$
+\end{itemize}
+
 \end{frame}
 
 
