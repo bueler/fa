@@ -117,19 +117,23 @@
 \noindent \textsc{Do the following problems.}
 
 
-\prob{P17} \emph{Compare the ``main idea'' about the definition of $C_c^\infty(\Omega)$ in the weeks 10 \& 11 slides.}
+\prob{P17} \emph{First see the ``main idea'' about the definition of $C_c^\infty(\Omega)$ in the weeks 10 \& 11 slides.}
 
 \epart{a} Suppose $\Omega\subset \RR^d$ is open.  Suppose $g\in L_{loc}^1(\Omega)$ and $\varphi \in C_c^\infty(\Omega)$.  Prove that $g D^\alpha\varphi \in L^1(\Omega)$, thus that $\int_\Omega g D^\alpha \varphi\,dm$ is well-defined.
 
-\epart{b}  Show that $C(\Omega)\subset L_{loc}^1(\Omega)$.  Then, for each dimension $d$, construct an example showing that ``$C(\Omega)\subset L^1(\Omega)$'' is false.
+\epart{b}  Show that $C(\Omega)\subset L_{loc}^1(\Omega)$.  Then, for each dimension $d$, construct an example of $\Omega$ and $f\in C(\Omega)$ showing that ``$C(\Omega)\subset L^1(\Omega)$'' is false.
 
-\prob{P18} \emph{Here is a practical case where the weak derivative concept is appropriate in 1D.}
+\prob{P18} \emph{Here is an important case using the weak derivative concept in 1D.}
+
+\medskip \noindent Suppose $\Omega=(a,b)$ is a bounded open interval, and let $a=t_0<t_1<\dots<t_n=b$ be a mesh on a closed interval $[a,b]$.  As in the slides, the $P_1$ finite element space is defined as the set of functions which are continuous on $[a,b]$, and which are piecewise linear on each cell (subinterval) $[t_{k-1},t_k]$.  Show that $P_1 \subset H^1(\Omega)$.
+
+\prob{P19} \emph{Here is another case using the weak derivative concept in 1D.  Note the key facts below that $s$ and $s'$ are \emph{continuous} on $[a,b]$.  However, generally $s''$ is not continuous, or even defined at all points in $[a,b]$.}
 
 \medskip \noindent Suppose $a=t_0<t_1<\dots<t_n=b$ is a mesh on a closed interval $[a,b]\subset \RR^1$, and consider values $y_0,y_1,\dots,y_n\in\RR^1$.  An interpolating \emph{cubic spline} is a function $s\in C^1([a,b])$ such that $s(x)$ on each subinterval is a cubic polynomial,
     $$s(x)=a_k+b_k (x-x_{k-1}) + c_k (x-x_{k-1})^2 + d_k (x-x_{k-1})^3 \quad \text{ on } [t_{k-1},t_k],$$
-for $k=1,\dots,n$, and so that $s(t_k) = y_k$, for $k=0,1,\dots,n$.  It is a theorem, which you do \emph{not} need to prove, that for the data $(t_k,y_k)$ there is a unique function $s(x)$ with these properties.  Give a formula for the weak second derivative $s''$, on $[a,b]$, and \underline{show} that it satisfies the definition of a weak derivative.  Approximately sketch the spline $s(x)$ and its second derivative $s''(x)$ in a simple case, for instance with $n=3$. (\emph{Note the key fact that $s$ and $s'$ are \emph{continuous} on $[a,b]$.  Generally $s''$ is not continuous, or even defined at all points in $[a,b]$.}) 
+for $k=1,\dots,n$, and so that $s(t_k) = y_k$, for $k=0,1,\dots,n$.  It is a fact that for the data $(t_k,y_k)$ there is a unique function $s(x)$ with these properties.  (\emph{You do \emph{not} need to prove this.})  Give a formula for the weak second derivative $s''$, on $[a,b]$, and \underline{show} that it satisfies the definition of a weak second derivative.  Approximately sketch the spline $s(x)$ and its second derivative $s''(x)$ in a simple case, for instance with $n=3$.
 
-\prob{P19}  Recall that, if $f^{(\ell)}$ denotes the weak derivative of order $\ell$, then the usual definition of the norm in $H^k(-\pi,\pi)$ is \quad  $\ds (\|f\|_{H^k})^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx$.
+\prob{P20}  Recall that the norm in $H^k(-\pi,\pi)$ satisfies $\ds (\|f\|_{H^k})^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx$.  Here $f^{(\ell)}$ denotes the weak derivative of order $\ell$.
 
 \epart{a}  Suppose $f\in H^1(-\pi,\pi)$.  Using the formulas for Fourier series,\footnote{See ``recall Fourier series in $L^2(-\pi,\pi)$'' in the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} slides.} prove the derivative formula
 	$$f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} i n c_n e^{inx},$$
@@ -139,10 +143,10 @@ with convergence in $L^2$, where $c_n$ are the Fourier coefficients of $f$.
 	$$\|f\|_{H^k}^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2.$$
 (\emph{There is no need to justify derivative formulas, beyond what you did in part} \textbf{(a)}.)
 
-\prob{P20}  FIXME exactly compute $L^2(D)$ and $H^1(D)$ norms of $g(x)=\ln(r)$ and $p(x)=\ln(|\ln(r)|)$; plot $p(r)$ on $(0,1)$
+\prob{P21}  \emph{This example asks you to do the details of an example shown in the slides.  It shows that $H^1$ contains discontinuous functions for planar domains.  To say it more precisely, there are equivalence classes in $H^1$ which have no continuous representative.}
 
-\prob{P21}  FIXME shows that $H_0^1(\Omega)$ is a proper closed subspace if $\Omega=(a,b)$: $f(x)=1 \in H^1(a,b)$ but $f \notin H_0^1(a,b)$ because of the FTC
+\medskip \noindent Let $D = \{x\in \RR^2\,:\,|x|^2 < 1/4\}$ be an open disk, centered at the origin, with radius $1/2$.  Let $g(x)=\ln(r)$ and $p(x)=\ln(|\ln(r)|)$, in polar coordinates where $|x|=r$, defined a.e.~on $D$.  (\emph{These functions are not defined at the origin.})  Exactly compute, by hand, the $L^2$ and $H^1$ norms of $g$ and $p$.  Then use a computer to plot $g$ and $p$ over $0 < r < 1/2$.
 
-\prob{P22}  FIXME $p(z)=z^3 - 5 z^2 + 2 z - 1$  show real and imaginary parts are harmonic
+\prob{P22}  For $z=x+iy$ a complex number, define $p(z)=z^3 - 5 z^2 + 2 z - 1$.  Show that the real and imaginary parts of $p$, regarded as real-valued functions of $(x,y)$ on $\RR^2$, are harmonic.
 
 \end{document}
