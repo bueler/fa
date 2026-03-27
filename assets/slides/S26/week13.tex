@@ -65,6 +65,9 @@
 \newcommand{\Div}{\nabla\cdot}
 \newcommand{\grad}{\nabla}
 
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
 \newcommand{\range}{\operatorname{range}}
 \newcommand{\Span}{\operatorname{span}}
 
@@ -132,7 +135,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 \end{itemize}
 
 \begin{block}{general Dirichlet problem (\emph{strong form})}
-for $f\in L^2(\Omega)$ and $g_D\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ so that
+for $f\in L^2(\Omega)$ and $g_D\in C^1(\partial\Omega)$, find $u:\Omega\to \RR$ so that
 \begin{align*}
 - \grad^2 u &= f \quad \text{ on } \Omega \\
 u &= g_D \quad \text{ on } \partial \Omega
@@ -199,7 +202,85 @@ for all test functions $v\in H_0^1(\Omega)$.
 }
 
 
-\section{why and when does a Poisson solution exist?}
+\section{Poisson equation on a disk (via Fourier series)}
+
+\begin{frame}{Fourier series along the boundary of the disk}
+
+\begin{itemize}
+\item let $D = \{x\in \RR^2\,:\,|x|<1\}$ be the open unit disk, with boundary
+	$$S = \partial D = \{x\in \RR^2\,:\,|x|=1\}.$$
+\item suppose $g\in L^2(S,ds)$, equivalently $g\in L^2(-\pi,\pi)$
+\item then from Chapter 4 we know $g$ has a complex Fourier series:
+	$$g(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx}, \qquad c_n = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi g(x) e^{-inx}\,dx$$
+
+    \begin{itemize}
+    \item[$\circ$] regarding the normalization, $\{\frac{1}{\sqrt{2\pi}} e^{inx}\}_{n\in\ZZ}$ is a complete ON sequence
+    \end{itemize}
+\item pictures of disk and $g$:
+
+\vspace{30mm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{real Fourier series}
+
+\begin{lemma}  The Fourier series $g(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} c_n e^{inx}$ is a real-valued function if and only if $c_0\in\RR$ and $c_{-n} = \overline{c_n}$.
+\end{lemma}
+
+\begin{corollary}  If $g(x)$ is a real-valued function, and if for $n\ge 0$ we write $c_n = \frac{\sqrt{2\pi}}{2} (a_n-i b_n)$, with $a_n,b_n\in\RR$, then
+    $$g(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(n\theta) + b_n \sin(n\theta).$$
+\end{corollary}
+
+\footnotesize
+\noindent \emph{Proof.} Write $g(x) = \frac{1}{\sqrt{2\pi}} c_0 + \frac{1}{\sqrt{2\pi}} \sum_{n=1}^\infty \left(c_n e^{inx} + c_{-n} e^{-inx}\right)$.  Then use the lemma, giving
+	$$g(x) = \frac{1}{\sqrt{2\pi}} c_0 + \frac{1}{\sqrt{2\pi}} \sum_{n=1}^\infty 2 \Re \left(c_n e^{inx}\right)$$
+Substitute $c_n = \frac{\sqrt{2\pi}}{2} (a_n-i b_n)$ for $n\ge 0$, and simplify, to get the result.\qed
+\normalsize
+\end{frame}
+
+
+\begin{frame}{harmonic functions on the disk}
+
+\begin{itemize}
+\item on the other hand, recall that the real and imaginary parts of any complex-analytic function on the disk are harmonic
+\item for example, the monomials $z^n$, $n\ge 0$, are analytic
+\item also, $z=r e^{i\theta}$ in polar coordinates, so the real and imaginary parts of
+    $$z^n=r^n e^{in\theta}=r^n(\cos(n\theta) + i \sin(n\theta))$$
+are harmonic
+\end{itemize}
+
+\begin{definition} for $n\ge 0$, define these harmonic functions on $D$:
+$$\phi_n(r,\theta) = r^n \cos(n\theta), \quad \psi_n(r,\theta) = r^n \sin(n\theta)$$
+\end{definition}
+
+FIXME in polar, $\grad^2 u = u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta}$
+\end{frame}
+
+
+\begin{frame}{Dirichlet's problem on a disc}
+
+FIXME Fourier series along boundary converts to smooth and harmonic in the interior
+
+FIXME see codes/disklaplace.m
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Poisson on a disc}
+
+FIXME perhaps google ``chebfun eigenfunctions of Laplacian on the disk''
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\section{does a solution to Poisson's equation exist?}
 
 \begin{frame}{bar}
 
@@ -224,16 +305,6 @@ FIXME: Riesz representation theorem route
 \begin{frame}{bar}
 
 FIXME: sketch how ellipticity means $u\in H^{2+k}(\Omega)$ if $f\in H^k(\Omega)$
-
-\begin{itemize}
-\item x
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Poisson on a disc}
-
-FIXME Fourier series along boundary converts to smooth in the interior
 
 \begin{itemize}
 \item x
