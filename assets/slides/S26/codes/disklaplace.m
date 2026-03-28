@@ -31,8 +31,23 @@ for j = 1:N
 end
 zmax = max(abs(fbdryfull)) * 1.15;
 
-% animate: frame k shows the partial sum through k Fourier modes
+% show phi_3(r,theta)
+close all
 figure(1);
+U = R.^3 .* cos(3*TH);
+surf(X, Y, U, 'EdgeColor', 'none');
+colormap(jet);
+colorbar;
+view(2);
+axis equal;
+axis([-1.1 1.1 -1.1 1.1]);
+xlabel('x', 'FontSize', 11);
+ylabel('y', 'FontSize', 11);
+print -dpng phi3.png
+close all
+
+% animate: frame k shows the partial sum through k Fourier modes
+figure(2);
 set(gcf, 'Position', [100 100 1000 480]);
 
 for k = 0:N

@@ -79,7 +79,7 @@
 \newcommand{\ds}{\displaystyle}
 
 \newcommand{\ip}[2]{\left<#1,#2\right>}
-\newcommand{\iip}[2]{\ll\! #1, #2 \!\gg\,}
+\newcommand{\iip}[2]{\langle\!\langle #1, #2 \rangle\!\rangle}
 
 \newcommand{\twovect}[4]{\ensuremath{{#1}_{#2} =
                             \begin{bmatrix} #3 \\ #4 \end{bmatrix}}}
@@ -93,6 +93,10 @@
 
 \DefineVerbatimEnvironment{mVerb}{Verbatim}{numbersep=2mm,
 frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
+
+\setbeamertemplate{enumerate items}[ball]
+\setbeamercolor{item projected}{bg=blue!70!black, fg=white}
+\setbeamerfont{item projected}{size=\small}  % \small is *bigger* than default
 
 \newcommand{\itemnum}[1]{\setcounter{enumi}{#1}\usebeamertemplate{enumerate item}}
 
@@ -238,7 +242,7 @@ for all test functions $v\in H_0^1(\Omega)$.
 \end{frame}
 
 
-\begin{frame}{real Fourier series}
+\begin{frame}{recall: real Fourier series}
 
 \small
 
@@ -265,31 +269,39 @@ Substitute $c_n = \frac{\sqrt{2\pi}}{2} (a_n-i b_n)$ for $n\ge 0$, and simplify,
 \begin{itemize}
 \item on the other hand, recall that the real and imaginary parts of any complex-analytic function on the disk are harmonic
 \item for example, the monomials $z^n$, $n\ge 0$, are analytic
-\item also, $z=r e^{i\theta}$ in polar coordinates, so the real and imaginary parts of
+\item note $z=r e^{i\theta}$ in polar coordinates
+\item the real and imaginary parts of $z^n$ are harmonic:
     $$z^n=r^n e^{in\theta}=r^n(\cos(n\theta) + i \sin(n\theta))$$
-are harmonic
 \end{itemize}
 
 \begin{definition} for $n\ge 0$, define these \alert{harmonic functions} on $D$:
 $$\phi_n(r,\theta) = r^n \cos(n\theta), \quad \psi_n(r,\theta) = r^n \sin(n\theta)$$
 \end{definition}
+\end{frame}
+
+
+\begin{frame}{harmonic functions on the disk}
+
+\begin{lemma} $\phi_n(r,\theta) = r^n \cos(n\theta)$ and $\psi_n(r,\theta) = r^n \sin(n\theta)$ are harmonic.  \end{lemma}
 
 \footnotesize
-\noindent \emph{Proof they are harmonic.}  In polar coordinates, $\alert{\grad^2 u = u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta}}$.  Then for $u=\phi_n$,
+\noindent \emph{Proof.}  In polar coordinates, $\alert{\grad^2 u = u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\theta\theta}}$.  Then for $u=\phi_n$,
 \begin{align*}
 \grad^2 u &= n (n-1) r^{n-2} \cos(n\theta) + \frac{1}{r} n r^{n-1} \cos(n\theta) + \frac{1}{r^2} (-n^2 r^n \cos(n\theta)) \\
   &= \Big[n (n-1) + n - n^2\Big] r^{n-2} \cos(n\theta) = 0 r^{n-2} \cos(n\theta) = 0
 \end{align*}
 Similarly for $u=\psi_n$. \hfill \qed
-\end{frame}
 
+\bigskip
+\centering \includegraphics[width=0.35\textwidth]{figs/phi3.png} \quad {\scriptsize $\phi_3(r,\theta)$}
+\end{frame}
 
 \begin{frame}{Laplace's equation (Dirichlet's problem) on a disk}
 
 \begin{itemize}
 \item combine these ideas to solve Laplace's equation $\grad^2 u = 0$ on the disk
-\item start with Fourier series for $g\in L^2$ along the boundary; for $x\in (-\pi,\pi]$:
-    $$g(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(n\theta) + b_n \sin(n\theta)$$
+\item start with Fourier series for $g\in L^2(\partial D)$; for $x\in (-\pi,\pi]$:
+    $$g(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(nx) + b_n \sin(nx)$$
 \item use the coefficients to define a function on $\bar D$; for $0\le r \le 1$, $\theta \in (-\pi,\pi]$:
 \begin{align*}
 u(r,\theta) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n \sin(n\theta) \quad \text{ for } (r,\theta) \in \bar D
@@ -297,11 +309,11 @@ u(r,\theta) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n
 \end{itemize}
 
 \vspace{-3mm}
-\begin{theorem}  Let $g\in L^2(\partial D)$.  Then $u$ is continuous on $D$ and satisfies $\grad^2 u=0$ within $D$.  And $\ds \lim_{r\to 1^-} u(r,\theta) = g(\theta)$ with convergence in $L^2$.
+\begin{theorem}  $u$ is continuous on $D$, $\grad^2 u=0$ within $D$, and $\ds \lim_{r\to 1^-} u(r,\theta) = g(\theta)$ with convergence in $L^2$.
 \end{theorem}
 
 \footnotesize
-\noindent \emph{Proof.}  The series converges uniformly on every compact set $K\subset D$, the terms are continuous, so $u$ is continuous on $D$.  For $r<1$, compute $\|u(r,\cdot) - g(\cdot)\|_{L^2}$.  Show it goes to 0 as $r\to 1$ by comparing a geometric series. \hfill \qed
+\noindent \emph{Proof.}  The series converges uniformly on any compact $K\subset D$, and the terms are continuous, so $u$ is continuous on $D$.  Compute $\|u(r,\cdot) - g(\cdot)\|_{L^2}$ and show it goes to 0 as $r\to 1$. \hfill \qed
 \end{frame}
 
 
@@ -314,7 +326,7 @@ u(r,\theta) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n
    \begin{itemize}
    \item[$\circ$] $g\in L^2(-\pi,\pi) \setminus C([-\pi,\pi])$
    \end{itemize}
-\item you can run the code which produces the following picture: \href{https://github.com/bueler/fa/blob/main/assets/slides/S26/codes/disklaplace.m}{disklaplace.m}
+\item to run the code which produces the movie: \href{https://github.com/bueler/fa/blob/main/assets/slides/S26/codes/disklaplace.m}{disklaplace.m}
 \end{itemize}
 
 \begin{center}
@@ -327,8 +339,10 @@ u(r,\theta) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n
 
 \begin{itemize}
 \item let's try to solve $-\grad^2 u = f$ on the unit disk $D$, with $u=0$ on $\partial D$
-\item this is the homogeneous Dirichlet problem for the \alert{Poisson equation}
-\item this is more difficult, and I will leave out details
+\item this is the homogeneous Dirichlet problem for the Poisson equation
+   \begin{itemize}
+   \item[$\circ$] more difficult than previous series calculation; I will leave out details
+   \end{itemize}
 \item if $f\in L^2(D)$ then there is a series expansion using (co)sines and Bessel functions:
 	$$f(r,\theta) = \sum_{n=1}^\infty a_{0n} J_0(\lambda_{0n} r) + \sum_{m,n=1}^\infty J_m(\lambda_{mn} r)\big(a_{mn} \cos(m\theta) + b_{mn} \sin(m\theta)\big)$$
 
@@ -449,9 +463,9 @@ $\bx\in\CC^m$ is well posed because
 \begin{frame}{are Poisson problems well-posed?}
 
 \begin{itemize}
-\item so, how do we prove that the Poisson equation is a well-posed problem?
-\item solving it in particular cases, like we have for the disk, will not work
-\item we already have two important theorems which will help
+\item can we prove that a boundary-value problem for Poisson is well-posed?
+\item solving it in particular cases, e.g.~for the disk, will not help generally
+\item recall: two important theorems which will help
 \end{itemize}
 
 \begin{theorem}[Poincar\'e-Friedrichs inequality]
@@ -469,15 +483,15 @@ If $(V,\ip{\cdot}{\cdot})$ is a (real) Hilbert space, and if $\ell \in V'$ is a 
 \begin{frame}{Riesz representation route to well-posedness 1}
 
 \begin{theorem}
-The weak-form homogeneous Dirichlet problem, for $u\in H_0^1(\Omega)$ such that
+The \alert{weak-form homogeneous Dirichlet problem}, for $u\in H_0^1(\Omega)$ such that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \text{ for all } v\in H_0^1(\Omega),$$
-is well-posed.
+\alert{is well-posed}.
 \end{theorem}
 
 \small
-\emph{Proof.} Let $\iip{u}{v} = \int_\Omega \grad u \cdot \grad v\,dx$.  We claim this is also an inner product on $H_0^1(\Omega)$.\footnote{The usual inner product is \, $\ip{u}{v} = \int_\Omega u v\,dx + \int_\Omega \grad u \cdot \grad v\,dx$.}  It is clearly nonnegative, symmetric, and bilinear.  It is nondegenerate because $\iip{u}{u}=0$ implies
+\emph{Proof.} Let $\iip{u}{v} = \int_\Omega \grad u \cdot \grad v\,dx$.  This is also an inner product on $H_0^1(\Omega)$,\footnote{The usual inner product is \, $\ip{u}{v} = \int_\Omega u v\,dx + \int_\Omega \grad u \cdot \grad v\,dx$.} because it is clearly nonnegative, symmetric, and bilinear, and furthermore it is nondegenerate: $\iip{u}{u}=0$ implies
 	$$\|u\|_{H^1}^2 = \int_\Omega u^2\,dx + \int_\Omega |\grad u|^2\,dx \le (C^2+1)\int_\Omega |\grad u|^2\,dx = (C^2+1) \iip{u}{u} = 0,$$
-by the Poincar\'e-Friedrichs inequality, so $u=0$.  Thus $(H_0^1(\Omega),\iip{\cdot}{\cdot})$ is a real Hilbert space.
+by the Poincar\'e-Friedrichs inequality, so $u=0$.  This also shows that $\iip{\cdot}{\cdot}$ and $\ip{\cdot}{\cdot}$ give equivalent norms.  Thus $(H_0^1(\Omega),\iip{\cdot}{\cdot})$ is a real Hilbert space.
 \end{frame}
 
 
@@ -485,13 +499,14 @@ by the Poincar\'e-Friedrichs inequality, so $u=0$.  Thus $(H_0^1(\Omega),\iip{\c
 
 \small
 \emph{Proof, continued.} 
-On the other hand, the right-hand side defines a linear functional, $\ell:H_0^1(\Omega)\to \RR$, with formula $\ell(v)=\int_\Omega fv\,dx$.  This is bounded by Cauchy-Schwarz:
+On the other hand, the right-hand side of the weak form defines a linear functional, $\ell:H_0^1(\Omega)\to \RR$, $\ell(v)=\int_\Omega fv\,dx$.  This is bounded by Cauchy-Schwarz:
     $$|\ell(v)| \le \int_\Omega |fv|\,dx \le \|f\|_{L^2}\|v\|_{L^2} \le \|f\|_{L^2}\|v\|_{H^1}.$$
 
 By the Riesz-Fr\'echet representation theorem there is a unique $u\in H_0^1(\Omega)$ so that
-   $$\iip{u}{v} = \ell(v),$$
-which says exactly that the weak form problem has a unique solution.
+   $$\iip{u}{v} = \ell(v).$$
+This exactly says that a solution to the weak form problem exists, and that is it unique.
 
+\medskip
 Finally, to show that the solution is continuous with respect to the data $f$, observe that the solution process is a well-defined linear map.  That is, there is a linear map $T:L^2(\Omega) \to H_0^1(\Omega)$ defined by\footnote{Conceptually, $T=(-\grad^2)^{-1}$.  But boundary conditions are involved!}
 	$$T f = u$$
 Recall that a linear map is continuous if and only if it is bounded.  We will show that
@@ -511,13 +526,20 @@ To show that $T$ is bounded we substitute $u$ for $v$ in the weak form, use a pr
 Now divide by the norm of $u$ to get the desired bound:
     $$\|u\|_{H^1} \le (C^2+1) \|f\|_{L^2}.$$
 This shows that the solution map $Tf=u$ is continuous, and concludes the proof of well-posedness. \qed
+
+\bigskip
+\bigskip
+\begin{itemize}
+\item a bound like $\|u\|_{H^1} \le c \|f\|_{L^2}$ is often called an \alert{\emph{a priori} bound}
+\item an \emph{a priori} bound implies continuity with respect to $f$ for linear problems
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}{the Neumann problem is \emph{not} well-posed}
 
 \begin{itemize}
-\item recall the general Neumann problem is to find $u\in H^1(\Omega)$ so that
+\item recall: the general weak-form Neumann problem is to find $u\in H^1(\Omega)$ s.t.
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds  \quad \text{ for all } v\in H^1(\Omega)$$
 
     \begin{itemize}
@@ -527,7 +549,7 @@ This shows that the solution map $Tf=u$ is continuous, and concludes the proof o
 \end{itemize}
 
 \begin{lemma}
-If the weak-form general Neumann problem has a solution then it has infinitely-many solutions.
+If this problem has a solution then it has infinitely-many solutions.
 \end{lemma}
 
 \small
@@ -535,11 +557,32 @@ If the weak-form general Neumann problem has a solution then it has infinitely-m
 \end{frame}
 
 
-\begin{frame}{the Neumann problem is \emph{not} well-posed \dots but we understand it}
+\begin{frame}{well-posed modifications of the Neumann problem}
 
 \begin{itemize}
-\item FIXME these two problems are well-posed: Helmholtz ($+\alpha u$ with $\alpha>0$) and Neumann with additional constraint $\int_\Omega u\,dx=0$
+\item there are two well-known ways to fix the uniqueness problem
+\item proofs of the theorems are skipped
+    \begin{itemize}
+    \item[$\circ$] \itemnum{1} is easily proved by the Riesz-Fr\'echet rep'n thm method
+    \item[$\circ$] strong form for \itemnum{1}:\,\, $- \grad^2 u +\alpha u = f$ on $\Omega$,\, $\grad u\cdot \bn = g_N$ on $\partial \Omega$
+    \end{itemize}
 \end{itemize}
+
+% FIXME these two problems are well-posed: Helmholtz ($+\alpha u$ with $\alpha>0$) and Neumann with additional constraint $\int_\Omega u\,dx=0$
+\small
+\begin{theorem}
+Suppose $\Omega\subset \RR^2$ has a Lipschitz or $C^1$ boundary, $f\in L^2(\Omega)$, and $g_N\in L^2(\partial D)$.  The following weak-form Neumann-type problems are well-posed:
+\begin{enumerate}
+\item \alert{Helmholtz equation}:  Suppose $\alpha>0$.  Seek $u\in H^1(\Omega)$ such that
+    $$\int_\Omega \grad u \cdot \grad v\,dx + \int_\Omega \alpha u v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds  \quad \text{ for all } v\in H^1(\Omega)$$
+\item \alert{Neumann problem with auxiliary condition}:  Seek $u\in H^1(\Omega)$ such that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds  \quad \text{ for all } v\in H^1(\Omega)$$
+and so that $\int_\Omega u\,dx = 0$.
+\end{enumerate}
+
+
+\end{theorem}
+
 \end{frame}
 
 
