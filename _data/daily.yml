@@ -1,10 +1,14 @@
 semester: Spring 2026
 home: assets
 daily:
-- day: Monday 30 March
+- day: Friday 3 April
+  description: cont.
+- day: Wednesday 1 April
   description: "<b>calculation: Poisson equation and Sobolev spaces</b>"
   slides: slides/S26/week12.pdf
   slidesweek: week 12
+- day: Monday 30 March
+  description: Riesz representation theorem
   week: 12
 - day: Friday 27 March
   description: dual spaces
