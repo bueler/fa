@@ -10,7 +10,7 @@
 % 6-term square wave: nonzero modes at odd n = 1, 3, 5, 7, 9, 11
 nterms = [1, 3, 5, 7, 9, 11];
 N = length(nterms);
-bn_sq = (4/pi) ./ nterms;   % Fourier sine coefficients
+bnsq = (4/pi) ./ nterms;   % Fourier sine coefficients
 
 % polar grid on the disk
 Nr     = 80;
@@ -25,11 +25,11 @@ Y = R .* sin(TH);
 thfine = linspace(0, 2*pi, 800);
 
 % precompute full 6-term boundary function for axis limits
-fbdry_full = zeros(size(thfine));
+fbdryfull = zeros(size(thfine));
 for j = 1:N
-    fbdry_full += bn_sq(j) * sin(nterms(j)*thfine);
+    fbdryfull = fbdryfull + bnsq(j) * sin(nterms(j)*thfine);
 end
-zmax = max(abs(fbdry_full)) * 1.15;
+zmax = max(abs(fbdryfull)) * 1.15;
 
 % animate: frame k shows the partial sum through k Fourier modes
 figure(1);
@@ -40,14 +40,14 @@ for k = 0:N
     U = zeros(size(R));
     for j = 1:k
         n = nterms(j);
-        U += bn_sq(j) * R.^n .* sin(n*TH);
+        U = U + bnsq(j) * R.^n .* sin(n*TH);
     end
 
     % partial sum of boundary function
     fbdry = zeros(size(thfine));
     for j = 1:k
         n = nterms(j);
-        fbdry += bn_sq(j) * sin(n*thfine);
+        fbdry = fbdry + bnsq(j) * sin(n*thfine);
     end
 
     clf;
@@ -56,7 +56,7 @@ for k = 0:N
     subplot(1, 2, 1);
     surf(X, Y, U, 'EdgeColor', 'none');
     colormap(jet);
-    caxis([-zmax, zmax]);
+    clim([-zmax, zmax]);
     colorbar;
     view(2);
     axis equal;
@@ -66,12 +66,12 @@ for k = 0:N
     if k == 0
         title('u = 0  (no terms yet)', 'FontSize', 12);
     else
-        title(sprintf('u: modes n = %s', num2str(nterms(1:k))), 'FontSize', 12);
+        title(sprintf('u = (sum of %d modes)', k), 'FontSize', 12);
     end
 
     % right panel: boundary function f(theta)
     subplot(1, 2, 2);
-    plot(thfine, fbdry_full, 'Color', [0.7 0.7 0.7], 'LineWidth', 1);
+    plot(thfine, fbdryfull, 'Color', [0.7 0.7 0.7], 'LineWidth', 1);
     hold on;
     plot(thfine, fbdry, 'b-', 'LineWidth', 2);
     hold off;
@@ -86,8 +86,6 @@ for k = 0:N
     else
         title(sprintf('boundary: %d-term partial sum', k), 'FontSize', 12);
     end
-    legend({'6-term square wave', sprintf('%d term(s)', k)}, ...
-           'Location', 'northeast', 'FontSize', 9);
     grid on;
 
     drawnow;
