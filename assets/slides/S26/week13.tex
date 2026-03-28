@@ -79,6 +79,7 @@
 \newcommand{\ds}{\displaystyle}
 
 \newcommand{\ip}[2]{\left<#1,#2\right>}
+\newcommand{\iip}[2]{\ll\! #1, #2 \!\gg\,}
 
 \newcommand{\twovect}[4]{\ensuremath{{#1}_{#2} =
                             \begin{bmatrix} #3 \\ #4 \end{bmatrix}}}
@@ -97,7 +98,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title[more on the Poisson equation]{Poisson equation: Fourier series and theory}
+\title[more on the Poisson equation]{Poisson equation: on the disk, and in theory}
 
 \subtitle{calculations for week 13}
 
@@ -170,11 +171,6 @@ is a Hilbert space with inner product and norm:
     $$H_0^1(\Omega) = \overline{C_c^1(\Omega)},$$
 where closure is in $H^1$ norm, is a closed subspace of $H^1(\Omega)$
 \end{definition}
-
-\begin{theorem}[Poincar\'e-Friedrichs inequality]
-Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, or an open set which is bounded in one direction.  There is $C>0$, depending on $\Omega$, so that
-	$$\|f\|_{L^2} \le C \|\grad f\|_{L^2} \quad \text{for all } f\in H_0^1(\Omega).$$
-\end{theorem}
 \end{frame}
 
 
@@ -322,7 +318,7 @@ u(r,\theta) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.6\textwidth]{figs/disklaplace.png}
+\includegraphics[width=0.7\textwidth]{figs/disklaplace.png}
 \end{center}
 \end{frame}
 
@@ -363,15 +359,20 @@ u(r,\theta) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n
 \phi_{mn}(r,\theta) &= J_m(\lambda_{mn} r) \cos(m\theta) \\
 \psi_{mn}(r,\theta) &= J_m(\lambda_{mn} r) \sin(m\theta)
 \end{align*}
-\item these are eigenfunctions of the Laplacian:\footnote{google ``\href{https://www.chebfun.org/examples/disk/Eigenfunctions.html}{chebfun eigenfunctions of Laplacian on the disk}'' to see prettier pictures}
+\item these are eigenfunctions of the Laplacian:
 \begin{align*}
 \grad^2 \phi_{mn} &= - \lambda_{mn}^2 \phi_{mn} \hspace{45mm} \\
 \grad^2 \psi_{mn} &= - \lambda_{mn}^2 \psi_{mn}
 \end{align*}
+\item google ``\href{https://www.chebfun.org/examples/disk/Eigenfunctions.html}{chebfun eigenfunctions of}
+
+\href{https://www.chebfun.org/examples/disk/Eigenfunctions.html}{Laplacian on the disk}'' to see more
+
+pretty pictures
 \end{itemize}
 
-\vspace{-20mm}
-\hfill \includegraphics[width=0.35\textwidth]{figs/phi42.png}
+\vspace{-30mm}
+\hfill \includegraphics[width=0.4\textwidth]{figs/phi42.png}
 
 \hfill {\footnotesize $\phi_{42}$}
 \end{frame}
@@ -445,18 +446,99 @@ $\bx\in\CC^m$ is well posed because
 \end{frame}
 
 
-\begin{frame}{Riesz representation route to well-posedness 1}
+\begin{frame}{are Poisson problems well-posed?}
 
 \begin{itemize}
-\item x
+\item so, how do we prove that the Poisson equation is a well-posed problem?
+\item solving it in particular cases, like we have for the disk, will not work
+\item we already have two important theorems which will help
 \end{itemize}
+
+\begin{theorem}[Poincar\'e-Friedrichs inequality]
+Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, or an open set which is bounded in one direction.  There is $C>0$, depending on $\Omega$, so that
+	$$\|f\|_{L^2} \le C \|\grad f\|_{L^2} \quad \text{for all } f\in H_0^1(\Omega).$$
+\end{theorem}
+
+\begin{theorem}[Riesz-Fr\'echet representation theorem]
+If $(V,\ip{\cdot}{\cdot})$ is a (real) Hilbert space, and if $\ell \in V'$ is a bounded linear functional, then there exists $u\in V$ so that
+	$$\ip{u}{v} = \ell(v) \quad \text{for all } v\in V$$
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{Riesz representation route to well-posedness 1}
+
+\begin{theorem}
+The weak-form homogeneous Dirichlet problem, for $u\in H_0^1(\Omega)$ such that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \text{ for all } v\in H_0^1(\Omega),$$
+is well-posed.
+\end{theorem}
+
+\small
+\emph{Proof.} Let $\iip{u}{v} = \int_\Omega \grad u \cdot \grad v\,dx$.  We claim this is also an inner product on $H_0^1(\Omega)$.\footnote{The usual inner product is \, $\ip{u}{v} = \int_\Omega u v\,dx + \int_\Omega \grad u \cdot \grad v\,dx$.}  It is clearly nonnegative, symmetric, and bilinear.  It is nondegenerate because $\iip{u}{u}=0$ implies
+	$$\|u\|_{H^1}^2 = \int_\Omega u^2\,dx + \int_\Omega |\grad u|^2\,dx \le (C^2+1)\int_\Omega |\grad u|^2\,dx = (C^2+1) \iip{u}{u} = 0,$$
+by the Poincar\'e-Friedrichs inequality, so $u=0$.  Thus $(H_0^1(\Omega),\iip{\cdot}{\cdot})$ is a real Hilbert space.
 \end{frame}
 
 
 \begin{frame}{Riesz representation route to well-posedness 2}
 
+\small
+\emph{Proof, continued.} 
+On the other hand, the right-hand side defines a linear functional, $\ell:H_0^1(\Omega)\to \RR$, with formula $\ell(v)=\int_\Omega fv\,dx$.  This is bounded by Cauchy-Schwarz:
+    $$|\ell(v)| \le \int_\Omega |fv|\,dx \le \|f\|_{L^2}\|v\|_{L^2} \le \|f\|_{L^2}\|v\|_{H^1}.$$
+
+By the Riesz-Fr\'echet representation theorem there is a unique $u\in H_0^1(\Omega)$ so that
+   $$\iip{u}{v} = \ell(v),$$
+which says exactly that the weak form problem has a unique solution.
+
+Finally, to show that the solution is continuous with respect to the data $f$, observe that the solution process is a well-defined linear map.  That is, there is a linear map $T:L^2(\Omega) \to H_0^1(\Omega)$ defined by\footnote{Conceptually, $T=(-\grad^2)^{-1}$.  But boundary conditions are involved!}
+	$$T f = u$$
+Recall that a linear map is continuous if and only if it is bounded.  We will show that
+    $$\|u\|_{H^1} = \|T f\|_{H^1} \le c \|f\|_{L^2}.$$
+\end{frame}
+
+
+\begin{frame}{Riesz representation route to well-posedness 3}
+
+\small
+\emph{Proof, continued.}
+To show that $T$ is bounded we substitute $u$ for $v$ in the weak form, use a previous calculation, and apply Cauchy-Schwarz:
+\begin{align*}
+\|u\|_{H^1}^2 &\le (C^2+1) \iip{u}{u} = (C^2+1) \int_\Omega \grad u \cdot \grad u\,dx \\
+  &= (C^2+1) \int_\Omega f u\,dx \le (C^2+1) \|f\|_{L^2} \|u\|_{L^2} \le (C^2+1) \|f\|_{L^2} \|u\|_{H^1}
+\end{align*}
+Now divide by the norm of $u$ to get the desired bound:
+    $$\|u\|_{H^1} \le (C^2+1) \|f\|_{L^2}.$$
+This shows that the solution map $Tf=u$ is continuous, and concludes the proof of well-posedness. \qed
+\end{frame}
+
+
+\begin{frame}{the Neumann problem is \emph{not} well-posed}
+
 \begin{itemize}
-\item x
+\item recall the general Neumann problem is to find $u\in H^1(\Omega)$ so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds  \quad \text{ for all } v\in H^1(\Omega)$$
+
+    \begin{itemize}
+    \item[$\circ$] strong form:\,\, $- \grad^2 u = f$ on $\Omega$,\, $\grad u\cdot \bn = g_N$ on $\partial \Omega$
+    \end{itemize}
+\item this has a uniqueness problem!
+\end{itemize}
+
+\begin{lemma}
+If the weak-form general Neumann problem has a solution then it has infinitely-many solutions.
+\end{lemma}
+
+\small
+\emph{Proof.}  Let $u\in H^1(\Omega)$ be a solution and consider any $C\in\RR$.  Then $\tilde u(x)=u(x)+C$ is also in $H^1(\Omega)$, and it satisfies the same weak form. \hfill \qed
+\end{frame}
+
+
+\begin{frame}{the Neumann problem is \emph{not} well-posed \dots but we understand it}
+
+\begin{itemize}
+\item FIXME these two problems are well-posed: Helmholtz ($+\alpha u$ with $\alpha>0$) and Neumann with additional constraint $\int_\Omega u\,dx=0$
 \end{itemize}
 \end{frame}
 
@@ -474,7 +556,7 @@ $\bx\in\CC^m$ is well posed because
 \begin{frame}{characterization theorem}
 
 \begin{itemize}
-\item x
+\item FIXME theorem p. 35 Braess
 \end{itemize}
 \end{frame}
 
@@ -482,7 +564,7 @@ $\bx\in\CC^m$ is well posed because
 \begin{frame}{minimization route to well-posedness 1}
 
 \begin{itemize}
-\item x
+\item FIXME theorem p. 38--39 Braess
 \end{itemize}
 \end{frame}
 
