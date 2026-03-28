@@ -97,7 +97,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title[more about the Poisson equation]{Poisson equation: Fourier series, theory, \\ and approximation}
+\title[more on the Poisson equation]{Poisson equation: Fourier series and theory}
 
 \subtitle{calculations for week 13}
 
@@ -158,21 +158,27 @@ for $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ 
 
 \begin{frame}{recall: the Sobolev spaces $H^1(\Omega)$ and $H_0^1(\Omega)$}
 
+\small
+
 \begin{definition}
     $$H^1(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix} \text{the weak derivative } f' \text{ exists} \\ \text{and is in } L^2(\Omega)\end{matrix}\right\}$$
-is a Hilbert space with inner product:
-	$$\ip{f}{g}_{H^1} = \int_\Omega f(x) g(x)\,dx + \int_\Omega f'(x) g'(x)\,dx$$
-and norm: \quad $\|f\|_{H^1} = \sqrt{\ip{f}{f}_{H^1}}$
+is a Hilbert space with inner product and norm:
+	$$\ip{f}{g}_{H^1} = \int_\Omega f(x) g(x)\,dx + \int_\Omega f'(x) g'(x)\,dx, \qquad \|f\|_{H^1} = \sqrt{\ip{f}{f}_{H^1}}$$
 \end{definition}
 
 \begin{definition}
     $$H_0^1(\Omega) = \overline{C_c^1(\Omega)},$$
 where closure is in $H^1$ norm, is a closed subspace of $H^1(\Omega)$
 \end{definition}
+
+\begin{theorem}[Poincar\'e-Friedrichs inequality]
+Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, or an open set which is bounded in one direction.  There is $C>0$, depending on $\Omega$, so that
+	$$\|f\|_{L^2} \le C \|\grad f\|_{L^2} \quad \text{for all } f\in H_0^1(\Omega).$$
+\end{theorem}
 \end{frame}
 
 
-\begin{frame}{recall: the weak form}
+\begin{frame}{recall: the weak forms of the Poisson problems}
 
 \begin{block}{weak formulation of the Poisson equation}
 Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ are given.  Solve one of these problems:
@@ -331,7 +337,7 @@ u(r,\theta) &= \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n
 	$$f(r,\theta) = \sum_{n=1}^\infty a_{0n} J_0(\lambda_{0n} r) + \sum_{m,n=1}^\infty J_m(\lambda_{mn} r)\big(a_{mn} \cos(m\theta) + b_{mn} \sin(m\theta)\big)$$
 
    \begin{itemize}
-   \item[$\circ$] $J_m(r)$ is the $m$th Bessel function, for $m\ge 0$; below are $J_0$ and $J_4$
+   \item[$\circ$] $J_m(r)$ is the $m$th Bessel function, for $m\ge 0$; below are {\color{blue} $J_0$} and {\color{red} $J_4$}
    \item[$\circ$] $\lambda_{mn}$ is the $n$th positive root of $J_m(r)$
    \item[$\circ$] call this the \emph{Fourier-Bessel expansion} of $f$ on the disk?
    \item[$\circ$] better and general name:
@@ -410,12 +416,36 @@ Then $u\in H_0^1(D) \cap C^2(D)$ solves the both the strong form and the weak fo
 \end{frame}
 
 
+\section{well-posedness for Poisson equation problems}
 
-\section{does a solution to Poisson's equation exist?}
+\begin{frame}{well-posedness of math problems}
 
-\begin{frame}{bar}
+\begin{definition}
+a mathematical problem is \alert{well-posed} if the solution satisfies the following properties:
+\begin{enumerate}
+\item it exists
+\item it is unique
+\item its value changes continuously as the data of the problem changes
+\end{enumerate}
+\end{definition}
 
-FIXME: minimization route
+\small
+\begin{block}<2>{Example: finite-dimensional linear systems}
+Suppose $A\in \CC^{m\times m}$ is invertible and $\bb\in\CC^m$.  The problem of solving \only<1>{$A\bx = \bb$}\only<2>{$\boxed{A\bx = \bb}$} for
+
+$\bx\in\CC^m$ is well posed because
+\begin{enumerate}
+\item exists: $\bx = A^{-1}\bb$
+\item unique: if $A\bx_1=\bb$ and $A\bx_2=\bb$ then $A(\bx_1-\bx_2)=\bzero$ so $\bx_1=\bx_2$
+\item continuous in the data $\bb$: if $A\bx_1=\bb_1$ and $A\bx_2=\bb_2$ then
+
+\quad $\|\bx_1-\bx_2\| = \|A^{-1}\bb_1 - A^{-1}\bb_2\| \le \|A^{-1}\| \|\bb_1 - \bb_2\|$
+\end{enumerate}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Riesz representation route to well-posedness 1}
 
 \begin{itemize}
 \item x
@@ -423,9 +453,7 @@ FIXME: minimization route
 \end{frame}
 
 
-\begin{frame}{bar}
-
-FIXME: Riesz representation theorem route
+\begin{frame}{Riesz representation route to well-posedness 2}
 
 \begin{itemize}
 \item x
@@ -433,21 +461,43 @@ FIXME: Riesz representation theorem route
 \end{frame}
 
 
-\begin{frame}{bar}
+\section{minimization viewpoint (and coercivity/ellipticity)}
+
+\begin{frame}{minimization viewpoint}
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{characterization theorem}
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{minimization route to well-posedness 1}
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{minimization route to well-posedness 2}
+
+\begin{itemize}
+\item x
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{regularity}
 
 FIXME: sketch how ellipticity means $u\in H^{2+k}(\Omega)$ if $f\in H^k(\Omega)$
-
-\begin{itemize}
-\item x
-\end{itemize}
-\end{frame}
-
-
-\section{approximation and quadrature}
-
-\begin{frame}{bar}
-
-FIXME: minimization route
 
 \begin{itemize}
 \item x
