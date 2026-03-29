@@ -1,0 +1,133 @@
+\documentclass[12pt]{amsart}
+%prepared in AMSLaTeX, under LaTeX2e
+\addtolength{\oddsidemargin}{-.65in} 
+\addtolength{\evensidemargin}{-.65in}
+\addtolength{\topmargin}{-.55in}
+\addtolength{\textwidth}{1.3in}
+\addtolength{\textheight}{.9in}
+
+\renewcommand{\baselinestretch}{1.05}
+
+\usepackage{verbatim} % for "comment" environment
+
+\usepackage{palatino}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{defn}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{problem}{Problem}
+\newtheorem*{remark}{Remark}
+
+\usepackage{fancyvrb,xspace,dsfont}
+
+\usepackage[final]{graphicx}
+
+% macros
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Ed Bueler},
+            pdfcreator={pdflatex},
+            colorlinks=true,
+            citecolor=blue,
+            linkcolor=red,
+            urlcolor=blue,
+            }
+
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+
+\newcommand{\bJ}{\mathbf{J}}
+\newcommand{\bV}{\mathbf{V}}
+
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\renewcommand{\Im}{\mathrm{Im}}
+\renewcommand{\Re}{\mathrm{Re}}
+
+\newcommand{\eps}{\epsilon}
+\newcommand{\lam}{\lambda}
+\newcommand{\lap}{\triangle}
+
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\grad}{\nabla}
+
+\newcommand{\one}{\mathds{1}}
+
+\newcommand{\ip}[2]{\ensuremath{\left<#1,#2\right>}}
+
+\newcommand{\image}{\operatorname{im}}
+\newcommand{\onull}{\operatorname{null}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\Span}{\operatorname{span}}
+
+\newcommand{\prob}[1]{\bigskip\noindent\textbf{#1.}\quad }
+
+\newcommand{\pts}[1]{(\emph{#1 pts}) }
+\newcommand{\epart}[1]{\medskip\noindent\textbf{(#1)}\quad }
+\newcommand{\ppart}[1]{\,\textbf{(#1)}\quad }
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\nex}{\medskip\noindent}
+
+
+\begin{document}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned XX April 2026}
+\normalsize\medskip
+
+\Large\centerline{\textbf{Assignment 8}}
+\large
+\medskip
+
+\centerline{\textbf{Due XX at the beginning of class}}
+\medskip
+\normalsize
+
+\thispagestyle{empty}
+
+\bigskip
+\noindent This Assignment is based on the slides, especially \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} and FIXME
+
+\newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
+
+\newcommand{\augpart}[1]{\emph{\textbf{(#1)}}}
+
+\medskip
+\noindent \textsc{Do the following problems.}
+
+
+\prob{P23} FIXME solve Poisson by series on a square
+
+\prob{P24} FIXME prove that Helmholtz homogeneous Neumann is well-posed
+
+\prob{P25} FIXME confirm that $\lim_{r\to 1^-} u(r,\theta) = g(\theta)$ with convergence in $L^2$
+
+\prob{P26} FIXME confirm that
+\begin{align*}
+\grad^2 \phi_{mn} &= - \lambda_{mn}^2 \phi_{mn} \\
+\grad^2 \psi_{mn} &= - \lambda_{mn}^2 \psi_{mn}
+\end{align*}
+use Laplacian in polar, and following equation satisfied by $J_m$
+
+\end{document}
