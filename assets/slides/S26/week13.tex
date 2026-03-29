@@ -147,6 +147,10 @@ u &= g_D \quad \text{ on } \partial \Omega
 \end{align*}
 \end{block}
 
+\begin{itemize}
+\item called \emph{homogeneous Dirichlet} if $g_D=0$
+\end{itemize}
+
 \begin{block}{general Neumann problem (\emph{strong form})}
 for $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ so that
 \begin{align*}
@@ -168,17 +172,24 @@ for $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ 
 \begin{definition}
     $$H^1(\Omega) = \left\{f\in L^2(\Omega) \,\Big|\, \begin{matrix} \text{the weak derivative } f' \text{ exists} \\ \text{and is in } L^2(\Omega)\end{matrix}\right\}$$
 is a Hilbert space with inner product and norm:
-	$$\ip{f}{g}_{H^1} = \int_\Omega f(x) g(x)\,dx + \int_\Omega f'(x) g'(x)\,dx, \qquad \|f\|_{H^1} = \sqrt{\ip{f}{f}_{H^1}}$$
+	$$\ip{f}{g}_{H^1} = \int_\Omega f(x) g(x)\,dx + \int_\Omega \grad f(x)\cdot \grad g(x)\,dx, \qquad \|f\|_{H^1} = \sqrt{\ip{f}{f}_{H^1}}$$
 \end{definition}
 
 \begin{definition}
     $$H_0^1(\Omega) = \overline{C_c^1(\Omega)},$$
-where closure is in $H^1$ norm, is a closed subspace of $H^1(\Omega)$
+(closure is in $H^1$ norm, and $H_0^1(\Omega)$ is a closed subspace of $H^1(\Omega)$)
 \end{definition}
 \end{frame}
 
 
 \begin{frame}{recall: the weak forms of the Poisson problems}
+
+\begin{itemize}
+\item multiply strong form by $v$ and use IBP to derive the weak forms:
+\begin{align*}
+-\int_\Omega (\grad^2 u) v\,dx &= -\int_{\partial \Omega} (\grad u\cdot \bn) v\,ds +\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx
+\end{align*}
+\end{itemize}
 
 \begin{block}{weak formulation of the Poisson equation}
 Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ are given.  Solve one of these problems:
@@ -221,7 +232,7 @@ for all test functions $v\in H_0^1(\Omega)$.
 }
 
 
-\section{Poisson equation on a disk (via Fourier series)}
+\section{Poisson equation on a disk (Fourier series)}
 
 \begin{frame}{Fourier series along the boundary of the disk}
 
@@ -431,7 +442,7 @@ Then $u\in H_0^1(D) \cap C^2(D)$ solves the both the strong form and the weak fo
 \end{frame}
 
 
-\section{well-posedness for Poisson equation problems}
+\section{Poisson equation well-posedness}
 
 \begin{frame}{well-posedness of math problems}
 
@@ -563,12 +574,11 @@ If this problem has a solution then it has infinitely-many solutions.
 \item there are two well-known ways to fix the uniqueness problem
 \item proofs of the theorems are skipped
     \begin{itemize}
-    \item[$\circ$] \itemnum{1} is easily proved by the Riesz-Fr\'echet rep'n thm method
-    \item[$\circ$] strong form for \itemnum{1}:\,\, $- \grad^2 u +\alpha u = f$ on $\Omega$,\, $\grad u\cdot \bn = g_N$ on $\partial \Omega$
+    \item[$\circ$] on Assignment 8: prove \itemnum{1} via the Riesz-Fr\'echet representation theorem
+    \item[$\circ$] note strong form for \itemnum{1}:\,\, $- \grad^2 u +\alpha u = f$ on $\Omega$,\, $\grad u\cdot \bn = g_N$ on $\partial \Omega$
     \end{itemize}
 \end{itemize}
 
-% FIXME these two problems are well-posed: Helmholtz ($+\alpha u$ with $\alpha>0$) and Neumann with additional constraint $\int_\Omega u\,dx=0$
 \small
 \begin{theorem}
 Suppose $\Omega\subset \RR^2$ has a Lipschitz or $C^1$ boundary, $f\in L^2(\Omega)$, and $g_N\in L^2(\partial D)$.  The following weak-form Neumann-type problems are well-posed:
@@ -579,14 +589,12 @@ Suppose $\Omega\subset \RR^2$ has a Lipschitz or $C^1$ boundary, $f\in L^2(\Omeg
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds  \quad \text{ for all } v\in H^1(\Omega)$$
 and so that $\int_\Omega u\,dx = 0$.
 \end{enumerate}
-
-
 \end{theorem}
 
 \end{frame}
 
 
-\section{minimization viewpoint (and coercivity/ellipticity)}
+\section{Poisson equation as minimization (coercivity/ellipticity)}
 
 \begin{frame}{minimization viewpoint}
 
