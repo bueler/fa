@@ -594,46 +594,172 @@ and so that $\int_\Omega u\,dx = 0$.
 \end{frame}
 
 
-\section{Poisson equation as minimization (coercivity/ellipticity)}
+\section{Poisson equation as minimization (and coercivity)}
 
 \begin{frame}{minimization viewpoint}
 
 \begin{itemize}
-\item x
+\item the weak form of the Poisson equation can be regarded as the critical-point condition, ``$J'(u)=0$'', for the problem of minimizing a function:
+	$$\min_{x\in S} J(u)$$
+{\footnotesize
+\item for this material: D.~Braess (2007), \emph{Finite Elements}, 3rd ed., Cambridge U.~Press
+}
+\end{itemize}
+
+picture:
+
+\vspace{50mm}
+\end{frame}
+
+
+\begin{frame}{characterization theorem: minimization $\iff$ weak form}
+
+\begin{itemize}
+\item this idea is clearest in an abstract formulation
+\end{itemize}
+
+\begin{theorem}[characterization theorem]
+Let $V$ be a real vector space.  Suppose
+    $$a:V\times V\to \RR$$
+is a symmetric and nonnegative ($a(v,v)\ge 0$) bilinear function.  Suppose $\ell:V\to\RR$ is a linear functional.  Define the quadratic objective function
+	$$J(v) = \frac{1}{2} a(v,v) - \ell(v).$$
+Then $u\in V$ is a minimizer of $J$ if and only if
+	$$a(u,v) = \ell(v) \quad \text{ for all } v\in V.$$
+\end{theorem}
+
+\begin{itemize}
+\item this is not asserting existence or uniqueness; it \emph{characterizes} $u$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{characterization theorem}
+\begin{frame}{proof of the characterization theorem 1}
+
+\emph{Proof.}  We essentially take the directional derivative of $J(v) = \frac{1}{2} a(v,v) - \ell(v)$.  That is, for $u\in V$ fixed, and variables $t\in \RR$ and $v\in V$,
+\begin{align*}
+J(u+tv) &= \frac{1}{2} a(u+tv,u+tv) - \ell(u+tv) \\
+   &= \frac{1}{2} \Big(a(u,u) + 2 t\, a(u,v) + t^2 a(v,v)\Big) - \ell(u) - t \ell(v) \\
+   &= J(u) + t\Big[a(u,v) - \ell(v)\Big] + \frac{1}{2} t^2 a(v,v).
+\end{align*}
+
+\medskip
+Now if $u$ solves the weak form ($a(u,v) = \ell(v) \, \forall v$) then, using $t=1$ and nonnegativity of $a$,
+	$$J(u+v) = J(u) + \frac{1}{2} a(v,v) \ge J(u).$$
+This holds for all $v\in V$, so $u$ is a minimizer of $J$.
+\end{frame}
+
+
+\begin{frame}{proof of the characterization theorem 1}
+
+\emph{Proof, cont.}  Conversely, suppose $J$ is minimized by $u$.  Let $v\in V$ be arbitrary, and define the real-valued function
+	$$g(t) = J(u+tv) = J(u) + t\Big[a(u,v) - \ell(v)\Big] + \frac{1}{2} t^2 a(v,v).$$
+By assumption, this function has a minimum at $t=0$.  However, $g$ is a quadratic polynomial in $t$, thus differentiable, with
+	$$g'(t) = a(u,v) - \ell(v) + t\, a(v,v).$$
+Since $u$ is a minimizer, $g'(0)=0$, which shows that $a(u,v)-\ell(v)=0$, which shows that $u$ satisfies the weak form. \hfill \qed
+\end{frame}
+
+
+\begin{frame}{characterization, for the Poisson problem}
 
 \begin{itemize}
-\item FIXME theorem p. 35 Braess
+\item example: the homogeneous Dirichlet problem $-\grad^2 u = f$, $u\big|_{\partial\Omega} = 0$
+\item here: \, $V=H_0^1(\Omega)$, \, $a(u,v)=\int_\Omega \grad u \cdot \grad v\,dx$, \, $\ell(v)=\int_\Omega f v\,dx$
+\end{itemize}
+
+\begin{corollary}
+The element $u\in H_0^1(\Omega)$ solves the weak-form problem
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \text{ for all } v\in H_0^1(\Omega),$$
+if and only if it is a minimizer of the \alert{energy functional} $J:H_0^1(\Omega) \to \RR$:
+	$$u \quad \stackrel{\min}{\leftarrow} \quad J(v) = \frac{1}{2} \int_\Omega |\grad v|^2\,dx - \int_\Omega f v\,dx.$$
+\end{corollary}
+
+\begin{itemize}
+\item in the loaded elastic membrane application of the Poisson equation, $J(v)$ is the sum of the elastic potential energy ($\frac{1}{2} \int_\Omega |\grad v|^2\,dx$) and the gravitational potential energy ($- \int_\Omega f v\,dx$) associated to the load $f$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{minimization route to well-posedness 1}
+\begin{frame}{minimization route to well-posedness}
 
 \begin{itemize}
-\item FIXME theorem p. 38--39 Braess
+\item on a Hilbert space, if the bilinear form satisfies certain inequalities, then the minimizer exists and is unique
+\end{itemize}
+
+\begin{theorem}[existence of a minimizer]
+Let $H$ be a Hilbert space.  Suppose $a:H\times H\to \RR$ is a symmetric bilinear function.  Assume it is \alert{\emph{coercive}} in the sense that there is $\alpha>0$ so that
+	$$a(v,v) \ge \alpha \|v\|^2 \quad \forall v \in H.$$
+Assume it is \alert{\emph{continuous}} in the sense that there is $C\ge 0$ so that
+	$$|a(u,v)| \le C \|u\|\|v\| \quad \forall v \in H.$$
+Suppose $\ell\in H'$.  Then there exists $u\in H$ which is the unique minimizer of $J$:
+	$$u \quad \stackrel{\min}{\leftarrow} \quad J(v) = \frac{1}{2} a(v,v) - \ell(v).$$
+\end{theorem}
+
+\begin{itemize}
+\item coercivity is also called (uniform) \alert{\emph{ellipticity}}
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{minimization route to well-posedness 2}
+\begin{frame}{proof of the minimizer-existence theorem 1}
 
-\begin{itemize}
-\item x
-\end{itemize}
+\emph{Proof.}  First, by coercivity and the definition of the $H'$ norm,
+    $$J(v) \ge \frac{\alpha}{2} \|v\|^2 - \|\ell\|\|v\| = \frac{1}{2\alpha} \left(\alpha \|v\| - \|\ell\|\right)^2 - \frac{\|\ell\|^2}{2\alpha} \ge - \frac{\|\ell\|^2}{2\alpha}.$$
+This shows $J$ is bounded below.  Thus
+	$$\mu = \inf \left\{J(v)\,:\,v\in V\right\}$$
+exists as a real number.  We seek to show that there is a $u\in V$ so that $J(u)=\mu$, namely that a minimizer achieves the infimum.
+
+\medskip
+Suppose $(v_n)$ is a sequence in $V$ such that $J(v_n) \to \mu$, that is, it is a minimizing sequence.  Then\footnote{We used $J\left(\frac{v_n+v_m}{2}\right)\ge \mu$ in the last step.  This argument generalizes to convex $C\subset H$.}
+\begin{align*}
+\alpha \|v_n-v_m\|^2 &\le a(v_n-v_m,v_n-v_m) \\
+    &= 2 a(v_n,v_n) + 2 a(v_m,v_m) - a(v_n+v_m,v_n+v_m) \\
+    &= 4 J(v_n) + 4 J(v_m) - 8 J\left(\frac{v_n+v_m}{2}\right) \\
+    &\le 4 J(v_n) + 4 J(v_m) - 8 \mu.
+\end{align*}
 \end{frame}
 
 
-\begin{frame}{regularity}
+\begin{frame}{proof of the minimizer-existence theorem 2}
 
-FIXME: sketch how ellipticity means $u\in H^{2+k}(\Omega)$ if $f\in H^k(\Omega)$
+\emph{Proof cont.}  But since $J(v_n) \to \mu$ and $J(v_m) \to \mu$, this inequality shows $\|v_n - v_m\|\to 0$, so $(v_n)$ is Cauchy.  Since $H$ is complete,\footnote{Here the argument would need $C\subset H$ to be closed, in addition to convex.} let $u=\lim_{n\to\infty} v_n$.  The continuity of $J$ at $u$, which follows from the continuity of $a$ and $\ell$, now shows
+	$$J(u) = J\left(\lim_{n\to\infty} v_n\right) = \lim_{n\to\infty} J(v_n) = \mu,$$
+so a minimizer exists.
+
+\medskip
+Now suppose that $u_1,u_2$ are both minimizers, so $J(u_i)=\mu$.  The calculation\footnote{Here we are seeing that $J$ is \emph{strictly} convex, thus the minimizer is unique.} on the previous slide applies with $v_n$ and $v_m$ replaced by $u_1$ and $u_2$, and now the right side simplifies to zero:
+    $$\alpha \|u_1-u_2\|^2 \le 4 J(u_1) + 4 J(u_2) - 8 \mu = 0.$$
+Thus $u_1=u_2$; the solution is unique. \hfill \qed
+
+\bigskip
+{\footnotesize
+\begin{itemize}
+\item My source for this material, D.~Braess (2007) \emph{Finite Elements}, calls this is a Lax-Milgram theorem.  That may be wrong historically.  I think Lax-Milgram is \emph{not} about minimization.
+\end{itemize}
+}
+\end{frame}
+
+
+\begin{frame}{well-posedness for the Poisson problem}
 
 \begin{itemize}
-\item x
+\item again, my example: the homogeneous Dirichlet problem
+\end{itemize}
+
+\begin{corollary}
+The solution $u\in H_0^1(\Omega)$ of the weak-form problem
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \text{ for all } v\in H_0^1(\Omega)$$
+exists and is unique.
+\end{corollary}
+
+{\small
+\emph{Proof.}  Apply the characterization theorem to turn the weak form into a minimization.  Show coercivity and continuity of $a(u,v) = \int_\Omega \grad u \cdot \grad v\,dx$.  (Coercivity will need the Poincar'e-Friedrichs inequality.)  Then apply the last theorem to show the minimizer exists and is unique. \hfill \qed
+}
+
+\bigskip
+\begin{itemize}
+\item an alternative to our Riesz-Fr\'echet representation theorem argument
+\item this argument can be generalized to Banach spaces (not shown)
+\item a separate argument is needed to complete the definition of well-posedness, i.e.~continuity of $u$ with respect to changes in the data $f$
 \end{itemize}
 \end{frame}
 
