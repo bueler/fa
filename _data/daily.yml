@@ -1,6 +1,15 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Friday 10 April
+  description: cont.
+- day: Wednesday 8 April
+  description: "<b>calculation: Poisson equation on the disk and in theory</b>"
+  slides: slides/S26/week13.pdf
+  slidesweek: week 13
+- day: Monday 6 April
+  description: cont.
+  week: 13
 - day: Friday 3 April
   description: cont.
 - day: Wednesday 1 April

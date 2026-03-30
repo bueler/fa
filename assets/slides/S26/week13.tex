@@ -446,7 +446,7 @@ Then $u\in H_0^1(D) \cap C^2(D)$ solves the both the strong form and the weak fo
 
 \begin{frame}{well-posedness of math problems}
 
-\begin{definition}
+\begin{definition}[Hadamard, 1902]
 a mathematical problem is \alert{well-posed} if the solution satisfies the following properties:
 \begin{enumerate}
 \item it exists
@@ -491,29 +491,28 @@ If $(V,\ip{\cdot}{\cdot})$ is a (real) Hilbert space, and if $\ell \in V'$ is a 
 \end{frame}
 
 
-\begin{frame}{Riesz representation route to well-posedness 1}
+\begin{frame}{Riesz representation route to well-posedness}
 
 \begin{theorem}
-The \alert{weak-form homogeneous Dirichlet problem}, for $u\in H_0^1(\Omega)$ such that
+The weak-form homogeneous Dirichlet problem, for $u\in H_0^1(\Omega)$ such that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \text{ for all } v\in H_0^1(\Omega),$$
 \alert{is well-posed}.
 \end{theorem}
 
 \small
-\emph{Proof.} Let $\iip{u}{v} = \int_\Omega \grad u \cdot \grad v\,dx$.  This is also an inner product on $H_0^1(\Omega)$,\footnote{The usual inner product is \, $\ip{u}{v} = \int_\Omega u v\,dx + \int_\Omega \grad u \cdot \grad v\,dx$.} because it is clearly nonnegative, symmetric, and bilinear, and furthermore it is nondegenerate: $\iip{u}{u}=0$ implies
+\emph{Proof.} Let $\iip{u}{v} = \int_\Omega \grad u \cdot \grad v\,dx$.  We show that this is also an inner product on $H_0^1(\Omega)$.\footnote{The usual inner product is \, $\ip{u}{v} = \int_\Omega u v\,dx + \int_\Omega \grad u \cdot \grad v\,dx$.}  It is clearly nonnegative, symmetric, and bilinear, and furthermore it is nondegenerate: $\iip{u}{u}=0$ implies
 	$$\|u\|_{H^1}^2 = \int_\Omega u^2\,dx + \int_\Omega |\grad u|^2\,dx \le (C^2+1)\int_\Omega |\grad u|^2\,dx = (C^2+1) \iip{u}{u} = 0,$$
 by the Poincar\'e-Friedrichs inequality, so $u=0$.  This also shows that $\iip{\cdot}{\cdot}$ and $\ip{\cdot}{\cdot}$ give equivalent norms.  Thus $(H_0^1(\Omega),\iip{\cdot}{\cdot})$ is a real Hilbert space.
 \end{frame}
 
 
-\begin{frame}{Riesz representation route to well-posedness 2}
+\begin{frame}{proof of Riesz representation route 2}
 
 \small
 \emph{Proof, continued.} 
-On the other hand, the right-hand side of the weak form defines a linear functional, $\ell:H_0^1(\Omega)\to \RR$, $\ell(v)=\int_\Omega fv\,dx$.  This is bounded by Cauchy-Schwarz:
-    $$|\ell(v)| \le \int_\Omega |fv|\,dx \le \|f\|_{L^2}\|v\|_{L^2} \le \|f\|_{L^2}\|v\|_{H^1}.$$
-
-By the Riesz-Fr\'echet representation theorem there is a unique $u\in H_0^1(\Omega)$ so that
+On the other hand, the right-hand side of the weak form defines a linear functional, $\ell:H_0^1(\Omega)\to \RR$, $\ell(v)=\int_\Omega fv\,dx$.  This is bounded by Cauchy-Schwarz,
+    $$|\ell(v)| \le \int_\Omega |fv|\,dx \le \|f\|_{L^2}\|v\|_{L^2} \le \|f\|_{L^2}\|v\|_{H^1},$$
+so $\ell \in H_0^1(\Omega)'$.  By the Riesz-Fr\'echet representation theorem there is a unique $u\in H_0^1(\Omega)$ so that
    $$\iip{u}{v} = \ell(v).$$
 This exactly says that a solution to the weak form problem exists, and that is it unique.
 
@@ -525,7 +524,7 @@ Recall that a linear map is continuous if and only if it is bounded.  We will sh
 \end{frame}
 
 
-\begin{frame}{Riesz representation route to well-posedness 3}
+\begin{frame}{proof of Riesz representation route 3}
 
 \small
 \emph{Proof, continued.}
@@ -534,7 +533,7 @@ To show that $T$ is bounded we substitute $u$ for $v$ in the weak form, use a pr
 \|u\|_{H^1}^2 &\le (C^2+1) \iip{u}{u} = (C^2+1) \int_\Omega \grad u \cdot \grad u\,dx \\
   &= (C^2+1) \int_\Omega f u\,dx \le (C^2+1) \|f\|_{L^2} \|u\|_{L^2} \le (C^2+1) \|f\|_{L^2} \|u\|_{H^1}
 \end{align*}
-Now divide by the norm of $u$ to get the desired bound:
+Now divide by the norm of $u$ to get a bound:
     $$\|u\|_{H^1} \le (C^2+1) \|f\|_{L^2}.$$
 This shows that the solution map $Tf=u$ is continuous, and concludes the proof of well-posedness. \qed
 
@@ -542,7 +541,7 @@ This shows that the solution map $Tf=u$ is continuous, and concludes the proof o
 \bigskip
 \begin{itemize}
 \item a bound like $\|u\|_{H^1} \le c \|f\|_{L^2}$ is often called an \alert{\emph{a priori} bound}
-\item an \emph{a priori} bound implies continuity with respect to $f$ for linear problems
+\item an \emph{a priori} bound is sufficient to conclude continuity (w.r.t.~$f$) for \emph{linear} problems
 \end{itemize}
 \end{frame}
 
@@ -556,7 +555,7 @@ This shows that the solution map $Tf=u$ is continuous, and concludes the proof o
     \begin{itemize}
     \item[$\circ$] strong form:\,\, $- \grad^2 u = f$ on $\Omega$,\, $\grad u\cdot \bn = g_N$ on $\partial \Omega$
     \end{itemize}
-\item this has a uniqueness problem!
+\item this has a uniqueness failure!
 \end{itemize}
 
 \begin{lemma}
@@ -564,30 +563,30 @@ If this problem has a solution then it has infinitely-many solutions.
 \end{lemma}
 
 \small
-\emph{Proof.}  Let $u\in H^1(\Omega)$ be a solution and consider any $C\in\RR$.  Then $\tilde u(x)=u(x)+C$ is also in $H^1(\Omega)$, and it satisfies the same weak form. \hfill \qed
+\emph{Proof.}  Let $u\in H^1(\Omega)$ be a solution and consider any $C\in\RR$.  Then $\tilde u(x)=u(x)+C$ is also in $H^1(\Omega)$, with the same gradient, and thus it satisfies the same weak form. \hfill \qed
 \end{frame}
 
 
 \begin{frame}{well-posed modifications of the Neumann problem}
 
 \begin{itemize}
-\item there are two well-known ways to fix the uniqueness problem
-\item proofs of the theorems are skipped
+\item there are two well-known ways to fix this uniqueness issue
+\item proofs for this theorem are skipped, but
     \begin{itemize}
+    \item[$\circ$] note the strong form for \itemnum{1}:\,\, $\boxed{- \grad^2 u +\alpha u = f}$ on $\Omega$,\, $\grad u\cdot \bn = g_N$ on $\partial \Omega$
     \item[$\circ$] on Assignment 8: prove \itemnum{1} via the Riesz-Fr\'echet representation theorem
-    \item[$\circ$] note strong form for \itemnum{1}:\,\, $- \grad^2 u +\alpha u = f$ on $\Omega$,\, $\grad u\cdot \bn = g_N$ on $\partial \Omega$
     \end{itemize}
 \end{itemize}
 
 \small
 \begin{theorem}
-Suppose $\Omega\subset \RR^2$ has a Lipschitz or $C^1$ boundary, $f\in L^2(\Omega)$, and $g_N\in L^2(\partial D)$.  The following weak-form Neumann-type problems are well-posed:
+Suppose $\Omega\subset \RR^2$ has a Lipschitz or $C^1$ boundary, $f\in L^2(\Omega)$, and $g_N\in L^2(\partial D)$.  The following weak-form Neumann-type problems for $u\in H^1(\Omega)$ \alert{are well-posed}:
 \begin{enumerate}
-\item \alert{Helmholtz equation}:  Suppose $\alpha>0$.  Seek $u\in H^1(\Omega)$ such that
+\item \alert{Neumann problem for the Helmholtz equation}: \label{helm} Suppose $\alpha>0$.
     $$\int_\Omega \grad u \cdot \grad v\,dx + \int_\Omega \alpha u v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds  \quad \text{ for all } v\in H^1(\Omega)$$
-\item \alert{Neumann problem with auxiliary condition}:  Seek $u\in H^1(\Omega)$ such that
+\item \alert{Neumann problem with auxiliary condition}:
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds  \quad \text{ for all } v\in H^1(\Omega)$$
-and so that $\int_\Omega u\,dx = 0$.
+and so that $\int_\Omega u\,dx = 0$, equivalently $\ip{u}{c}=0$ for all constant functions $c$.
 \end{enumerate}
 \end{theorem}
 
@@ -599,16 +598,18 @@ and so that $\int_\Omega u\,dx = 0$.
 \begin{frame}{minimization viewpoint}
 
 \begin{itemize}
-\item the weak form of the Poisson equation can be regarded as the critical-point condition, ``$J'(u)=0$'', for the problem of minimizing a function:
+\item the weak form of the Poisson equation can be regarded as the critical-point condition, ``$J'(u)=0$'', for the problem of minimizing a real-valued function:
 	$$\min_{x\in S} J(u)$$
+\item however, we are working in $\infty$-dimensions, so optimization requires functional analysis
 {\footnotesize
 \item for this material: D.~Braess (2007), \emph{Finite Elements}, 3rd ed., Cambridge U.~Press
 }
 \end{itemize}
 
+\medskip
 picture:
 
-\vspace{50mm}
+\vspace{40mm}
 \end{frame}
 
 
@@ -628,34 +629,37 @@ Then $u\in V$ is a minimizer of $J$ if and only if
 \end{theorem}
 
 \begin{itemize}
-\item this is not asserting existence or uniqueness; it \emph{characterizes} $u$
+\item this theorem does \emph{not} assert existence or uniqueness; it \emph{characterizes} $u$
+\item this theorem does \emph{not} require $V$ to be complete
+\item this theorem does \emph{not} require the bilinear form $a$ to be positive definite
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{proof of the characterization theorem 1}
 
-\emph{Proof.}  We essentially take the directional derivative of $J(v) = \frac{1}{2} a(v,v) - \ell(v)$.  That is, for $u\in V$ fixed, and variables $t\in \RR$ and $v\in V$,
+\emph{Proof.}  Fix $u,v\in V$ and suppose $t\in \RR$.  Define
 \begin{align*}
-J(u+tv) &= \frac{1}{2} a(u+tv,u+tv) - \ell(u+tv) \\
+g(t) &= J(u+tv) = \frac{1}{2} a(u+tv,u+tv) - \ell(u+tv) \\
    &= \frac{1}{2} \Big(a(u,u) + 2 t\, a(u,v) + t^2 a(v,v)\Big) - \ell(u) - t \ell(v) \\
    &= J(u) + t\Big[a(u,v) - \ell(v)\Big] + \frac{1}{2} t^2 a(v,v).
 \end{align*}
 
 \medskip
-Now if $u$ solves the weak form ($a(u,v) = \ell(v) \, \forall v$) then, using $t=1$ and nonnegativity of $a$,
-	$$J(u+v) = J(u) + \frac{1}{2} a(v,v) \ge J(u).$$
-This holds for all $v\in V$, so $u$ is a minimizer of $J$.
+Now if $u$ solves the weak form ($a(u,v) - \ell(v) =0$) then, using $t=1$ and nonnegativity of $a$,
+	$$J(u+v) = g(1) = J(u) + \frac{1}{2} a(v,v) \ge J(u).$$
+This holds for any $v\in V$, so $u$ is a minimizer of $J$.
 \end{frame}
 
 
 \begin{frame}{proof of the characterization theorem 1}
 
-\emph{Proof, cont.}  Conversely, suppose $J$ is minimized by $u$.  Let $v\in V$ be arbitrary, and define the real-valued function
-	$$g(t) = J(u+tv) = J(u) + t\Big[a(u,v) - \ell(v)\Big] + \frac{1}{2} t^2 a(v,v).$$
-By assumption, this function has a minimum at $t=0$.  However, $g$ is a quadratic polynomial in $t$, thus differentiable, with
+\emph{Proof, cont.}
+
+\medskip
+Conversely, suppose $J$ is minimized by $u$.  By assumption, the real function $g(t) = J(u+tv)$ has a minimum at $t=0$.  However, we have written $g$ as a quadratic polynomial in $t$, with derivative
 	$$g'(t) = a(u,v) - \ell(v) + t\, a(v,v).$$
-Since $u$ is a minimizer, $g'(0)=0$, which shows that $a(u,v)-\ell(v)=0$, which shows that $u$ satisfies the weak form. \hfill \qed
+Since $u$ is a minimizer, $g'(0)=0$, which shows that $a(u,v)-\ell(v)=0$, so $u$ satisfies the weak form. \hfill \qed
 \end{frame}
 
 
@@ -674,16 +678,19 @@ if and only if it is a minimizer of the \alert{energy functional} $J:H_0^1(\Omeg
 \end{corollary}
 
 \begin{itemize}
-\item in the loaded elastic membrane application of the Poisson equation, $J(v)$ is the sum of the elastic potential energy ($\frac{1}{2} \int_\Omega |\grad v|^2\,dx$) and the gravitational potential energy ($- \int_\Omega f v\,dx$) associated to the load $f$
+\item again, we are \emph{not} (here) asserting existence of $u$
+\item in the loaded elastic membrane application of the Poisson equation, $J(v)$ is the sum of the elastic ($\frac{1}{2} \int_\Omega |\grad v|^2\,dx$) and the gravitational/load ($- \int_\Omega f v\,dx$) potential energy
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{minimization route to well-posedness}
 
+{\footnotesize
 \begin{itemize}
 \item on a Hilbert space, if the bilinear form satisfies certain inequalities, then the minimizer exists and is unique
 \end{itemize}
+}
 
 \begin{theorem}[existence of a minimizer]
 Let $H$ be a Hilbert space.  Suppose $a:H\times H\to \RR$ is a symmetric bilinear function.  Assume it is \alert{\emph{coercive}} in the sense that there is $\alpha>0$ so that
@@ -694,55 +701,70 @@ Suppose $\ell\in H'$.  Then there exists $u\in H$ which is the unique minimizer 
 	$$u \quad \stackrel{\min}{\leftarrow} \quad J(v) = \frac{1}{2} a(v,v) - \ell(v).$$
 \end{theorem}
 
+{\footnotesize
 \begin{itemize}
 \item coercivity is also called (uniform) \alert{\emph{ellipticity}}
+\item Braess (2007) \emph{Finite Elements}, calls this is a Lax-Milgram theorem.  I am not sure if that is right or wrong historically, but the usual Lax-Milgram theorem is \emph{not} about minimization.
 \end{itemize}
+}
 \end{frame}
 
 
 \begin{frame}{proof of the minimizer-existence theorem 1}
 
-\emph{Proof.}  First, by coercivity and the definition of the $H'$ norm,
-    $$J(v) \ge \frac{\alpha}{2} \|v\|^2 - \|\ell\|\|v\| = \frac{1}{2\alpha} \left(\alpha \|v\| - \|\ell\|\right)^2 - \frac{\|\ell\|^2}{2\alpha} \ge - \frac{\|\ell\|^2}{2\alpha}.$$
+\emph{Proof.}  By coercivity and the definition of the $H'$ norm,
+\begin{align*}
+J(v) &= \frac{1}{2} a(v,v) - \ell(v) \ge \frac{\alpha}{2} \|v\|_H^2 - \|\ell\|_{H'} \|v\|_H \\
+&= \frac{1}{2\alpha} \left(\alpha \|v\|_H - \|\ell\|_{H'}\right)^2 - \frac{\|\ell\|_{H'}^2}{2\alpha} \\
+&\ge - \frac{\|\ell\|_{H'}^2}{2\alpha}.
+\end{align*}
 This shows $J$ is bounded below.  Thus
 	$$\mu = \inf \left\{J(v)\,:\,v\in V\right\}$$
-exists as a real number.  We seek to show that there is a $u\in V$ so that $J(u)=\mu$, namely that a minimizer achieves the infimum.
+exists as a real number.
 
 \medskip
-Suppose $(v_n)$ is a sequence in $V$ such that $J(v_n) \to \mu$, that is, it is a minimizing sequence.  Then\footnote{We used $J\left(\frac{v_n+v_m}{2}\right)\ge \mu$ in the last step.  This argument generalizes to convex $C\subset H$.}
-\begin{align*}
-\alpha \|v_n-v_m\|^2 &\le a(v_n-v_m,v_n-v_m) \\
-    &= 2 a(v_n,v_n) + 2 a(v_m,v_m) - a(v_n+v_m,v_n+v_m) \\
-    &= 4 J(v_n) + 4 J(v_m) - 8 J\left(\frac{v_n+v_m}{2}\right) \\
-    &\le 4 J(v_n) + 4 J(v_m) - 8 \mu.
-\end{align*}
+We will show that there is a $u\in V$ so that $J(u)=\mu$, namely that a minimizer achieves the infimum.
 \end{frame}
 
 
 \begin{frame}{proof of the minimizer-existence theorem 2}
 
-\emph{Proof cont.}  But since $J(v_n) \to \mu$ and $J(v_m) \to \mu$, this inequality shows $\|v_n - v_m\|\to 0$, so $(v_n)$ is Cauchy.  Since $H$ is complete,\footnote{Here the argument would need $C\subset H$ to be closed, in addition to convex.} let $u=\lim_{n\to\infty} v_n$.  The continuity of $J$ at $u$, which follows from the continuity of $a$ and $\ell$, now shows
+\emph{Proof, cont.}
+
+\medskip
+Suppose $(v_n)$ is a sequence in $V$ such that $J(v_n) \to \mu$, that is, it is a minimizing sequence.  Then\footnote{We used $J\left(\frac{v_n+v_m}{2}\right)\ge \mu$ in the last step.  This argument generalizes to convex $C\subset H$.}
+\begin{align*}
+\alpha \|v_n-v_m\|_H^2 &\le a(v_n-v_m,v_n-v_m) \\
+    &= 2 a(v_n,v_n) + 2 a(v_m,v_m) - a(v_n+v_m,v_n+v_m) \phantom{\Big|} \\
+    &= 2 a(v_n,v_n) - 4\ell(v_n) + 2 a(v_m,v_m) - 4\ell(v_n) \\
+    &\qquad - 4 a\left(\frac{v_n+v_m}{2},\frac{v_n+v_m}{2}\right) + 8\ell\left(\frac{v_n+v_m}{2}\right) \\
+    &= 4 J(v_n) + 4 J(v_m) - 8 J\left(\frac{v_n+v_m}{2}\right) \\
+    &\le 4 J(v_n) + 4 J(v_m) - 8 \mu.
+\end{align*}
+But since $J(v_n) \searrow \mu$ and $J(v_m) \searrow \mu$, this inequality shows $\|v_n - v_m\|\to 0$, so $(v_n)$ is Cauchy.
+\end{frame}
+
+
+\begin{frame}{proof of the minimizer-existence theorem 3}
+
+\emph{Proof cont.}
+
+\medskip
+Since $H$ is complete,\footnote{Here the argument would need $C\subset H$ to be closed, in addition to convex.} $u=\lim_{n\to\infty} v_n \in H$ exists.  The continuity of $J$ at $u$, which follows from the continuity of $a$ and $\ell$, now shows
 	$$J(u) = J\left(\lim_{n\to\infty} v_n\right) = \lim_{n\to\infty} J(v_n) = \mu,$$
 so a minimizer exists.
 
 \medskip
-Now suppose that $u_1,u_2$ are both minimizers, so $J(u_i)=\mu$.  The calculation\footnote{Here we are seeing that $J$ is \emph{strictly} convex, thus the minimizer is unique.} on the previous slide applies with $v_n$ and $v_m$ replaced by $u_1$ and $u_2$, and now the right side simplifies to zero:
+Now suppose that $u_1,u_2$ are both minimizers, so $J(u_i)=\mu$.  The previous calculation\footnote{Here we are seeing that $J$ is \emph{strictly} convex, thus the minimizer is unique.} applied to $u_1$ and $u_2$ gives zero exactly:
     $$\alpha \|u_1-u_2\|^2 \le 4 J(u_1) + 4 J(u_2) - 8 \mu = 0.$$
-Thus $u_1=u_2$; the solution is unique. \hfill \qed
-
-\bigskip
-{\footnotesize
-\begin{itemize}
-\item My source for this material, D.~Braess (2007) \emph{Finite Elements}, calls this is a Lax-Milgram theorem.  That may be wrong historically.  I think Lax-Milgram is \emph{not} about minimization.
-\end{itemize}
-}
+Thus $u_1=u_2$, so the solution is unique. \hfill \qed
 \end{frame}
 
 
 \begin{frame}{well-posedness for the Poisson problem}
 
 \begin{itemize}
-\item again, my example: the homogeneous Dirichlet problem
+\item same example: homogeneous Dirichlet problem
 \end{itemize}
 
 \begin{corollary}
@@ -757,29 +779,46 @@ exists and is unique.
 
 \bigskip
 \begin{itemize}
-\item an alternative to our Riesz-Fr\'echet representation theorem argument
-\item this argument can be generalized to Banach spaces (not shown)
-\item a separate argument is needed to complete the definition of well-posedness, i.e.~continuity of $u$ with respect to changes in the data $f$
+\item this strategy works nearly the same for the Neumann problem for the Helmholtz equation (earlier)
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{understanding minimization in $\infty$-dimensions}
+
+\begin{itemize}
+\item minimization in $\infty$-dimensions is a big story, which we have only started
+\item historically called the \emph{direct approach} to the \alert{calculus of variations}
+\item for well-posedness, it is an alternative to a Riesz-Fr\'echet representation theorem argument
+    \begin{itemize}
+    \item[$\circ$] a separate argument is needed to complete the definition of well-posedness, i.e.~continuity of $u$ with respect to changes in the data $f$
+    \end{itemize}
+\item this can be generalized to Banach spaces (not shown)
+\item this can be generalized to minimization over closed convex sets (not shown, but see hints)
+    \begin{itemize}
+    \item[$\circ$] and even further to \alert{variational inequalities}
+    \end{itemize}
+\item it is an especially good approach for \alert{elliptic PDEs}, but it also works for other problems, including some time-dependent problems, under the name \alert{Euler-Lagrange equations} for action functionals
+\end{itemize}
+\end{frame}
 
 \section{lecture content in week 13}
 
 \begin{frame}{lecture content in week 13}
 
 \begin{itemize}
-\item most of this material is only from these slides
+\item this material is only from slides; see also the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12 slides}
 
 \begin{block}{to know from these slides:}
 \begin{itemize}
-\item x
-\end{itemize}
-\end{block}
-
-\begin{block}{to prove:}
-\begin{itemize}
-\item x
+\item solution to Dirichlet problem for Laplace's equation on the disk by Fourier series ($-\grad^2 u = 0$ on $D$, $u|_{\partial D}=g$)
+\item solution to homogeneous Dirichlet problem for Poisson equation on the disk by eigenfunction expansion ($-\grad^2 u = f$ on $D$, $u|_{\partial D}=0$)
+\item Hadamard's definition of well-posed problem
+\item example of well-posedness: invertible finite-dimensional linear systems ($A\bx=\bb$)
+\item Riesz representation theorem proof of well-posedness of homogeneous Dirichlet problem for Poisson equation on any domain
+\item why the Neumann problem \emph{fails uniqueness}, and that modified problems are well-posed
+\item characterization theorem relating an abstract quadratic optimization problem to the corresponding weak form
+\item existence and uniqueness for $J(v)=\frac{1}{2} a(v,v)-\ell(v)$ if the bilinear form is coercive and continuous
 \end{itemize}
 \end{block}
 
