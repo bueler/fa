@@ -93,7 +93,7 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 25 March 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 30 March 2026; {\color{red} version 2}}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 7}}
@@ -127,11 +127,11 @@
 
 \medskip \noindent Suppose $\Omega=(a,b)$ is a bounded open interval, and let $a=t_0<t_1<\dots<t_n=b$ be a mesh on a closed interval $[a,b]$.  As in the slides, the $P_1$ finite element space is defined as the set of functions which are continuous on $[a,b]$, and which are piecewise linear on each cell (subinterval) $[t_{k-1},t_k]$.  Show that $P_1 \subset H^1(\Omega)$.
 
-\prob{P19} \emph{Here is another case using the weak derivative concept in 1D.  Note the key facts below that $s$ and $s'$ are \emph{continuous} on $[a,b]$.  However, generally $s''$ is not continuous, or even defined at all points in $[a,b]$.}
+\bigskip
 
-\medskip \noindent Suppose $a=t_0<t_1<\dots<t_n=b$ is a mesh on a closed interval $[a,b]\subset \RR^1$, and consider values $y_0,y_1,\dots,y_n\in\RR^1$.  An interpolating \emph{cubic spline} is a function $s\in C^1([a,b])$ such that $s(x)$ on each subinterval is a cubic polynomial,
-    $$s(x)=a_k+b_k (x-x_{k-1}) + c_k (x-x_{k-1})^2 + d_k (x-x_{k-1})^3 \quad \text{ on } [t_{k-1},t_k],$$
-for $k=1,\dots,n$, and so that $s(t_k) = y_k$, for $k=0,1,\dots,n$.  It is a fact that for the data $(t_k,y_k)$ there is a unique function $s(x)$ with these properties.  (\emph{You do \emph{not} need to prove this.})  Give a formula for the weak second derivative $s''$, on $[a,b]$, and \underline{show} that it satisfies the definition of a weak second derivative.  Approximately sketch the spline $s(x)$ and its second derivative $s''(x)$ in a simple case, for instance with $n=3$.
+\noindent {\color{red} \textbf{P19.} \, \emph{This problem is removed.}}
+
+\vspace{-3mm}
 
 \prob{P20}  Recall that the norm in $H^k(-\pi,\pi)$ satisfies $\ds (\|f\|_{H^k})^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx$.  Here $f^{(\ell)}$ denotes the weak derivative of order $\ell$.
 
