@@ -93,7 +93,7 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 30 March 2026; {\color{red} version 2}}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 1 April 2026; {\color{red} version 3}}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 7}}
@@ -131,17 +131,17 @@
 
 \noindent {\color{red} \textbf{P19.} \, \emph{This problem is removed.}}
 
-\vspace{-3mm}
 
-\prob{P20}  Recall that the norm in $H^k(-\pi,\pi)$ satisfies $\ds (\|f\|_{H^k})^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx$.  Here $f^{(\ell)}$ denotes the weak derivative of order $\ell$.
+\prob{P20}  {\color{red} \emph{This problem has revisions.}}
 
-\epart{a}  Suppose $f\in H^1(-\pi,\pi)$.  Using the formulas for Fourier series,\footnote{See ``recall Fourier series in $L^2(-\pi,\pi)$'' in the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} slides.} prove the derivative formula
+\medskip \noindent Recall that the norm in $H^k(-\pi,\pi)$ satisfies $\ds (\|f\|_{H^k})^2 = \sum_{\ell=0}^k \int_{-\pi}^\pi |f^{(\ell)}(x)|^2\,dx$.  Here $f^{(\ell)}$ denotes the weak derivative of order $\ell$.
+
+\epart{a}  Suppose $f\in H^1(-\pi,\pi)$ satisfies $f(-\pi)=f(\pi)$.  Using the formulas for Fourier series,\footnote{See ``recall Fourier series in $L^2(-\pi,\pi)$'' in the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} slides.} prove the derivative formula
 	$$f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n\in\ZZ} i n c_n e^{inx},$$
 with convergence in $L^2$, where $c_n$ are the Fourier coefficients of $f$.
 
-\epart{b}  Show that
+\epart{b}  We say $f\in H^k(S^1)$, where $S^1$ is the unit circle, if $f\in H^k(-\pi,\pi)$ and if $f^{(\ell)}(-\pi)=f^{(\ell)}(\pi)$ for all $0\le \ell < k$.  Show that if $f\in H^k(S^1)$ then
 	$$\|f\|_{H^k}^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2.$$
-(\emph{There is no need to justify derivative formulas, beyond what you did in part} \textbf{(a)}.)
 
 \prob{P21}  \emph{This example asks you to do the details of an example shown in the slides.  It shows that $H^1$ contains discontinuous functions for planar domains.  To say it more precisely, there are equivalence classes in $H^1$ which have no continuous representative.}
 
