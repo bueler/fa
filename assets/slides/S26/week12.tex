@@ -96,7 +96,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 \title[Poisson equation and Sobolev spaces]{Poisson equation and Sobolev spaces}
 
-\subtitle{calculations for week 12}
+\subtitle{calculations for week 12 \quad (\emph{version 2})}
 
 \author{Ed Bueler}
 
@@ -132,7 +132,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
     \item[$\circ$] assume $d\in\{1,2,3\}$ \dots I will draw pictures for $d=2$
     \end{itemize}
 \item assume the boundary of $\Omega$ is not too crazy (more below)
-\item assume $f\in L^2(\Omega)$ is (square-)integrable
+\item assume $f\in L^2(\Omega)$, with real values, is (square-)integrable
 
 \begin{block}{Poisson equation}  find $u=u(x)$ so that
    $$- \grad^2 u = f \qquad \text{ on } \Omega$$
@@ -171,15 +171,20 @@ d=3: && \grad^2 u &= u_{xx}+u_{yy}+u_{zz}
 \begin{frame}{tool: divergence theorem}
 
 \begin{itemize}
-\item $\grad^2=\Div \grad$ usually appears in models because a flux is proportional to a gradient, and then a divergence connects interior behavior to a boundary integral of the flux
+\item $\grad^2=\Div \grad$ usually appears in models because
+\begin{enumerate}
+\item a flux is proportional to a gradient, and
+\item a divergence connects the interior behavior to a boundary integral of the flux
+\end{enumerate}
+\item \dots examples to come
 \item we will need the divergence theorem from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}:
    $$\int_\Omega \Div \bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds,$$
 
    \begin{itemize}
    \item[$\circ$] recall that this theorem applies to $\Omega\subset \RR^d$ if $\partial\Omega$ is Lipschitz or $C^1$
    \end{itemize}
-\item when using this, $\bV$ will be the gradient of a scalar function
-\item recall the boundary integral is the total flux of $\bV$ outward through the boundary
+\item when using this, $\bV$ will usually be the gradient of a scalar function
+\item recall the boundary integral $\int_{\partial\Omega} \bV\cdot \bn\,ds$ is the total flux of $\bV$ outward through the boundary
 \end{itemize}
 \end{frame}
 
@@ -197,7 +202,7 @@ a solution of this $f=0$ equation is called \emph{harmonic}
 \end{definition}
 
 \item the set of harmonic functions on $\Omega$ is an $\infty$-dimensional vector space of smooth functions:
-    $$\left\{w\,:\,\grad^2 w= 0\right\} \subset C^\infty(\Omega)$$
+    $$\mathcal{H}(\Omega) = \left\{w\,:\,\grad^2 w= 0\right\} \subset C^\infty(\Omega)$$
 \item complex analysis is, essentially, the study of this space
 \end{itemize}
 \end{frame}
@@ -212,7 +217,7 @@ a solution of this $f=0$ equation is called \emph{harmonic}
 \end{itemize}
 
 \begin{block}{Dirichlet problem for the Poisson equation}
-for $f\in L^2(\Omega)$ and $g_D\in L^2(\partial\Omega)$, find $u:\Omega\to \RR$ so that
+for $f\in L^2(\Omega)$ and $g_D\in C^1(\partial\Omega)$, find $u:\Omega\to \RR$ so that
 \begin{align*}
 - \grad^2 u &= f \quad \text{ on } \Omega \\
 u &= g_D \quad \text{ on } \partial \Omega
@@ -280,7 +285,8 @@ where $u$ is the temperature, $\bq$ is the heat flux, and $k>0$ is the conductiv
 \item then the vertical displacement satisfies Poisson's equation
     $$- \kappa \grad^2 u = f \qquad \text{ within } \Omega$$
 subject to $u=g$ along $\partial \Omega$
-\item the standard derivation starts from a the total elastic energy of the membrane, in which case the Poisson equation is the condition that the derivative is zero at the minimizer
+\item the standard derivation minimizes the total elastic energy of the membrane,
+\item the Poisson equation is saying that the derivative is zero at the minimizer
 \end{itemize}
 \end{block}
 \end{frame}
@@ -319,7 +325,7 @@ subject to $u=g$ along $\partial \Omega$
 \item multiply the Poisson equation by $v$ and integrate over $\Omega$:
     $$- \int_\Omega \Div(\grad u) v\,dx \stackrel{\ast}{=} \int_\Omega f v\,dx$$
 \item apply the integration by parts rule from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}:
-    $$\int_\Omega \phi\,\Div \bV\,dm = \int_{\partial\Omega} \phi\,\bV\cdot \bn\,ds - \int_\Omega \grad \phi\cdot \bV\,dm$$
+    $$\int_\Omega \phi\,\Div \bV\,dx = \int_{\partial\Omega} \phi\,\bV\cdot \bn\,ds - \int_\Omega \grad \phi\cdot \bV\,dx$$
 
    \begin{itemize}
    \item[$\circ$] we'll apply this on the left side of $\ast$, with $\phi=v$ and $\bV=\grad u$
@@ -379,7 +385,7 @@ Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, an
 \item Find a solution \alert{$u\in H_0^1(\Omega)$} so that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \hspace{20mm} \text{(homogeneous Dirichlet)}$$
 for all test functions \alert{$v\in H_0^1(\Omega)$}.
-\item Find a solution \alert{$u\in H^1(\Omega)$} so that
+\item For $g_N\in L^2(\partial \Omega)$, find a solution \alert{$u\in H^1(\Omega)$} so that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds \hspace{10mm} \text{(general Neumann)}$$
 for all test functions \alert{$v\in H^1(\Omega)$}.
 \end{enumerate}
@@ -395,7 +401,7 @@ for all test functions \alert{$v\in H^1(\Omega)$}.
 \begin{frame}{what is the ``weak formulation''?}
 
 \begin{block}{observation 1.}
-The strong form is pointwise: $(-\grad^2 u)(x) = f(x)$ holds at every $x\in \Omega$.  By contrast, \alert{the weak form is about the average using a test function}.  That is, the weak form holds on the support of $v$.
+The strong form is pointwise: $(-\grad^2 u)(x) = f(x)$ holds at every $x\in \Omega$.  By contrast, \alert{the weak form is about averages using test functions}.  That is, the weak form holds on the supports of the $v$ functions.
 \end{block}
 
 \begin{itemize}
@@ -418,17 +424,17 @@ The strong form refers to the second derivatives, the Laplacian, of the unknown 
 \item Recall the strong form of the general Dirichlet problem:
    $$- \grad^2 u = f \quad \text{ on } \Omega, \quad \text{ and }
 u = g_D \quad \text{ on } \partial \Omega$$
-\item To build the general Dirichlet weak form we substitute $u+u_D$ into the homogeneous weak form.
+\item For this weak form we substitute $u=\tilde u+u_D$ into the homogeneous form.
 \end{itemize}
 
 \begin{block}{weak form general Dirichlet problem}
-Let $u_D \in H^1(\Omega) \cap C(\bar\Omega)$ be any function, \emph{defined on the whole domain} $\Omega$, so that $u_D=g_D$ along $\partial\Omega$.  Find a solution $u\in H_0^1(\Omega)$ so that
-    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx - \int_\Omega \grad u_D \cdot \grad v\,dx$$
+Let $u_D \in H^1(\Omega) \cap C(\bar\Omega)$ be any function, \emph{defined on the whole domain} $\Omega$, so that $u_D=g_D$ along $\partial\Omega$.  Find a solution $\tilde u\in H_0^1(\Omega)$ so that
+    $$\int_\Omega \grad \tilde u \cdot \grad v\,dx = \int_\Omega f v\,dx - \int_\Omega \grad u_D \cdot \grad v\,dx$$
 for all test functions $v\in H_0^1(\Omega)$.
 \end{block}
 
 \begin{itemize}
-\item The new right-hand side is data.
+\item The new right-hand side is data.  The solution is $u=\tilde u+u_D \in H^1(\Omega)$.
 \end{itemize}
 \end{frame}
 
@@ -534,7 +540,7 @@ see these codes at \href{https://github.com/bueler/fa/tree/main/assets/slides/S2
    \begin{itemize}
    \item[$\circ$] if $\Omega$ is bounded then $L^2(\Omega) \subset L^1(\Omega)$
    \end{itemize}
-\item recall our multi-index derivative notation $D^\alpha \varphi$, from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}, and the main definition:
+\item recall our multi-index derivative notation ``$D^\alpha \varphi$'', from the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10\&11 slides}, and this major definition:
 \end{itemize}
 
 \begin{definition}[weak derivative]
@@ -612,11 +618,11 @@ and norm: \quad $\|f\|_{H^k} = \sqrt{\ip{f}{f}_{H^k}}$
     \item[$\circ$] $L^2(a,b) \subset L^1(a,b)$, since $m((a,b))<\infty$, and
     \item[$\circ$] $\ds f' \in L^1(a,b) \quad \implies \quad f \in AC(a,b) \quad \text{and}  \quad f(x) = f(a) + \int_a^x f'(t)\,dt$
     \end{itemize}
-\item most importantly:
+\item so, most importantly:
 	$$\alert{H^1(a,b) \subset C^0([a,b])}$$
 
     \begin{itemize}
-    \item[$\circ$] and $C^1([a,b]) \subsetneq H^1(a,b) \subsetneq C^0([a,b]) \subsetneq L^2(a,b)$
+    \item[$\circ$] in fact: \quad $C^1([a,b]) \subsetneq H^1(a,b) \subsetneq C^0([a,b]) \subsetneq L^2(a,b)$
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -625,93 +631,141 @@ and norm: \quad $\|f\|_{H^k} = \sqrt{\ip{f}{f}_{H^k}}$
 \begin{frame}{$H^1$ on an interval, via Fourier series}
 
 \begin{block}{{\small recall Fourier series in $L^2(-\pi,\pi)$}}
-{\footnotesize
-using ON sequence $\frac{1}{\sqrt{2\pi}} e^{inx}$, $n\in\ZZ$, we have convergence in the $\|\cdot\|_2$ norm:
-	$$f(x) = \frac{1}{\sqrt{2\pi}}\sum_{n=-\infty}^\infty c_n e^{inx} \quad \text{with} \quad c_n = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx,$$
-Parseval's equality: \quad $\ds \|f\|_{L^2}^2 = \sum_{n=-\infty}^\infty |c_n|^2$
+\begin{itemize}
+{\small
+\item using the ON sequence $\frac{1}{\sqrt{2\pi}} e^{inx}$, $n\in\ZZ$, we have:
+ 	$$f(x) = \frac{1}{\sqrt{2\pi}}\sum_{n=-\infty}^\infty c_n e^{inx} \quad \text{with} \quad c_n = \frac{1}{\sqrt{2\pi}} \int_{-\pi}^\pi f(x) e^{-inx}\,dx,$$
+\item convergence is in the $\|\cdot\|_2$ norm
+\item we have Parseval's equality: \quad $\ds \|f\|_{L^2}^2 = \sum_{n=-\infty}^\infty |c_n|^2$
 }
+
+\end{itemize}
 \end{block}
 
 \begin{itemize}
 {\small
-\item but now consider the derivative formula: \quad $\ds f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n=-\infty}^\infty i n c_n e^{inx}$
-\item \dots and we can norm the derivative (\emph{use orthonormality}):
-{\footnotesize
+\item now consider the derivative formula: \quad $\ds f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n=-\infty}^\infty i n c_n e^{inx}$
+\item \dots and this norm of the derivative (\emph{use orthonormality}):
 \begin{align*}
-\int_{-\pi}^\pi |f'(x)|^2\,dx &= \sum_{k,n} \frac{1}{2\pi} \int_{-\pi}^\pi (i n c_n\, e^{inx})(\overline{i k c_k\, e^{ikx}})\,dx = \sum_{k,n} n k c_n c_k \delta_{kn} = \sum_{n=-\infty}^\infty n^2 |c_n|^2
+\int_{-\pi}^\pi |f'(x)|^2\,dx &= \sum_{k,n} \frac{1}{2\pi} \int_{-\pi}^\pi (i n c_n\, e^{inx})(\overline{i k c_k\, e^{ikx}})\,dx = \sum_{k,n} n k c_n c_k \delta_{kn} \\
+&= \sum_{n=-\infty}^\infty n^2 |c_n|^2
 \end{align*}
 }
-}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{$H^1$ on an interval, via Fourier series}
+
+\begin{itemize}
+\item on \href{https://bueler.github.io/fa/assets/homework/S26/A7.pdf}{Assignment 7} you show that if $f(-\pi)=f(\pi)$ and $f\in H^1(-\pi,\pi)$ then
+
+$$f'(x) = \frac{1}{\sqrt{2\pi}} \sum_{n=-\infty}^\infty i n c_n e^{inx}$$
+
+\item also, one can show that if $f\in L^2(-\pi,\pi)$ and $\sum_{n=-\infty}^\infty n^2 |c_n|^2 < \infty$ then $f(-\pi)=f(\pi)$
+\item the summability condition implies a continuous periodic extension to $\RR$
 \end{itemize}
 
-{\small
-\begin{lemma}[$H^1(-\pi,\pi)$ via Fourier series]
-    $$H^1(-\pi,\pi) = \left\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n=-\infty}^\infty n^2 |c_n|^2 < \infty\right\}$$
-\end{lemma}
-}
+\medskip
+picture:
+
+\vspace{10mm}
+
+\begin{definition}[$H^1$ via Fourier series]
+    $$H_{per}^1(-\pi,\pi) = \left\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n=-\infty}^\infty n^2 |c_n|^2 < \infty\right\}$$
+\end{definition}
 \end{frame}
 
 
 \begin{frame}{$H^k$ on an interval, via Fourier series}
 
 \begin{itemize}
-\item the same logic applies for higher derivatives, e.g.:
+\item the same logic applies for higher derivatives, for example:
 {\small
 \begin{align*}
-\int_{-\pi}^\pi |f''|^2 &= \sum_{k,n} \frac{1}{2\pi} \int_{-\pi}^\pi ((i n)^2 c_n\, e^{inx})(\overline{(i k)^2 c_k\, e^{ikx}})\,dx = \sum_{n\in\ZZ} n^4 |c_n|^2
+\int_{-\pi}^\pi |f''|^2\,dx &= \sum_{k,n} \frac{1}{2\pi} \int_{-\pi}^\pi ((i n)^2 c_n\, e^{inx})(\overline{(i k)^2 c_k\, e^{ikx}})\,dx = \sum_{n\in\ZZ} n^4 |c_n|^2
 \end{align*}
 }
 
 \vspace{-2mm}
-\begin{lemma}[$H^k(-\pi,\pi)$ via Fourier series]
-    $$H^k(-\pi,\pi) = \Big\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n\in\ZZ} n^{2k} |c_n|^2 < \infty\Big\}$$
-\end{lemma}
+\begin{definition}[$H^k$ via Fourier series]
+    $$H^k_{per}(-\pi,\pi) = \Big\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n\in\ZZ} n^{2k} |c_n|^2 < \infty\Big\}$$
+\end{definition}
 
-\item with norm formula, by Parseval:
+\item there is a norm formula, by Parseval {\small (P20 on \href{https://bueler.github.io/fa/assets/homework/S26/A7.pdf}{Assignment 7})}:
 {\small
 \begin{align*}
-\|f\|_{H^k}^2 &= \int_{-\pi}^\pi |f|^2 + \dots + \int_{-\pi}^\pi |f^{(k)}|^2 \\
+\|f\|_{H^k}^2 &= \int_{-\pi}^\pi |f|^2\,dx + \dots + \int_{-\pi}^\pi |f^{(k)}|^2\,dx \\
 &= \sum_{n\in\ZZ} (1+ n^2 + \dots + n^{2k}) |c_n|^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2
 \end{align*}
 }
-\item we could make the lemma a definition, and \alert{not need weak derivatives}
-\item also: \alert{$k$ does not need to be an integer}, but we will not pursue this
+\item $H^k_{per}(-\pi,\pi)$ is often written $H^k(S^1)$
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}{$H^k$ on an interval, via Fourier series}
+
+\begin{definition}[$H^k$ via Fourier series]
+    $$H^k(S^1) = \Big\{f\in L^2(-\pi,\pi) \,\Big|\, \sum_{n\in\ZZ} n^{2k} |c_n|^2 < \infty\Big\}$$
+\end{definition}
+
+\begin{itemize}
+\item here you do \alert{not} need weak derivatives to define Sobolev spaces
+\item \alert{$k$ does not need to be an integer}, but we will not pursue this
+\item \alert{you can extend this definition to tori}, but we will not pursue this
+\item one needs to prove that the definition is the same (below)
+\item remember that these proofs use weak derivatives
+\end{itemize}
+
+\begin{lemma}
+   $$H^k(S^1) = \Big\{f \in H^k(-\pi,\pi)\, \Big|\, f^{(\ell)}(-\pi)=f^{(\ell)}(\pi) \text{ for } 0\le \ell < k \Big\}$$
+and for $f\in H^k(S^1)$ we have $\ds \|f\|_{H^k}^2 = \sum_{n\in\ZZ} \left(\sum_{j=0}^k n^{2j}\right) |c_n|^2$
+\end{lemma}
 \end{frame}
 
 
 \begin{frame}{are functions in $H^1(\Omega)$ continuous for $\Omega\subset\RR^2$?}
 
 \begin{itemize}
-\item we have $H^1(a,b) \subset C^0([a,b])$, but \alert{this inclusion is dimension-dependent} 
-\item in examples below,
-    $$D = \{x\in\RR^2\,:\,|x|^2<1\}$$
-is the unit disc, and $r=|x|$
-\item the first two examples are expected
-\end{itemize}
+\item we have $H^1(a,b) \subset C^0([a,b])$, for a one-dimensional interval
 
-\begin{block}{a continuous function in $H^1(D)$ \dots \emph{expected}}
-{\small
-$\alert{f(x)= \sqrt{r}}$: \, $f\in C^0(D)\setminus C^1(D)$, and with polar coordinates $dm=r\,dr\,d\theta$,
-\begin{align*}
-\|f\|_{H^1}^2 &= \int_D |f|^2 + |\grad f|^2 = 2\pi \int_0^1 \Big[(\sqrt{r})^2 + \left(\frac{-1}{2\sqrt{r}}\right)^2\Big]\,r\, dr \\
-&= 2\pi \int_0^1 \big(r^2 + \frac{1}{4}\big)\,dr = \frac{7\pi}{6} < \infty
-\end{align*}
-}
+\begin{block}{WARNING}
+\alert{this inclusion is dimension-dependent}
 \end{block}
+
+\item the examples below use the unit disc $D$ and the radial distance $r=|x|$:
+    $$D = \{x\in\RR^2\,:\,|x|^2<1\}$$
+\item the next two examples are expected, but the one after that is not (?)
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}{are functions in $H^1(\Omega)$ continuous for $\Omega\subset\RR^2$?}
 
-\begin{block}{a discontinuous function not in $H^1(D)$ \dots \emph{expected}}
+\begin{block}{a continuous function in $H^1(D)$ \dots \emph{expected}}
 {\small
-$\alert{g(x)= \ln(r)}$: \, $g\notin C^0(D)$, and
+$\alert{f(x)= \sqrt{r}}$\,: \, $f\in C^0(D)\setminus C^1(D)$, and with polar coordinates $dm=r\,dr\,d\theta$,
+\begin{align*}
+\|f\|_{H^1}^2 &= \int_D |f|^2 + |\grad f|^2\,dm = 2\pi \int_0^1 \Big[(\sqrt{r})^2 + \left(\frac{-1}{2\sqrt{r}}\right)^2\Big]\,r\, dr \\
+&= 2\pi \int_0^1 \big(r^2 + \frac{1}{4}\big)\,dr = \frac{7\pi}{6} < \infty
+\end{align*}
+}
+\end{block}
+
+\begin{block}{a discontinuous function not in $H^1(D)$ \dots \emph{also expected}}
+{\small
+$\alert{g(x)= \ln(r)}$\,: \, $g\notin C^0(D)$, and
 \begin{align*}
 \|g\|_{H^1}^2 &= 2\pi \int_0^1 \Big[(\ln(r))^2 + \left(\frac{1}{r}\right)^2\Big]\,r\, dr = (\text{finite}) + 2\pi \int_0^1 \frac{1}{r}\, dr = +\infty
 \end{align*}
 }
 \end{block}
+
+\medskip
+pictures of $f(r),g(r)$:
+
+\vspace{20mm}
 \end{frame}
 
 
@@ -725,7 +779,7 @@ $\alert{g(x)= \ln(r)}$: \, $g\notin C^0(D)$, and
 
 \begin{block}{a discontinuous function \alert{which is in} $H^1(D)$ \dots \emph{unexpected!}}
 {\small
-$\alert{p(x)}$: \, $p\notin C^0(D)$, and
+$\alert{p(x)}$\,: \, $p\notin C^0(D)$, and
 \begin{align*}
 \|p\|_{H^1}^2 &= (\text{finite}) + 2\pi \int_0^{1/2} \left(\frac{-1}{r|\ln(r)|}\right)^2\, r\,dr = (\text{finite}) + 2\pi \int_0^{1/2} \frac{1}{r(\ln(r))^2} \,dr \\
 &\stackrel{u=\ln(r)}{=} (\text{finite}) + 2\pi \int_{-\infty}^{-\ln(2)} \frac{du}{u^2} = (\text{finite}) + (\text{finite}) < \infty
@@ -736,29 +790,15 @@ $\alert{p(x)}$: \, $p\notin C^0(D)$, and
 \begin{itemize}
 \item \alert{$p\in H^1(D)$}
     \begin{itemize}
-    \item[$\circ$] computing exact values of $L^2$ and $H^1$ norms for $g$ and $p$ is on Assignment 7
+    \item[$\circ$] computing $L^2$ and $H^1$ norms for $g$ and $p$ is on \href{https://bueler.github.io/fa/assets/homework/S26/A7.pdf}{Assignment 7}
     \end{itemize}
 \item generally, \alert{$H^1(\Omega) \nsubseteq C^0(\Omega)$ when $\Omega \subset \RR^2$}
     \begin{itemize}
     \item[$\circ$] but $H^2(\Omega) \subset C^0(\Omega)$ does hold
     \end{itemize}
-\item generally \emph{Sobolev's} (and related) \emph{inequalities} show which $H^k(\Omega)$, $\Omega\subset\RR^d$, will contain continuous representatives
+\item generally, \emph{Sobolev's inequalities} (and related) show which $H^k(\Omega)$, $\Omega\subset\RR^d$, will contain continuous representatives
 \end{itemize}
 \end{frame}
-
-%FIXME follow Braess II.1 presentation (pages 28-31) re completion of $S=H^k(\Omega)\cap C^\infty(\Omega)$ in $H^k$ norm
-%\begin{frame}{a general construction of Banach spaces}
-%
-%\begin{lemma}[\footnotesize proof at \href{https://proofwiki.org/wiki/Completion_Theorem_(Metric_Space)}{proofwiki.org/wiki/Completion\_Theorem\_(Metric\_Space)}]
-%Suppose $(V,\|\cdot\|)$ is a normed vector space, and recall that $(f_n)$ is \emph{Cauchy} if for all $\eps>0$ there exists $N$ so that if $j,k\ge N$ then $\|f_j-f_k\|<\eps$, that is, $\|f_j-f_k\|\to 0$.  Let
-%	$$W = \left\{[(f_n)]\,:\, f_n \in V \text{ and } (f_n)\sim(g_n) \text{ if } \|f_n-g_n\| \to 0\right\}$$
-%be the set of equivalence classes of Cauchy sequences under $\sim$. Then $W$ can be given the structure of a normed vector space, $(V,\|\cdot\|)$, in which case $W$ is complete (a Banach space), and $V\subset W$ (in a canonical manner).
-%\end{lemma}
-%
-%\begin{itemize}
-%\item the construction can be done for metric spaces 
-%\end{itemize}
-%\end{frame}
 
 
 \begin{frame}{$H_0^1(\Omega)$ is the closed subspace with zero boundary values}
@@ -781,29 +821,42 @@ $\alert{p(x)}$: \, $p\notin C^0(D)$, and
 \end{frame}
 
 
-\begin{frame}{\emph{fact:} \quad $\|\grad f\|_{L^2}$ is equivalent to $\|f\|_{H^1}$ in $H_0^1(\Omega)$}
+\begin{frame}{Poincar\'e-Friedrichs inequality}
 
 \begin{itemize}
-\item once you have zero boundary values, then \alert{the only way for the function to get large is for the gradient to also be large}
+\item when you have zero boundary values, \alert{the only way for the function to get large is for the gradient to also be large}
+
+\begin{theorem}[Poincar\'e-Friedrichs inequality]
+Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, or an open set which is bounded in one direction.  There is $C>0$, depending on $\Omega$, so that
+	$$\|f\|_{L^2} \le C \|\grad f\|_{L^2} \quad \text{for all } f\in H_0^1(\Omega).$$
+\end{theorem}
+\end{itemize}
+
+\medskip
+picture:
+
+\vspace{30mm}
+\end{frame}
+
+
+\begin{frame}{a simpler norm formula on $H_0^1(\Omega)$}
 
 \begin{theorem}[Poincar\'e-Friedrichs inequality]
 Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary, or an open set which is bounded in one direction.  There is $C>0$, depending on $\Omega$, so that
 	$$\|f\|_{L^2} \le C \|\grad f\|_{L^2} \quad \text{for all } f\in H_0^1(\Omega).$$
 \end{theorem}
 
-\item main consequence: the simpler formula
+\begin{itemize}
+\item the main consequence of this inequality is that the simpler formula
 	$$|f|_{H^1} = \|\grad f\|_{L^2} = \left(\int_\Omega |\grad f|^2\right)^{1/2}$$
 is equivalent to the full norm $\|f\|_{H^1} = \left(\int_\Omega |f|^2 + \int_\Omega |\grad f|^2\right)^{1/2}$ on $H_0^1(\Omega)$
+\item it is \emph{not} equivalent on the whole space $H^1(\Omega)$
+\item generally, $|f|_{H^1}$ is called the \emph{$H^1$ seminorm}
     \begin{itemize}
-    \item[$\circ$] it is \emph{not} equivalent on the whole space $H^1(\Omega)$
-    \end{itemize}
-\item $|f|_{H^1}$ is called the \emph{$H^1$ seminorm}
-    \begin{itemize}
-    \item[$\circ$] with the understanding that it is actually a norm on $H_0^1(\Omega)$
+    \item[$\circ$] \dots understanding that it is actually a norm on $H_0^1(\Omega)$
     \end{itemize}
 \end{itemize}
 \end{frame}
-
 
 \begin{frame}{Poisson equation Dirichlet problems: weak forms}
 
@@ -845,7 +898,7 @@ for all test functions $v\in H_0^1(\Omega)$.  The solution is $u=\tilde u + u_D 
 
 \begin{block}{propositions to know:}
 \begin{itemize}
-\item lemma: characterize $H^k(-\pi,\pi)$ using Fourier series coefficients
+\item lemma: characterize $H^k(S^1)$ using Fourier series coefficients
 \item theorem: Poincar\'e-Friedrichs inequality for $H_0^1(\Omega)$
 \end{itemize}
 \end{block}
