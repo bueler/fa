@@ -130,7 +130,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 }
 
 
-\section{recall: Poisson problem and its finite element (FE) approximation}
+\section{recall: Poisson problems and their finite element (FE) approximation}
 
 \begin{frame}{recall: the Sobolev spaces $H^1(\Omega)$ and $H_0^1(\Omega)$}
 
@@ -141,22 +141,34 @@ is a Hilbert space with inner product and norm:
 \end{definition}
 
 \begin{definition}
-    $$H_0^1(\Omega) = \overline{C_c^1(\Omega)},$$
-(closure is in $H^1$ norm, and $H_0^1(\Omega)$ is a closed subspace of $H^1(\Omega)$)
+    $$H_0^1(\Omega) = \overline{C_c^1(\Omega)}$$
 \end{definition}
+
+\begin{itemize}
+\item $H_0^1(\Omega)\subset H^1(\Omega)$ is a closed subspace
+\end{itemize}
 \end{frame}
 
 
-\begin{frame}{recall: the weak form of a Poisson problem}
+\begin{frame}{recall: the weak form of 2 PDE problems}
 
-\begin{block}{notation}
-   $$V=H_0^1(\Omega)$$
+\begin{block}{Poisson equation weak form (homogeneous Dirichlet conditions)}
+Let $V=H_0^1(\Omega)$.  Suppose $f\in L^2(\Omega)$ is given.  Find $u\in V$ so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \forall v\in V$$
 \end{block}
 
-\begin{block}{weak form of the Poisson equation (homogeneous Dirichlet)}
-Suppose $f\in L^2(\Omega)$ is given.  Find $u\in V$ so that
-    $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \text{ for all test functions } v\in V$$
+\begin{itemize}
+\item strong form: \, $-\grad^2 u = f$ \, with $u=0$ on $\partial \Omega$
+\end{itemize}
+
+\begin{block}{Helmholtz equation weak form (general Neumann conditions)}
+Let $V=H(\Omega)$.  Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ is given and $\alpha>0$.  Find $u\in V$ so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx + \alpha \int_\Omega u \cdot v\,dx = \int_\Omega f v\,dx + \int_{\partial \Omega} g_N v\,ds \quad \forall v\in V$$
 \end{block}
+
+\begin{itemize}
+\item strong form: \, $-\grad^2 u + \alpha u = f$ \, with $\grad u \cdot \bn = g_N$ on $\partial \Omega$
+\end{itemize}
 \end{frame}
 
 
@@ -166,27 +178,26 @@ Suppose $f\in L^2(\Omega)$ is given.  Find $u\in V$ so that
 \item suppose $\Omega \subset \RR^2$ is a polygon
 \item put a mesh $\mathcal{T}$ of triangles on $\Omega$
 \item denote nodes $x_i$ and triangles $T_k$
+\item $f(x,y)=a + bx + cy$ is called a
 
-\vspace{-15mm}
+\emph{linear polynomial} in two variables
+
+\vspace{-25mm}
 
 \hfill \input{figs/bigblob.tikz}
 
 \medskip
-\item $f(x,y)=a + bx + cy$ is a \emph{linear polynomial} in two variables
 
 \begin{definition}[the continuous $P_1$ finite element space over $\mathcal{T}$]
     $$P_1 = \left\{f \in C(\Omega)\,:\,f\big|_{T_k} \text{ is a linear polynomial}\right\}$$
 \end{definition}
-
-\item define the following \alert{finite-dimensional} subspace of $V$:
-	$$V_h = \left\{f \in P_1\,:\,f\big|_{\partial\Omega} = 0\right\} \subset V=H_0^1(\Omega)$$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{recall the basic idea of the finite element method}
+\begin{frame}{recall: basic idea of the finite element method}
 
-\begin{block}{weak form of the Poisson equation (homogeneous Dirichlet)}
+\begin{block}{Poisson equation weak form (homogeneous Dirichlet conditions)}
 Find $u\in V$ so that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \forall v\in V$$
 \end{block}
@@ -195,10 +206,16 @@ Find $u\in V$ so that
 \item FEM solves the \alert{same weak form}, but over a finite-dim'l subspace $V_h$
 \end{itemize}
 
-\begin{block}{an FEM for the Poisson equation (homogeneous Dirichlet)}
+\begin{block}{Poisson equation weak form (homogeneous Dirichlet conditions)}
 Find $u_h\in V_h$ so that
     $$\int_\Omega \grad u_h \cdot \grad v_h\,dx = \int_\Omega f v_h\,dx \quad \forall v_h\in V_h$$
 \end{block}
+
+\begin{itemize}
+\item for homogeneous Dirichlet conditions:
+   $$V_h = \left\{f \in P_1\,:\,f\big|_{\partial\Omega} = 0\right\} \subset V=H_0^1(\Omega)$$
+\item for general Neumann conditions: \, $V_h = P_1 \subset V=H^1(\Omega)$
+\end{itemize}
 \end{frame}
 
 
@@ -212,6 +229,58 @@ Find $u_h\in V_h$ so that
 
 
 \section{Cea's lemma: the FE approximation is the best}
+
+\begin{frame}{abstract bilinear notation}
+
+\begin{itemize}
+\item we write
+    $$a:V\times V\to \RR$$
+for the \alert{bilinear function} on the left side of the weak form
+\begin{align*}
+a(cu+dv,w) &= c\, a(u,w) + d\, a(v,w) \\
+a(u,cv+dw) &= c\, a(u,v) + d\, a(u,w)
+\end{align*}
+\item thus $a(u,v) \in \RR$ if $u,v\in V$
+\end{itemize}
+
+\begin{block}{examples: bilinear forms}
+\begin{itemize}
+\item Poisson equation: \, $\ds a(u,v) = \int_\Omega \grad u\cdot \grad v\,dx$
+\item Helmholtz equation: \, $\ds a(u,v) = \int_\Omega \grad u\cdot \grad v\,dx + \alpha \int_\Omega u v\,dx$
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{abstract linear notation}
+
+\begin{itemize}
+\item we write
+    $$\ell:V \to \RR$$
+for the \alert{linear function} on the right side of the weak form
+\begin{align*}
+\ell(cv+dw) &= c\, \ell(v) + d\, \ell(w)
+\end{align*}
+\item thus $\ell(v) \in \RR$ if $v\in V$
+\item in fact $\ell$ will be continuous: $\ell \in V'$ is in the dual space
+\end{itemize}
+
+\begin{block}{examples: linear right-hand sides}
+\begin{itemize}
+\item Poisson equation: \, $\ds \ell(v) = \int_\Omega f v\,dx$
+\item Helmholtz eqn w general Neumann: \, $\ds \ell(v) = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds$
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{xx}
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}{xx}
 
@@ -231,7 +300,7 @@ Find $u_h\in V_h$ so that
 \end{frame}
 
 
-\section{interpolation}
+\section{interpolation on 1D intervals and 2D triangles}
 
 \begin{frame}{xx}
 
