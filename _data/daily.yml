@@ -9,6 +9,8 @@ daily:
   slidesweek: week 13
 - day: Monday 6 April
   description: cont.
+  handout: worksheets/poissonish.pdf
+  handoutname: "worksheet: Exercises on Laplacian and Poisson equation"
   week: 13
 - day: Friday 3 April
   description: cont.
@@ -104,5 +106,3 @@ daily:
   description: "<b>calculation: integration is a linear functional</b>"
   slides: slides/S26/week1.pdf
   slidesweek: week 1
-  #handout: handouts/S26/foo.pdf
-  #handoutday: "handout: 'title'"

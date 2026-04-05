@@ -1,0 +1,111 @@
+\documentclass[11pt]{amsart}
+%prepared in AMSLaTeX, under LaTeX2e
+\addtolength{\oddsidemargin}{-1.2in} 
+\addtolength{\evensidemargin}{-1.2in}
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textwidth}{2.0in}
+\addtolength{\textheight}{1.5in}
+
+\renewcommand{\baselinestretch}{1.05}
+
+\usepackage{verbatim} % for "comment" environment
+
+\usepackage{palatino}
+
+\usepackage[final]{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{enumitem,xspace,fancyvrb}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{defn}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{problem}{Problem}
+\newtheorem*{remark}{Remark}
+
+\DefineVerbatimEnvironment{mVerb}{Verbatim}{numbersep=2mm,frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\footnotesize}
+
+% macros
+\usepackage{amssymb}
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bE}{\mathbf{E}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bJ}{\mathbf{J}}
+
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bx}{\mathbf{x}}
+
+\newcommand{\Div}{\ensuremath{\nabla\cdot}}
+\newcommand{\Curl}{\ensuremath{\nabla\times}}
+\newcommand{\eps}{\epsilon}
+\newcommand{\grad}{\nabla}
+\newcommand{\ip}[2]{\ensuremath{\left<#1,#2\right>}}
+\newcommand{\lam}{\lambda}
+\newcommand{\lap}{\triangle}
+
+\newcommand{\Null}{\operatorname{null}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\trace}{\operatorname{tr}}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\newcommand{\prob}[1]{\bigskip\noindent\textbf{#1.}\quad }
+\newcommand{\epart}[1]{\bigskip\noindent\textbf{(#1)}\quad }
+\newcommand{\ppart}[1]{\,\textbf{(#1)}\quad }
+
+\newcommand{\Matlab}{\textsc{Matlab}\xspace}
+
+\newcommand{\ds}{\displaystyle}
+
+\begin{document}
+\begin{center}
+  \large
+  \sc{Worksheet: Basic exercises on Laplacians and Poisson equation}
+  \normalsize
+\end{center}
+
+\bigskip
+\prob{1}  Let $f(x)=\sin(3x)$.
+
+\epart{a} Prove that $f\in H^1(-\pi,\pi)$ via the original definition.
+
+\vspace{30mm}
+
+\epart{b} Prove that $f\in H^1(S^1)=H_{per}^1(-\pi,\pi)$ via the Fourier series (summability-of-coefficients) definition.
+
+\vspace{60mm}
+
+\prob{2}  Let $f(x,y)=6y(x-x^2) + 2(y-y^3)$ be the data on the unit square $\Omega=(0,1)^2$.
+
+\epart{a} Show that $u(x,y)=(x-x^2)(y-y^3)$ solves the (strong form) of the homogeneous Dirichlet problem for the Poisson equation on $\Omega$: \quad $\ds -\grad^2 u = f, \quad u=0 \text{ on } \partial \Omega$.
+
+\vspace{70mm}
+
+\epart{b} Describe in a few words, if you can, how I must have come up with this example.
+
+\vfill
+
+\clearpage\newpage
+\prob{3}  Let $u(x,y)=\sin(\pi x) e^{\pi y}$ on the unit square $\Omega=(0,1)^2$.
+
+\epart{a} Compute the $H^1$ norm of $u$.
+
+\vspace{100mm}
+
+\epart{b} Show that $u$ solves the (strong form) of the Laplace equation on $\Omega$.
+
+\vspace{70mm}
+
+\epart{c} Describe a boundary value problem, on $\Omega$, which $u$ satisfies.
+
+\vfill
+
+\end{document}
