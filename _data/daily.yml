@@ -1,6 +1,9 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Monday 13 April
+  description: Midterm Quiz 2
+  week: 14
 - day: Friday 10 April
   description: cont.
 - day: Wednesday 8 April
