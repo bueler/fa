@@ -9,8 +9,8 @@ daily:
   slidesweek: week 13
 - day: Monday 6 April
   description: cont.
-  handout: worksheets/poissonish.pdf
-  handoutname: "worksheet: Exercises on Laplacian and Poisson equation"
+  handout: worksheets/S26/poissonish.pdf
+  handoutname: "worksheet: Exercises on H^1 norms and the Poisson equation"
   week: 13
 - day: Friday 3 April
   description: cont.
