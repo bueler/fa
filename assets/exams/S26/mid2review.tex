@@ -1,0 +1,133 @@
+\documentclass[12pt]{amsart}
+\addtolength{\topmargin}{-0.4in} % usually -0.25in
+\addtolength{\textheight}{0.9in} % usually 1.25in
+\addtolength{\oddsidemargin}{-0.8in}
+\addtolength{\evensidemargin}{-0.8in}
+\addtolength{\textwidth}{1.5in} %\setlength{\parindent}{0pt}
+
+\newcommand{\normalspacing}{\renewcommand{\baselinestretch}{1.1}\tiny\normalsize}
+\newcommand{\bigspacing}{\renewcommand{\baselinestretch}{1.21}\tiny\normalsize}
+\newcommand{\tablespacing}{\renewcommand{\baselinestretch}{1.0}\tiny\normalsize}
+\normalspacing
+
+% macros
+\usepackage{amssymb,xspace,dsfont}
+\usepackage[pdftex,colorlinks=true,urlcolor=blue]{hyperref}
+
+\usepackage[final]{graphicx}
+\newcommand{\regfigure}[3]{\includegraphics[height=#2in,width=#3in]{#1.eps}}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\usepackage{fancyvrb}
+
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bv}{\mathbf{v}}
+
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cR}{\mathcal{R}}
+
+\newcommand{\CC}{{\mathbb{C}}}
+\newcommand{\RR}{{\mathbb{R}}}
+\newcommand{\ZZ}{{\mathbb{Z}}}
+\newcommand{\ZZn}{{\mathbb{Z}}_n}
+\newcommand{\NN}{{\mathbb{N}}}
+
+\newcommand{\eps}{\epsilon}
+\newcommand{\lam}{\lambda}
+\newcommand{\ip}[2]{\left<#1,#2\right>}
+\newcommand{\erf}{\operatorname{erf}}
+
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\Re}{\operatorname{Re}}
+
+\newcommand{\one}{\mathds{1}}
+
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\Null}{\operatorname{null}}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\Matlab}{\textsc{Matlab}\xspace}
+
+\newcommand{\prob}[1]{\bigskip\noindent\large\textbf{#1.} \normalsize}
+\newcommand{\bookprob}[1]{\bigskip\noindent\large\textbf{Exercise #1.} \normalsize}
+\newcommand{\probpart}[1]{\smallskip\noindent\textbf{(#1)}\quad }
+\newcommand{\aprobpart}[1]{\textbf{(#1)}\quad }
+
+\newcommand{\textbook}{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.}
+
+
+\begin{document}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill 6 April 2026
+\thispagestyle{empty}
+
+\bigskip
+\LARGE\centerline{\textbf{Review Guide}}
+
+\medskip
+\Large\centerline{for in-class \textbf{Midterm Quiz 2} on \textbf{Monday 13 April}}
+
+\normalsize
+\bigskip
+\begin{quote}
+\textbf{The second Midterm will cover new material since the first Midterm.}  I am calling this assessment a ``Quiz'' because it will be shorter than Midterm Exam 1.  It will cover some new material from the textbook,\footnote{\textbook} plus a number of topics from the ``calculation'' slides.\footnote{The slides are linked on the \href{https://bueler.github.io/fa/daily.html}{Daily Log tab} of the public course page.}  Specifically, Midterm Quiz 2 will cover:
+\begin{itemize}
+\item new material from textbook sections 3.4, 3.5, 3.6, 5.1, and 5.2,
+\item lecture material on dual spaces, the Hilbert projection and decomposition theorems, and the Riesz representation theorem,
+\item the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10 \& 11 slides}, and
+\item the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12 slides}.
+\end{itemize}
+
+\medskip \noindent Inevitably you will need to know some material covered on the first Midterm.  This includes the basics of normed vector spaces, inner product spaces, completeness, the Lebesgue integral, and the spaces $C([a,b])$ and $\ell^p$.  However, \textbf{I do not intend to ask questions which specifically cover material before week 8 and Midterm Exam 1}.  Please see the \href{https://bueler.github.io/fa/assets/exams/S26/mid1review.pdf}{Review Guide for Midterm Exam 1} if you want to recall the scope of that Exam.
+
+\medskip \noindent The problems will be of the following types; see the lists below: state definitions, state theorems, describe or illustrate geometrical ideas, apply theorems in easy situations, and prove simple theorems/corollaries.
+\end{quote}
+\bigskip
+
+\bigspacing
+\noindent \textbf{Definitions}.  Be able to state the precise definition.  Be able to prove ideas which follow immediately from the definitions.
+\begin{itemize}
+\item abstract measure space $(X,\cR,\mu)$
+\item counting measure (on any set)
+\item almost everywhere
+\item $\int_A f\,d\mu$, the (abstract) Lebesgue integral of a real-valued function $f$ over $A$ with respect to the measure $\mu$
+\item integral of a complex-valued function
+\item for $1\le p < \infty$, the vector space $L^p(X,\mu)$ is the set of equivalence classes of functions, up to almost everywhere, such that $\int_X |f|^p\,d\mu$ is finite, with norm $\|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}$
+\item essentially-bounded measurable function
+\item the vector space $L^\infty(X,\mu)$ is the set of equivalence classes of essentially-bounded functions, up to almost everywhere, with the essential bound as the norm $\|f\|_\infty$
+\item complete orthonormal (ON) sequence in an inner product space
+\item Fourier coefficients and Fourier series with respect to an ON sequence
+\item FIXME
+\end{itemize}
+
+\normalspacing
+\medskip
+\noindent \textbf{Theorems and Lemmas}.  Know the precise statement of the theorem.  Be able to prove if so indicated.
+\newcommand{\bap}{\textbf{be able to prove}}
+\begin{itemize}
+\item for $1\le p \le \infty$, $L^p(X,\mu)$ is a complete normed linear space (Theorems 3.17, 3.19, 3.21, and text on page 61 for $L^\infty$)
+\item H\"older's inequality (Theorem 3.18)
+\item a normed vector space is complete if and only if absolute summability implies summability (Theorem 3.20)
+\item step functions are dense in $L^p(X,\mu)$ (see \href{https://bueler.github.io/fa/corrections.html}{Corrections} tab of the public website)
+\item Fourier coefficients are $c_k=\ip{f}{f_k}$ if $\{f_k\}$ is a complete ON sequence (Theorem 4.1)
+\item FIXME
+\end{itemize}
+
+%\normalspacing
+%\medskip
+%\noindent \textbf{Techniques and facts}.  Be able use these calculation/proof techniques, and justify if requested.
+%\begin{itemize}
+%\item x
+%\end{itemize}
+
+\normalspacing
+\medskip
+\noindent \textbf{Corrections to the textbook}.  See the \href{https://bueler.github.io/fa/corrections.html}{Corrections} tab of the public website.
+\end{document}
+
