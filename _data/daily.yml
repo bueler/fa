@@ -1,19 +1,25 @@
 semester: Spring 2026
 home: assets
 daily:
+#- day: Friday 17 April
+#  description: "<b>calculation: Why the FE method works (Cea's lemma and interpolation)</b>"
+#  slides: slides/S26/week14.pdf
+#  slidesweek: week 14
+- day: Wednesday 15 April
+  description: cont.
 - day: Monday 13 April
   description: Midterm Quiz 2
   week: 14
 - day: Friday 10 April
-  description: cont.
-- day: Wednesday 8 April
   description: "<b>calculation: Poisson equation on the disk and in theory</b>"
   slides: slides/S26/week13.pdf
   slidesweek: week 13
-- day: Monday 6 April
-  description: cont.
+- day: Wednesday 8 April
+  description: Poincare-Friedrichs; in-class activity
   handout: worksheets/S26/poissonish.pdf
   handoutname: "worksheet: Exercises on H^1 norms and the Poisson equation"
+- day: Monday 6 April
+  description: cont.
   week: 13
 - day: Friday 3 April
   description: cont.
