@@ -130,7 +130,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 }
 
 
-\section{recall: Poisson problems and their finite element (FE) approximation}
+\section{recall: Poisson problems and their finite element (FE) approximations}
 
 \begin{frame}{recall: the Sobolev spaces $H^1(\Omega)$ and $H_0^1(\Omega)$}
 
@@ -141,16 +141,17 @@ is a Hilbert space with inner product and norm:
 \end{definition}
 
 \begin{definition}
-    $$H_0^1(\Omega) = \overline{C_c^1(\Omega)}$$
+    $$H_0^1(\Omega) = \overline{C_c^1(\Omega)},$$
+with closure in the $H^1$ norm
 \end{definition}
 
 \begin{itemize}
-\item $H_0^1(\Omega)\subset H^1(\Omega)$ is a closed subspace
+\item $H_0^1(\Omega)\subset H^1(\Omega)$ is the closed subspace of functions which have zero boundary values along $\partial \Omega$
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{recall: the weak form of 2 PDE problems}
+\begin{frame}{recall: the weak form of 2 elliptic PDE problems}
 
 \begin{block}{Poisson equation weak form (homogeneous Dirichlet conditions)}
 Let $V=H_0^1(\Omega)$.  Suppose $f\in L^2(\Omega)$ is given.  Find $u\in V$ so that
@@ -158,16 +159,16 @@ Let $V=H_0^1(\Omega)$.  Suppose $f\in L^2(\Omega)$ is given.  Find $u\in V$ so t
 \end{block}
 
 \begin{itemize}
-\item strong form: \, $-\grad^2 u = f$ \, with $u=0$ on $\partial \Omega$
+\item strong form Poisson: \, $\boxed{-\grad^2 u = f}$
 \end{itemize}
 
 \begin{block}{Helmholtz equation weak form (general Neumann conditions)}
-Let $V=H(\Omega)$.  Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ is given and $\alpha>0$.  Find $u\in V$ so that
-    $$\int_\Omega \grad u \cdot \grad v\,dx + \alpha \int_\Omega u \cdot v\,dx = \int_\Omega f v\,dx + \int_{\partial \Omega} g_N v\,ds \quad \forall v\in V$$
+Let $V=H(\Omega)$.  Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ is given and $\gamma>0$.  Find $u\in V$ so that
+    $$\int_\Omega \grad u \cdot \grad v\,dx + \gamma \int_\Omega u \cdot v\,dx = \int_\Omega f v\,dx + \int_{\partial \Omega} g_N v\,ds \quad \forall v\in V$$
 \end{block}
 
 \begin{itemize}
-\item strong form: \, $-\grad^2 u + \alpha u = f$ \, with $\grad u \cdot \bn = g_N$ on $\partial \Omega$
+\item strong form Helmholtz: \, $\boxed{-\grad^2 u + \gamma u = f}$
 \end{itemize}
 \end{frame}
 
@@ -195,18 +196,18 @@ Let $V=H(\Omega)$.  Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ 
 \end{frame}
 
 
-\begin{frame}{recall: basic idea of the finite element method}
+\begin{frame}{basic idea of the finite element method}
 
-\begin{block}{Poisson equation weak form (homogeneous Dirichlet conditions)}
+\begin{block}{Poisson equation weak form}
 Find $u\in V$ so that
     $$\int_\Omega \grad u \cdot \grad v\,dx = \int_\Omega f v\,dx \quad \forall v\in V$$
 \end{block}
 
 \begin{itemize}
-\item FEM solves the \alert{same weak form}, but over a finite-dim'l subspace $V_h$
+\item FE method solves \alert{same weak form}, but over a finite-dim'l subspace $V_h$
 \end{itemize}
 
-\begin{block}{Poisson equation weak form (homogeneous Dirichlet conditions)}
+\begin{block}{finite element method}
 Find $u_h\in V_h$ so that
     $$\int_\Omega \grad u_h \cdot \grad v_h\,dx = \int_\Omega f v_h\,dx \quad \forall v_h\in V_h$$
 \end{block}
@@ -218,17 +219,6 @@ Find $u_h\in V_h$ so that
 \end{itemize}
 \end{frame}
 
-
-% at start of sections 2,3,... put outline
-\AtBeginSection[] {
-    \begin{frame}{Outline}
-    \setbeamertemplate{section in toc}[sections numbered]
-    \tableofcontents[currentsection]%,hideallsubsections]
-    \end{frame}
-}
-
-
-\section{Cea's lemma: the FE approximation is the best}
 
 \begin{frame}{abstract bilinear notation}
 
@@ -246,7 +236,7 @@ a(u,cv+dw) &= c\, a(u,v) + d\, a(u,w)
 \begin{block}{examples: bilinear forms}
 \begin{itemize}
 \item Poisson equation: \, $\ds a(u,v) = \int_\Omega \grad u\cdot \grad v\,dx$
-\item Helmholtz equation: \, $\ds a(u,v) = \int_\Omega \grad u\cdot \grad v\,dx + \alpha \int_\Omega u v\,dx$
+\item Helmholtz equation: \, $\ds a(u,v) = \int_\Omega \grad u\cdot \grad v\,dx + \gamma \int_\Omega u v\,dx$
 \end{itemize}
 \end{block}
 \end{frame}
@@ -274,7 +264,120 @@ for the \alert{linear function} on the right side of the weak form
 \end{frame}
 
 
-\begin{frame}{xx}
+\begin{frame}{basic idea of the finite element method (again)}
+
+\begin{block}{abstract forms for Poisson equation}
+\begin{align*}
+a(u,v) &= \int_\Omega \grad u\cdot \grad v\,dx, \qquad \ell(v) =\int_\Omega f v\,dx
+\end{align*}
+\end{block}
+
+\begin{block}{Poisson equation weak form}
+Find $u\in V$ so that
+    $$a(u,v) = \ell(v) \quad \forall v\in V$$
+\end{block}
+
+\begin{itemize}
+\item FE method solves \alert{same weak form}, but over a finite-dim'l subspace $V_h$
+\end{itemize}
+
+\begin{block}{finite element method}
+Find $u_h\in V_h$ so that
+    $$a(u_h,v_h) = \ell(v_h) \quad \forall v_h\in V_h$$
+\end{block}
+\end{frame}
+
+% at start of sections 2,3,... put outline
+\AtBeginSection[] {
+    \begin{frame}{Outline}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents[currentsection]%,hideallsubsections]
+    \end{frame}
+}
+
+
+\section{Cea's lemma: the FE approximation is the best}
+
+\begin{frame}{conforming FE methods}
+
+\begin{definition}
+we say that an FE method is \emph{conforming} if
+\begin{itemize}
+\item $V_h\subset V$, and
+\item $a(\cdot,\cdot)$ and $\ell(\cdot)$ used in the FE method are the same as those in the original PDE weak form problem
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+\item recall weak form PDE and FE method together:
+\begin{align*}
+a(u,v) &= \ell(v) \quad \forall v\in V \\
+a(u_h,v_h) &= \ell(v_h) \quad \forall v_h\in V_h
+\end{align*}
+\item the function $u-u_h$ is the \alert{error} in the FE method
+\item in a conforming FE method ($V_h\subset V$) we know:
+\begin{align*}
+u - u_h &\in V \\
+a(u,v_h) &= \ell(v_h) \quad \forall v_h\in V_h
+\end{align*}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Galerkin orthogonality}
+
+\begin{itemize}
+\item in a conforming FE method we have:
+\begin{align*}
+a(u,v_h) &= \ell(v_h) \quad \forall v\in V_h \\
+a(u_h,v_h) &= \ell(v_h) \quad \forall v_h\in V_h
+\end{align*}
+\item subtract:
+   $$a(u,v_h) - a(u_h,v_h) = 0 \quad \forall v_h\in V_h$$
+\item but $a(\cdot,\cdot)$ is bilinear
+\end{itemize}
+
+\begin{block}{Galerkin orthogonality}
+   $$a(u-u_h,v_h) = 0 \quad \forall v_h\in V_h,$$
+that is, \alert{the error $u-u_h$ is orthogonal to the entire FE space $V_h$}
+\end{block}
+
+picture:
+
+\vspace{20mm}
+\end{frame}
+
+
+\begin{frame}{assumptions we will make about $a(\cdot,\cdot)$}
+
+\begin{block}{assumptions about our weak form}
+\begin{itemize}
+\item $a:V\times V\to \RR$ is a symmetric bilinear function
+\item it is coercive: there is $\alpha>0$ so that
+	$$a(v,v) \ge \alpha \|v\|^2 \quad \forall v \in V$$
+\item it is continuous (bounded): there is $C\ge 0$ so that
+	$$|a(u,v)| \le C \|u\|\|v\| \quad \forall v \in V$$
+\item $\ell\in V'$
+\end{itemize}
+\end{block}
+
+\begin{itemize}
+\item we saw these same definitions in the \href{FIXME}{week 13 slides}, when we proved well-posedness via the minimization approach
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Cea's lemma}
+
+\begin{lemma}[Cea's lemma]
+Make the assumptions on the previous slide.  Then
+	$$\|u-u_h\| \le \frac{\alpha}{C} \|u-v_h\|$$
+for all $v_h\in V_h$.
+\end{lemma}
+
+\begin{proof}
+xx
+\end{proof}
 
 \begin{itemize}
 \item yy
@@ -288,9 +391,6 @@ for the \alert{linear function} on the right side of the weak form
 \item yy
 \end{itemize}
 \end{frame}
-
-
-\section{examples}
 
 \begin{frame}{xx}
 
@@ -310,7 +410,7 @@ for the \alert{linear function} on the right side of the weak form
 \end{frame}
 
 
-\section{convergence of the FE approximation}
+\section{convergence of the FE approximation as $h\to 0$}
 
 \begin{frame}{xx}
 
