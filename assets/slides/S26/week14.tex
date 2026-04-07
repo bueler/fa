@@ -151,6 +151,21 @@ with closure in the $H^1$ norm
 \end{frame}
 
 
+\begin{frame}{recall: the Poincar\'e-Friedrichs inequality}
+
+\begin{theorem}[Poincar\'e-Friedrichs inequality]
+Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary.  There is $C>0$, depending only on $\Omega$, so that
+	$$\|f\|_{L^2} \le C \|\grad f\|_{L^2} \quad \text{for all } f\in H_0^1(\Omega).$$
+\end{theorem}
+
+\begin{itemize}
+\item a main consequence of this inequality is that the simpler formula
+	$$|f|_{H^1} = \|\grad f\|_{L^2} = \left(\int_\Omega |\grad f|^2\right)^{1/2}$$
+is \alert{equivalent to the full norm} $\|f\|_{H^1} = \left(\int_\Omega |f|^2 + \int_\Omega |\grad f|^2\right)^{1/2}$ \alert{on $H_0^1(\Omega)$}
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{recall: the weak form of 2 elliptic PDE problems}
 
 \begin{block}{Poisson equation weak form (homogeneous Dirichlet conditions)}
@@ -267,9 +282,7 @@ for the \alert{linear function} on the right side of the weak form
 \begin{frame}{basic idea of the finite element method (again)}
 
 \begin{block}{abstract forms for Poisson equation}
-\begin{align*}
-a(u,v) &= \int_\Omega \grad u\cdot \grad v\,dx, \qquad \ell(v) =\int_\Omega f v\,dx
-\end{align*}
+    $$a(u,v) = \int_\Omega \grad u\cdot \grad v\,dx, \qquad \ell(v) =\int_\Omega f v\,dx$$
 \end{block}
 
 \begin{block}{Poisson equation weak form}
@@ -296,7 +309,7 @@ Find $u_h\in V_h$ so that
 }
 
 
-\section{Cea's lemma: the FE approximation is the best}
+\section{the FE approximation is (essentially) the best}
 
 \begin{frame}{conforming FE methods}
 
@@ -348,42 +361,87 @@ picture:
 \end{frame}
 
 
-\begin{frame}{assumptions we will make about $a(\cdot,\cdot)$}
+\begin{frame}{assumptions about the weak form PDE}
 
-\begin{block}{assumptions about our weak form}
+\begin{block}{\alert{assumptions}}
 \begin{itemize}
-\item $a:V\times V\to \RR$ is a symmetric bilinear function
-\item it is coercive: there is $\alpha>0$ so that
-	$$a(v,v) \ge \alpha \|v\|^2 \quad \forall v \in V$$
-\item it is continuous (bounded): there is $C\ge 0$ so that
-	$$|a(u,v)| \le C \|u\|\|v\| \quad \forall v \in V$$
 \item $\ell\in V'$
+\item $a:V\times V\to \RR$ is a bilinear function
+\item it is coercive (elliptic): there is $\alpha>0$ so that
+	$$a(v,v) \ge \alpha \|v\|^2 \quad \forall v \in V$$
+\item it is continuous (bounded): there is $M\ge 0$ so that
+	$$|a(u,v)| \le M \|u\|\|v\| \quad \forall v \in V$$
 \end{itemize}
 \end{block}
 
 \begin{itemize}
-\item we saw these same definitions in the \href{FIXME}{week 13 slides}, when we proved well-posedness via the minimization approach
+\item we saw these same assumptions for well-posedness via the minimization approach
+\item I'll remind you why they are true in examples
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Cea's lemma}
+\begin{frame}{quasi-optimality, often called Cea's lemma}
 
-\begin{lemma}[Cea's lemma]
+\begin{lemma}[quasi-optimality]
 Make the assumptions on the previous slide.  Then
-	$$\|u-u_h\| \le \frac{\alpha}{C} \|u-v_h\|$$
-for all $v_h\in V_h$.
+	$$\|u-u_h\| \le \frac{M}{\alpha} \|u-v_h\|$$
+for all $v_h\in V_h$.  Thus, up to the constant $C/\alpha$, \alert{$u_h$ is closer to the exact solution than any other element of $V_h$}.
 \end{lemma}
 
-\begin{proof}
-xx
-\end{proof}
+{\small
+\emph{Proof.}  Let $v_h\in V_h$ be arbitrary.  By coercivity, then bilinearity, then Galerkin orthogonality, and then continuity:
+\begin{align*}
+\alpha \|u-u_h\|^2 &\le a(u-u_h,u-u_h) \\
+&= a(u-u_h,u-v_h+v_h-u_h) = a(u-u_h,u-v_h) + a(u-u_h,v_h-u_h) \\
+&= a(u-u_h,u-v_h) + 0 \\
+&= M \|u-u_h\| \|u-v_h\|
+\end{align*}
+Dividing by $\|u-u_h\|$ gives $\alpha \|u-u_h\| \le M \|u-v_h\|$, as claimed. \hfill \qed
+}
+\end{frame}
+
+
+\begin{frame}{example: homogeneous Dirichlet problem for Poisson}
+
+FIXME use PF and its constant
 
 \begin{itemize}
 \item yy
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{example: homogeneous Dirichlet problem for Poisson (again)}
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Cea's actual lemma is better}
+
+\begin{lemma}[Cea's lemma \dots from his 1964 PhD thesis]
+Make the same assumptions about our weak form, and also assume that the bilinear form is \alert{symmetric} $a(u,v)=a(v,u)$.  Then
+	$$\|u-u_h\| \le \sqrt{\frac{M}{\alpha}} \|u-v_h\|$$
+for all $v_h\in V_h$.  (The constant is \alert{improved} relative to the original lemma.)
+\end{lemma}
+
+{\small
+\emph{Proof.}  Let $v_h\in V_h$ be arbitrary.  By bilinearity, then Galerkin orthogonality, and then $a(u_h-v_h,u_h-v_h)\ge 0$ from coercivity:
+\begin{align*}
+a(u-v_h,u-v_h) &= a(u-u_h+u_h-v_h,u-u_h+u_h-v_h) \\
+&= a(u-u_h,u-u_h) + 2 a(u-u_h,u_h-v_h) + a(u_h-v_h,u_h-v_h) \\
+&= a(u-u_h,u-u_h) + 0 + a(u_h-v_h,u_h-v_h) \\
+&\ge a(u-u_h,u-u_h)
+\end{align*}
+Thus by coercivity (again), and continuity, we get the claim:
+\begin{align*}
+\alpha \|u-u_h\|^2 &\le a(u-u_h,u-u_h) \le a(u-v_h,u-v_h) \le M \|u-v_h\|^2 \quad \qed
+\end{align*}
+}
+\end{frame}
 
 \begin{frame}{xx}
 
