@@ -21,8 +21,11 @@
 \newtheorem*{lem}{Lemma}
 \usepackage{fancyvrb}
 
+\newcommand{\bn}{\mathbf{n}}
 \newcommand{\bu}{\mathbf{u}}
 \newcommand{\bv}{\mathbf{v}}
+
+\newcommand{\bV}{\mathbf{V}}
 
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cF}{\mathcal{F}}
@@ -37,6 +40,9 @@
 
 \newcommand{\eps}{\epsilon}
 \newcommand{\lam}{\lambda}
+
+\newcommand{\grad}{\nabla}
+\newcommand{\Div}{\nabla\cdot}
 \newcommand{\ip}[2]{\left<#1,#2\right>}
 \newcommand{\erf}{\operatorname{erf}}
 
@@ -78,13 +84,14 @@
 \begin{quote}
 \textbf{The second Midterm will cover new material since the first Midterm.}  I am calling this assessment a ``Quiz'' because it will be shorter than Midterm Exam 1.  It will cover some new material from the textbook,\footnote{\textbook} plus a number of topics from the ``calculation'' slides.\footnote{The slides are linked on the \href{https://bueler.github.io/fa/daily.html}{Daily Log tab} of the public course page.}  Specifically, Midterm Quiz 2 will cover:
 \begin{itemize}
-\item new material from textbook sections 3.4, 3.5, 3.6, 5.1, and 5.2,
+\item new material from textbook sections 3.4, 3.6, 5.1, and 5.2,
 \item lecture material on dual spaces, the Hilbert projection and decomposition theorems, and the Riesz representation theorem,
 \item the \href{https://bueler.github.io/fa/assets/slides/S26/week10.pdf}{weeks 10 \& 11 slides}, and
 \item the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12 slides}.
 \end{itemize}
+However, you will \textbf{not} need to know non-trivial ideas about partial differential equations (PDEs) like the Poisson equation.
 
-\medskip \noindent Inevitably you will need to know some material covered on the first Midterm.  This includes the basics of normed vector spaces, inner product spaces, completeness, the Lebesgue integral, and the spaces $C([a,b])$ and $\ell^p$.  However, \textbf{I do not intend to ask questions which specifically cover material before week 8 and Midterm Exam 1}.  Please see the \href{https://bueler.github.io/fa/assets/exams/S26/mid1review.pdf}{Review Guide for Midterm Exam 1} if you want to recall the scope of that Exam.
+\medskip \noindent Inevitably you will need to know some material covered on the first Midterm.  This includes the basics of normed vector spaces, inner product spaces, completeness, the Lebesgue integral, and the spaces $C([a,b])$ and $\ell^p$.  There is some overlap between the material on this Review Guide and the the previous Guide.  However, \textbf{I do not intend to ask questions which specifically cover material before week 8 and Midterm Exam 1}.
 
 \medskip \noindent The problems will be of the following types; see the lists below: state definitions, state theorems, describe or illustrate geometrical ideas, apply theorems in easy situations, and prove simple theorems/corollaries.
 \end{quote}
@@ -94,37 +101,67 @@
 \noindent \textbf{Definitions}.  Be able to state the precise definition.  Be able to prove ideas which follow immediately from the definitions.
 \begin{itemize}
 \item abstract measure space $(X,\cR,\mu)$
-\item counting measure (on any set)
 \item almost everywhere
-\item $\int_A f\,d\mu$, the (abstract) Lebesgue integral of a real-valued function $f$ over $A$ with respect to the measure $\mu$
-\item integral of a complex-valued function
-\item for $1\le p < \infty$, the vector space $L^p(X,\mu)$ is the set of equivalence classes of functions, up to almost everywhere, such that $\int_X |f|^p\,d\mu$ is finite, with norm $\|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}$
+\item $\int_A f\,d\mu$, the (abstract) Lebesgue integral of a real-valued or complex-valued function $f$ over $A$ with respect to the measure $\mu$
+\item for $1\le p < \infty$, the vector space $L^p(X,\mu)$ is the set of equivalence classes of functions, up to almost everywhere, such that $\int_X |f|^p\,d\mu<\infty$, with norm $\|f\|_p = \left(\int_X |f|^p\,d\mu\right)^{1/p}$
 \item essentially-bounded measurable function
 \item the vector space $L^\infty(X,\mu)$ is the set of equivalence classes of essentially-bounded functions, up to almost everywhere, with the essential bound as the norm $\|f\|_\infty$
 \item complete orthonormal (ON) sequence in an inner product space
 \item Fourier coefficients and Fourier series with respect to an ON sequence
-\item FIXME
+\item absolute continuity (classical definition for functions on $\RR^1$), and $AC([a,b])$
+\item $\operatorname{supp}(f)$, for a real-valued or complex-valued function on an open set $\Omega\subset \RR^d$
+\item $C_c(\Omega)$, $C_c^k(\Omega)$, $C_c^\infty(\Omega)$, on open sets $\Omega\subset \RR^d$
+\item $D^\alpha f$, multi-index notation for partial derivatives on $\RR^d$
+\item $L_{loc}^1(\Omega)$, on open sets $\Omega\subset \RR^d$
+\item weak derivatives of order $\alpha$, for functions on open sets $\Omega\subset \RR^d$
+\item bounded linear operator, between normed vector spaces
+\item $\mathcal{B}(X,Y)$, for normed vector spaces $(X,\|\cdot\|_X)$ and $(Y,\|\cdot\|_Y)$
+\item operator norm, making $\mathcal{B}(X,Y)$ into a normed vector space
+\item dual space $X'$, for a normed vector space $(X,\|\cdot\|_X)$
+\item Laplacian $\nabla^2 u$, on differentiable functions $u$ on $\Omega \subset \RR^d$
+\item harmonic function
+\item $H^k(\Omega)$, for $k=0,1,2,\dots$ and an open set $\Omega\subset \RR^d$
+\item $H^k(S^1)$ (there are two equivalent definitions; know both)
+\item $H_0^1(\Omega)$, for an open set $\Omega\subset \RR^d$
 \end{itemize}
 
 \normalspacing
 \medskip
 \noindent \textbf{Theorems and Lemmas}.  Know the precise statement of the theorem.  Be able to prove if so indicated.
-\newcommand{\bap}{\textbf{be able to prove}}
+\newcommand{\bap}{\, {\small\textbf{[be able to prove]}}}
 \begin{itemize}
+\item Lebesque's monotone convergence theorem (Theorem 3.13)
+\item Fatou's lemma (Theorem 3.14)
+\item Lebesque's dominated convergence theorem (Theorem 3.15)
 \item for $1\le p \le \infty$, $L^p(X,\mu)$ is a complete normed linear space (Theorems 3.17, 3.19, 3.21, and text on page 61 for $L^\infty$)
 \item H\"older's inequality (Theorem 3.18)
-\item a normed vector space is complete if and only if absolute summability implies summability (Theorem 3.20)
+\item normed vector space is complete$\iff$(absolute conv.$\implies$conv.) (Theorem 3.20)
 \item step functions are dense in $L^p(X,\mu)$ (see \href{https://bueler.github.io/fa/corrections.html}{Corrections} tab of the public website)
 \item Fourier coefficients are $c_k=\ip{f}{f_k}$ if $\{f_k\}$ is a complete ON sequence (Theorem 4.1)
-\item FIXME
+\item bounded$\iff$continuous$\iff$cont.~at 0 (Theorems 5.1 \& 5.2) \bap
+\item operator norm is a norm on $\mathcal{B}(X,Y)$ (Theorem 5.3) \bap
+\item $\mathcal{B}(X,Y)$ is a Banach space if $Y$ is a Banach space (Theorem 5.4)
+\item corollary: dual spaces are Banach spaces \bap
+\item Hilbert projection theorem: if $(X,\ip{\cdot}{\cdot})$ is a Hilbert space and $C\subset X$ is a closed and convex subset then for every $x\in X$ there exists a unique $y\in C$ that minimizes $f(w)=\|x-w\|$ over $w\in C$
+\item Hilbert orthogonal decomposition theorem: if $(X,\ip{\cdot}{\cdot})$ is a Hilbert space and $M\subset X$ is a closed subspace then $X = M\oplus M^{\perp}$
+\item Riesz-Fr\'echet representation theorem: if $(X,\ip{\cdot}{\cdot})$ is a Hilbert space and $\ell\in X'$ then there exists a unique $x_\ell\in X$ so that $\ell(x) = \ip{x}{x_\ell}$ for all $x\in X$
+\item fundamental theorem of calculus: if $f\in L^1(a,b)$ then $F(x)=\int_a^x f(t)\,dx$ is in $AC([a,b])$ and $F'(x)=f(x)$ a.e., and if $f \in AC([a,b])$ then $f'\in L^1(a,b)$ and $f(x) = f(a) + \int_a^x f'(t)\,dt$ (week 10\&11 slides)
+\item divergence theorem: if $\Omega\subset \RR^d$ is bounded and $\partial\Omega$ is $C^1$, and if $\bV\in C^1(\overline\Omega)$, then $\int_\Omega \Div\bV\,dm = \int_{\partial\Omega} \bV\cdot \bn\,ds$ (week 10\&11 slides)
+\item integration-by-parts on $(a,b) \subset \RR^1$ (week 10\&11 slides) \bap
+\item product rule 1 and 2 (week 10\&11 slides)
+\item integration-by-parts 1 and 2 (week 10\&11 slides) \bap
+\item Poincar\'e-Friedrichs inequality (week 12 slides) 
 \end{itemize}
 
-%\normalspacing
-%\medskip
-%\noindent \textbf{Techniques and facts}.  Be able use these calculation/proof techniques, and justify if requested.
-%\begin{itemize}
-%\item x
-%\end{itemize}
+\normalspacing
+\medskip
+\noindent \textbf{Examples of linear functionals and linear operators}.  Be able to define these, \emph{and determine whether they are bounded/continuous, or not, on various spaces}.
+\begin{itemize}
+\item integral against a fixed function $\big[$e.g.~$\ell(f) = \int_\Omega f g\,dm$ where $g\in L^p(\Omega)$ $\big]$
+\item point evaluation at a fixed point $\big[$e.g.~$\ell(f) = f(x_0)$ where $f\in C(\Omega)$ and $x_0\in \Omega\,\big]$
+\item left- and right-shift operator on $\ell^p$
+\item integral operators, with given kernels
+\end{itemize}
 
 \normalspacing
 \medskip

@@ -10,6 +10,7 @@ exams:
 - name: Midterm Quiz 2
   date: Monday 13 April
   info: <b>in class</b>
+  reviewguide: mid2review.pdf
 - name: Final Exam
   date: Friday 1 May, 10:15am--12:15pm
   info: <b>in class</b>
