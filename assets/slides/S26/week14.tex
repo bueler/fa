@@ -161,7 +161,8 @@ Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary.  T
 \begin{itemize}
 \item a main consequence of this inequality is that the simpler formula
 	$$|f|_{H^1} = \|\grad f\|_{L^2} = \left(\int_\Omega |\grad f|^2\right)^{1/2}$$
-is \alert{equivalent to the full norm} $\|f\|_{H^1} = \left(\int_\Omega |f|^2 + \int_\Omega |\grad f|^2\right)^{1/2}$ \alert{on $H_0^1(\Omega)$}
+is \alert{equivalent to the full $H^1$ norm on $H_0^1(\Omega)$}
+\item the full norm is $\|f\|_{H^1} = \left(\int_\Omega |f|^2 + \int_\Omega |\grad f|^2\right)^{1/2}$
 \end{itemize}
 \end{frame}
 
@@ -211,7 +212,7 @@ Let $V=H(\Omega)$.  Suppose $f\in L^2(\Omega)$ and $g_N\in L^2(\partial\Omega)$ 
 \end{frame}
 
 
-\begin{frame}{basic idea of the finite element method}
+\begin{frame}{recall: the basic idea of the finite element method}
 
 \begin{block}{Poisson equation weak form}
 Find $u\in V$ so that
@@ -234,6 +235,16 @@ Find $u_h\in V_h$ so that
 \end{itemize}
 \end{frame}
 
+
+% at start of sections 2,3,... put outline
+\AtBeginSection[] {
+    \begin{frame}{Outline}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents[currentsection]%,hideallsubsections]
+    \end{frame}
+}
+
+\section{abstract form notation}
 
 \begin{frame}{abstract bilinear notation}
 
@@ -267,12 +278,12 @@ for the \alert{linear function} on the right side of the weak form
 \ell(cv+dw) &= c\, \ell(v) + d\, \ell(w)
 \end{align*}
 \item thus $\ell(v) \in \RR$ if $v\in V$
-\item in fact $\ell$ will be continuous: $\ell \in V'$ is in the dual space
+\item we will assume $\ell$ is continuous: $\ell \in V'$ is in the dual space
 \end{itemize}
 
 \begin{block}{examples: linear right-hand sides}
 \begin{itemize}
-\item Poisson equation: \, $\ds \ell(v) = \int_\Omega f v\,dx$
+\item Poisson equation w homogeneous Dirichlet: \, $\ds \ell(v) = \int_\Omega f v\,dx$
 \item Helmholtz eqn w general Neumann: \, $\ds \ell(v) = \int_\Omega f v\,dx + \int_{\partial\Omega} g_N v\,ds$
 \end{itemize}
 \end{block}
@@ -281,11 +292,11 @@ for the \alert{linear function} on the right side of the weak form
 
 \begin{frame}{basic idea of the finite element method (again)}
 
-\begin{block}{abstract forms for Poisson equation}
+\begin{block}{abstract forms for Poisson equation (for example)}
     $$a(u,v) = \int_\Omega \grad u\cdot \grad v\,dx, \qquad \ell(v) =\int_\Omega f v\,dx$$
 \end{block}
 
-\begin{block}{Poisson equation weak form}
+\begin{block}{weak form}
 Find $u\in V$ so that
     $$a(u,v) = \ell(v) \quad \forall v\in V$$
 \end{block}
@@ -300,16 +311,8 @@ Find $u_h\in V_h$ so that
 \end{block}
 \end{frame}
 
-% at start of sections 2,3,... put outline
-\AtBeginSection[] {
-    \begin{frame}{Outline}
-    \setbeamertemplate{section in toc}[sections numbered]
-    \tableofcontents[currentsection]%,hideallsubsections]
-    \end{frame}
-}
 
-
-\section{the FE approximation is (essentially) the best}
+\section{C\'ea's lemma: the FE approximation is (essentially) the best}
 
 \begin{frame}{conforming FE methods}
 
@@ -365,7 +368,7 @@ picture:
 
 \begin{block}{\alert{assumptions}}
 \begin{itemize}
-\item $\ell\in V'$
+\item $\ell\in V'$ is linear and continuous
 \item $a:V\times V\to \RR$ is a bilinear function
 \item it is coercive (elliptic): there is $\alpha>0$ so that
 	$$a(v,v) \ge \alpha \|v\|^2 \quad \forall v \in V$$
@@ -375,7 +378,7 @@ picture:
 \end{block}
 
 \begin{itemize}
-\item we saw these same assumptions for well-posedness via the minimization approach
+\item same assumptions as for well-posedness via the minimization approach
 \item I'll remind you why they are true in examples
 \end{itemize}
 \end{frame}
@@ -402,9 +405,55 @@ Dividing by $\|u-u_h\|$ gives $\alpha \|u-u_h\| \le M \|u-v_h\|$, as claimed. \h
 \end{frame}
 
 
-\begin{frame}{example: homogeneous Dirichlet problem for Poisson}
+\begin{frame}{example: homogeneous Dirichlet problem for Poisson equation}
 
-FIXME use PF and its constant
+\begin{itemize}
+\item here $V=H_0^1(\Omega)$, with norm $\|\cdot\|=\|\cdot\|_{H^1}$
+\item $\ell$ is clearly linear, and bounded via Cauchy-Schwarz
+\item $a$ is clearly bilinear, and coercive via Poincar\'e-Friedrichs ($\|\phi\|_{L^2} \le C \|\grad\phi\|_{L^2}$), with $\alpha=\frac{1}{2} \min\{1,1/C^2\}$:
+\begin{align*}
+a(v,v) &= \int_\Omega |\grad v|^2\,dx = \|\grad v\|_{L^2} \ge \frac{1}{2} \|\grad v\|_{L^2} + \frac{1}{2} \|\grad v\|_{L^2} \\
+&\ge \frac{1}{2} \|\grad v\|_{L^2} + \frac{1}{2C^2} \|v\|_{L^2} \ge \alpha \|v\|_{H^1}
+\end{align*}
+\item $a$ is continuous via Cauchy-Schwarz, with $M=1$:
+	$$|a(u,v)| \le \int_\Omega |\grad u||\grad v|\,dx \le \|\grad u\|_{L^2} \|\grad v\|_{L^2} \le \|u\| \|v\|$$
+\end{itemize}
+
+\begin{corollary}
+	$$\|u-u_h\| \le \frac{1}{\alpha} \|u-v_h\| \quad \forall v_h\in V_h$$
+\end{corollary}
+\end{frame}
+
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+
+
+\begin{frame}{example: homogeneous Dirichlet problem for Poisson equation 2}
+
+
+\begin{itemize}
+\item except we can switch the norm on $V=H_0^1(\Omega)$ to \quad \alert{$\vertiii{v}=\|\grad v\|_{L^2}$}
+    \begin{itemize}
+    \item[$\circ$] Poincar\'e-Friedrichs says this is a norm
+    \end{itemize}
+\item now $a$ is coercive with $\alpha=1$,
+    $$a(v,v) = \int_\Omega |\grad v|^2\,dx = \vertiii{v}^2 \ge 1\,\vertiii{v}^2,$$
+and it is easy to see it is continuous with $M=1$
+\end{itemize}
+
+\begin{corollary}
+	$$\vertiii{u-u_h} \le \vertiii{u-v_h} \quad \forall v_h\in V_h$$
+\end{corollary}
+
+\begin{itemize}
+\item this is actual \alert{optimality}, not ``quasi'', in this norm
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{example: general Neumann problem for Helmholtz equation}
+
+FIXME
 
 \begin{itemize}
 \item yy
@@ -412,7 +461,9 @@ FIXME use PF and its constant
 \end{frame}
 
 
-\begin{frame}{example: homogeneous Dirichlet problem for Poisson (again)}
+\begin{frame}{how will this show FE method is converging?}
+
+FIXME
 
 \begin{itemize}
 \item yy
@@ -443,22 +494,22 @@ Thus by coercivity (again), and continuity, we get the claim:
 }
 \end{frame}
 
-\begin{frame}{xx}
-
-\begin{itemize}
-\item yy
-\end{itemize}
-\end{frame}
-
-\begin{frame}{xx}
-
-\begin{itemize}
-\item yy
-\end{itemize}
-\end{frame}
-
 
 \section{interpolation on 1D intervals and 2D triangles}
+
+\begin{frame}{xx}
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
+
+\begin{frame}{xx}
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
 
 \begin{frame}{xx}
 
