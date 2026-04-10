@@ -56,6 +56,7 @@
 \newcommand{\bzero}{\bm{0}}
 
 \newcommand{\CC}{\mathbb{C}}
+\newcommand{\II}{\mathbb{I}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -163,7 +164,7 @@ Let $\Omega\subset \RR^d$ be an open, bounded domain with Lipschitz boundary.  T
 	$$|f|_{H^1} = \|\grad f\|_{L^2} = \left(\int_\Omega |\grad f|^2\right)^{1/2}$$
 is \alert{equivalent to the full $H^1$ norm on $H_0^1(\Omega)$}
 \item the full norm is $\|f\|_{H^1} = \left(\int_\Omega |f|^2 + \int_\Omega |\grad f|^2\right)^{1/2}$
-\item I still owe you a proof of this inequality
+\item \dots I still owe you a proof of this inequality
 \end{itemize}
 \end{frame}
 
@@ -449,7 +450,7 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx = \|\grad v\|_{L^2}^2 \ge \frac{1}{2} \|\g
 \end{itemize}
 
 \vspace{-2mm}
-\begin{corollary}
+\begin{corollary}[quasi-optimality in $H^1$ norm]
 	$$\|u-u_h\|_{H^1} \le \frac{1}{\alpha} \|u-v_h\|_{H^1} \quad \forall v_h\in V_h$$
 \end{corollary}
 \end{frame}
@@ -465,6 +466,7 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx = \|\grad v\|_{L^2}^2 \ge \frac{1}{2} \|\g
 \item switch the norm on $V=H_0^1(\Omega)$ to \quad \alert{$\vertiii{v}=\|\grad v\|_{L^2}$}
     \begin{itemize}
     \item[$\circ$] Poincar\'e-Friedrichs says this is a norm
+    \item[$\circ$] called the \emph{energy norm}, by poorly-motivated traditional reasons
     \end{itemize}
 \item now $a$ is coercive with $\alpha=1$,
     $$a(v,v) = \int_\Omega |\grad v|^2\,dx = \vertiii{v}^2 \ge 1\,\vertiii{v}^2,$$
@@ -472,7 +474,7 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx = \|\grad v\|_{L^2}^2 \ge \frac{1}{2} \|\g
 \item the quasi-optimality lemma becomes \dots
 \end{itemize}
 
-\begin{corollary}
+\begin{corollary}[optimality in energy norm]
 	$$\vertiii{u-u_h} \le \vertiii{u-v_h} \quad \forall v_h\in V_h$$
 \end{corollary}
 
@@ -495,19 +497,70 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx + \gamma \int_\Omega |v|^2\,dx \\
 \end{align*}
 \item $a$ is continuous via Cauchy-Schwarz, with $M=\max\{1,\gamma\}$:
 	$$|a(u,v)| \le \int_\Omega |\grad u||\grad v|\,dx + \gamma \int_\Omega |u||v|\,dx \le M \|u\|_{H^1} \|v\|_{H^1}$$
-\item thus $\|u-u_h\|_{H^1} \le \frac{M}{\alpha} \|u-v_h\|_{H^1}$ for all $v_h\in V_h$
 \end{itemize}
+
+\begin{corollary}[quasi-optimality in $H^1$ norm]
+	$$\|u-u_h\|_{H^1} \le \frac{\max\{1,\gamma\}}{\min\{1,\gamma\}} \|u-v_h\|_{H^1} \quad \forall v_h\in V_h$$
+\end{corollary}
 \end{frame}
 
 
 \begin{frame}{how will this show that the FE method converges?}
 
-FIXME
-
-\mbox{\includegraphics[width=0.2\textwidth]{figs/mesh.png} \quad \includegraphics[width=0.2\textwidth]{figs/meshfine.png}}
+\begin{lemma}[quasi-optimality]
+	$$\|u-u_h\| \le \frac{M}{\alpha} \|u-v_h\| \quad \forall v_h \in V_h.$$
+\end{lemma}
 
 \begin{itemize}
-\item yy
+\item up to a factor, $u_h$ is closer to the exact solution than any other $v_h\in V_h$
+\item how does this show that the FE method converges?
+\item it is not obvious!
+\item it requires notation, explanation, and additional theory
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{how will quasi-optimality show that the FE method converges?}
+
+\begin{itemize}
+\item from now on, $h>0$ denotes the mesh resolution, for example,
+	$$h = \max\left\{\operatorname{diam}(T_k)\,:\,T_k \in \mathcal{T}\right\}$$
+\item picture of $T_k$ and its diameter:
+
+\vspace{20mm}
+\item we consider a sequence of refined meshes, for which $h\to 0$
+\end{itemize}
+
+\bigskip
+\centering
+\mbox{\includegraphics[width=0.23\textwidth]{figs/mesh.png} \qquad \includegraphics[width=0.23\textwidth]{figs/meshmed.png} \qquad \includegraphics[width=0.23\textwidth]{figs/meshfine.png}}
+\end{frame}
+
+
+\begin{frame}{how will quasi-optimality show that the FE method converges?}
+
+\begin{itemize}
+\item let us assume the exact solution $u$ is a smooth function on $\Omega$
+    \begin{itemize}
+    \item[$\circ$] we know $u\in H^1(\Omega)$, but it is often true that $u\in H^2(\Omega)$ or even $u \in C^\infty(\Omega)$
+    \item[$\circ$] a \emph{regularity} theorem would supply such knowledge
+    \end{itemize}
+\item on a given mesh, with a given value $h>0$, there is an interpolation map
+	$$\II_h : C(\overline{\Omega}) \to P_1$$
+\item this map takes the nodal values of the input $w\in C(\overline{\Omega})$ and constructs the element of $P_1$ with those nodal values
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{how will quasi-optimality show that the FE method converges?}
+
+\begin{itemize}
+\item we need an \emph{interpolation theorem} to say how close $\II_h(w)$ is to $w$
+\item such theorems provide a rate (power of $h$) for interpolation accuracy:
+    $$\alert{\|w-\II_h(w)\| = O(h^k)}$$
+\item then we \alert{substitute $v_h = \II_h(u)$ into quasi-optimality} and use the rate:
+	$$\|u-u_h\| \le \frac{M}{\alpha} \|u-\II_h(u)\| = O(h^k)$$
+\item thus $u\to u_h$ as $h\to 0$ 
 \end{itemize}
 \end{frame}
 
