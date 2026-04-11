@@ -520,7 +520,7 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx + \gamma \int_\Omega |v|^2\,dx \\
 \end{frame}
 
 
-\begin{frame}{how will quasi-optimality show that the FE method converges?}
+\begin{frame}{$h=$ mesh resolution}
 
 \begin{itemize}
 \item from now on, $h>0$ denotes the mesh resolution, for example,
@@ -540,15 +540,23 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx + \gamma \int_\Omega |v|^2\,dx \\
 \begin{frame}{how will quasi-optimality show that the FE method converges?}
 
 \begin{itemize}
-\item let us assume the exact solution $u$ is a smooth function on $\Omega$
+\item let us assume about the original, continuous PDE problem:
+    \begin{enumerate}
+    \item the weak form is well-posed and determines a unique solution $u$
+    \item the exact solution $u$ is a smooth function on $\Omega$
+    \end{enumerate}
+\item in the problems so far we know $u\in H^1(\Omega)$, but it is often true that $u\in H^2(\Omega)$ or even $u \in C^\infty(\Omega)$
     \begin{itemize}
-    \item[$\circ$] we know $u\in H^1(\Omega)$, but it is often true that $u\in H^2(\Omega)$ or even $u \in C^\infty(\Omega)$
     \item[$\circ$] a \emph{regularity} theorem would supply such knowledge
     \end{itemize}
-\item on a given mesh, with a given value $h>0$, there is an interpolation map
-	$$\II_h : C(\overline{\Omega}) \to P_1$$
-\item this map takes the nodal values of the input $w\in C(\overline{\Omega})$ and constructs the element of $P_1$ with those nodal values
+\item now we make a definition related to the FE problem
 \end{itemize}
+
+\begin{definition}
+on a given mesh $\mathcal{T}$ over $\Omega$, with a given value $h>0$, there is an interpolation map
+	$$\II_h : C(\overline{\Omega}) \to P_1$$
+which takes the nodal values of the input $w\in C(\overline{\Omega})$ and constructs the element of $P_1$ with those nodal values
+\end{definition}
 \end{frame}
 
 
@@ -556,8 +564,15 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx + \gamma \int_\Omega |v|^2\,dx \\
 
 \begin{itemize}
 \item we need an \emph{interpolation theorem} to say how close $\II_h(w)$ is to $w$
-\item such theorems provide a rate (power of $h$) for interpolation accuracy:
+
+\begin{theorem}[generic interpolation theorem result]
     $$\alert{\|w-\II_h(w)\| = O(h^k)}$$
+\end{theorem}
+
+    \begin{itemize}
+    \item[$\circ$] actual theorems later in these slides, for 1D intervals and 2D triangles
+    \item[$\circ$] such theorems provide a rate $O(h^k)$ for interpolation accuracy, given $w\in H^\ell(\Omega)$, for $\Omega\subset \RR^d$, with relationships between $k,\ell,d$
+    \end{itemize}
 \item then we \alert{substitute $v_h = \II_h(u)$ into quasi-optimality} and use the rate:
 	$$\|u-u_h\| \le \frac{M}{\alpha} \|u-\II_h(u)\| = O(h^k)$$
 \item thus $u\to u_h$ as $h\to 0$ 
@@ -570,10 +585,10 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx + \gamma \int_\Omega |v|^2\,dx \\
 \begin{lemma}[Cea's lemma \dots from his 1964 PhD thesis]
 Make the same assumptions about our weak form, and also assume that the bilinear form is \alert{symmetric} $a(u,v)=a(v,u)$.  Then
 	$$\|u-u_h\| \le \sqrt{\frac{M}{\alpha}} \|u-v_h\|$$
-for all $v_h\in V_h$.  (The constant is \alert{improved} relative to the original lemma.)
+for all $v_h\in V_h$.  (The constant $\sqrt{M/\alpha}$ is smaller than $M/\alpha$, thus \alert{improved} relative to the original lemma.)
 \end{lemma}
 
-{\small
+{\footnotesize
 \emph{Proof.}  Let $v_h\in V_h$ be arbitrary.  By bilinearity, then Galerkin orthogonality, and then $a(u_h-v_h,u_h-v_h)\ge 0$ from coercivity:
 \begin{align*}
 a(u-v_h,u-v_h) &= a(u-u_h+u_h-v_h,u-u_h+u_h-v_h) \\
@@ -589,31 +604,136 @@ Thus by coercivity (again), and continuity, we get the claim:
 \end{frame}
 
 
-\section{interpolation errors (1D intervals, 2D triangles)}
+\section{polynomial and piecewise-linear interpolation on $\RR^1$}
 
-\begin{frame}{xx}
+\begin{frame}{Lagrange interpolation}
 
 \begin{itemize}
-\item yy
+\item methods for polynomial interpolation in $\RR^1$ has been known for a long time (Vandermonde 1771, Waring 1779, Lagrange 1795)
+\end{itemize}
+
+\begin{block}{polynomial interpolation in 1D}
+Given $n+1$ points $(x_i,y_i)$ for $i=0,1,\dots,n$.  Assume the $x_i$ are distinct.  Then there exists a unique polynomial $p(x)$ of degree $n$ such that \alert{$p(x_i)=y_i$} for all $i$.  Furthermore, here is the formula:
+	$$p(x) = \sum_{i=0}^n y_i L_i(x)$$
+where $\ds L_i(x) = \prod_{\begin{smallmatrix} k = 0 \\ k\ne i \end{smallmatrix}}^n \frac{x-x_k}{x_i-x_k}$ is a polynomial of degree $n$.  Note that $\ds \alert{L_i(x_j) = \delta_{ij}}$.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Lagrange interpolation}
+
+\begin{itemize}
+\item $n=4$ example:
+\end{itemize}
+
+\vspace{-6mm}
+
+\begin{center}
+\hspace{20mm} \includegraphics[width=0.55\textwidth]{figs/lagrange.pdf}
+\end{center}
+
+\begin{block}{{\footnotesize polynomial interpolation in 1D}}
+{\footnotesize
+	$$p(x) = \sum_{i=0}^n y_i L_i(x) \quad \text{ where } \quad L_i(x) = \prod_{\begin{smallmatrix} k = 0 \\ k\ne i \end{smallmatrix}}^n \frac{x-x_k}{x_i-x_k}$$
+}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{interpolation errors in 1D}
+
+\begin{itemize}
+\item a bound for the error in approximating a function by polynomial interpolation is comparably old (I believe \dots Lagrange $\sim$1800?)
+\item the polynomial interpolant $p(x)$ can be built as before, but now we set
+    $$y_i=f(x_i)$$
+\end{itemize}
+
+\begin{theorem}[polynomial interpolation remainder]
+Assume the $x_i$, $i=0,1,\dots,n$, are distinct points in $[a,b]$.  Suppose $f\in C^{n+1}([a,b])$.  Let $p(x)$ be the unique polynomial $p(x)$ of degree $n$ such that $p(x_i)=f(x_i)$.  Then
+	$$f(x) = p(x) + R(x)$$
+where
+    $$R(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)(x-x_1)\dots(x-x_n)$$
+and $\xi$ is some point in $[a,b]$.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{the remainder formula is as close to Taylor's as it can be}
+
+\begin{itemize}
+\item this \emph{should} sound familiar! compare:
+\end{itemize}
+
+\begin{theorem}[polynomial interpolation remainder]
+Let $p(x)$ be the unique polynomial $p(x)$ of degree $n$ such that $p(x_i)=f(x_i)$.  Then $f(x) = p(x) + R(x)$ where
+    $$R(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)(x-x_1)\dots(x-x_n)$$
+for some point $\xi \in [a,b]$.
+\end{theorem}
+
+\begin{theorem}[Taylor's theorem with remainder]
+Let $p(x)$ be the Taylor polynomial of degree $n$ at basepoint $x_0$.  Then $f(x) = p(x) + R(x)$ where
+    $$R(x) = \frac{f^{(n+1)}(c)}{(n+1)!} (x-x_0)^{n+1}$$
+for some point $c$ between $x_0$ and $x$.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{example: linear interpolation}
+
+\begin{itemize}
+\item we will be primarily interested in the piecewise-linear space $P_1$
+\item suppose $\Omega \subset \RR^1$ and $f\in C^2(\overline\Omega)$
+\item then the picture is:
+
+\vspace{30mm}
+\item consider a mesh $a=x_0<x_1<\dots<x_{n-1}<x_n=b$ on $\Omega=(a,b)$
+\item let $h = \max_i |x_{i+1}-x_i|$
+\item the remainder theorem gives the following estimate on $[x_{i-1},x_i]$:
+	$$|f(x) - p(x)| \le \frac{M}{2} |(x-x_{i-1})(x-x_i)|$$
+where $\ds M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)|$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{xx}
+
+
+\begin{frame}{piecewise-linear interpolation error bound}
 
 \begin{itemize}
-\item yy
-\end{itemize}
-\end{frame}
+\item but we can compute:
+    $$\max_{x \in [x_{i-1},x_i]} |(x-x_{i-1})(x-x_i)| = \frac{1}{4} |x_{i+1}-x_i|^2 \le \frac{1}{4} h^2$$
+\item thus \alert{on every subinterval} (element) $x\in[x_{i-1},x_i]$,
+	$$\alert{|f(x) - p(x)| \le \frac{M}{8} h^2}$$
 
-\begin{frame}{xx}
-
-\begin{itemize}
-\item yy
 \end{itemize}
+
+\begin{theorem}[interpolation theorem in $\RR^1$]
+For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in C^2(\overline\Omega)$, with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant $\II_h f \in P_1$.  Then
+	$$\|f-\II_h f\|_\infty \le \frac{M}{8} h^2$$
+where $\ds M=\max_{x\in[a,b]} |f''(x)|$.
+\end{theorem}
 \end{frame}
 
 
 \section{convergence of the FE approximation as $h\to 0$}
+
+\begin{frame}{piecewise-linear interpolation error bound}
+
+FIXME in $L^2$ and $H^1$ norms on $\RR^1$
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{interpolation errors on triangles}
+
+FIXME just the triangle results in $\RR^2$ from Braess
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
 
 \begin{frame}{xx}
 
