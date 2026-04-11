@@ -93,21 +93,21 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned XX April 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 13 April 2026}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 8}}
 \large
 \medskip
 
-\centerline{\textbf{Due XX at the beginning of class}}
+\centerline{\textbf{Due Friday 24 April at the beginning of class}}
 \medskip
 \normalsize
 
 \thispagestyle{empty}
 
 \bigskip
-\noindent This Assignment is based on the slides, especially \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} and FIXME
+\noindent This Assignment is based on the slides, especially those for \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} and \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 13}.
 
 \newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
 
@@ -117,19 +117,41 @@
 \noindent \textsc{Do the following problems.}
 
 
-\prob{P23} FIXME solve Poisson by series on a square
+\prob{P23} \emph{Refer to Chapter 4 of the textbook\footnote{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.} as needed.}
 
-\prob{P24} FIXME prove that Helmholtz homogeneous Neumann is well-posed
+\epart{a} Consider $f\in L^2(-\pi,\pi)$ expanded using the complete ON sequence $\{\frac{1}{\sqrt{2\pi}} e^{inx}\}_{n\in \ZZ}$.  The coefficients $c_n$ in the expansion
+	$$f(x) = \frac{1}{\sqrt{2\pi}} \sum_{n=-\infty}^\infty c_n e^{inx}$$
+are generally complex, but show that if $f$ is real-valued then
+	$$c_{-n} = \overline{c_n}.$$
 
-\prob{P25} FIXME confirm that $\lim_{r\to 1^-} u(r,\theta) = g(\theta)$ with convergence in $L^2$
+\epart{b} Again assume that $f$ is real-valued.  Use the substitution $c_n = \frac{\sqrt{2\pi}}{2} (a_n-i b_n)$, with $a_n,b_n\in\RR$, to show the fully-real expansion
+    $$f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(n\theta) + b_n \sin(n\theta).$$
+Starting from the formula for $c_n$ as an integral of $f$, derive the simplified, real formulas which compute $a_n$ and $b_n$.
 
-\prob{P26} FIXME confirm that
+\prob{P24} \emph{Recall the Riesz-Fr\'echet representation theorem:  If $(X,\ip{\cdot}{\cdot})$ is a Hilbert space and if $\ell\in X'$ then there exists a representer $x_\ell\in X$ so that $\ell(x) = \ip{x}{x_\ell}$ for all $x\in X$.}
+
+\medskip \noindent Show that the representer in the Riesz-Fr\'echet representation theorem is unique.
+
+
+\prob{P25} \emph{A proof of well-posedness of the homogeneous Dirichlet problem for the Poisson equation, using the Riesz-Fr\'echet representation theorem, was shown in the \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13} slides.  Please follow this strategy in part \emph{\textbf{(b)}}.  However, you will \emph{not} need the Poincaré-Friedrichs inequality!}
+
+\epart{a} Suppose $\Omega\subset \RR^d$ is open and bounded, with Lipschitz boundary so that the outward normal vector field $\bn$ is well-defined and the divergence theorem can be applied.  Suppose $\gamma>0$ and $f\in L^2(\Omega)$.  Consider the following strong form of the homogeneous Neumann problem for the Helmholtz equation:
+	$$-\grad^2 u + \gamma u = f \quad \text{on } \Omega, \qquad \grad u\cdot \bn = 0 \quad \text{on } \partial \Omega.$$
+Derive the weak form, where test functions and the solution are from $H^1(\Omega)$.
+
+\epart{b} Show that the weak form derived in part \textbf{(a)} is well-posed.
+
+
+
+\prob{P26} FIXME solve Poisson by series on a square
+
+\prob{P27} FIXME confirm that $\lim_{r\to 1^-} u(r,\theta) = g(\theta)$ with convergence in $L^2$
+
+\prob{P28} FIXME confirm that
 \begin{align*}
 \grad^2 \phi_{mn} &= - \lambda_{mn}^2 \phi_{mn} \\
 \grad^2 \psi_{mn} &= - \lambda_{mn}^2 \psi_{mn}
 \end{align*}
 use Laplacian in polar, and following equation satisfied by $J_m$
-
-P27 FIXME show Riesz representer is unique
 
 \end{document}
