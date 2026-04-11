@@ -107,7 +107,7 @@
 \thispagestyle{empty}
 
 \bigskip
-\noindent This Assignment is based on the slides, especially those for \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} and \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 13}.
+\noindent This Assignment is based mostly on the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} and \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13} slides.
 
 \newcommand{\augment}[1]{\quad\,\strut \begin{minipage}[t]{0.7\textwidth} \emph{#1}\end{minipage}}
 
@@ -128,30 +128,50 @@ are generally complex, but show that if $f$ is real-valued then
     $$f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos(n\theta) + b_n \sin(n\theta).$$
 Starting from the formula for $c_n$ as an integral of $f$, derive the simplified, real formulas which compute $a_n$ and $b_n$.
 
-\prob{P24} \emph{Recall the Riesz-Fr\'echet representation theorem:  If $(X,\ip{\cdot}{\cdot})$ is a Hilbert space and if $\ell\in X'$ then there exists a representer $x_\ell\in X$ so that $\ell(x) = \ip{x}{x_\ell}$ for all $x\in X$.}
-
-\medskip \noindent Show that the representer in the Riesz-Fr\'echet representation theorem is unique.
-
-
-\prob{P25} \emph{A proof of well-posedness of the homogeneous Dirichlet problem for the Poisson equation, using the Riesz-Fr\'echet representation theorem, was shown in the \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13} slides.  Please follow this strategy in part \emph{\textbf{(b)}}.  However, you will \emph{not} need the Poincaré-Friedrichs inequality!}
-
-\epart{a} Suppose $\Omega\subset \RR^d$ is open and bounded, with Lipschitz boundary so that the outward normal vector field $\bn$ is well-defined and the divergence theorem can be applied.  Suppose $\gamma>0$ and $f\in L^2(\Omega)$.  Consider the following strong form of the homogeneous Neumann problem for the Helmholtz equation:
+\prob{P24}  \ppart{a} Suppose $\Omega\subset \RR^d$ is open and bounded, with Lipschitz boundary so that the outward normal vector field $\bn$ is well-defined and the divergence theorem can be applied.  Suppose $\gamma>0$ and $f\in L^2(\Omega)$.  Consider the following strong form of the homogeneous Neumann problem for the Helmholtz equation:
 	$$-\grad^2 u + \gamma u = f \quad \text{on } \Omega, \qquad \grad u\cdot \bn = 0 \quad \text{on } \partial \Omega.$$
 Derive the weak form, where test functions and the solution are from $H^1(\Omega)$.
 
-\epart{b} Show that the weak form derived in part \textbf{(a)} is well-posed.
+\medskip \noindent \emph{A proof of well-posedness of the homogeneous Dirichlet problem for the Poisson equation, using the Riesz-Fr\'echet representation theorem, was shown in the \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13} slides.  Please follow this strategy.  However, you will \emph{not} need the Poincaré-Friedrichs inequality.}
+
+\epart{b} Show that the weak form, derived in part \textbf{(a)}, is well-posed for $u\in H^1(\Omega)$.
 
 
+\prob{P25}  \emph{Both parts can be answered using strong forms.}
 
-\prob{P26} FIXME solve Poisson by series on a square
+\epart{a}  Let $\Omega=(0,\pi)^2\subset \RR^2$ be the open square.  Show that the functions
+	$$\phi_{jk}(x,y) = \sin(j x) \sin(k x), \quad j,k \in \NN,$$
+are eigenfunctions of the Laplacian, and find their eigenvalues.  Also show that each $\phi_{jk}$ satisfies homogeneous Dirichlet conditions along $\partial\Omega$.
 
-\prob{P27} FIXME confirm that $\lim_{r\to 1^-} u(r,\theta) = g(\theta)$ with convergence in $L^2$
+\epart{b}  I claim that, for $f=0$ and for certain negative values of $\gamma$, the eigenfunctions of part \textbf{(a)} show that, on this square $\Omega$, the Helmholtz problem in \textbf{P24} is \emph{not} well-posed.
 
-\prob{P28} FIXME confirm that
-\begin{align*}
-\grad^2 \phi_{mn} &= - \lambda_{mn}^2 \phi_{mn} \\
-\grad^2 \psi_{mn} &= - \lambda_{mn}^2 \psi_{mn}
-\end{align*}
-use Laplacian in polar, and following equation satisfied by $J_m$
+\medskip \noindent \emph{We see why the Helmholtz problem in \emph{\textbf{P24}}, with the restriction $\gamma>0$, is often called \emph{good Helmholtz}.}
+
+
+\prob{P26}  \ppart{a}  Again let $\Omega=(0,\pi)^2\subset \RR^2$ be the open square, and consider the eigenfunctions $\phi_{jk}$ in \textbf{P25}.  Show that they form an orthonormal (double-index) sequence in $L^2(\Omega)$.
+
+\medskip \noindent \emph{I claim that, with appropriate normalization, the eigenfunctions $\phi_{jk}$ form a complete ON sequence.  You do not need to prove this, but you will use it below.}
+
+\epart{b}  Again let $\Omega=(0,\pi)^2$ and suppose $f\in L^2(\Omega)$.  Consider the Poisson equation with homogeneous Dirichlet boundary conditions:
+	$$-\grad^2 u = f \quad \text{on } \Omega, \qquad u=0 \quad \text{on } \partial\Omega.$$
+Use the eigenfunctions $\phi_{jk}$ to construct the solution $u$ to this problem.
+
+\epart{c}  Show that $u\in H^1(\Omega)$.
+
+
+\prob{P27}  \emph{The \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13} slides contain a theorem showing how to solve Laplace's equation on the unit disc $D\subset \RR^2$.  The Dirichlet boundary condition data is $g\in L^2(\partial D)=L^2(S^1)$.}
+
+\medskip \noindent Suppose that $g\in L^2(S^1)$, real-valued, is written as a classical Fourier series, namely in the form of \textbf{P23 (b)}.  Define
+    $$u(r,\theta) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n r^n \cos(n\theta) + b_n r^n \sin(n\theta)$$
+for $0\le r\le 1$ and $-\pi < \theta \le \pi$. 
+
+\epart{a}  Let $\eps>0$.  Prove that the series for $u$ converges uniformly on
+	$$\bar D_\eps = \left\{x\in \RR^2\,:\,0\le r\le 1-\eps, -\pi < \theta \le \pi, \text{ for $x$ in polar coordinates}\right\},$$
+a smaller closed disc.
+
+\epart{b}  Conclude that $u$ is continuous on $D$.
+
+\epart{c}  Prove that $u$ has boundary values $g$ in the sense that, in the $L^2(S^1)$ norm,
+    $$\lim_{r\to 1^-} u(r,\theta) = g(\theta).$$
 
 \end{document}
