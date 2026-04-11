@@ -665,7 +665,7 @@ and $\xi$ is some point in $[a,b]$.
 \end{itemize}
 
 \begin{theorem}[polynomial interpolation remainder]
-Let $p(x)$ be the unique polynomial $p(x)$ of degree $n$ such that $p(x_i)=f(x_i)$.  Then $f(x) = p(x) + R(x)$ where
+Let $p(x)$ be the unique polynomial of degree $n$ such that $p(x_i)=f(x_i)$.  Then $f(x) = p(x) + R(x)$ where
     $$R(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)(x-x_1)\dots(x-x_n)$$
 for some point $\xi \in [a,b]$.
 \end{theorem}
@@ -678,39 +678,107 @@ for some point $c$ between $x_0$ and $x$.
 \end{frame}
 
 
-\begin{frame}{example: linear interpolation}
+\begin{frame}{proving the $n=1$ linear case}
+
+\begin{theorem}[linear interpolation remainder]
+Suppose $f\in C^2([a,b])$.  For nodes $a=x_0<x_1=b$, let $p(x)$ be the unique linear polynomial (degree $n=1$) such that $p(a)=f(a)$ and $p(b)=f(b)$.  Then for each $x\in [a,b]$ we have $f(x) = p(x) + R(x)$ where
+    $$f(x) - p(x) = R(x) = \frac{f^{''}(\xi)}{2} (x-a)(x-b),$$
+for some point $\xi \in (a,b)$ which depends on $x$.
+\end{theorem}
+
+\medskip
+{\footnotesize
+Proof.  The remainder formula is valid at the endpoints, $R(a)=R(b)=0$, so consider $x\in (a,b)$.  For $t\in [a,b]$ define
+	$$g(t) = f(t) - p(t) - \frac{f(x)-p(x)}{(x-a)(x-b)} (t-a)(t-b).$$
+Note that $g$ is $C^2$, and that it has three zeros: $g(a)=g(x)=g(b)=0$.
+
+By Rolle's theorem there are points $a<c<x<d<b$ so that $g'(c)=0$ and $g'(d)=0$.  Applying Rolle's theorem again there is $c<\xi<d$ so that $g''(\xi)=0$.  However,
+	$$0=g''(\xi)=f''(\xi) - 0 - \frac{f(x)-p(x)}{(x-a)(x-b)} 2,$$
+as claimed. \hfill \qed
+}
+\end{frame}
+
+
+\begin{frame}{piecewise-linear interpolation}
 
 \begin{itemize}
-\item we will be primarily interested in the piecewise-linear space $P_1$
-\item suppose $\Omega \subset \RR^1$ and $f\in C^2(\overline\Omega)$
-\item then the picture is:
+\item we will be primarily interested in the \alert{piecewise-linear} space $P_1$
+\item suppose $\Omega=(a,b) \subset \RR^1$ and $f\in C^2(\overline\Omega)$
+\item consider a mesh $a=x_0<x_1<\dots<x_{n-1}<x_n=b$; \quad picture:
 
-\vspace{30mm}
-\item consider a mesh $a=x_0<x_1<\dots<x_{n-1}<x_n=b$ on $\Omega=(a,b)$
-\item let $h = \max_i |x_{i+1}-x_i|$
-\item the remainder theorem gives the following estimate on $[x_{i-1},x_i]$:
+\vspace{20mm}
+\item let $p(x)$ be the continuous, piecewise-linear interpolant of $f(x)$
+\item the remainder theorem gives the following bound on $[x_{i-1},x_i]$:
 	$$|f(x) - p(x)| \le \frac{M}{2} |(x-x_{i-1})(x-x_i)|$$
 where $\ds M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)|$
 \end{itemize}
 \end{frame}
 
 
-
 \begin{frame}{piecewise-linear interpolation error bound}
 
 \begin{itemize}
-\item but we can compute:
+\item let $h = \max_i |x_{i+1}-x_i|$; we compute:
     $$\max_{x \in [x_{i-1},x_i]} |(x-x_{i-1})(x-x_i)| = \frac{1}{4} |x_{i+1}-x_i|^2 \le \frac{1}{4} h^2$$
-\item thus \alert{on every subinterval} (element) $x\in[x_{i-1},x_i]$,
+\item thus on every subinterval ($=$ cell or element) $x\in[x_{i-1},x_i]$,
 	$$\alert{|f(x) - p(x)| \le \frac{M}{8} h^2}$$
-
 \end{itemize}
 
 \begin{theorem}[interpolation theorem in $\RR^1$]
-For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in C^2(\overline\Omega)$, with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant $\II_h f \in P_1$.  Then
+For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in C^2(\overline\Omega)$, with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant $p=\II_h f \in P_1$.  Then
 	$$\|f-\II_h f\|_\infty \le \frac{M}{8} h^2$$
-where $\ds M=\max_{x\in[a,b]} |f''(x)|$.
+where $\ds M=\max_{x\in[a,b]} |f''(x)| = \|f''\|_\infty$.
 \end{theorem}
+\end{frame}
+
+
+\begin{frame}{how about the $H^1$ norm?}
+
+\begin{itemize}
+\item we actually want an error bound in the $H^1$ norm
+\end{itemize}
+
+\begin{lemma}
+Suppose $f\in C^2([a,b])$.  Let $p(x)$ be the unique linear polynomial such that $p(a)=f(a)$ and $p(b)=f(b)$.  Then
+    $$\int_a^b |f'(x)-p'(x)|^2\,dx \le (b-a)^2 \|f''\|_{L^2}^2$$
+\end{lemma}
+
+\medskip
+{\small
+Proof. Note $p'(x)=(f(b)-f(a))/(b-a)$ is constant.  By the mean value theorem there is $c\in (a,b)$ so that $f'(c)=(f(b)-f(a))/(b-a)=p'(x)$.  By FTC and CS,
+\begin{align*}
+\int_a^b |f'(x)-p'(x)|^2\,dx &= \int_a^b |f'(x)-f'(c)|^2\,dx = \int_a^b \left|\int_x^c f''(t)\,dt\right|^2\,dx \\
+     &\le \int_a^b \left(\int_a^b |f''(t)|\,dt\right)^2\,dx \le (b-a) \left(\int_a^b |f''(t)|\,dt\right)^2 \\
+     &\le (b-a) \left(\|f''\|_{L^2} (b-a)^{1/2}\right)^2 = (b-a)^2 \|f''\|_{L^2}^2. \hspace{5mm} \qed
+\end{align*}
+}
+\end{frame}
+
+
+\begin{frame}{$P_1$ interpolation error bound in $H^1$ and $L^2$, for $\RR^1$}
+
+\begin{theorem}[interpolation theorem in $\RR^1$]
+For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in H^2(\Omega)$, with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant\, $\II_h f \in P_1$.  Then
+\begin{align*}
+\|f-\II_h f\|_{H^1} &= O(h) \\
+\|f-\II_h f\|_{L^2} &= O(h^2)
+\end{align*}
+\end{theorem}
+
+\medskip
+{\small
+Proof. FIXME
+}
+\end{frame}
+
+
+\begin{frame}{piecewise-linear interpolation on $\Omega\subset \RR^d$}
+
+FIXME in $L^2$ and $H^1$ norms on $\RR^1$
+
+\begin{itemize}
+\item we have proven the details for intervals in $\RR^1$, but 
+\end{itemize}
 \end{frame}
 
 
