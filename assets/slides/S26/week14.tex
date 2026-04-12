@@ -543,9 +543,9 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx + \gamma \int_\Omega |v|^2\,dx \\
 \item let us assume about the original, continuous PDE problem:
     \begin{enumerate}
     \item the weak form is well-posed and determines a unique solution $u$
-    \item the exact solution $u$ is a smooth function on $\Omega$
+    \item \alert{the exact solution $u$ is a smooth function on $\Omega$}
     \end{enumerate}
-\item in the problems so far we know $u\in H^1(\Omega)$, but it is often true that $u\in H^2(\Omega)$ or even $u \in C^\infty(\Omega)$
+\item in the problems so far we know $u\in H^1(\Omega)$, but it is often true that $u\in H^2(\Omega)$ or $u\in C^2(\Omega)$ or even $u \in C^\infty(\Omega)$
     \begin{itemize}
     \item[$\circ$] a \emph{regularity} theorem would supply such knowledge
     \end{itemize}
@@ -575,7 +575,7 @@ which takes the nodal values of the input $w\in C(\overline{\Omega})$ and constr
     \end{itemize}
 \item then we \alert{substitute $v_h = \II_h(u)$ into quasi-optimality} and use the rate:
 	$$\|u-u_h\| \le \frac{M}{\alpha} \|u-\II_h(u)\| = O(h^k)$$
-\item thus $u\to u_h$ as $h\to 0$ 
+\item thus $u\to u_h$ as $h\to 0$, so the method \alert{converges}
 \end{itemize}
 \end{frame}
 
@@ -609,13 +609,13 @@ Thus by coercivity (again), and continuity, we get the claim:
 \begin{frame}{Lagrange interpolation}
 
 \begin{itemize}
-\item methods for polynomial interpolation in $\RR^1$ has been known for a long time (Vandermonde 1771, Waring 1779, Lagrange 1795)
+\item methods for polynomial interpolation in $\RR^1$ are old (Vandermonde 1771, Waring 1779, Lagrange 1795)
 \end{itemize}
 
-\begin{block}{polynomial interpolation in 1D}
-Given $n+1$ points $(x_i,y_i)$ for $i=0,1,\dots,n$.  Assume the $x_i$ are distinct.  Then there exists a unique polynomial $p(x)$ of degree $n$ such that \alert{$p(x_i)=y_i$} for all $i$.  Furthermore, here is the formula:
+\begin{block}{polynomial interpolation in 1D (Lagrange's formula)}
+Given $n+1$ points $(x_i,y_i)$ for $i=0,1,\dots,n$, with distinct $x_i$.  There exists a unique polynomial $p(x)$ of degree $n$ such that \alert{$p(x_i)=y_i$} for all $i$, and in fact
 	$$p(x) = \sum_{i=0}^n y_i L_i(x)$$
-where $\ds L_i(x) = \prod_{\begin{smallmatrix} k = 0 \\ k\ne i \end{smallmatrix}}^n \frac{x-x_k}{x_i-x_k}$ is a polynomial of degree $n$.  Note that $\ds \alert{L_i(x_j) = \delta_{ij}}$.
+where $\ds L_i(x) = \prod_{\begin{smallmatrix} k = 0 \\ k\ne i \end{smallmatrix}}^n \frac{x-x_k}{x_i-x_k}$ is a polynomial of degree $n$ satisfying $\ds \alert{L_i(x_j) = \delta_{ij}}$.
 \end{block}
 \end{frame}
 
@@ -643,72 +643,77 @@ where $\ds L_i(x) = \prod_{\begin{smallmatrix} k = 0 \\ k\ne i \end{smallmatrix}
 \begin{frame}{interpolation errors in 1D}
 
 \begin{itemize}
-\item a bound for the error in approximating a function by polynomial interpolation is comparably old (I believe \dots Lagrange $\sim$1800?)
-\item the polynomial interpolant $p(x)$ can be built as before, but now we set
-    $$y_i=f(x_i)$$
+\item a bound for the error in approximating a function by polynomial interpolation is comparably old (Lagrange $\sim$1800?)
+\item the polynomial interpolant $p(x)$ is built as before, but now $\alert{y_i=f(x_i)}$
 \end{itemize}
 
 \begin{theorem}[polynomial interpolation remainder]
-Assume the $x_i$, $i=0,1,\dots,n$, are distinct points in $[a,b]$.  Suppose $f\in C^{n+1}([a,b])$.  Let $p(x)$ be the unique polynomial $p(x)$ of degree $n$ such that $p(x_i)=f(x_i)$.  Then
+Suppose $f\in C^{n+1}([a,b])$ and $x_i$, $i=0,1,\dots,n$, are distinct points in $[a,b]$.  Let $p(x)$ be the unique polynomial $p(x)$ of degree $n$ such that $p(x_i)=f(x_i)$.  Then
 	$$f(x) = p(x) + R(x)$$
 where
-    $$R(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)(x-x_1)\dots(x-x_n)$$
-and $\xi$ is some point in $[a,b]$.
+    $$\alert{R(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)(x-x_1)\dots(x-x_n)}$$
+and \alert{$\xi=\xi(x)$} is some point in $[a,b]$.
 \end{theorem}
+
+\begin{itemize}
+\item obviously: \, $R(x)=f(x)-p(x)$
+\end{itemize}
+
 \end{frame}
 
 
-\begin{frame}{the remainder formula is as close to Taylor's as it can be}
+\begin{frame}{the remainder formula: similar to Taylor's}
 
 \begin{itemize}
-\item this \emph{should} sound familiar! compare:
+\item this \emph{should} sound familiar!
 \end{itemize}
 
 \begin{theorem}[polynomial interpolation remainder]
 Let $p(x)$ be the unique polynomial of degree $n$ such that $p(x_i)=f(x_i)$.  Then $f(x) = p(x) + R(x)$ where
     $$R(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)(x-x_1)\dots(x-x_n)$$
-for some point $\xi \in [a,b]$.
+for some point $\xi=\xi(x) \in [a,b]$.
 \end{theorem}
 
 \begin{theorem}[Taylor's theorem with remainder]
 Let $p(x)$ be the Taylor polynomial of degree $n$ at basepoint $x_0$.  Then $f(x) = p(x) + R(x)$ where
     $$R(x) = \frac{f^{(n+1)}(c)}{(n+1)!} (x-x_0)^{n+1}$$
-for some point $c$ between $x_0$ and $x$.
+for some point $c=c(x)$ between $x_0$ and $x$.
 \end{theorem}
 \end{frame}
 
 
-\begin{frame}{proving the $n=1$ linear case}
+\begin{frame}{proof in the $n=1$ (linear) case}
 
 \begin{theorem}[linear interpolation remainder]
-Suppose $f\in C^2([a,b])$.  For nodes $a=x_0<x_1=b$, let $p(x)$ be the unique linear polynomial (degree $n=1$) such that $p(a)=f(a)$ and $p(b)=f(b)$.  Then for each $x\in [a,b]$ we have $f(x) = p(x) + R(x)$ where
-    $$f(x) - p(x) = R(x) = \frac{f^{''}(\xi)}{2} (x-a)(x-b),$$
+Suppose $f\in C^2([a,b])$.  For nodes $a=x_0<x_1=b$, let $p(x)$ be the unique linear polynomial such that $p(a)=f(a)$ and $p(b)=f(b)$.  Then for each $x\in [a,b]$ we have $f(x) = p(x) + R(x)$ where
+    $$R(x) = \frac{f^{''}(\xi)}{2} (x-a)(x-b),$$
 for some point $\xi \in (a,b)$ which depends on $x$.
 \end{theorem}
 
 \medskip
 {\footnotesize
-Proof.  The remainder formula is valid at the endpoints, $R(a)=R(b)=0$, so consider $x\in (a,b)$.  For $t\in [a,b]$ define
+Proof.  Interpolation is exact at ends ($R(a)=R(b)=0$), so fix $x\in (a,b)$.  For $t\in [a,b]$ define
 	$$g(t) = f(t) - p(t) - \frac{f(x)-p(x)}{(x-a)(x-b)} (t-a)(t-b).$$
-Note that $g$ is $C^2$, and that it has three zeros: $g(a)=g(x)=g(b)=0$.
-
-By Rolle's theorem there are points $a<c<x<d<b$ so that $g'(c)=0$ and $g'(d)=0$.  Applying Rolle's theorem again there is $c<\xi<d$ so that $g''(\xi)=0$.  However,
+Note that $g$ is $C^2$, and that it has three zeros: $g(a)=g(x)=g(b)=0$.  By Rolle's theorem there are points $a<c<x<d<b$ so that $g'(c)=0$ and $g'(d)=0$.  Applying Rolle's theorem again there is $c<\xi<d$ so that $g''(\xi)=0$.  However,
 	$$0=g''(\xi)=f''(\xi) - 0 - \frac{f(x)-p(x)}{(x-a)(x-b)} 2,$$
 as claimed. \hfill \qed
 }
 \end{frame}
 
 
-\begin{frame}{piecewise-linear interpolation}
+\begin{frame}{piecewise-linear interpolation in $\RR^1$}
 
 \begin{itemize}
-\item we will be primarily interested in the \alert{piecewise-linear} space $P_1$
+\item we are primarily interested in the \alert{piecewise-linear} FE space $P_1$
 \item suppose $\Omega=(a,b) \subset \RR^1$ and $f\in C^2(\overline\Omega)$
 \item consider a mesh $a=x_0<x_1<\dots<x_{n-1}<x_n=b$; \quad picture:
 
 \vspace{20mm}
 \item let $p(x)$ be the continuous, piecewise-linear interpolant of $f(x)$
-\item the previous theorem gives the following bound on $[x_{i-1},x_i]$:
+    \begin{itemize}
+    \item[$\circ$] on $[x_{i-1},x_i]$: \quad $\ds \alert{p(x) = f(x_{i-1}) + \frac{f(x_i) - f(x_{i-1})}{x_i - x_{i-1}} (x-x_{i-1})}$
+    \end{itemize}
+\item the previous theorem gives a bound on $[x_{i-1},x_i]$:
 	$$|f(x) - p(x)| \le \frac{M}{2} |(x-x_{i-1})(x-x_i)|$$
 where $\ds M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)|$
 \end{itemize}
@@ -718,14 +723,14 @@ where $\ds M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)|$
 \begin{frame}{piecewise-linear interpolation error bound}
 
 \begin{itemize}
-\item let $h = \max_i |x_{i+1}-x_i|$; we compute:
+\item let $h = \max_i |x_i-x_{i-1}|$, and compute:
     $$\max_{x \in [x_{i-1},x_i]} |(x-x_{i-1})(x-x_i)| = \frac{1}{4} |x_{i+1}-x_i|^2 \le \frac{1}{4} h^2$$
 \item thus on every subinterval ($=$ cell or element) $x\in[x_{i-1},x_i]$,
-	$$\alert{|f(x) - p(x)| \le \frac{M}{8} h^2} \quad \text{where } M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)| \le \|f''\|_\infty$$
+	$$\alert{|f(x) - p(x)| \le \frac{\|f''\|_\infty}{8} h^2}$$
 \end{itemize}
 
-\begin{theorem}[interpolation theorem in $\RR^1$]
-For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in C^2(\overline\Omega)$, with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant $p=\II_h f \in P_1$.  Then
+\begin{theorem}[uniform interpolation bound in $\RR^1$]
+Let $f\in C^2([a,b])$.  For a mesh $\{x_i\}$ on $[a,b]$ with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant $p=\II_h f \in P_1$.  Then
 	$$\|f-\II_h f\|_\infty \le \frac{\|f''\|_\infty}{8} h^2.$$
 \end{theorem}
 \end{frame}
@@ -734,17 +739,18 @@ For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in C^2(\overline\Omega)$, with $h=
 \begin{frame}{how about the $H^1$ norm?}
 
 \begin{itemize}
-\item we actually want an error bound in the $H^1$ norm, so we need a lemma
+\item we also want an error bound in the $H^1$ norm, so we need a lemma
 \end{itemize}
 
 \begin{lemma}
 Suppose $f\in C^2([a,b])$ and suppose $[x_{i-1},x_i] \subset [a,b]$.  Let $p(x)$ be the unique linear polynomial such that $p(x_j)=f(x_j)$.  Then
     $$\int_{x_{i-1}}^{x_i} |f'(x)-p'(x)|^2\,dx \le h^3 \|f''\|_\infty^2$$
+where $h=\max_i |x_i-x_{i-1}|$.
 \end{lemma}
 
 \medskip
 {\small
-Proof. Note $p'(x)=(f(x_i)-f(x_{i-1}))/(x_i-x_{i-1})$ is constant in $[x_{i-1},x_i]$.  By the mean value theorem there is $c\in (x_{i-1},x_i)$ so that $f'(c)$ has this value.  By FTC,
+Proof. Note $p'(x)$ is constant in $[x_{i-1},x_i]$.  By the mean value theorem there is $c\in (x_{i-1},x_i)$ so that $f'(c)$ has this value.  By FTC and triangle inequality:
 \begin{align*}
 \int_{x_{i-1}}^{x_i} |f'(x)-p'(x)|^2\,dx &= \int_{x_{i-1}}^{x_i} |f'(x)-f'(c)|^2\,dx = \int_{x_{i-1}}^{x_i} \left|\int_x^c f''(t)\,dt\right|^2\,dx \\
      &\le \int_{x_{i-1}}^{x_i} \left(\int_{x_{i-1}}^{x_i} |f''(t)|\,dt\right)^2\,dx \le (x_i - x_{i-1})^3 \|f''\|_\infty^2. \hspace{5mm} \qed
@@ -753,42 +759,44 @@ Proof. Note $p'(x)=(f(x_i)-f(x_{i-1}))/(x_i-x_{i-1})$ is constant in $[x_{i-1},x
 \end{frame}
 
 
-\begin{frame}{decay rate of 1D $P_1$ interpolation error in $H^1$ and $L^2$}
+\begin{frame}{decay rate of $P_1$ interpolation error in $H^1$ and $L^2$}
 
-\begin{theorem}[interpolation error rate for $P_1$ in $\RR^1$]
-Consider a sequence of meshes $\{x_i\}$ on $\Omega=(a,b)$ with $h=\max |x_i-x_{i-1}|$.  Suppose the meshes are quasi-uniform in the sense that there is $c>0$ so that $c h \le |x_i-x_{i-1}| \le h$ for all $i$.  Let $f\in C^2(\overline{\Omega})$ and consider the piecewise-linear interpolant\, $\II_h f \in P_1$.  Then
+\begin{theorem}[interpolation error rate for $P_1$ \alert{in $\RR^1$}]
+Let $\Omega=(a,b)$ and $f\in C^2(\overline{\Omega})$.  Consider a sequence of meshes $\{x_i\}$ on $\Omega$ with $h=\max_i |x_i-x_{i-1}|$.  Suppose the meshes are quasi-uniform in the sense that there is $c>0$ so that $c h \le |x_i-x_{i-1}| \le h$ for all $i$.  The piecewise-linear interpolants\, $\II_h f \in P_1$ satisfy
 \begin{align*}
 \|f-\II_h f\|_{L^2} &= O(h^2) \|f''\|_\infty \\
-\|f-\II_h f\|_{H^1} &= O(h^{3/2}) \|f''\|_\infty
+\|f-\II_h f\|_{H^1} &= O(h^1) \|f''\|_\infty
 \end{align*}
 as $h\to 0$.
 \end{theorem}
 
 \medskip
 {\small
-Proof.  Let $p=\II_h f$.  From the interpolation theorem
+Proof.  Let $p=\II_h f$.  From the uniform bound,
 \begin{align*}
 \|f-p\|_{L^2}^2 &= \int_a^b |f(x)-p(x)|^2\,dx \le \int_a^b \|f-p\|_\infty^2\,dx \\
-  &= (b-a) \|f-p\|_\infty^2 \le (b-a) \left(\frac{\|f''\|_\infty}{8} h^2\right)^2 = C_1 h^4 \|f''\|_\infty^2
+  &\le (b-a) \left(\frac{\|f''\|_\infty}{8} h^2\right)^2 = C_1 h^4 \|f''\|_\infty^2
 \end{align*}
+Thus $\|f-p\|_{L^2} \le \sqrt{C_1} h^2 \|f''\|_\infty$, which proves the first big-O claim.
 }
 \end{frame}
 
 
-\begin{frame}{decay rate}
+\begin{frame}{decay rate (proof continued)}
 
 {\small
-Proof cont.  thus $\|f-p\|_{L^2} \le \sqrt{C_1} h^2 \|f''\|_\infty$ as claimed.  Now also using the lemma,
+Proof cont.  Now using the lemma,
 \begin{align*}
-\|f'-p'\|_{L^2}^2 &= \int_a^b |f(x)-p(x)|^2\,dx = \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |f'(x)-p'(x)|^2\,dx \\
-  &\le \left(\sum_{i=1}^n \int_{x_{i-1}}^{x_i} \,dx\right) h^3 \|f''\|_\infty^2 = (b-a) h^3 \|f''\|_\infty^2
+\|f'-p'\|_{L^2}^2 &= \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |f'(x)-p'(x)|^2\,dx \le n h^3 \|f''\|_\infty^2
 \end{align*}
-Thus
+Note that by quasi-uniformity of the mesh, $nh\le (b-a)/c$.  Thus
+	$$\|f'-p'\|_{L^2}^2 \le \frac{b-a}{c} h^2 \|f''\|_\infty^2$$
+Combining these results,
 \begin{align*}
-\|f-p\|_{H^1}^2 &= \|f-p\|_{L^2}^2 + \|f'-p'\|_{L^2}^2 \\
-  &\le C_1 h^4 \|f''\|_\infty^2 +  (b-a) h^3 \|f''\|_\infty^2 \le C_2 h^3 \|f''\|_\infty^2,
+\|f-p\|_{H^1}^2 &= \|f-p\|_{L^2}^2 + \|f'-p'\|_{L^2}^2 \le C_1 h^4 \|f''\|_\infty^2 +  \frac{b-a}{c} h^2 \|f''\|_\infty^2 \\
+  &\le (C_1 h^4 + \frac{b-a}{c} h^2) \|f''\|_\infty^2 \le C_2 h^2 \|f''\|_\infty^2.
 \end{align*}
-and so $\|f-p\|_{H^1} \le \sqrt{C_2} h^{3/2} \|f''\|_\infty$ as claimed. \hfill \qed
+(Restricting to $0<h\le 1$, take $C_2=C_1+(b-a)/c$.)  Thus $\|f-p\|_{H^1} \le \sqrt{C_2} h \|f''\|_\infty$ as claimed. \hfill \qed
 }
 \end{frame}
 
