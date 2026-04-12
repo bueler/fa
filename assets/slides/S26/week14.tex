@@ -563,18 +563,18 @@ which takes the nodal values of the input $w\in C(\overline{\Omega})$ and constr
 \begin{frame}{how will quasi-optimality show that the FE method converges?}
 
 \begin{itemize}
-\item we need an \emph{interpolation theorem} to say how close $\II_h(w)$ is to $w$
+\item we need an \emph{interpolation theorem} to say how close $\II_h w$ is to $w$
 
-\begin{theorem}[generic interpolation theorem result]
-    $$\alert{\|w-\II_h(w)\| = O(h^k)}$$
-\end{theorem}
+\begin{block}{generic interpolation theorem}
+    $$\alert{\|w-\II_h w\| = O(h^k)}$$
+\end{block}
 
     \begin{itemize}
     \item[$\circ$] actual theorems later in these slides, for 1D intervals and 2D triangles
     \item[$\circ$] such theorems provide a rate $O(h^k)$ for interpolation accuracy, given $w\in H^\ell(\Omega)$, for $\Omega\subset \RR^d$, with relationships between $k,\ell,d$
     \end{itemize}
-\item then we \alert{substitute $v_h = \II_h(u)$ into quasi-optimality} and use the rate:
-	$$\|u-u_h\| \le \frac{M}{\alpha} \|u-\II_h(u)\| = O(h^k)$$
+\item then we \alert{substitute $v_h = \II_h u$ into quasi-optimality} and use the rate:
+	$$\|u-u_h\| \le \frac{M}{\alpha} \|u-\II_h u\| = O(h^k)$$
 \item thus $u\to u_h$ as $h\to 0$, so the method \alert{converges}
 \end{itemize}
 \end{frame}
@@ -810,25 +810,42 @@ Combining these results,
 \end{itemize}
 
 \begin{theorem}
-Suppose $f\in C([a,b])$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form Poisson equation on $\Omega=(a,b)$ with homogeneous Dirichlet conditions,
+Suppose $f\in C([a,b])$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form Poisson equation on $\Omega=(a,b)$ with homogeneous Dirichlet conditions:
 	$$\int_a^b u'(x) v'(x)\,dx = \int_a^b f(x) v(x)\,dx \qquad \forall v \in H_0^1(\Omega).$$
-Suppose a conforming $P_1$ FE method is applied over a sequence of quasi-uniform meshes $\mathcal{T}_h = \{x_i\}$ with $h=\max_i |x_i-x_{i-1}|$.  (There is $c>0$ independent of $h$ so that $c h \le |x_i-x_{i-1}| \le h$ for all $x_i \in $.)  Let $u_h \in P_1$ be the solution over $\mathcal{T}_h$.  Then
-	$$\|u-u_h\|_{H^1} = O(h)$$
-as $h\to 0$, and thus $u_h \to u$ in $H^1$.
+Suppose a conforming $P_1$ FE method is applied over a sequence of quasi-uniform meshes\footnote{There is $c>0$ independent of $h$ so that $c h \le |x_i-x_{i-1}| \le h$ for all $x_i \in \mathcal{T}_h$.} $\mathcal{T}_h = \{x_i\}$.  Let $u_h \in P_1$ be the solution of
+	$$\int_a^b u_h'(x) v_h'(x)\,dx = \int_a^b f(x) v_h(x)\,dx \qquad \forall v_h \in P_1.$$
+Then $\|u-u_h\|_{H^1} = O(h)$ as $h\to 0$, and thus\, \alert{$u_h \to u$ in $H^1$}.
 \end{theorem}
-
-\medskip
-{\small
-Proof.  x
-}
-
 \end{frame}
 
 
-\begin{frame}{xx}
+\begin{frame}{proof of convergence (Poisson problem in 1D)}
+
+Proof.  We finally put all the pieces together.
+
+\medskip
+First, because $f\in C([a,b])$, in 1D it is easy to see by integration that \alert{$u\in C^2([a,b])$}.
+
+\medskip
+Second, by quasi-optimality (Cea's lemma),
+	$$\|u-u_h\|_{H^1} \le c \|u-v_h\|_{H^1}$$
+for all $v_h\in P_1$.  \alert{We can substitute $v_h=\II_h u$, the $P_1$ interpolant of the exact solution,} into the above.
+
+\medskip
+Finally, \alert{use the interpolation error theorem}, because we know $u\in C^2([a,b])$:
+	$$\|u-u_h\|_{H^1} \le c \|u-\II_h u\|_{H^1} = O(h) \|u''\|_\infty = O(h) \|f\|_\infty = O(h).$$
+Thus $u_h\to u$ in $H^1$. \hfill \qed
+\end{frame}
+
+
+\begin{frame}{notes about the proof}
 
 \begin{itemize}
-\item yy
+\item Regarding how it is ``easy to see by integration'' that $u\in C^2([a,b])$, this says that \alert{\emph{regularity theory}} is easy in 1D.
+\item The logic of regularity in 1D is that you may integrate twice to construct $\tilde u$ satisfying $-\tilde u''=f$.  This is the calculation I did long ago in the \href{https://bueler.github.io/fa/assets/slides/S26/week2.pdf}{week 2} slides, to solve the problem by an integral operator.  Then one uses uniqueness of the weak-form solution to show $\tilde u=u$.
+\item It follows that $-u''=f$, so $u$ solves the strong form, but we don't really need that knowledge when proving the FE method converges.
+\item I have written the constant in Cea's lemma simply as ``$c$''.  We showed that this constant is $c=1/\alpha=2/\min\{1,1/C^2\}$, where $C$ is the constant in Poincar\'e-Friedrichs.  However, that detail is not important here.
+\item There is a different argument that shows $\|u-u_h\|_{L^2}=O(h^2)$, but I definitely can't fit it in here.  See section II.7 of D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007. 
 \end{itemize}
 \end{frame}
 
@@ -838,8 +855,16 @@ Proof.  x
 FIXME just the triangle results in $\RR^2$ from Braess
 
 \begin{itemize}
-\item yy
+\item I have shown all the details in 1D, but \alert{things are harder in 2D}
+    \begin{itemize}
+    \item[$\circ$] well-posedness of the weak form is already done in $\RR^d$!
+    \item[$\circ$] quasi-optimality (Cea's lemma) is already done in $\RR^d$!
+    \item[$\circ$] \alert{the interpolation and regularity theories are more difficult in $\RR^2$ and higher}
+    \end{itemize}
+\item but I can state some results, from Braess\footnote{D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007.}
 \end{itemize}
+
+xx
 \end{frame}
 
 \begin{frame}{xx}
