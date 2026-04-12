@@ -708,7 +708,7 @@ as claimed. \hfill \qed
 
 \vspace{20mm}
 \item let $p(x)$ be the continuous, piecewise-linear interpolant of $f(x)$
-\item the remainder theorem gives the following bound on $[x_{i-1},x_i]$:
+\item the previous theorem gives the following bound on $[x_{i-1},x_i]$:
 	$$|f(x) - p(x)| \le \frac{M}{2} |(x-x_{i-1})(x-x_i)|$$
 where $\ds M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)|$
 \end{itemize}
@@ -721,13 +721,12 @@ where $\ds M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)|$
 \item let $h = \max_i |x_{i+1}-x_i|$; we compute:
     $$\max_{x \in [x_{i-1},x_i]} |(x-x_{i-1})(x-x_i)| = \frac{1}{4} |x_{i+1}-x_i|^2 \le \frac{1}{4} h^2$$
 \item thus on every subinterval ($=$ cell or element) $x\in[x_{i-1},x_i]$,
-	$$\alert{|f(x) - p(x)| \le \frac{M}{8} h^2}$$
+	$$\alert{|f(x) - p(x)| \le \frac{M}{8} h^2} \quad \text{where } M=\max_{\xi\in [x_{i-1},x_i]} |f''(\xi)| \le \|f''\|_\infty$$
 \end{itemize}
 
 \begin{theorem}[interpolation theorem in $\RR^1$]
 For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in C^2(\overline\Omega)$, with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant $p=\II_h f \in P_1$.  Then
-	$$\|f-\II_h f\|_\infty \le \frac{M}{8} h^2$$
-where $\ds M=\max_{x\in[a,b]} |f''(x)| = \|f''\|_\infty$.
+	$$\|f-\II_h f\|_\infty \le \frac{\|f''\|_\infty}{8} h^2.$$
 \end{theorem}
 \end{frame}
 
@@ -735,64 +734,66 @@ where $\ds M=\max_{x\in[a,b]} |f''(x)| = \|f''\|_\infty$.
 \begin{frame}{how about the $H^1$ norm?}
 
 \begin{itemize}
-\item we actually want an error bound in the $H^1$ norm
+\item we actually want an error bound in the $H^1$ norm, so we need a lemma
 \end{itemize}
 
 \begin{lemma}
-Suppose $f\in C^2([a,b])$.  Let $p(x)$ be the unique linear polynomial such that $p(a)=f(a)$ and $p(b)=f(b)$.  Then
-    $$\int_a^b |f'(x)-p'(x)|^2\,dx \le (b-a)^2 \|f''\|_{L^2}^2$$
+Suppose $f\in C^2([a,b])$ and suppose $[x_{i-1},x_i] \subset [a,b]$.  Let $p(x)$ be the unique linear polynomial such that $p(x_j)=f(x_j)$.  Then
+    $$\int_{x_{i-1}}^{x_i} |f'(x)-p'(x)|^2\,dx \le h^3 \|f''\|_\infty^2$$
 \end{lemma}
 
 \medskip
 {\small
-Proof. Note $p'(x)=(f(b)-f(a))/(b-a)$ is constant.  By the mean value theorem there is $c\in (a,b)$ so that $f'(c)=(f(b)-f(a))/(b-a)=p'(x)$.  By FTC and CS,
+Proof. Note $p'(x)=(f(x_i)-f(x_{i-1}))/(x_i-x_{i-1})$ is constant in $[x_{i-1},x_i]$.  By the mean value theorem there is $c\in (x_{i-1},x_i)$ so that $f'(c)$ has this value.  By FTC,
 \begin{align*}
-\int_a^b |f'(x)-p'(x)|^2\,dx &= \int_a^b |f'(x)-f'(c)|^2\,dx = \int_a^b \left|\int_x^c f''(t)\,dt\right|^2\,dx \\
-     &\le \int_a^b \left(\int_a^b |f''(t)|\,dt\right)^2\,dx \le (b-a) \left(\int_a^b |f''(t)|\,dt\right)^2 \\
-     &\le (b-a) \left(\|f''\|_{L^2} (b-a)^{1/2}\right)^2 = (b-a)^2 \|f''\|_{L^2}^2. \hspace{5mm} \qed
+\int_{x_{i-1}}^{x_i} |f'(x)-p'(x)|^2\,dx &= \int_{x_{i-1}}^{x_i} |f'(x)-f'(c)|^2\,dx = \int_{x_{i-1}}^{x_i} \left|\int_x^c f''(t)\,dt\right|^2\,dx \\
+     &\le \int_{x_{i-1}}^{x_i} \left(\int_{x_{i-1}}^{x_i} |f''(t)|\,dt\right)^2\,dx \le (x_i - x_{i-1})^3 \|f''\|_\infty^2. \hspace{5mm} \qed
 \end{align*}
 }
 \end{frame}
 
 
-\begin{frame}{$P_1$ interpolation error bound in $H^1$ and $L^2$, for $\RR^1$}
+\begin{frame}{decay rate of 1D $P_1$ interpolation error in $H^1$ and $L^2$}
 
-\begin{theorem}[interpolation theorem in $\RR^1$]
-For a mesh $\{x_i\}$ on $\Omega=(a,b)$ and $f\in H^2(\Omega)$, with $h=\max |x_i-x_{i-1}|$, consider the piecewise-linear interpolant\, $\II_h f \in P_1$.  Then
+\begin{theorem}[interpolation error rate for $P_1$ in $\RR^1$]
+Consider a sequence of meshes $\{x_i\}$ on $\Omega=(a,b)$ with $h=\max |x_i-x_{i-1}|$.  Suppose the meshes are quasi-uniform in the sense that there is $c>0$ so that $c h \le |x_i-x_{i-1}| \le h$ for all $i$.  Let $f\in C^2(\overline{\Omega})$ and consider the piecewise-linear interpolant\, $\II_h f \in P_1$.  Then
 \begin{align*}
-\|f-\II_h f\|_{H^1} &= O(h) \\
-\|f-\II_h f\|_{L^2} &= O(h^2)
+\|f-\II_h f\|_{L^2} &= O(h^2) \|f''\|_\infty \\
+\|f-\II_h f\|_{H^1} &= O(h^{3/2}) \|f''\|_\infty
 \end{align*}
+as $h\to 0$.
 \end{theorem}
 
 \medskip
 {\small
-Proof. FIXME
+Proof.  Let $p=\II_h f$.  From the interpolation theorem
+\begin{align*}
+\|f-p\|_{L^2}^2 &= \int_a^b |f(x)-p(x)|^2\,dx \le \int_a^b \|f-p\|_\infty^2\,dx \\
+  &= (b-a) \|f-p\|_\infty^2 \le (b-a) \left(\frac{\|f''\|_\infty}{8} h^2\right)^2 = C_1 h^4 \|f''\|_\infty^2
+\end{align*}
 }
 \end{frame}
 
 
-\begin{frame}{piecewise-linear interpolation on $\Omega\subset \RR^d$}
+\begin{frame}{decay rate}
 
-FIXME in $L^2$ and $H^1$ norms on $\RR^1$
-
-\begin{itemize}
-\item we have proven the details for intervals in $\RR^1$, but 
-\end{itemize}
+{\small
+Proof cont.  thus $\|f-p\|_{L^2} \le \sqrt{C_1} h^2 \|f''\|_\infty$ as claimed.  Now also using the lemma,
+\begin{align*}
+\|f'-p'\|_{L^2}^2 &= \int_a^b |f(x)-p(x)|^2\,dx = \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |f'(x)-p'(x)|^2\,dx \\
+  &\le \left(\sum_{i=1}^n \int_{x_{i-1}}^{x_i} \,dx\right) h^3 \|f''\|_\infty^2 = (b-a) h^3 \|f''\|_\infty^2
+\end{align*}
+Thus
+\begin{align*}
+\|f-p\|_{H^1}^2 &= \|f-p\|_{L^2}^2 + \|f'-p'\|_{L^2}^2 \\
+  &\le C_1 h^4 \|f''\|_\infty^2 +  (b-a) h^3 \|f''\|_\infty^2 \le C_2 h^3 \|f''\|_\infty^2,
+\end{align*}
+and so $\|f-p\|_{H^1} \le \sqrt{C_2} h^{3/2} \|f''\|_\infty$ as claimed. \hfill \qed
+}
 \end{frame}
 
 
 \section{convergence of the FE approximation as $h\to 0$}
-
-\begin{frame}{piecewise-linear interpolation error bound}
-
-FIXME in $L^2$ and $H^1$ norms on $\RR^1$
-
-\begin{itemize}
-\item yy
-\end{itemize}
-\end{frame}
-
 
 \begin{frame}{interpolation errors on triangles}
 
