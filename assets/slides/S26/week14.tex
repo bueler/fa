@@ -803,6 +803,36 @@ Combining these results,
 
 \section{convergence of the FE approximation as $h\to 0$}
 
+\begin{frame}{convergence for FE solutions of the Poisson problem in 1D}
+
+\begin{itemize}
+\item we have the following theorem for the 1D Poisson equation $-u'' = f$
+\end{itemize}
+
+\begin{theorem}
+Suppose $f\in C([a,b])$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form Poisson equation on $\Omega=(a,b)$ with homogeneous Dirichlet conditions,
+	$$\int_a^b u'(x) v'(x)\,dx = \int_a^b f(x) v(x)\,dx \qquad \forall v \in H_0^1(\Omega).$$
+Suppose a conforming $P_1$ FE method is applied over a sequence of quasi-uniform meshes $\mathcal{T}_h = \{x_i\}$ with $h=\max_i |x_i-x_{i-1}|$.  (There is $c>0$ independent of $h$ so that $c h \le |x_i-x_{i-1}| \le h$ for all $x_i \in $.)  Let $u_h \in P_1$ be the solution over $\mathcal{T}_h$.  Then
+	$$\|u-u_h\|_{H^1} = O(h)$$
+as $h\to 0$, and thus $u_h \to u$ in $H^1$.
+\end{theorem}
+
+\medskip
+{\small
+Proof.  x
+}
+
+\end{frame}
+
+
+\begin{frame}{xx}
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{interpolation errors on triangles}
 
 FIXME just the triangle results in $\RR^2$ from Braess
