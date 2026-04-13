@@ -850,28 +850,58 @@ Thus $u_h\to u$ in $H^1$. \hfill \qed
 \end{frame}
 
 
-\begin{frame}{interpolation errors on triangles}
-
-FIXME just the triangle results in $\RR^2$ from Braess
+\begin{frame}{FE theory in $\RR^2$ and higher}
 
 \begin{itemize}
-\item I have shown all the details in 1D, but \alert{things are harder in 2D}
+\item I have shown all the details in 1D, but \alert{2D has more complications}
+\item specifically:
     \begin{itemize}
-    \item[$\circ$] well-posedness of the weak form is already done in $\RR^d$!
-    \item[$\circ$] quasi-optimality (Cea's lemma) is already done in $\RR^d$!
-    \item[$\circ$] \alert{the interpolation and regularity theories are more difficult in $\RR^2$ and higher}
+    \item[$\circ$] well-posedness of the weak form is already done in $\RR^d$, and
+    \item[$\circ$] quasi-optimality (Cea's lemma) is already done in $\RR^d$, but
+    \item[$\circ$] \alert{the interpolation theory is more difficult} in $\RR^2$ and higher (in $\RR^1$ the $P_1$ interpolation points are the entire boundary of the cells, but this is no longer true), and
+    \item[$\circ$] \alert{the regularity theory is more difficult} in $\RR^2$ and higher (in $\RR^1$ we could just integrate to get a clasical solution)
     \end{itemize}
-\item but I can state some results, from Braess\footnote{D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007.}
+\item but I can state some results, from Braess\footnote{D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007.} for triangles in $\RR^2$
 \end{itemize}
-
-xx
 \end{frame}
 
 \begin{frame}{xx}
 
+FIXME define shape-regular triangulation
+
 \begin{itemize}
 \item yy
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}{interpolation errors in $\RR^2$}
+
+\begin{theorem}[interpolation error rate for $P_1$ in $\RR^2$]
+Suppose $\Omega\subset \RR^2$ is an open, connect, and bounded set with a \emph{polygonal} boundary $\partial \Omega$.  Suppose $\mathcal{T}_h$ is a shape-regular triangulation of $\Omega$.  Let $f\in C(\overline{\Omega})$ and define $\II_h f \in P_1$ as the piecewise-linear interpolant.  There exists a constant $c$, independent of $h$ but depending on $\Omega$ and the shape-regularity constant $\kappa$, such that if $f\in H^2(\Omega)$ then
+\begin{align*}
+\|f-\II_h f\|_{L^2} &= O(h^2) |f|_{H^2} \\
+\|f-\II_h f\|_{H^1} &= O(h^1) |f|_{H^2}
+\end{align*}
+as $h\to 0$.
+\end{theorem}
+
+\begin{itemize}
+\item if $f\in H^2(\Omega)$ then $f\in C(\overline{\Omega})$, and so the interpolant is well-defined because the function has point values
+\item $\ds |f|_{H^2}^2 = \sum_{|\alpha|=2} \int_\Omega |D^\alpha f(x)|^2\,dx = \int_\Omega |f_{xx}|^2 + 2|f_{xy}|^2 + |f_{yy}|^2\,dx$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{convergence for FE solutions of the Poisson problem in 2D}
+
+\begin{theorem}
+Suppose the domain $\Omega\subset \RR^2$ and the family of triangulations $\mathcal{T}_h$ satisfy the conditions of the previous theorem, and suppose also that the triangulations are quasi-uniform in the sense that there is $c>0$ so that $c h \le \operatorname{diam}(T) \le h$ for all $T\in \mathcal{T}_h$.  Let $f\in L^2(\Omega)$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form Poisson equation on $\Omega$ with homogeneous Dirichlet conditions:
+	$$\int_\Omega \grad u(x) \cdot \grad v(x)\,dx = \int_\Omega f(x) v(x)\,dx \qquad \forall v \in H_0^1(\Omega).$$
+Suppose the conforming $P_1$ FE method is applied,
+	$$\int_\Omega \grad u_h(x) \cdot \grad v_h(x)\,dx = \int_\Omega f(x) v_h(x)\,dx \qquad \forall v_h \in P_1,$$
+yielding $u_h \in P_1$.  Then $\|u-u_h\|_{H^1} = O(h)$ as $h\to 0$, and thus\, \alert{$u_h \to u$ in $H^1$}.
+\end{theorem}
 \end{frame}
 
 
