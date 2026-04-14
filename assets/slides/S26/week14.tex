@@ -103,7 +103,7 @@ frame=lines,framerule=0.1mm,framesep=2mm,xleftmargin=4mm,fontsize=\scriptsize}
 
 
 
-\title[Why the EFM works]{Why the finite element method works}
+\title[Why the FE method works]{Why the finite element method works}
 
 \subtitle{calculations for week 14}
 
@@ -640,7 +640,7 @@ where $\ds L_i(x) = \prod_{\begin{smallmatrix} k = 0 \\ k\ne i \end{smallmatrix}
 \end{frame}
 
 
-\begin{frame}{interpolation errors in 1D}
+\begin{frame}{polynomial interpolation remainder theorem}
 
 \begin{itemize}
 \item a bound for the error in approximating a function by polynomial interpolation is comparably old (Lagrange $\sim$1800?)
@@ -761,7 +761,7 @@ Proof. Note $p'(x)$ is constant in $[x_{i-1},x_i]$.  By the mean value theorem t
 
 \begin{frame}{decay rate of $P_1$ interpolation error in $H^1$ and $L^2$}
 
-\begin{theorem}[interpolation error rate for $P_1$ \alert{in $\RR^1$}]
+\begin{theorem}[interpolation error theorem for $P_1$ \alert{in $\RR^1$}]
 Let $\Omega=(a,b)$ and $f\in C^2(\overline{\Omega})$.  Consider a sequence of meshes $\{x_i\}$ on $\Omega$ with $h=\max_i |x_i-x_{i-1}|$.  Suppose the meshes are quasi-uniform in the sense that there is $c>0$ so that $c h \le |x_i-x_{i-1}| \le h$ for all $i$.  The piecewise-linear interpolants\, $\II_h f \in P_1$ satisfy
 \begin{align*}
 \|f-\II_h f\|_{L^2} &= O(h^2) \|f''\|_\infty \\
@@ -829,7 +829,7 @@ First, because $f\in C([a,b])$, in 1D it is easy to see by integration that \ale
 \medskip
 Second, by quasi-optimality (Cea's lemma),
 	$$\|u-u_h\|_{H^1} \le c \|u-v_h\|_{H^1}$$
-for all $v_h\in P_1$.  \alert{We can substitute $v_h=\II_h u$, the $P_1$ interpolant of the exact solution,} into the above.
+for all $v_h\in P_1$.  We \alert{substitute $v_h=\II_h u$}, the $P_1$ interpolant of the exact solution, into the quasi-optimality inequality.
 
 \medskip
 Finally, \alert{use the interpolation error theorem}, because we know $u\in C^2([a,b])$:
@@ -841,11 +841,15 @@ Thus $u_h\to u$ in $H^1$. \hfill \qed
 \begin{frame}{notes about the proof}
 
 \begin{itemize}
-\item Regarding how it is ``easy to see by integration'' that $u\in C^2([a,b])$, this says that \alert{\emph{regularity theory}} is easy in 1D.
-\item The logic of regularity in 1D is that you may integrate twice to construct $\tilde u$ satisfying $-\tilde u''=f$.  This is the calculation I did long ago in the \href{https://bueler.github.io/fa/assets/slides/S26/week2.pdf}{week 2} slides, to solve the problem by an integral operator.  Then one uses uniqueness of the weak-form solution to show $\tilde u=u$.
-\item It follows that $-u''=f$, so $u$ solves the strong form, but we don't really need that knowledge when proving the FE method converges.
-\item I have written the constant in Cea's lemma simply as ``$c$''.  We showed that this constant is $c=1/\alpha=2/\min\{1,1/C^2\}$, where $C$ is the constant in Poincar\'e-Friedrichs.  However, that detail is not important here.
-\item There is a different argument that shows $\|u-u_h\|_{L^2}=O(h^2)$, but I definitely can't fit it in here.  See section II.7 of D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007. 
+\item Regarding ``easy to see by integration'' that $u\in C^2([a,b])$:  This says that \alert{\emph{regularity theory}} is easy in 1D.
+    \begin{itemize}
+    \item[$\circ$] The logic of regularity in 1D is that you may integrate twice to construct $\tilde u$ satisfying $-\tilde u''=f$.  This is the calculation I did long ago in the \href{https://bueler.github.io/fa/assets/slides/S26/week2.pdf}{week 2} slides, to solve the problem by an integral operator.
+    \item[$\circ$] Then one uses uniqueness of the weak-form solution to show $\tilde u=u$.
+    \end{itemize}
+
+\item It follows that $-u''=f$, so $u$ solves the strong form.  (But we don't need that fact when proving the FE method convergence.)
+\item I have written the constant in Cea's lemma simply as ``$c$''.  We showed that this constant is $c=1/\alpha=2/\min\{1,1/C^2\}$, where $C$ is the constant in Poincar\'e-Friedrichs.  (But this detail is not important here.)
+\item There is a different argument that shows $\|u-u_h\|_{\alert{L^2}}=O(h^2)$, but I definitely can't fit it in here.  See section II.7 of Braess.\footnote{D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007.}
 \end{itemize}
 \end{frame}
 
@@ -853,17 +857,38 @@ Thus $u_h\to u$ in $H^1$. \hfill \qed
 \begin{frame}{FE theory in $\RR^2$ and higher}
 
 \begin{itemize}
-\item I have shown all the details in 1D, but \alert{2D has more complications}
-\item specifically:
+\item I have shown all the details in 1D
+\item \alert{2D has more complications}, and I can't show all details
+\item specifically for the Poisson equation:
     \begin{itemize}
-    \item[$\circ$] well-posedness of the weak form is already done in $\RR^d$, and
-    \item[$\circ$] quasi-optimality (Cea's lemma) is already done in $\RR^d$, but
-    \item[$\circ$] \alert{the interpolation theory is more difficult} in $\RR^2$ and higher (in $\RR^1$ the $P_1$ interpolation points are the entire boundary of the cells, but this is no longer true), and
-    \item[$\circ$] \alert{the regularity theory is more difficult} in $\RR^2$ and higher (in $\RR^1$ we could just integrate to get a clasical solution)
+    \item[$\circ$] well-posedness of the weak form is already done in $\RR^d$
+    \item[$\circ$] \alert{the regularity theory is more difficult} in $\RR^2$ and higher
+        \begin{itemize}
+        \item in $\RR^1$ we could just integrate to get a classical solution
+        \item in $\RR^2$ and higher one must use the \alert{ellipticity} of the Laplacian
+        \item in $\RR^2$ and higher all the straightforward results require $\Omega$ to be convex
+        \end{itemize}
+    \item[$\circ$] quasi-optimality (Cea's lemma) is already done in $\RR^d$
+    \item[$\circ$] \alert{the interpolation theory is more difficult} in $\RR^2$ and higher
+        \begin{itemize}
+        \item in $\RR^1$ the $P_1$ interpolation points are the entire boundary of the cells, but this is no longer true
+        \item in $\RR^2$ and higher the interpolation theory is based on $H^k$ norms, not uniform norms as it was in $\RR^1$
+        \end{itemize}
     \end{itemize}
-\item but I can state some results, from Braess\footnote{D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007.} for triangles in $\RR^2$
+\item I will state some results, from Braess\footnote{D.~Braess, \emph{Finite Elements: Theory, fast solvers, and applications in solid mechanics}, 3rd ed., Cambridge 2007.} for $\Omega\subset \RR^2$
 \end{itemize}
 \end{frame}
+
+
+\begin{frame}{xx}
+
+FIXME explain $H^2$ regularity
+
+\begin{itemize}
+\item yy
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}{xx}
 
@@ -872,13 +897,15 @@ FIXME define shape-regular triangulation
 \begin{itemize}
 \item yy
 \end{itemize}
+
+\hfill \input{figs/blob.tikz}
 \end{frame}
 
 
 \begin{frame}{interpolation errors in $\RR^2$}
 
-\begin{theorem}[interpolation error rate for $P_1$ in $\RR^2$]
-Suppose $\Omega\subset \RR^2$ is an open, connect, and bounded set with a \emph{polygonal} boundary $\partial \Omega$.  Suppose $\mathcal{T}_h$ is a shape-regular triangulation of $\Omega$.  Let $f\in C(\overline{\Omega})$ and define $\II_h f \in P_1$ as the piecewise-linear interpolant.  There exists a constant $c$, independent of $h$ but depending on $\Omega$ and the shape-regularity constant $\kappa$, such that if $f\in H^2(\Omega)$ then
+\begin{theorem}[interpolation error theorem for $P_1$ in $\RR^2$]
+Suppose $\Omega\subset \RR^2$ is an open, connected, and bounded set with a \emph{polygonal} boundary $\partial \Omega$.  Suppose $\mathcal{T}_h$ is a shape-regular triangulation of $\Omega$.  Let $\II_h f \in P_1$ be the piecewise-linear interpolant of $f$.  If $f\in H^2(\Omega)$ then
 \begin{align*}
 \|f-\II_h f\|_{L^2} &= O(h^2) |f|_{H^2} \\
 \|f-\II_h f\|_{H^1} &= O(h^1) |f|_{H^2}
@@ -888,19 +915,24 @@ as $h\to 0$.
 
 \begin{itemize}
 \item if $f\in H^2(\Omega)$ then $f\in C(\overline{\Omega})$, and so the interpolant is well-defined because the function has point values
-\item $\ds |f|_{H^2}^2 = \sum_{|\alpha|=2} \int_\Omega |D^\alpha f(x)|^2\,dx = \int_\Omega |f_{xx}|^2 + 2|f_{xy}|^2 + |f_{yy}|^2\,dx$
+\item note: \quad $\ds |f|_{H^2}^2 = \sum_{|\alpha|=2} \int_\Omega |D^\alpha f(x)|^2\,dx = \int_\Omega |f_{xx}|^2 + 2|f_{xy}|^2 + |f_{yy}|^2\,dx$
+\item this theorem is a corollary of the Bramble-Hilbert lemma ($\sim$1970)
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}{convergence for FE solutions of the Poisson problem in 2D}
 
+\begin{itemize}
+\item putting together regularity theory, quasi-optimality, and interpolation error theory we get convergence
+\end{itemize}
+
 \begin{theorem}
-Suppose the domain $\Omega\subset \RR^2$ and the family of triangulations $\mathcal{T}_h$ satisfy the conditions of the previous theorem, and suppose also that the triangulations are quasi-uniform in the sense that there is $c>0$ so that $c h \le \operatorname{diam}(T) \le h$ for all $T\in \mathcal{T}_h$.  Let $f\in L^2(\Omega)$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form Poisson equation on $\Omega$ with homogeneous Dirichlet conditions:
+Suppose $\Omega\subset \RR^2$ is open, $\partial \Omega$ is a convex polygon, and the triangulations $\mathcal{T}_h$ satisfy the conditions of the previous theorem.  Suppose also that $\mathcal{T}_h$ are quasi-uniform: there is $c>0$ so that $c h \le \operatorname{diam}(T) \le h$ for all $T\in \mathcal{T}_h$.  Let $f\in L^2(\Omega)$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form:
 	$$\int_\Omega \grad u(x) \cdot \grad v(x)\,dx = \int_\Omega f(x) v(x)\,dx \qquad \forall v \in H_0^1(\Omega).$$
-Suppose the conforming $P_1$ FE method is applied,
-	$$\int_\Omega \grad u_h(x) \cdot \grad v_h(x)\,dx = \int_\Omega f(x) v_h(x)\,dx \qquad \forall v_h \in P_1,$$
-yielding $u_h \in P_1$.  Then $\|u-u_h\|_{H^1} = O(h)$ as $h\to 0$, and thus\, \alert{$u_h \to u$ in $H^1$}.
+Suppose the conforming $P_1$ FE method computes $u_h \in P_1$:
+	$$\int_\Omega \grad u_h(x) \cdot \grad v_h(x)\,dx = \int_\Omega f(x) v_h(x)\,dx \qquad \forall v_h \in P_1.$$
+Then $\|u-u_h\|_{H^1} = O(h)$ as $h\to 0$, and thus\, \alert{$u_h \to u$ in $H^1$}.
 \end{theorem}
 \end{frame}
 
