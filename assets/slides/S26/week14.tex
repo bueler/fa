@@ -880,25 +880,68 @@ Thus $u_h\to u$ in $H^1$. \hfill \qed
 \end{frame}
 
 
-\begin{frame}{xx}
+\begin{frame}{solution regularity for the Poisson problem}
 
-FIXME explain $H^2$ regularity
+\begin{definition}[$H^2$ regularity]
+Suppose $\Omega\subset \RR^2$ is open and bounded and $H_0^1(\Omega) \subset V \subset H^1(\Omega)$.  A weak form problem $a(u,v)=\ip{f}{v}_{L^2}$ for $u\in V$ is \alert{\emph{$H^2$-regular}} if there is a constant $c\ge 0$, depending on $\Omega$ only, so that the problem has a solution $u\in H^2(\Omega)$ and
+	$$\|u\|_{H^2} \le c \|f\|_{L^2}$$
+\end{definition}
+
+\begin{theorem}[$H^2$ regularity for the Poisson problem; Braess II.7]
+Suppose $\Omega\subset \RR^2$ is open and bounded.  Assume that either $\Omega$ is convex or $\partial \Omega$ has a $C^2$ boundary.  Then the homogeneous Dirichlet weak-form problem for the Poisson equation is $H^2$-regular.
+\end{theorem}
 
 \begin{itemize}
-\item yy
+\item recall: \quad $\ds \|f\|_{H^2}^2 = \sum_{|\alpha|\le 2} \int_\Omega |D^\alpha f(x)|^2\,dx$
+\item some requirement that the boundary is ``nice'' is required
+    \begin{itemize}
+    \item[$\circ$] if $\Omega$ has an interior corner then $H^2$-regular fails
+    \end{itemize}
+\item the Helmholtz problem is also $H^2$-regular for nice domains
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{xx}
-
-FIXME define shape-regular triangulation
+\begin{frame}{what precisely is a triangulation, anyway?}
 
 \begin{itemize}
-\item yy
+\item suppose $\Omega\subset \RR^2$ is open and bounded
+\item also suppose that $\partial \Omega$ is a \alert{polygon},
+
+so $\partial \Omega$ is a union of finitely-many line
+
+segments in the plane
+\item on such a domain, what is a ``triangulation''?
 \end{itemize}
 
+\vspace{-20mm}
 \hfill \input{figs/blob.tikz}
+
+\begin{definition}[admissible triangulation; Braess II.5]
+A partition $\mathcal{T}=\{T_1,\dots,T_m\}$ of $\Omega$ into (closed) triangles $T_k$ if
+\begin{enumerate}
+\item $\overline\Omega = \bigcup_{i=1}^m T_k$
+\item for $j\ne k$, if $T_j\cap T_k$ is nonempty then it is either a single point or an entire common edge of $T_j$ and $T_k$
+\end{enumerate}
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{shape-regular triangulations}
+
+\begin{itemize}
+\item $h_T=\operatorname{diam}(T)/2$ is the radius of the smallest circumscribed circle
+\item $\rho_T$ is the radius of the largest inscribed circle
+\item to prove convergence under refinement of the mesh we will need for all triangles to get small:
+	$$h = \max \{h_{T_k})\} \to 0$$
+\item we must consider a \alert{sequence of triangulations}, denoted $\mathcal{T}_h$
+\item however, we need \alert{nice} sequences of triangulations so that the interpolation errors will get consistently small
+\end{itemize}
+
+\begin{definition}[shape-regular triangulation; Braess II.5]
+A sequence (family) of admissible triangulation $\mathcal{T}_h$ of $\Omega$ is \alert{\emph{shape-regular}} if there \alert{exists $\kappa>0$ independent of $h$} so that
+	$$\frac{h_T}{\rho_T} \le \kappa \qquad \forall T\in \mathcal{T}_h$$
+\end{definition}
 \end{frame}
 
 
@@ -928,7 +971,7 @@ as $h\to 0$.
 \end{itemize}
 
 \begin{theorem}
-Suppose $\Omega\subset \RR^2$ is open, $\partial \Omega$ is a convex polygon, and the triangulations $\mathcal{T}_h$ satisfy the conditions of the previous theorem.  Suppose also that $\mathcal{T}_h$ are quasi-uniform: there is $c>0$ so that $c h \le \operatorname{diam}(T) \le h$ for all $T\in \mathcal{T}_h$.  Let $f\in L^2(\Omega)$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form:
+Suppose $\Omega\subset \RR^2$ is open, $\partial \Omega$ is a convex polygon.  Suppose that the triangulations $\mathcal{T}_h$ are shape-regular.  Let $f\in L^2(\Omega)$.  Let $u\in H_0^1(\Omega)$ be the unique solution of the weak-form:
 	$$\int_\Omega \grad u(x) \cdot \grad v(x)\,dx = \int_\Omega f(x) v(x)\,dx \qquad \forall v \in H_0^1(\Omega).$$
 Suppose the conforming $P_1$ FE method computes $u_h \in P_1$:
 	$$\int_\Omega \grad u_h(x) \cdot \grad v_h(x)\,dx = \int_\Omega f(x) v_h(x)\,dx \qquad \forall v_h \in P_1.$$
