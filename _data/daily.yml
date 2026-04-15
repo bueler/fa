@@ -1,10 +1,10 @@
 semester: Spring 2026
 home: assets
 daily:
-#- day: Friday 17 April
-#  description: "<b>calculation: Why the FE method works (Cea's lemma and interpolation)</b>"
-#  slides: slides/S26/week14.pdf
-#  slidesweek: week 14
+- day: Friday 17 April
+  description: "<b>calculation: Why the finite element method works</b>"
+  slides: slides/S26/week14.pdf
+  slidesweek: week 14
 - day: Wednesday 15 April
   description: cont.
 - day: Monday 13 April

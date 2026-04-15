@@ -524,7 +524,7 @@ a(v,v) &= \int_\Omega |\grad v|^2\,dx + \gamma \int_\Omega |v|^2\,dx \\
 
 \begin{itemize}
 \item from now on, $h>0$ denotes the mesh resolution, for example,
-	$$h = \max\left\{\operatorname{diam}(T_k)\,:\,T_k \in \mathcal{T}\right\}$$
+	$$h = \max\left\{\operatorname{diam}(T_k)/2\,:\,T_k \in \mathcal{T}\right\}$$
 \item picture of $T_k$ and its diameter:
 
 \vspace{20mm}
@@ -987,17 +987,31 @@ Then $\|u-u_h\|_{H^1} = O(h)$ as $h\to 0$, and thus\, \alert{$u_h \to u$ in $H^1
 \begin{itemize}
 \item this material is only from slides
     \begin{itemize}
-    \item[$\circ$] recalling the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} and \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13} slides content is important
+    \item[$\circ$] requires understanding of the \href{https://bueler.github.io/fa/assets/slides/S26/week12.pdf}{week 12} and \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13} slides content!
     \end{itemize}
+\item Assignment 8 is posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
+\end{itemize}
 
 \begin{block}{to know from these slides:}
 \begin{itemize}
-\item xx
+\item abstract bilinear notation
+    \begin{itemize}
+    \item[$\circ$] weak form is $a(u,v)=\ell(v)$, \, FE method is $a(u_h,v_h)=\ell(v_h)$
+    \end{itemize}
+\item conforming FE method: \, $V_h \subset V$ and $a,\ell$ match
+\item Galerkin orthogonality: \, $a(u-u_h,v_h)=0 \quad \forall v_h\in V_h$
+\item quasi-optimality (Cea's lemma): \, $\|u-u_h\| \le \frac{M}{\alpha} \|u-v_h\| \quad \forall v_h \in V_h$
+    \begin{itemize}
+    \item[$\circ$] \alert{$u_h$ is the best} (up to a constant)
+    \end{itemize}
+\item interpolation operator: \, $w\in V \, \to \, \II_h w \in V_h$
+\item polynomial interpolation remainder theorem (1D)
+\item interpolation error theorem for $P_1$ (piecewise-linear) in 1D
+\item proof that $u_h\to u$ as $h\to 0$ for $P_1$ FE method on Poisson equation (1D)
+\item a \alert{rough idea} of why $u_h \to u$ as $h\to 0$ for $P_1$ FE method \alert{in 2D}
 \end{itemize}
 \end{block}
 
-%\item ?? Assignment 8 is posted at \quad  \href{https://bueler.github.io/fa/index.html}{\texttt{bueler.github.io/fa}}
-\end{itemize}
 \end{frame}
 
 \end{document}
