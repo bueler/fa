@@ -93,7 +93,7 @@
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{assigned 13 April 2026}
+\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill \emph{{\color{red} version 2}; 17 April 2026}
 \normalsize\medskip
 
 \Large\centerline{\textbf{Assignment 8}}
@@ -143,16 +143,16 @@ Derive the weak form, where test functions and the solution are from $H^1(\Omega
 	$$\phi_{jk}(x,y) = \sin(j x) \sin(k x), \quad j,k \in \NN,$$
 are eigenfunctions of the Laplacian, and find their eigenvalues.  Also show that each $\phi_{jk}$ satisfies homogeneous Dirichlet conditions along $\partial\Omega$.
 
-\epart{b}  I claim that, for $f=0$ and for certain negative values of $\gamma$, the eigenfunctions of part \textbf{(a)} show that, on this square $\Omega$, the Helmholtz problem in \textbf{P24} is \emph{not} well-posed.
+\epart{b}  I claim that, for $f=0$ and for certain negative values of $\gamma$, the eigenfunctions of part \textbf{(a)} show that, on this square $\Omega$, the Helmholtz problem in \textbf{P24} is \emph{not} well-posed.  {\color{red} Find the values of $\gamma$ where this is true.}
 
-\medskip \noindent \emph{We see why the Helmholtz problem in \emph{\textbf{P24}}, with the restriction $\gamma>0$, is often called \emph{good Helmholtz}.}
+\medskip \noindent \emph{The Helmholtz problem in \emph{\textbf{P24}}, with the restriction $\gamma>0$, is often called \emph{good Helmholtz}.}
 
 
-\prob{P26}  \ppart{a}  Again let $\Omega=(0,\pi)^2\subset \RR^2$ be the open square, and consider the eigenfunctions $\phi_{jk}$ in \textbf{P25}.  Show that they form an orthonormal (double-index) sequence in $L^2(\Omega)$.
+\prob{P26}  \ppart{a}  Again let $\Omega=(0,\pi)^2\subset \RR^2$ be the open square, and consider the eigenfunctions $\phi_{jk}$ in \textbf{P25}.  Show that they form a doubly-indexed {\color{red} orthogonal} sequence in $L^2(\Omega)$.
 
 \medskip \noindent \emph{I claim that, with appropriate normalization, the eigenfunctions $\phi_{jk}$ form a complete ON sequence.  You do not need to prove this, but you will use it below.}
 
-\epart{b}  Again let $\Omega=(0,\pi)^2$ and suppose $f\in L^2(\Omega)$.  Consider the Poisson equation with homogeneous Dirichlet boundary conditions:
+\epart{b}  Additionally suppose $f\in L^2(\Omega)$.  Consider the Poisson equation with homogeneous Dirichlet boundary conditions:
 	$$-\grad^2 u = f \quad \text{on } \Omega, \qquad u=0 \quad \text{on } \partial\Omega.$$
 Use the eigenfunctions $\phi_{jk}$ to construct the solution $u$ to this problem.
 
