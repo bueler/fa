@@ -6,7 +6,7 @@ daily:
 - day: Monday 20 April
   description: "<b>calculation: Why the finite element method works</b>"
   slides: slides/S26/week14.pdf
-  slidesweek: week 14
+  slidesweek: week 14 (or 15?)
   week: 15
 - day: Friday 17 April
   description: cont.
