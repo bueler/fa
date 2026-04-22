@@ -14,5 +14,5 @@ exams:
 - name: Final Exam
   date: Friday 1 May, 10:15am--12:15pm
   info: <b>in class</b>
-  #blank: final.pdf
+  blank: final.pdf
   #rubric: finalrubric.pdf

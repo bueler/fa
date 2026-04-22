@@ -12,7 +12,7 @@
 % macros
 \usepackage{amssymb,xspace}
 \usepackage{tikz}
-\usepackage[pdftex,colorlinks=true]{hyperref}
+\usepackage[pdftex,colorlinks=true,urlcolor=black]{hyperref}
 
 
 \newtheorem*{thm}{Theorem}
@@ -35,7 +35,7 @@
 \newcommand{\eps}{\epsilon}
 \newcommand{\grad}{\nabla}
 \newcommand{\lam}{\lambda}
-\newcommand{\ip}[2]{\mathrm{\left<#1,#2\right>}}
+\newcommand{\ip}[2]{\left<#1,#2\right>}
 \newcommand{\erf}{\operatorname{erf}}
 
 \renewcommand{\Re}{\operatorname{Re}}
@@ -49,56 +49,58 @@
 \newcommand{\Null}{\operatorname{null}}
 
 \newcommand{\Matlab}{\textsc{Matlab}\xspace}
-\newcommand{\Octave}{\textsc{Octave}\xspace}
-\newcommand{\pylab}{\textsc{pylab}\xspace}
-\newcommand{\longMOP}{\textsc{Matlab}\big|\textsc{Octave}\big|\textsc{pylab}\xspace}
-\newcommand{\MOP}{\textsc{M}\big|\textsc{O}\big|\textsc{p}\xspace}
 
 \newcommand{\prob}[1]{\bigskip\noindent\large\textbf{#1.} \normalsize}
 \newcommand{\bookprob}[1]{\bigskip\noindent\large\textbf{Exercise #1.} \normalsize}
 \newcommand{\probpart}[1]{\smallskip\noindent\textbf{(#1)}\quad }
 \newcommand{\aprobpart}[1]{\textbf{(#1)}\quad }
 
+\newcommand{\textbook}{K.~Saxe,~\emph{Beginning Functional Analysis}, Springer 2010.}
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 
 \begin{document}
-\scriptsize \noindent Math 617 Functional Analysis (Bueler) \hfill assigned: 22 April 2026
+\scriptsize \noindent Math 617 Functional Analysis (Bueler)
 \thispagestyle{empty}
 
 \bigskip
 \Large\textbf{\centerline{Final Exam: Prove 3 Nontrivial Theorems}}
 
 \medskip
-\large\textbf{\centerline{Friday, 1 May, 10:15am--12:15pm, Chapman 107}}
+\large \centerline{Friday 1 May 2026, 10:15am--12:15pm, Chapman 107}
 
 \normalsize
 \bigskip
-For the in-class Final Exam I would like you to \textbf{prove 3 nontrivial theorems} which we have seen during the semester.  A list of 9 possibilities appears below, and these are the only possibilities.  You will have this document in your hand during the Exam, but you must remember what you want to say!  \textbf{You may NOT bring notes, the textbook, or electronics of any kind to the Exam.}  Just bring a writing implement.
+For the in-class Final Exam you will \textbf{prove 3 nontrivial theorems} which we have seen during the semester.  A list of 7 possibilities appears below, and these are the only possibilities.  You will have this document in your hand during the Exam, but otherwise you must remember what you want to say!  \textbf{You may NOT bring notes, the textbook, or electronics of any kind to the Exam.}  Just bring a writing implement.
 
-It is essential that you \textbf{draft and practice both theorem statements and the proofs}.  Make sure to read relevant sections of the textbook or slides.  Get feedback on your drafts from other students or friends (or me).  Decide in advance how you will remember enough detail so as to recreate the theorem statement and the proof during the Exam itself.
+It is essential that you \textbf{draft and practice both the theorem statements and the proofs}.  Make sure to read relevant sections of the textbook\footnote{\textbook} or slides\footnote{On the Daily Log tab at \href{https://bueler.github.io/fa/daily.html}{\texttt{bueler.github.io/fa/daily.html}}.}.  Get feedback on your drafts from other students or friends (or me).  Decide in advance how you will remember enough detail so as to recreate the theorem statement and its proof during the Exam itself.
 
-\textbf{This is a writing assignment.}  I will grade for correctness, completeness, and readability, in that order of priority.
+This is a writing assignment.  I will grade for correctness and completeness (the 2 highest priorities), and then for readability.
 
 \medskip
 \noindent \hrulefill
+
+\medskip
 
 \noindent \textbf{\large Instructions:}
 
-\smallskip
-Write each theorem on a separate sheet.  Put your name in the upper-right corner.  Identify each theorem by ``\textbf{T1}'', etc.~in the upper-left corner.  The statement of the theorem and the full proof should be at most 1.5 pages.  Clearly and precisely state the theorem, making sure that both the hypotheses and conclusion are correct.  Then write the proof.  Full credit will only be given for a well-written, appropriately-detailed, and correct proof.  I recommend starting your proof with a sketch of its strategy, because substantial partial credit can then be given even if certain details are incomplete or incorrect.
+\medskip \noindent
+For each theorem, use a separate sheet.  Identify it by ``\textbf{T$x$}'' in the upper-left corner, and put your name in the upper-right.  Clearly and precisely state the theorem, making sure that both the hypotheses and conclusion are correct.  Then write ``Proof.'' at the beginning, and end the proof with ``$\!\!\!\!\!\qed$''.  Full credit will only be given for a well-written, appropriately-detailed, and correct proof.  (Starting your proof with a brief statement of its strategy is a good idea because partial credit can be given even if details are incomplete or incorrect.)  Each theorem should use at most 2 pages.
 
-\medskip
-\noindent \hrulefill
-
-\medskip
+\bigskip
 \renewcommand{\labelenumi}{\textbf{T\arabic{enumi}.}}
 \setlength{\leftmargini}{26pt}
 \begin{enumerate}
-\setlength{\itemsep}{4pt}
-\item xx
+\setlength{\itemsep}{7pt}
+\item Theorem 2.7, page 23: $(C([a,b]), \|\cdot\|_\infty)$ is complete.
+\item Theorem 3.15, page 53: Lebesgue's dominated convergence theorem.
+\item Theorem 3.19, page 61: For $1\le p < \infty$, $(L^p(\mu), \|\cdot\|_p)$ is a normed vector space.  (\emph{You may assume H\"older's inequality, but you need to prove the triangle inequality.})
+\item Theorem 4.2, page 82: Bessel's inequality.
+\item Theorem 5.4, page 98: If $X,Y$ are normed vector spaces, and if $Y$ is complete, then $\mathcal{B}(X,Y)$ is complete.  (\emph{You may assume that the operator norm is a norm.})
+\item Riesz-Fr\'echet representation theorem:  If $(X,\ip{\cdot}{\cdot})$ is a Hilbert space and if $\ell \in X'$ then there is a unique representer $x_\ell \in X$ so that $\ell(y) = \ip{y}{x_\ell}$ for all $y\in X$.  (\emph{See zoom recording for Wed.~1 April, at time-stamp about 12:50.  You may assume the Hilbert decomposition theorem.})
+\item The Riesz representation proof that the weak-form Poisson problem with homogeneous boundary conditions is well-posed.  (\emph{See the \href{https://bueler.github.io/fa/assets/slides/S26/week13.pdf}{week 13 slides}, slides 21--23.})
 \end{enumerate}
 
 \end{document}
