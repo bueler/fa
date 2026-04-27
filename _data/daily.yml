@@ -1,6 +1,11 @@
 semester: Spring 2026
 home: assets
 daily:
+- day: Monday 27 April
+  description: cont., and gloss of spectral theory
+  week: 16
+- day: Friday 24 April
+  description: cont.
 - day: Wednesday 22 April
   description: cont.
 - day: Monday 20 April
